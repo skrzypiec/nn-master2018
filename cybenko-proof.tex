@@ -2,7 +2,8 @@
 \usepackage{mathtools}
 \usepackage[pdftex]{graphicx}	
 \usepackage{amsmath,amsfonts,amsthm}	
-
+\usepackage{tikz}
+\usetikzlibrary{chains, positioning}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -11,7 +12,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 
-
+\usetikzlibrary{calc,arrows}
 
 %opening
 \title{Neural network is universal approximator}
@@ -30,7 +31,98 @@ Plan:
 \end{itemize}
 
 
+
 \subsubsection{}
+
+
+\def\layersep{2.5cm}
+\begin{center}
+	
+
+\begin{tikzpicture}
+[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
+]
+\tikzset{normal arrow/.style={draw,-latex}}
+\node[cnode=white,label=0:] (s) at (9,-6) {$\Sigma$};
+\node at (0,-7.5) {$\vdots$};
+\node at (0,-10) {$\vdots$};
+\node[cnode=white,label=180:Bias term] (x-5) at (0,-10) {1};
+\node at (5,-7.5) {$\vdots$};
+\foreach \x in {1,...,4}
+{
+	\pgfmathparse{\x<4 ? \x : "n"}	   
+	\ifnum \x = 4
+		\node[cnode=white,label=180:Input \#\pgfmathresult] (x-\x) at (0,{-2*\x-div(\x,4)}) {$x_{n}$};
+		\node[cnode=white,label=90:] (p-\x) at (5,{-2*\x-div(\x,4)}) {\scriptsize$\sigma\left(w_n^Tx + \theta_n\right)$};
+
+	\else
+
+		\node[cnode=white,label=180:Input \#\pgfmathresult] (x-\x) at (0,{-2*\x-div(\x,4)}) {$x_{\x}$};
+		\node[cnode=white,label=90:] (p-\x) at (5,{-2*\x-div(\x,4)}) {\scriptsize$\sigma\left(w_\x^Tx + \theta_\x\right)$};
+	\fi
+		\path[normal arrow] (p-\x) -- node[above,sloped,pos=0.4] {$\alpha_{\pgfmathresult}$} (s);
+}
+ 
+
+\foreach \x in {1,...,5}
+{   
+	\foreach \y in {1,...,4}
+	{   
+		\ifnum \x=1
+			\ifnum \y=4
+				\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.15] {$\omega_{\x n}$};
+			\else
+				\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.2] {$\omega_{\x\y}$};
+			\fi
+		\else
+		\path[normal arrow] (x-\x) -- (p-\y); 
+		
+		\fi
+		
+		%\draw (x-\x) -- (p-\y) node[above,sloped,pos=0.3] {$\omega_{\x\y}$};
+	}
+}
+\end{tikzpicture}
+
+\end{center}
+
+
+\begin{center}
+
+\begin{tikzpicture}[shorten >=1pt,->, draw=black!50, 
+node distance = 6mm and 24mm,
+start chain = going below,
+every pin edge/.style = {<-,shorten <=1pt},
+neuron/.style = {circle, draw=black, fill=#1, 
+	minimum size=17pt, inner sep=0pt,
+	on chain},
+annot/.style = {text width=4em, align=center}
+]
+% Draw the input layer nodes
+\foreach \i in {1,...,4}
+\node[neuron=white!50,
+pin=180:Input \#\i] (I-\i)    {$x_{\i}$};
+% Draw the hidden layer nodes
+\node[neuron=white!50,
+above right=6mm and 24mm of I-1.center] (H-1)     {$\sigma_{1}$};
+\foreach \i [count=\j from 1] in {2,...,5}
+\node[neuron=white!50,
+below=of H-\j]      (H-\i)    {$\sigma_{\i}$};
+% Draw the output layer node
+\node[neuron=white!50, pin= {[pin edge=->]0:Output}, right=of H-3]  (O-1)  {$\Sigma$};
+
+
+% Connect input nodes with hidden nodes and 
+%  hiden nodes with output nodes with the output layer
+\foreach \i in {1,...,4}
+\foreach \j in {1,...,5}
+{
+	\path (I-\i) edge (H-\j)
+	(H-\j) edge (O-1);
+}
+\end{tikzpicture}
+\end{center}
+
 
 Neural networks with sigmoidal activation functions can approximate to arbitrary accuracy any functional continuous mapping from one finite-dimensional space to another, provided the number N of hidden units is sufficiently large.
 
@@ -43,10 +135,11 @@ $$
 $$
 
 
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.65\linewidth]{sigmoid}
-	%\caption{$\frac{1}{1+e^{-x}}$}
+	\includegraphics[width=\linewidth]{sigmoid14_8}
+	\caption{Sigmoid function, $\sigma(x) = \frac{1}{1+e^{-x}}$}
 \end{figure}
 
 \newpage
@@ -115,7 +208,7 @@ f\left(\alpha x\right) &=&\alpha f\left(x\right) \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\
 \begin{theorem}[]
 	Let $\sigma$ be any continous discriminatory function. Then finite sums of the form
 $$
-G\left(x\right) = \sum_{j=1}^{N} \alpha_j \sigma\left(y_j^Tx + \theta_j\right)
+G\left(x\right) = \sum_{j=1}^{N} \alpha_j \sigma\left(w_j^Tx + \theta_j\right)
 $$
 
 are dense in $C(I_n)$. In other words, given any $f \in C(I_n)$ and $\epsilon >0$, there is a sum, $G(x)$, of the above form, for whic
