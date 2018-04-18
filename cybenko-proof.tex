@@ -258,19 +258,18 @@ are dense in $C(I_n)$ providing that $\sigma$ is continous and discriminatory.
 
 \end{proof}
 
+\section{Visual proof}
 
-\section{Visual proof of }
-
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{cybenko14_8_1}
-	\caption{Visual proof, wydrukować MSE i narysować dla 10 neuronow i 100, INNA FUNKCJA!!}
+
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{mse}
-	\caption{}
+
 \end{figure}
 
 
@@ -295,12 +294,12 @@ are dense in $C(I_n)$ providing that $\sigma$ is continous and discriminatory.
 
 
 \newpage
-\section{Data}
+\subsection{Data}
 
 The training set has $m$ samples of $1$ dimension, it is given as a vector: $X \in \mathbb{R}^{1\times m}$ and corresponding results
 $Y\in \mathbb{R}^{1\times m}$.
 
-\section{Parameters}
+\subsection{Parameters}
 
 The net will have 2 layers: 1) a hidden one, having $L$ neurons,
 and 2) an output one, having $1$ neuron.
@@ -317,7 +316,7 @@ of activations of the hidden layer to 1 activations of output neurons:
 weight matrix $W^o\in{1\times L}$ and bias vector $b^o\in\mathbb{R}^{1\times 1}$.
 
 
-\section{Signal forward propagation (fprop)}
+\subsection{Signal forward propagation (fprop)}
 
 Each hidden neuron computes its total input as a sum of product of its
 inputs, weight matrix and bias. For an $i$-th sample,
@@ -373,7 +372,7 @@ J(\Theta) &= \frac{1}{m}\sum_{i=1}^m J^{(i)}(\Theta)= \frac{1}{2m}\sum_{i=1}^m \
 \end{equation}
 
 
-\section{Error backpropagation (bprop)}
+\subsection{Error backpropagation (bprop)}
 
 Using the chain rule one can derive the gradient of the loss function
 in respect to neurons' activations and network parameters.
