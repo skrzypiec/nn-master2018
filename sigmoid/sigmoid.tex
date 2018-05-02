@@ -16,36 +16,50 @@
 
 %opening
 \title{Activation functions}
-\author{Rafa\"l Skrzypiec}
+\author{Rafa\l \vspace{1cm} Skrzypiec}
 \date{}
 \begin{document}
 \maketitle
 
 \section{Activation functions}
 
-There are many possible choices for the non-linear activation functions in a multilayered network... biology 
-czemu non-linear?
-różne funkcje w zależności od zastosowań, ReLU, Sigmiod, TanH, Heavyside 
+Activation function is a function that acts on every unit in neural network and gives the output value for neuron's input or set of inputs. 
+
+The perceptron, which is a progenitor and inspiration of artificial neural network was constructed as a simplified model of a biological neuron. In neuroscience, each neuron is connected with other neurons via connections that conduct electrical impulses. If the sum of the input signals surpasses a certain threshold neuron transmits electrical signal. Translating it to perceptron idea, only if the sum of input values is greater than zero, signal is propagated through neuron. Thus perceptron uses activation function that is shown in left upper corner of Fig.~\ref{fig:activations} - Heaviside step function. The single-layered perceptron is the simplest example of feed-forward neural network. 
+
+However it is not commonly used activation function, it does not include highly desirable property. One of the most important properties of activation functions is nonlinearity, that is the attribute that gives neural network nonlinear capabilities [Lecun]. 
+
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{activations14_12}
-	\caption{COO}
+	\caption{Set of several activation functions.}
+	\label{fig:activations}
 \end{figure}
 
 
 
 \subsection{Sigmoid}
--nieliniowa
--dobrze odwzorowuje liniowe zaleznosci dla niewielkich wag
--moze byc funkcją schodkową dla dużej wartosci sumy
--prosta pochodna
+
+A typical choice of activation function is sigmoid. It is nonlinear function that is monotonically increasing. Logistic sigmoid function is defined by equation
+
+\begin{equation}
+\sigma(x) = \frac{1}{1+e^{-x}}.
+\end{equation}
+
+It is continuously differentiable what makes possible to use gradient-based optimization methods. Derivative with respect to $x$ is given by simple relation
+
+\begin{equation}
+\frac{d}{dx} \sigma(x)= \sigma(x)\left(1 - \sigma(x)\right).
+\end{equation}
+
+[zwiazek z tanh, wspomniec kiedy uzywa sie czego albo wykasowac obrazek]
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{sigmoid14_8}
 	\caption{Example of sigmoidal function - sigmoid function, $\sigma(x) = \frac{1}{1+e^{-x}}$}
 \end{figure} 
-narysować jeszcze tanh, związek z sigmoidą, jeden obrazek z kilkoma funkcjami aktywacji
 
 \newpage
 
