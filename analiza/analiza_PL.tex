@@ -1,0 +1,86 @@
+\documentclass[]{article}
+\usepackage{mathtools}
+\usepackage[pdftex]{graphicx}	
+\usepackage{amsmath,amsfonts,amsthm}	
+\usepackage{tikz}
+\usepackage{listings}
+
+\usetikzlibrary{chains, positioning}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\usepackage{sidecap}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+
+\lstset{
+	language=Python, %% Troque para PHP, C, Java, etc... bash é o padrão
+	basicstyle=\ttfamily\small,
+	numberstyle=\footnotesize,
+	%numbers=left,
+	%backgroundcolor=\color{gray!10},
+	frame=single,
+	tabsize=2,
+	rulecolor=\color{black!30},
+	title=\lstname,
+	escapeinside={\%*}{*)},
+	breaklines=true,
+	breakatwhitespace=true,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	inputencoding=utf8,
+	extendedchars=true,
+	literate={ą}{{\k a}}1 {ę}{{\k e}}1,} %{ś}{{\'s}}1,
+
+\usetikzlibrary{calc,arrows}
+
+%opening
+%\title{Keras}
+\author{Rafa\l \vspace{1cm} Skrzypiec}
+%\date{}
+\begin{document}
+%\maketitle
+
+%\section{Keras}
+{\large Rafał Skrzypiec - Analiza}
+\vspace{1cm}
+
+\section{Walidacja krzyżowa}
+
+Algorytm wykorzystywany podczas nauki modelu ma za zadnianie znalezienie takich parametrów, które sprawiają, że model odwzorowuje dane wykorzystane do nauki w sposób jak najlepszy z możliwych. Jeśli do walidacji modelu wykorzystamy inną, niezależną próbkę danych pochodzącą z tego samego zbioru co podzbiór uczący, zazwyczaj okaże się, że model nie działa aż tak dobrze jak przy użyciu zbioru uczącego. Rozmiar tej różnicy zwiększa się, szczególnie wtedy gdy wielkość zbioru treningowego jest niewielka, lub gdy liczba parametrów modelu jest bardzo duża.
+Walidacja krzyżowa to metoda statystyczna, która ma za zadanie zminimalizować tę różnicę przez co pomaga ocenić i zwiększyć trafność przewidywań modelu predykcyjnego. 
+
+
+W najprostszym przykładzie walidacji krzyżowej zbiór danych dzieli się na dwa podzbiory: uczący i walidacyjny. Podczas gdy zbiór uczący służy do nauki modelu, zbiór walidacyjny wykorzystuje się aby mierzyć błąd modelu na nieznanym zbiorze danych. 
+		
+W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony na $k$ równych wielkością podzbiorów. Jeden z $k$ podzbiorów jest przeznaczany na zbiór walidacyjny, pozostałe $k-1$ podzbiorów służą jako dane teningowe. Powyżej opisana procedura jest powtarzana $k$ razy, a każdy $k$ podzbiorów dokładnie raz zostaje wykorzystany jako zbiór testowy. Następnie $k$ wyników modelu jest uśrednianych dając w rezultacie jeden wynik. Poniższa grafika przedstawia sposób działania $10$-krotnej walidacji krzyżowej.
+
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=1\textwidth]{cross_val.png}
+		\caption{Na podstawie [Python Machine Learning
+			Book by Sebastian Raschka]}
+	\end{figure}
+		
+\end{document}
+
+
+
+\def\layersep{2.5cm}
+\begin{center}
+
+
+— Number of Hidden Layers — Result —
+0 - Only capable of representing linear separable functions or decisions.
+1 - Can approximate any function that contains a continuous mapping from
+one finite space to another.
+2 - Can represent an arbitrary decision boundary to arbitrary accuracy with
+rational activation functions and can approximate any smooth mapping to any
+accuracy.
+2
+	
