@@ -58,22 +58,131 @@ Walidacja krzyżowa to metoda statystyczna, która ma za zadanie zminimalizować
 
 W najprostszym przykładzie walidacji krzyżowej zbiór danych dzieli się na dwa podzbiory: uczący i walidacyjny. Podczas gdy zbiór uczący służy do nauki modelu, zbiór walidacyjny wykorzystuje się aby mierzyć błąd modelu na nieznanym zbiorze danych. 
 		
-W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony na $k$ równych wielkością podzbiorów. Jeden z $k$ podzbiorów jest przeznaczany na zbiór walidacyjny, pozostałe $k-1$ podzbiorów służą jako dane teningowe. Powyżej opisana procedura jest powtarzana $k$ razy, a każdy $k$ podzbiorów dokładnie raz zostaje wykorzystany jako zbiór testowy. Następnie $k$ wyników modelu jest uśrednianych dając w rezultacie jeden wynik. Poniższa grafika przedstawia sposób działania $10$-krotnej walidacji krzyżowej.
+W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony na $k$ równych wielkością podzbiorów. Jeden z $k$ podzbiorów jest przeznaczany na zbiór walidacyjny, pozostałe $k-1$ podzbiorów służą jako dane teningowe. Powyżej opisana procedura jest powtarzana $k$ razy, a każdy $k$ podzbiorów dokładnie raz zostaje wykorzystany jako zbiór testowy. Następnie $k$ wyników modelu jest uśrednianych dając w rezultacie jeden wynik. \figurename{} \ref{fig:cross-val} przedstawia sposób działania $10$-krotnej walidacji krzyżowej.
 
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=1\textwidth]{cross_val.png}
 		\caption{Na podstawie [Python Machine Learning
 			Book by Sebastian Raschka]}
+		\label{fig:cross-val}
 	\end{figure}
-		
-\end{document}
+
+\section{Wczesne zatrzymanie}
+Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
 
 
 
-\def\layersep{2.5cm}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{early_stopping14_8.png}
+	\caption{}
+	\label{fig:loss_curves}
+\end{figure}
+
+W dziedzinie uczenia maszynowego, metoda wczesnego zatrzymania to forma regularyzacji, która pozwala uniknąć problemu przeuczenia, zatrzymując naukę modelu gdy wartość funkcji straty na zbiorze walidacyjnym zaczyna wzrastać. Rzeczywisty przebieg wartości funkcji straty ma wiele lokalnych minimów, dlatego na podstawie obserwacji krzywych uczenia dokonano wyboru kryteriów zatrzymania nauki modelu. 
+ Niech $\Theta_{va}(t)$ to wartość funkcji straty na zbiorze walidacyjnym po $t$ epokach, $\Theta_{opt}(t)$ to dotychczasowe minimum funkcji straty na zbiorze walidacyjnym po $t$ epokach, definiowane jako:
+ $$
+ \Theta_{opt}(t) \equiv \min_{t' < t} \Theta_{opt}(t')
+ $$
+ 
+ Niech $\Theta_{sr}(t)$ będzię średnią wartością funkcji straty dla zbioru walidacyjnego z ostatnich 10 epok.
+ 
+ $$
+ \Theta_{sr}(t) \equiv \frac{1}{10} \sum_{i=0}^{10} \Theta_{va}(t-i)
+ $$
+ 
+ Oraz zdefiniujmy pomocniczy parametr $GL(t)$
+ 
+ 
+ $$
+ GL(t) \equiv \frac{\Theta_{sr}(t)}{\Theta_{opt}} - 1
+ $$
+ 
+ 
+ Podczas nauki przedstawioneg modelu, do wczesnego zatrzymania wystarczyło spełnienie jednego z dwóch obowiązujących warunków:
+
+\begin{itemize}
+\item $\Theta_{opt}(t) = \Theta_{opt}(t+ 200)$, brak zmniejszenia minimalnej wartości funkcji straty dla zbioru walidacyjnego przez 200 epok 
+\item $ GL(t)  > 2$, względny wzrost średniej wartości funkcji straty przez ostatnie 10 epok względem osiągniętego minimum jest większy niż $200\%$
+\end{itemize}
+
+
 \begin{center}
+	
+	
+	\begin{tikzpicture}
+	[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
+	]
+	\tikzset{normal arrow/.style={draw,-latex}}
+	\node[cnode=white,label=0:Wyjście] (s) at (9,-7) {};
+	
+	\node[cnode=white,label=180:Bias] (x-3) at (0,-9) {1};
 
+	
+	\node[cnode=white,label=180:] (p-4) at (3,-10) {$1$};
+	
+	\node[cnode=white,label=180:] (z-6) at (6,-12) {$1$};	
+	
+	
+	\node[cnode=white,label=180:$\varepsilon$] (x-1) at (0,-5) {};
+	\node[cnode=white,label=180:$Q^2$] (x-2) at (0,-7) {};
+
+	\node[cnode=white,label=180:] (p-1) at (3,-4) {};
+	\node[cnode=white,label=180:] (p-2) at (3,-6) {};
+	\node[cnode=white,label=180:] (p-3) at (3,-8) {};
+	
+	\node[cnode=white,label=180:] (z-1) at (6,-2) {};
+	\node[cnode=white,label=180:] (z-2) at (6,-4) {};
+	\node[cnode=white,label=180:] (z-3) at (6,-6) {};
+	\node[cnode=white,label=180:] (z-4) at (6,-8) {};
+	\node[cnode=white,label=180:] (z-5) at (6,-10) {};
+	
+
+
+	\foreach \x in {1,...,6}
+	{
+		\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s);
+	}
+	
+	
+	\foreach \x in {1,...,3}
+	{   
+		\foreach \y in {1,...,3}
+		{   
+
+			\path[normal arrow] (x-\x) -- (p-\y); 				
+		}
+	}
+
+	\foreach \x in {1,...,4}
+	{   
+	\foreach \y in {1,...,5}
+	{   
+		
+		\path[normal arrow] (p-\x) -- (z-\y); 
+	}
+	
+	
+	
+	\ifnum \x=5
+	\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s);
+	\else
+	
+	\fi
+	}
+
+
+
+
+
+	\end{tikzpicture}
+	
+\end{center}
+
+
+\end{document}
 
 — Number of Hidden Layers — Result —
 0 - Only capable of representing linear separable functions or decisions.
