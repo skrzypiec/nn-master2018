@@ -4,7 +4,7 @@
 \usepackage{amsmath,amsfonts,amsthm}	
 \usepackage{tikz}
 \usepackage{listings}
-
+\usepackage{slashbox}
 \usetikzlibrary{chains, positioning}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -16,6 +16,8 @@
 \usepackage[T1]{fontenc}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\usepackage{caption} 
+\captionsetup[table]{skip=10pt}
 
 
 \lstset{
@@ -82,35 +84,70 @@ Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych t
 \end{figure}
 
 W dziedzinie uczenia maszynowego, metoda wczesnego zatrzymania to forma regularyzacji, która pozwala uniknąć problemu przeuczenia, zatrzymując naukę modelu gdy wartość funkcji straty na zbiorze walidacyjnym zaczyna wzrastać. Rzeczywisty przebieg wartości funkcji straty ma wiele lokalnych minimów, dlatego na podstawie obserwacji krzywych uczenia dokonano wyboru kryteriów zatrzymania nauki modelu. 
- Niech $\Theta_{va}(t)$ to wartość funkcji straty na zbiorze walidacyjnym po $t$ epokach, $\Theta_{opt}(t)$ to dotychczasowe minimum funkcji straty na zbiorze walidacyjnym po $t$ epokach, definiowane jako:
+ Niech $\Theta_{wa}(t)$ to wartość funkcji straty na zbiorze walidacyjnym po $t$ epokach, $\Theta_{min}(t)$ to dotychczasowe minimum funkcji straty na zbiorze walidacyjnym po $t$ epokach, definiowane jako:
  $$
- \Theta_{opt}(t) \equiv \min_{t' < t} \Theta_{opt}(t')
+ \Theta_{min}(t) \equiv \min_{t' < t} \Theta_{wa}(t')
  $$
  
  Niech $\Theta_{sr}(t)$ będzię średnią wartością funkcji straty dla zbioru walidacyjnego z ostatnich 10 epok.
  
  $$
- \Theta_{sr}(t) \equiv \frac{1}{10} \sum_{i=0}^{10} \Theta_{va}(t-i)
+ \Theta_{sr}(t) \equiv \frac{1}{10} \sum_{i=0}^{10} \Theta_{wa}(t-i)
  $$
  
  Oraz zdefiniujmy pomocniczy parametr $GL(t)$
  
  
  $$
- GL(t) \equiv \frac{\Theta_{sr}(t)}{\Theta_{opt}} - 1
+ GL(t) \equiv \frac{\Theta_{sr}(t)}{\Theta_{min}} - 1
  $$
  
  
  Podczas nauki przedstawioneg modelu, do wczesnego zatrzymania wystarczyło spełnienie jednego z dwóch obowiązujących warunków:
 
 \begin{itemize}
-\item $\Theta_{opt}(t) = \Theta_{opt}(t+ 200)$, brak zmniejszenia minimalnej wartości funkcji straty dla zbioru walidacyjnego przez 200 epok 
+\item $\Theta_{min}(t) = \Theta_{min}(t+ 200)$ dla wszystkich $t \in [t,t+200]$, brak zmniejszenia minimalnej wartości funkcji straty dla zbioru walidacyjnego przez 200 epok 
 \item $ GL(t)  > 2$, względny wzrost średniej wartości funkcji straty przez ostatnie 10 epok względem osiągniętego minimum jest większy niż $200\%$
 \end{itemize}
 
+Po skończeniu nauki, wybierany jest model, który ma najmniejszą wartość funkcji straty na zbiorze testowym.
 
-\begin{center}
-	
+\section{Ilość neuronów}
+
+Architektura sieci neuronowej, tzn. ilość warstw ukrytych oraz ilość neuronów w warstwach ukrytych jest zdeterminowana przez wymiar danych wejściowych, rodzaj rozwiązywanego problemu (klasyfikacja czy regresja) oraz relację między zmiennymi objaśniającymi i zmienną objaśnianą.
+
+Uogólniony model liniowy przydatny w szerokim zakresie zastosowań, nie potrzebuję żadnej warstwy ukrytej. Bywa szczególnie przydatny gdy zbiór zawiera mało danych lub są one obarczone dużą niedokładnością. Nawet w przypadku gdy relacja między zmiennymi jest lekko nieliniowa, użycie prostego modelu liniowego może skutkować lepszym uogólnieniem problemu niż skomplikowany model będący wrażliwy na każdy szum znajdujący się w danych. Zgodnie z uniwersalnym twierdzeniem aproksymacyjnym jedna warstwa ukryta z wystarczająco dużą liczbą neuronów wystarcza aby z dowolną dokładnością dowolną ciągłą funkcję [cybenko]. Jeśli zmienna objaśniająca jest jednowymiarowa, wydaje się, że nie odniesiemy żadnej korzyści z skonstruowania sieci neuronowej o więcej niż jednej warstwie ukrytej. Sprawy komplikują się jednak gdy zmienna wejściowa jest dwu lub więcej wymiarowa. Dwuwarstowa sieć neuronowa zachowuje właściwości jednowarstwowej sieci neuronowej oraz osiąga zdolność nauki każdego problemu klasyfikacyjnego [1995 Bishop 123], ponadto wielowarstwowa sieć neuronowa z dwoma warstwami może skutkować dokładniejszymi wynikami wykorzystując mniejszą ilość parametrów niż jednowarstwowa sieć [Chester (1990)].
+
+Na tej podstawie, do rozwiązania problemu regresji gdzie wejściem jest para liczb $(\varepsilon, Q^2)$ postanowiłem wybrać sieć neuronowa z dwoma warstwami ukrytymi. 
+
+
+\begin{table}
+\centering
+
+\caption{Liczba parametrów sieci neuonowej z dwoma warstwami ukrytymi w zależności od liczby neuronów w warstwach}\label{tab:title} 
+
+
+\begin{tabular}{c|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
+	\backslashbox{I warstwa}{II warstwa} & 2 & 3 & 4 & 5\\\hline\hline
+	2 & 14 & 18 & 22 & 26 \\ \hline
+		3 & 19 & 24 & 29 & 34 \\ \hline
+			4 & 24 & 30 & 36 & 42 \\ \hline
+				5 & 29 & 36 & 43 & 50 \\ \hline
+\end{tabular}
+\end{table}
+
+%opisać liczbę parametrów + poniższy obrazek
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{neuronyy14_8.png}
+	\caption{Opis}
+	\label{fig:neurony}
+\end{figure}
+
+
+\begin{figure}	
+\centering
 	
 	\begin{tikzpicture}
 	[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
@@ -173,23 +210,13 @@ W dziedzinie uczenia maszynowego, metoda wczesnego zatrzymania to forma regulary
 	\fi
 	}
 
-
-
-
-
-	\end{tikzpicture}
-	
-\end{center}
+\end{tikzpicture}
+\caption{Schemat zastosowanej sieci neuronowej, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów. } \label{tab:scheme} 	
+\end{figure}
 
 
 \end{document}
 
-— Number of Hidden Layers — Result —
-0 - Only capable of representing linear separable functions or decisions.
-1 - Can approximate any function that contains a continuous mapping from
-one finite space to another.
-2 - Can represent an arbitrary decision boundary to arbitrary accuracy with
-rational activation functions and can approximate any smooth mapping to any
-accuracy.
-2
+
 	
+http://page.mi.fu-berlin.de/prechelt/Biblio/stop_tricks1997.pdf
