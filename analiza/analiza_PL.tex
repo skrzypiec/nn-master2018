@@ -18,7 +18,9 @@
 \newtheorem{definition}{Definition}[section]
 \usepackage{caption} 
 \captionsetup[table]{skip=10pt}
-
+\usepackage{subfigure}
+\usepackage{sidecap}
+\sidecaptionvpos{figure}{t}
 
 \lstset{
 	language=Python, %% Troque para PHP, C, Java, etc... bash é o padrão
@@ -51,7 +53,6 @@
 %\section{Keras}
 {\large Rafał Skrzypiec - Analiza}\\
 Kilka niezależnych paragrafów
-\vspace{1cm}
 
 \section{Walidacja krzyżowa}
 
@@ -82,7 +83,7 @@ Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych t
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\textwidth]{early_stopping14_8.png}
-	\caption{}
+	\caption{Wyidealizowane przykłady krzywych przedstawiających zmianę wartości funkcji straty na zbiorach treningowym i walidacyjnym, podczas nauki modelu}
 	\label{fig:loss_curves}
 \end{figure}
 
@@ -121,22 +122,25 @@ Architektura sieci neuronowej, tzn. ilość warstw ukrytych oraz ilość neuron�
 
 Uogólniony model liniowy przydatny w szerokim zakresie zastosowań, nie potrzebuję żadnej warstwy ukrytej. Bywa szczególnie przydatny gdy zbiór zawiera mało danych lub są one obarczone dużą niedokładnością. Nawet w przypadku gdy relacja między zmiennymi jest lekko nieliniowa, użycie prostego modelu liniowego może skutkować lepszym uogólnieniem problemu niż skomplikowany model będący wrażliwy na każdy szum znajdujący się w danych. Zgodnie z uniwersalnym twierdzeniem aproksymacyjnym jedna warstwa ukryta z wystarczająco dużą liczbą neuronów wystarcza aby z dowolną dokładnością dowolną ciągłą funkcję [cybenko]. Jeśli zmienna objaśniająca jest jednowymiarowa, wydaje się, że nie odniesiemy żadnej korzyści z skonstruowania sieci neuronowej o więcej niż jednej warstwie ukrytej. Sprawy komplikują się jednak gdy zmienna wejściowa jest dwu lub więcej wymiarowa. Dwuwarstowa sieć neuronowa zachowuje właściwości jednowarstwowej sieci neuronowej oraz osiąga zdolność nauki każdego problemu klasyfikacyjnego [1995 Bishop 123], ponadto wielowarstwowa sieć neuronowa z dwoma warstwami może skutkować dokładniejszymi wynikami wykorzystując mniejszą ilość parametrów niż jednowarstwowa sieć [Chester (1990)]. Na tej podstawie, do rozwiązania problemu regresji gdzie wejściem jest para liczb $(\varepsilon, Q^2)$ postanowiłem wybrać sieć neuronowa z dwoma warstwami ukrytymi. 
 
-Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworzyłem siatkę [2, 3, 4, 5] $\times$ [2, 3, 4, 5] neuronów i sprawdziłem, która konfiguracja daje najmniejszy błąd zbioru walidacyjnego. Dane zostały podzielone na zbiór treningowy i testowy w stosunku 2:1. Dla każdej konfiguracji wytrenowano 50 sieci i sprawdzono jak wygląda statystyka błędu. \tablename{} \ref{tab:parameters_table} zawiera porównanie liczby parametrów sieci neuronowej w zależności od liczby neuronów w warstwach ukrytych. Do eksperymentów wybrano konfiguracje charakteryzujące się rozsądną w porównaniu do rozmiaru danych wejsciowych liczbą parametrów. \figurename{} \ref{fig:neurony} przedstawia rozkłady minimalnej wartości funkcji straty uzyskanej na danych walidacyjnych uzyskanej z 50 treningów sieci dla każdej konfiguracji ilości neuronów. Wykres pudełkowy to forma graficznej prezentacji rozkładu, która pozwala w łatwy sposób ukazać położenie, rozproszenie oraz kształt empirycznego rozkładu badanej cechy statystycznej. Konfiguracja 3 $\times$ 5 charakteryzuje się najniższą medianą wartości funkcji straty oraz małą liczbą wartości odstających. Ta obserwacja pozwoliła zdecydować, że liczby neuronów będą wynosiły 3 i 5 w odpowiednio pierwszej i drugiej warstwie ukrytej, co za tym idzie sieć będzie miała 36 parametrów.
 
 \begin{table}
-\centering
-
-\caption{Liczba parametrów sieci neuonowej z dwoma warstwami ukrytymi w zależności od liczby neuronów w warstwach}\label{tab:parameters_table} 
-
-
-\begin{tabular}{c|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
-	\backslashbox{I warstwa}{II warstwa} & 2 & 3 & 4 & 5\\\hline\hline
-	2 & 14 & 18 & 22 & 26 \\ \hline
+	\centering
+	
+	\caption{Liczba parametrów sieci neuonowej z dwoma warstwami ukrytymi w zależności od liczby neuronów w warstwach}\label{tab:parameters_table} 
+	
+	
+	\begin{tabular}{c|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
+		\backslashbox{I warstwa}{II warstwa} & 2 & 3 & 4 & 5\\\hline\hline
+		2 & 14 & 18 & 22 & 26 \\ \hline
 		3 & 19 & 24 & 29 & 34 \\ \hline
-			4 & 24 & 30 & 36 & 42 \\ \hline
-				5 & 29 & 36 & 43 & 50 \\ \hline
-\end{tabular}
+		4 & 24 & 30 & 36 & 42 \\ \hline
+		5 & 29 & 36 & 43 & 50 \\ \hline
+	\end{tabular}
 \end{table}
+
+Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworzyłem siatkę [2, 3, 4, 5] $\times$ [2, 3, 4, 5] neuronów i sprawdziłem, która konfiguracja daje najmniejszy błąd zbioru walidacyjnego. Dane zostały podzielone na zbiór treningowy i testowy w stosunku 2:1. Dla każdej konfiguracji wytrenowano 50 sieci i sprawdzono jak wygląda statystyka błędu. \tablename{} \ref{tab:parameters_table} zawiera porównanie liczby parametrów sieci neuronowej w zależności od liczby neuronów w warstwach ukrytych. Do eksperymentów wybrano konfiguracje charakteryzujące się rozsądną w porównaniu do rozmiaru danych wejsciowych liczbą parametrów. \figurename{} \ref{fig:neurony} przedstawia rozkłady minimalnej wartości funkcji straty uzyskanej na danych walidacyjnych uzyskanej z 50 treningów sieci dla każdej konfiguracji ilości neuronów. Wykres pudełkowy to forma graficznej prezentacji rozkładu, która pozwala w łatwy sposób ukazać położenie, rozproszenie oraz kształt empirycznego rozkładu badanej cechy statystycznej. Konfiguracja 3 $\times$ 5 charakteryzuje się najniższą medianą wartości funkcji straty oraz małą liczbą wartości odstających. Ta obserwacja pozwoliła zdecydować, że liczby neuronów będą wynosiły 3 i 5 w odpowiednio pierwszej i drugiej warstwie ukrytej, co za tym idzie sieć będzie miała 36 parametrów.
+
+
 
 %opisać liczbę parametrów + poniższy obrazek
 
@@ -148,16 +152,15 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 \end{figure}
 
 
-\begin{figure}	
+\begin{SCfigure}
 \centering
-	
-	\begin{tikzpicture}
+\resizebox{7.cm}{!}{\begin{tikzpicture}
 	[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
 	]
 	\tikzset{normal arrow/.style={draw,-latex}}
 	\node[cnode=white,label=0:Wyjście] (s) at (9,-7) {};
 	
-	\node[cnode=white,label=180:Bias] (x-3) at (0,-9) {1};
+	\node[cnode=white,label=180:\textit{Bias}] (x-3) at (0,-9) {1};
 
 	
 	\node[cnode=white,label=180:] (p-4) at (3,-10) {$1$};
@@ -211,13 +214,89 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 	
 	\fi
 	}
+\end{tikzpicture}}
+\caption{Schemat zastosowanej sieci neuronowej, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme} 	
+\end{SCfigure}
 
-\end{tikzpicture}
-\caption{Schemat zastosowanej sieci neuronowej, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów. } \label{tab:scheme} 	
+\section{Algorytm uczący}
+
+%wspomniec o SGD, porownanie GD i .dcd9ec56-a-e73d4388-s-sites.googlegroups.com/a/cs.uni.wroc.pl/jch/teaching/zima2017-2018/neural-networks-fall-17/assignment4andlecturenotes5/05-get_learning_to_work.pdf?attachauth=ANoY7cqoCa5BwcHW1t87pvLkco-8O_CqUzretgfJrEvrml2l0FQ-PIL61PJAI753EG0PV13KdAZU_sgk4LQL9QHKwsdya9KbfuKuxAWNJJczLyYLPNFA9V7GWQLNmpqEnzlTEAQFGkEhxuViQ7fASO1Dc7MJi-UdjxNnjS_FyFdyF9pKfbiAfef19QU2TDkfpD9gvs65PsYsNrgi46eJKc8098iVsIcWUkRstb3dlkRCO_lenBBze6XUzE77Xq5zcEYhHoIkZup0FK-P4tD9mUnOolWkROdNHT_idcqFbN6agXnjxooUJMCV2Jrd7ssaQxrnXa1HYUxFVguoF_dovfwo5ZKyi1G4EA%3D%3D&attredirects=0
+
+Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu.
+
+\textit{Każda z N wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej N parametrów może być traktowany jako punkt na N-wymiarowej hiperpłaszczyźnie. N+1 wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni N+1 wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej N-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami N-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu.
+Przy stosowaniu modeli liniowych z funkcją błędu opartą na sumie kwadratów powierzchnia błędu ma kształt paraboloidy (funkcji kwadratowej), ma więc kształt kielicha o gładkich powierzchniach bocznych i o jednym wyraźnym minimum. Z tego powodu wyznaczenie w tym przypadku wartości minimalnej nie stwarza większych problemów.}"[$https://www.statsoft.pl/textbook/stathome_stat.html?$]
+
+Po za losowym poszukiwaniem parametrów, najłatwiejszym z nich i bardzo intuicyjnym jest metoda gradientu prostego
+
+
+\begin{equation}
+\theta^{k+1} = \theta^{k} - \alpha \nabla J(\theta^{k})
+\end{equation}
+
+
+gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność [Dennis, J., Schnabel, R.B.: Numerical Methods For Unconstrained Optimization and Nonlinear Equations. Prentice-Hall, Inc., Englewood Cliffs, New Jersey (1983)]. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. W ogólności jednak jest bardzo wolny, co jest jego największą słabością.
+
+Wyobraźmy sobie, że poszukiwanie minimum powierzchni błędu to przemierzanie przestrzeni pełnej dolin, pagórków, wąwozów. W kolejnych iteracjach przeskakujemy między tymi obszarami, w pewnym momencie może się zdarzyć, że gradient zaniknie lub będzie bardzo słaby a nasze poszukiwania zatrzymają się nie osiągając wystarczającego minimum. Idea pędu inspirowana zjawiskami fizycznymi to nadanie gradientowi krótkotrwałej pamięci. Posługując się kolejną analogią, popchnięta w dół piłka nabierając prędkości zwiększa swój pęd. To samo dzieje się z parametrami sieci, wartość pędu wzrasta dla wymiarów, których gradienty wskazują te same kierunki i zmniejsza aktualizację dla wymiarów, w których gradienty zmieniają kierunki. W rezultacje otrzymujemy szybszą zbieżność i mniejsze oscylacje.
+
+\begin{align} 
+v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k}) \\[0.4em]
+\theta^{k+1} &=  \theta^{k }- \alpha v^{k+1}
+\end{align}
+
+Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu prostego, zazwyczaj jednak ustala się wartość parametru $\beta$, zwanego pędem na około $0.9$. [1986 Nature, Learning representations by back-propagating errors
+David E. Rumelhart, Geoffrey E. Hinton \& Ronald J. Williams]
+
+Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci.	
+
+\begin{align} 
+v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k} - \beta v^{k}) \\[0.4em]
+\theta^{k+1} &=  \theta^{k }- \alpha v^{k+1}
+\end{align}
+[https://arxiv.org/abs/1609.04747]
+
+%Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na %\figurename{} \ref{fig:algorithms}, zwykła metoda gradientu prostego bardzo %szybko 
+
+% zrobić swój rysunek z porównaniem efektywnosci algorytmow
+
+
+%\begin{SCfigure}
+%	\includegraphics[width=0.65\textwidth]{algorithms_1.png}
+%	\caption{Porównanie drogi algorytmów w poszukiwaniu optimum funkcji straty na powierzchni błędu, i) metoda gradientu prostego (czarny), ii) metoda gradientu prostego + pęd (niebieski), iii) metoda gradientu prostego + pęd Nesterova (zielony) [$http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture7.pdf$]}
+%	\label{fig:algorithms}
+%\end{SCfigure}
+
+
+Niezywkle istotnym parametrem algorytmu jest $\alpha$, jego niezmienność wraz z postępem iteracji powoduje bardzo niską efektywność algorytmu. Ze względu na metodę zmiany tego parametru, który może być indywidualnie ustalany dla każdej wagi powstało wiele szeroko wykorzystywanych algorytmów. Do najpopularniejszych należą między innymi \textit{Adam, Nadam, Adagrad, Adadelta, AMSGrad, RMSprop}. 
+
+W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wzrostem iteracji. Ponadto szybkość uczenia zależna jest od wybranego parametru $\lambda$ decydującego o tym z jaką szybkością maleje.
+
+\begin{equation}
+\alpha(i) = \alpha_0 \times \frac{1}{1 + \lambda \times i}
+\end{equation}
+
+\figurename{} \ref{fig:hyperparameters} przedstawia porównanie przykładowych krzywych zmian wartości funkcji straty w czasie dla różnych wartości $\alpha$ i $\lambda$. Na ich podstawie widać jak duży wpływ wnosi parametr $\alpha$ w proces nauki modelu. Zbyt duża szybkość uczenia powoduje bardzo duże oscylacje krzywej funkcji straty, za mała wartość $\alpha$ bardzo mocno spowalnia proces nauki. Pewien kompromis przynosi wybranie odpowiednio dużej początkowej wartości szybkości uczenia, co przynosi szybkie przejście algorytmu w obszar minimum i następnie zmniejszenie go do wartości potrafiącej efektywnie dalej poszukiwać optimum. Zadowalający przebieg mają krzywe o parametrach $\alpha = 0.005$, $\lambda = 0.001$, które przedstawiają porządany, eksponencjalny kształt o niewielkiej oscylacji. Na podstawie powyższej analizy to właśnie te hiperparametry zostały wykorzystane w modelu, dodatkowo parametr pędu $\beta$ został ustalony na wartość $0.9$
+
+
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{hyperparameter14_16a.png}
+	\caption{Porównanie przykładowych krzywych zmiany wartości funkcji straty w czasie dla zbiorów treningowego (kolor pomarańczowy) i walidacyjnego (kolor niebieski) ze względu na parametry $\alpha$ (\textit{learning rate}) oraz $\lambda$ (\textit{decay})}
+	\label{fig:hyperparameters}
 \end{figure}
 
-\section{Algorytm uczący - SGD, parametry, funkcja aktywacji}
 
+
+
+%$https://dcd9ec56-a-e73d4388-s-sites.googlegroups.com/a/cs.uni.wroc.pl/jch/teaching/zima2017-2018/neural-networks-fall-17/assignment4andlecturenotes5/05-get_learning_to_work.pdf?attachauth=ANoY7cqoCa5BwcHW1t87pvLkco-8O_CqUzretgfJrEvrml2l0FQ-PIL61PJAI753EG0PV13KdAZU_sgk4LQL9QHKwsdya9KbfuKuxAWNJJczLyYLPNFA9V7GWQLNmpqEnzlTEAQFGkEhxuViQ7fASO1Dc7MJi-UdjxNnjS_FyFdyF9pKfbiAfef19QU2TDkfpD9gvs65PsYsNrgi46eJKc8098iVsIcWUkRstb3dlkRCO_lenBBze6XUzE77Xq5zcEYhHoIkZup0FK-P4tD9mUnOolWkROdNHT_idcqFbN6agXnjxooUJMCV2Jrd7ssaQxrnXa1HYUxFVguoF_dovfwo5ZKyi1G4EA%3D%3D&attredirects=0$
+
+%$http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf$
+
+%$https://distill.pub/2017/momentum/$
+
+%$https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/tricks-2012.pdf$
+%$https://en.wikipedia.org/wiki/Stochastic_gradient_descent$
 \section{Dane wejściowe}
 
 \section{Funkcja straty}
