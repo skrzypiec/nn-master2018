@@ -78,8 +78,6 @@ Cytując [Page 184, An Introduction to Statistical Learning, 2013.], "(...) istn
 Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
 
 
-
-
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\textwidth]{early_stopping14_8.png}
@@ -205,9 +203,7 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 		
 		\path[normal arrow] (p-\x) -- (z-\y); 
 	}
-	
-	
-	
+		
 	\ifnum \x=5
 	\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s);
 	\else
@@ -219,15 +215,12 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 \end{SCfigure}
 
 \section{Algorytm uczący}
+ 
 
-%wspomniec o SGD, porownanie GD i .dcd9ec56-a-e73d4388-s-sites.googlegroups.com/a/cs.uni.wroc.pl/jch/teaching/zima2017-2018/neural-networks-fall-17/assignment4andlecturenotes5/05-get_learning_to_work.pdf?attachauth=ANoY7cqoCa5BwcHW1t87pvLkco-8O_CqUzretgfJrEvrml2l0FQ-PIL61PJAI753EG0PV13KdAZU_sgk4LQL9QHKwsdya9KbfuKuxAWNJJczLyYLPNFA9V7GWQLNmpqEnzlTEAQFGkEhxuViQ7fASO1Dc7MJi-UdjxNnjS_FyFdyF9pKfbiAfef19QU2TDkfpD9gvs65PsYsNrgi46eJKc8098iVsIcWUkRstb3dlkRCO_lenBBze6XUzE77Xq5zcEYhHoIkZup0FK-P4tD9mUnOolWkROdNHT_idcqFbN6agXnjxooUJMCV2Jrd7ssaQxrnXa1HYUxFVguoF_dovfwo5ZKyi1G4EA%3D%3D&attredirects=0
-
-Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu.
-
-"\textit{Każda z N wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej N parametrów może być traktowany jako punkt na N-wymiarowej hiperpłaszczyźnie. N+1 wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni N+1 wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej N-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami N-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu.
+Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu "\textit{Każda z N wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej N parametrów może być traktowany jako punkt na N-wymiarowej hiperpłaszczyźnie. N+1 wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni N+1 wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej N-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami N-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu.
 Przy stosowaniu modeli liniowych z funkcją błędu opartą na sumie kwadratów powierzchnia błędu ma kształt paraboloidy (funkcji kwadratowej), ma więc kształt kielicha o gładkich powierzchniach bocznych i o jednym wyraźnym minimum. Z tego powodu wyznaczenie w tym przypadku wartości minimalnej nie stwarza większych problemów.}"[$https://www.statsoft.pl/textbook/stathome_stat.html?$]
 
-Po za losowym poszukiwaniem parametrów, najłatwiejszym z nich i bardzo intuicyjnym jest metoda gradientu prostego (\textit{gradient descent})
+Jeżeli dysponujemy niewielkim zbiorem danych treningowych, do znalezienia optimum funkcji doskonale sprawdzą się metody quasi-Newtonowskie. Ich zaletą jest bardzo szybka zbieżność, niestety obliczenie hesjanu funkcji wielu zmiennych charakteryzuje się dużą złożonością pamięciową $O(n^2)$ i jeszcze większą złożonością obliczeniową $O(n^3)$. Z tego powodu możliwość ich zastosowania ogranicza się do niewielu przypadków. Najbardziej znane algorytmy quasi-Newtonowskie to m.in: \textit{LM-BFGS, Levenberg-Marquardt.} Dysponując dużym zbiorem danych należy wybrać inny algorytm. Po za losowym poszukiwaniem parametrów, najłatwiejszym z nich i bardzo intuicyjnym jest metoda gradientu prostego (\textit{gradient descent}). Parametry $\theta$ aktualizowane są w następujący sposób:
 
 
 \begin{equation}
@@ -235,7 +228,8 @@ Po za losowym poszukiwaniem parametrów, najłatwiejszym z nich i bardzo intuicy
 \end{equation}
 
 
-gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność [Dennis, J., Schnabel, R.B.: Numerical Methods For Unconstrained Optimization and Nonlinear Equations. Prentice-Hall, Inc., Englewood Cliffs, New Jersey (1983)]. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. W ogólności jednak jest bardzo wolny, co jest jego największą słabością.
+gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność [Dennis, J., Schnabel, R.B.: Numerical Methods For Unconstrained Optimization and Nonlinear Equations. Prentice-Hall, Inc., Englewood Cliffs, New Jersey (1983)]. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. Algorytm jednak jest bardzo wolny, co jest jego największą słabością. Ze względu na częstość aktualizacji wag, metodę gradientu prostego możemy podzielić na \textit{batch gradient descent} oraz \textit{stochastic gradient descent}. W pierwszym przypadku wagi są dostosowywane po przetworzeniu pełnego zbioru danych, w metodzie stochastycznej zbiór uczący dzielony jest na podzbiory a wagi aktualizowane są po przetworzeniu każdego z podzbiorów. Druga metoda jest szczególnie użyteczna dla dużych zbiorów danych. Spodziewamy się, że dla dobrze przygotowanych danych kierunek podążania wartości wag będzie podobny jeśli policzymy gradient zarówno dla 10\% jak i dla 100\% zbioru treningowego.
+
 
 Wyobraźmy sobie, że poszukiwanie minimum powierzchni błędu to przemierzanie przestrzeni pełnej dolin, pagórków, wąwozów. W kolejnych iteracjach przeskakujemy między tymi obszarami, w pewnym momencie może się zdarzyć, że gradient zaniknie lub będzie bardzo słaby a nasze poszukiwania zatrzymają się nie osiągając wystarczającego minimum. Idea pędu inspirowana zjawiskami fizycznymi to nadanie gradientowi krótkotrwałej pamięci. Posługując się kolejną analogią, popchnięta w dół piłka nabierając prędkości zwiększa swój pęd. To samo dzieje się z parametrami sieci, wartość pędu wzrasta dla wymiarów, których gradienty wskazują te same kierunki i zmniejsza modyfikacje wartości dla wymiarów, w których gradienty zmieniają kierunki. W rezultacje otrzymujemy szybszą zbieżność i mniejsze oscylacje.
 
@@ -247,15 +241,14 @@ v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k}) \\[0.4em]
 Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu prostego, zazwyczaj jednak ustala się wartość parametru $\beta$, zwanego pędem na około $0.9$. [1986 Nature, Learning representations by back-propagating errors
 David E. Rumelhart, Geoffrey E. Hinton \& Ronald J. Williams] 
 
-Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na \figurename{} \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
-
-
-\begin{figure}[htp!]
+\begin{figure}[h	]
 	\centering
 	\includegraphics[width=1\textwidth]{gd_sgd.png}
 	\caption{Funkcja  $f(x,y) =(1.5 - x + xy)^2 + (2.25 - x + xy^2)^2 + (2.625 - x + xy^3)^2$, osiąga minimum równe 0, w punkcie $(3,0.5)$ oznaczonym  czarną gwiazdą. Grafika przedstawia porównanie działania metody gradientu prostego oraz jego modyfikacji poprzez dodanie pędu. Przyjmując, że punkt początkowy to $(2,1)$, $\alpha = 0.001$ i $\beta = 0.9$, możemy prześledzić trajektorie algorytmów przez pierwsze 500 iteracji działania.} 
 	\label{fig:gd_sgd}
 \end{figure}
+
+Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na \figurename{} \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
 
 
 Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci.	
@@ -278,7 +271,6 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 \figurename{} \ref{fig:hyperparameters} przedstawia porównanie przykładowych krzywych zmian wartości funkcji straty w czasie dla różnych wartości $\alpha$ i $\lambda$. Na ich podstawie widać jak duży wpływ wnosi parametr $\alpha$ w proces nauki modelu. Zbyt duża szybkość uczenia powoduje bardzo duże oscylacje krzywej funkcji straty, za mała wartość $\alpha$ bardzo mocno spowalnia proces nauki. Pewien kompromis przynosi wybranie odpowiednio dużej początkowej wartości szybkości uczenia, co przynosi szybkie przejście algorytmu w obszar minimum i następnie zmniejszenie go do wartości potrafiącej efektywnie dalej poszukiwać optimum. Zadowalający przebieg mają krzywe o parametrach $\alpha = 0.005$, $\lambda = 0.001$, które przedstawiają porządany, eksponencjalny kształt o niewielkiej oscylacji. Na podstawie powyższej analizy to właśnie te hiperparametry zostały wykorzystane w modelu, dodatkowo parametr pędu $\beta$ został ustalony na wartość $0.9$
 
 
-
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\textwidth]{hyperparameter14_16a.png}
@@ -287,16 +279,6 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 \end{figure}
 
 
-
-
-%$https://dcd9ec56-a-e73d4388-s-sites.googlegroups.com/a/cs.uni.wroc.pl/jch/teaching/zima2017-2018/neural-networks-fall-17/assignment4andlecturenotes5/05-get_learning_to_work.pdf?attachauth=ANoY7cqoCa5BwcHW1t87pvLkco-8O_CqUzretgfJrEvrml2l0FQ-PIL61PJAI753EG0PV13KdAZU_sgk4LQL9QHKwsdya9KbfuKuxAWNJJczLyYLPNFA9V7GWQLNmpqEnzlTEAQFGkEhxuViQ7fASO1Dc7MJi-UdjxNnjS_FyFdyF9pKfbiAfef19QU2TDkfpD9gvs65PsYsNrgi46eJKc8098iVsIcWUkRstb3dlkRCO_lenBBze6XUzE77Xq5zcEYhHoIkZup0FK-P4tD9mUnOolWkROdNHT_idcqFbN6agXnjxooUJMCV2Jrd7ssaQxrnXa1HYUxFVguoF_dovfwo5ZKyi1G4EA%3D%3D&attredirects=0$
-
-%$http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf$
-
-%$https://distill.pub/2017/momentum/$
-
-%$https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/tricks-2012.pdf$
-%$https://en.wikipedia.org/wiki/Stochastic_gradient_descent$
 \section{Dane wejściowe}
 
 \section{Funkcja straty}
@@ -305,5 +287,3 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 \end{document}
 
 
-	
-http://page.mi.fu-berlin.de/prechelt/Biblio/stop_tricks1997.pdf
