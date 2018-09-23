@@ -1,4 +1,4 @@
-\documentclass[]{article}
+\documentclass[11pt]{book}
 \usepackage{mathtools}
 \usepackage[pdftex]{graphicx}	
 \usepackage{amsmath,amsfonts,amsthm}	
@@ -20,7 +20,7 @@
 \usetikzlibrary{calc,arrows}
 \usepackage{slashbox}
 \usetikzlibrary{chains, positioning}
-
+%\newgeometry{tmargin=2.5cm, bmargin=2cm, lmargin=3.5cm, rmargin=2cm}
 \theoremstyle{definition}
 \newtheorem{definition}{Definicja}[section]
 \usepackage{color}
@@ -52,48 +52,145 @@
 	literate={ą}{{\k a}}1 {ę}{{\k e}}1,} %{ś}{{\'s}}1,
 
 
-%\usepackage{xcolor}
-%\colorlet{RED}{black} % don't color running headers
-%\colorlet{BLUE}{black}
-%\usepackage[titles]{tocloft}
+\title{}
+\author{Rafał Skrzypiec}
+
+%\newgeometry{tmargin=2.5cm, bmargin=2cm, lmargin=3.5cm, rmargin=2cm}
+
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+	\addtocounter{page}{0}%
+	\newpage}
+
+\renewcommand{\maketitle}{\begin{titlepage}
+		
+		
+		
+		\begin{center}
+			{\Large Uniwersytet Wrocławski\\
+				\vspace{0.cm}
+				Wydział Fizyki i Astronomii\\
+				\vspace{0.2cm}
+				Fizyka komputerowa} \\
+			\vspace{1.8cm}
+			\LARGE \textsc{ Praca Magisterska}		
+		\end{center}
+		
+		\vspace{3.5cm}
+		
+		\noindent
+		
+		\begin{center}		
+			\huge \textsc{\@ Tytuł polski}
+			
+			\vspace{0.5cm}
+			
+			\normalsize \textsc {Tytuł angielski}
+			
+		\end{center}
+		
+		
+		
+		\vspace{3cm}
+		
+		\begin{flushright}
+			
+			\begin{minipage}{5.5cm}
+				
+				\textit{\small Autor:}
+				
+				\normalsize \textsc{\@ Rafał Skrzypiec} \par
+				
+			\end{minipage}
+			
+			\vspace{1cm}
+			
+			
+			\begin{minipage}{5.5cm}
+				
+				\textit{\small Promotor:}
+				
+				\hspace{0.2cm}dr hab.\textsc{\@ Krzysztof Graczyk} \par
+				
+			\end{minipage}
+			
+		\end{flushright}
+		
+		
+		\vspace*{\stretch{4}}
+		
+		\begin{center}
+			
+			Wrocław, 2018
+			
+		\end{center}
+		
+	\end{titlepage}%
+	
+}
+
+
 
 
 %opening
-\title{}
-\author{Rafal Skrzypiec}
-\date{}
+%\title{}
+%\author{Rafal Skrzypiec}
+%\date{}
+
+
+
 \begin{document}
 
+%\maketitle
+%\tableofcontents
+
 \maketitle
-\tableofcontents
+\blankpage
 
-\newpage
 
-Co poprawić z obecnego tekstu:
+\begin{center}
+	{\large 	\textbf{Streszczenie}}
+
+\end{center}
+\normalsize 
+	Tekst streszczenia
+
+\vspace{2cm}
+
+\begin{center}
+	{\large 	\textbf{Abstract}}
+\end{center}
+\normalsize
+	Tekst streszczenia
+
+\vspace{2cm}
+
+\textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
-	\item w całym tekście zacząć dodawać cytowania
+	\item podczas pisania zacząć dodawać cytowania
+	\item dokończyć fragment o generowaniu danych i funkcji straty
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
 			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia
 			\item  opisać wizualne przedstawienie twierdzenia i stworzyć rysunki z polskimi podpisami				
 	\end{itemize}
+    \item opisać analizę nr 1
+	\item tekst o sigmoidzie też do ponownego przejrzenia
 	\item uporządkowaąć kolejność podrozdziałów nt. metodologii
+	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie
 \end{itemize}
 
+\tableofcontents
+
+\chapter{Wstęp}
+\section{Fizyka zagadnienia i cel pracy - bardzo ogólnie}
+\section{Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja - bardzo ogólnie}
 
 
-\newpage
-
-
-\section{Wstęp}
-\subsection{Fizyka zagadnienia i cel pracy}
-\subsection{Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja}
-
-\newpage
-
-\section{Sieci Neuronowe}
-\subsection{Historia sieci - perceptron, biologia}
-\subsection{Funkcje aktywacji, dlaczego sigmoidy}
+\chapter{Sieci Neuronowe}
+\section{Historia sieci - perceptron, biologia}
+\section{Funkcje aktywacji, dlaczego sigmoidy}
 %[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
 Funckja aktywacji to funkcja, która działa na każdy neuron w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci neuronowej może mieć zdefiniowaną inną funckję aktywacji.
 
@@ -140,7 +237,7 @@ Innym przykładem często wykorzystywanej w sztucznych sieciach neuronowych funk
 %
 Jedną z zalet tej funkcji jest symetryczność względem początku układu współrzędnych.
 %
-\subsubsection{Interpretacja probabilistyczna sigmoidy}
+\subsection{Interpretacja probabilistyczna sigmoidy}
 %
 Zastosowanie sigmoidy jako funkcji aktywacji naturalnie wynika z postaci prawdopodobieństwa a posteriori w Bayesowskim podejściu do problemu klasyfikacji dwóch klas.
 %
@@ -227,15 +324,15 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 %
 
 
-\subsection{Opis algorytmu uczenia prostej sieci}
+\section{Opis algorytmu uczenia prostej sieci}
 
-\subsubsection{Dane}
+\subsection{Dane}
 
 Zbiór danych treningowych zawiera $m$ jednowymiarowych próbek zadanych przez wektory $X \in \mathbb{R}^{1\times m}$ i odpowiadające im wyniki $Y\in \mathbb{R}^{1\times m}$.
 
 
 
-\subsubsection{Parametry}
+\subsection{Parametry}
 
 Sieć ma dwie warstwy: 1) ukryta, zawierająca $L$ neuronów i 2) wyjściowa, składająca się z $1$ neuronu. Warstwy są zdefiniowane przez:
 
@@ -246,7 +343,7 @@ macierz wag $W^h\in\mathbb{R}^{L\times 1	}$ i wektor parametru bias $b^h\in\math
 macierz wag $W^o\in{1\times L}$ i wektor bias $b^o\in\mathbb{R}^{1\times 1}$.
 
 
-\subsubsection{Propagacja sygnału}
+\subsection{Propagacja sygnału}
 
 Wejście każdego neuronu w warstwie ukrytej jest iloczynem danych wejściowych i odpowiadającej im wagi plus parametr bias. Na przykład dla $i$-tego przykładu danych wejściowych, w $l$-tym neuronie mamy
 
@@ -289,7 +386,7 @@ J(\Theta) &= \frac{1}{m}\sum_{i=1}^m J^{(i)}(\Theta)= \frac{1}{2m}\sum_{i=1}^m \
 \end{equation}
 
 
-\subsubsection{Propagacja wsteczna}
+\subsection{Propagacja wsteczna}
 
 
 Użycie reguły łańcuchowej umożliwia obliczenie gradientu funkcji straty względem parametrów sieci neuronowej.
@@ -330,9 +427,9 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 
 
 
-\subsection{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
+\section{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
 
-\subsubsection{Dowód matematyczny}
+\subsection{Dowód matematyczny}
 
 
 \begin{center}
@@ -599,7 +696,7 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 
 
 
-\subsubsection{Przedstawienie wizualne działania}
+\subsection{Przedstawienie wizualne działania}
 
 
 
@@ -617,11 +714,59 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 
 
 
-\subsection{Problem Bias - Variance}
+\section{Problem Bias - Variance}
 
 \newpage
-\section{Metodologia analizy}
-\subsection{Keras}
+\chapter{Metodologia analizy}
+
+\section{Fizyka zjawiska}
+
+\textbf{(Część przeniesiona z działu o danych, bardziej notatki niż tekst)}
+
+Pomiar polaryzacji odrzuconego protonu oraz asymetrii pozwalają określić stosunek elektrycznego oraz magnetycznego czynników postaci.
+
+$$
+\mathcal{R}\left(Q^2\right) \equiv \mu_p \frac{G_{E_p}\left(Q^2\right)}{G_{M_p}\left(Q^2\right)}
+$$
+
+$ Q^2 \equiv - q^2 $, $q$ to przekaz czteropędu. W przybliżeniu jednofotonowym, $q$ jest czteropędem wirtualnego fotonu. 
+
+Z drugiej strony, dzięki separacji na kierunki wzajemnie prostopadłe otrzymujemy \cite{2007PrPNP..59..694P}:
+
+$$
+\mathcal{R}\left(Q^2\right) \equiv -\mu_p  \frac{P_t}{P_l} \frac{E + E'}{2M} \tan^2  \left(\frac{\theta}{2}\right) 
+$$
+
+gdzie $P_l$ i $P_t$ to podłużny (longitudinal) i poprzeczny (transverse) składniki polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu. Możemy zatem napisac:
+
+$$
+Q^2 = 4 E E' \sin^2 \left(\frac{\theta}{2}\right)
+$$
+
+Współczynnik $\mathcal{R}\left(Q^2\right)$ został także wyznaczony na podstawie pomiaru asymetrii podczas sprężystego rozpraszania elektron-proton. 
+
+$$
+\frac{\sigma_+ - \sigma_-}{\sigma_+ + \sigma_-} = -2\mu_p \sqrt{\tau \left(1+\tau\right)} \tan \left(\frac{\theta}{2}\right) \frac{\mathcal{R} \sin \theta^* \cos \phi^* + \mu_p \sqrt{\tau \left[ 1 + \left(1+\tau\right) \tan^2 \left(\frac{\theta}{2}\right) \right]} \cos \theta^* }{\mathcal{R}^2 + \mu_p \tau / \varepsilon}
+$$
+
+gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny ...
+
+gdzie
+
+$$
+\tau \equiv \frac{Q^2}{4M^2}
+$$
+
+oraz 
+
+$$
+\varepsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1}
+$$
+
+jest czynnikiem kinematycznym oraz polaryzacją wirtualnego fotonu.
+
+
+\section{Keras}
 Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Dzięki temu, że jest rozpowszechniany pod licencją MIT, co oznacza, że może być za darmo wykorzystywany w projektach komercyjnych, zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software. Kaggle to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników. Jednym z najpopularniejszych narzędzi wykorzystywanych przez analityków jest Keras, wiele z konkursów zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
 
 Do największych zalet Keras należą:
@@ -676,20 +821,54 @@ model.compile(optimizer = 'rmsprop', loss='mse')
 model.fit(inputs = X, outputs = Y, epochs = 100)
 \end{lstlisting}
 
-%Przepisz stronę 63 z przepisem na zbudowanie modelu.
-%
-%3.6.4 K-fold validation do  przepisania ;
-
 %Deep Learning with Python Francois Chollet Manning Shelter Island 2018
 
 
 
-\subsection{Dane wejściowe}
+\section{Dane wejściowe oraz generowanie sztucznych danych}
 
-\subsection{Replikacja danych}
+%opis = https://arxiv.org/pdf/0812.3539.pdf
+%dane = https://arxiv.org/pdf/1106.1204.pdf
 
-\subsection{Funkcja straty}
-Czemu jest taka funkcja i skąd warunek na eta?
+Na zbiór analizowanych danych składa się 14 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą przekrój czynny $\sigma$, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.
+
+%\begin{itemize}
+%\setlength\itemsep{0.em}	
+%\item $\sigma$ - przekrój czynny 	
+%\item $\Delta \sigma$ - niepewność pomiaru
+%\item $Q^2$ - kwadrat przekazanego czteropędu
+%\item $\varepsilon$ - czynnik kinematyczny
+%\item $\Delta \eta$ - niepwność systematyczna
+%\end{itemize}
+%
+Każdy punkt pomiarowy oprócz przekroju czynnego zawiera przypisaną do niego niepewność pomiaru. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma(Q^2,\varepsilon)$. 
+%
+\begin{equation}
+\sigma^{(art)(k)}_i = \mathcal{N}\left( \sigma_i^{(exp)}, \Delta \sigma_i^{(exp)} \right)
+\end{equation} 
+%
+Ważne jest aby wybrać optymalną wartość liczby replik $N_{rep}$ tak aby rozkład wygenerowanych danych zawierał charakterystyki zgodne z danymi eksperymantalnymi. Aby wybrać odpowiednią wartość $N_{rep}$ porównano wartości średnie oraz odchylenie standardowe próbek po wygenerowaniu sztucznych danych. \figurename{} \ref{fig:repliki} przedstawia zawiera dwa wykresy punktowe powyższych wartości dla 10, 100 oraz 1000 replik. Szczególny wpływ liczby replik widoczny jest na części przedstawiającej porównanie odchyleń standardowych. Większa liczba klonów powoduje, że charakterystyki rozkładów wygenerowanych oraz eksperymentalnych danych są bardziej zgodne, co na wykresach prezentuje się jako ułożenie punktów wzdłuż prostej $y=x$. Wartość średnia oraz odchylenie standardowe sztucznych danych zostały zdefiniowane w równaniach \ref{eq_avg} oraz \ref{eq_std}.
+%
+\begin{subequations}
+	\begin{align}
+	\left \langle \sigma_i^{(art)} \right \rangle &= \frac{1}{N_{rep}} \sum_{k=1}^{N_{rep}} \sigma_i^{(art)(k)}~,
+	\label{eq_avg} \\
+	\left \langle \Delta \sigma_i^{(art)} \right \rangle &= \sqrt{\left \langle \sigma_i^{(art)2} \right\rangle_{rep} - \left\langle \sigma_i^{(art)} \right\rangle^2_{rep} }~.
+	\label{eq_std}
+	\end{align}
+\end{subequations}
+%
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{replicas.eps}
+	\caption{$\left \langle \sigma_i^{(art)} \right\rangle$ vs. $\sigma_i^{(exp)}$ po lewej oraz $\left \langle \Delta \sigma_i^{(art)} \right \rangle$ vs. $\Delta \sigma_i^{(exp)}$ po prawej dla $N_{rep}$ = 10 (czerwony), 100 (zielony), 1000 (niebieski).} 
+	\label{fig:repliki}
+\end{figure}
+%
+Fragment o następnym etapie generowania z wykorzystaniem błędu systematycznego
+
+\section{Funkcja straty}
+Czemu jest taka funkcja i skąd warunek na eta, podciągnąć ten fragment pod poprzedni podrozdział?
 
 \begin{equation}
 \chi^2 = \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\eta_k}\right)^2 \right]
@@ -700,9 +879,7 @@ Czemu jest taka funkcja i skąd warunek na eta?
 \eta_k = \frac{\sum_{i=1}^{n_k}\frac{\sigma_{ki}^{th} \sigma_{ki}^{ex}}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}{\sum_{i=1}^{n_k}\frac{\left(\sigma_{ki}^{th}\right)^2}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}
 \end{equation}
 
-Kilka niezależnych paragrafów
-
-\subsection{Walidacja krzyżowa}
+\section{Walidacja krzyżowa}
 
 Algorytm wykorzystywany podczas nauki modelu ma za zadnianie znalezienie takich parametrów, które sprawiają, że model odwzorowuje dane wykorzystane do nauki w sposób jak najlepszy z możliwych. Jeśli do walidacji modelu wykorzystamy inną, niezależną próbkę danych pochodzącą z tego samego zbioru co podzbiór uczący, zazwyczaj okaże się, że model nie działa aż tak dobrze jak przy użyciu zbioru uczącego. Rozmiar tej różnicy zwiększa się, szczególnie wtedy gdy wielkość zbioru treningowego jest niewielka, lub gdy liczba parametrów modelu jest bardzo duża.
 Walidacja krzyżowa to metoda statystyczna, która ma za zadanie zminimalizować tę różnicę przez co pomaga ocenić i zwiększyć trafność przewidywań modelu predykcyjnego. 
@@ -722,7 +899,7 @@ W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony
 
 Cytując [Page 184, An Introduction to Statistical Learning, 2013.], "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybrano $k = 6$, wykorzystując fakt, że liczba próbek w zbiorze danych jest całkowicie podzielna przez tę liczbę co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
 
-\subsection{Wczesne zatrzymanie}
+\section{Wczesne zatrzymanie}
 Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
 
 
@@ -762,7 +939,7 @@ Podczas nauki przedstawioneg modelu, do wczesnego zatrzymania wystarczyło speł
 
 Po skończeniu nauki, wybierany jest model, który ma najmniejszą wartość funkcji straty na zbiorze testowym.
 
-\subsection{Ilość neuronów}
+\section{Ilość neuronów}
 
 Architektura sieci neuronowej, tzn. ilość warstw ukrytych oraz ilość neuronów w warstwach ukrytych jest zdeterminowana przez wymiar danych wejściowych, rodzaj rozwiązywanego problemu (klasyfikacja czy regresja) oraz relację między zmiennymi objaśniającymi i zmienną objaśnianą.
 
@@ -862,7 +1039,7 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 	\caption{Schemat zastosowanej sieci neuronowej, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme} 	
 \end{SCfigure}
 
-\subsection{Algorytm uczący}
+\section{Algorytm uczący}
 
 
 Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu "\textit{Każda z N wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej N parametrów może być traktowany jako punkt na N-wymiarowej hiperpłaszczyźnie. N+1 wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni N+1 wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej N-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami N-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu.
@@ -927,9 +1104,11 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 	\label{fig:hyperparameters}
 \end{figure}
 
-\newpage
 
-\section{Wyniki analizy}
-\subsection{}
+\chapter{Wyniki analizy}
+\section{}
+
+\bibliographystyle{abbrv}
+\bibliography{references}
 
 \end{document}
