@@ -170,12 +170,13 @@
 \begin{itemize}
 	\item podczas pisania zacząć dodawać cytowania
 	\item dokończyć fragment o generowaniu danych i funkcji straty
+	
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
 			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia
 			\item  opisać wizualne przedstawienie twierdzenia i stworzyć rysunki z polskimi podpisami				
 	\end{itemize}
-    \item opisać analizę nr 1
+	\item opisać analizę nr 1
 	\item tekst o sigmoidzie też do ponownego przejrzenia
 	\item uporządkowaąć kolejność podrozdziałów nt. metodologii
 	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie
@@ -830,7 +831,7 @@ model.fit(inputs = X, outputs = Y, epochs = 100)
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
 
-Na zbiór analizowanych danych składa się 14 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą przekrój czynny $\sigma$, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.
+Na zbiór analizowanych danych składa się 14 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.
 
 %\begin{itemize}
 %\setlength\itemsep{0.em}	
@@ -841,19 +842,19 @@ Na zbiór analizowanych danych składa się 14 niezależnych zbiorów danych z e
 %\item $\Delta \eta$ - niepwność systematyczna
 %\end{itemize}
 %
-Każdy punkt pomiarowy oprócz przekroju czynnego zawiera przypisaną do niego niepewność pomiaru. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma(Q^2,\varepsilon)$. 
+Każdy punkt pomiarowy oprócz przekroju czynnego zawiera przypisaną do niego niepewność pomiaru. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. 
 %
 \begin{equation}
-\sigma^{(art)(k)}_i = \mathcal{N}\left( \sigma_i^{(exp)}, \Delta \sigma_i^{(exp)} \right)
+\sigma^{(art)(k)}_{a,i} = \sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}
 \end{equation} 
 %
-Ważne jest aby wybrać optymalną wartość liczby replik $N_{rep}$ tak aby rozkład wygenerowanych danych zawierał charakterystyki zgodne z danymi eksperymantalnymi. Aby wybrać odpowiednią wartość $N_{rep}$ porównano wartości średnie oraz odchylenie standardowe próbek po wygenerowaniu sztucznych danych. \figurename{} \ref{fig:repliki} przedstawia zawiera dwa wykresy punktowe powyższych wartości dla 10, 100 oraz 1000 replik. Szczególny wpływ liczby replik widoczny jest na części przedstawiającej porównanie odchyleń standardowych. Większa liczba klonów powoduje, że charakterystyki rozkładów wygenerowanych oraz eksperymentalnych danych są bardziej zgodne, co na wykresach prezentuje się jako ułożenie punktów wzdłuż prostej $y=x$. Wartość średnia oraz odchylenie standardowe sztucznych danych zostały zdefiniowane w równaniach \ref{eq_avg} oraz \ref{eq_std}.
+Ważne jest aby wybrać optymalną wartość liczby replik $N_{rep}$ tak aby rozkład wygenerowanych danych zawierał charakterystyki zgodne z danymi eksperymantalnymi. Aby dokonać wyboru odpowiedniej wartości $N_{rep}$ porównano wartości średnie oraz odchylenie standardowe próbek po wygenerowaniu sztucznych danych. \figurename{} \ref{fig:repliki} przedstawia dwa wykresy punktowe powyższych wartości dla 10, 100 oraz 1000 replik. Szczególny wpływ ilości wygenerowanych danych widoczny jest w części przedstawiającej porównanie odchyleń standardowych. Większa liczba klonów powoduje, że charakterystyki rozkładów wygenerowanych oraz eksperymentalnych danych są bardziej zgodne, co na wykresach prezentuje się jako ułożenie punktów wzdłuż prostej $y=x$. Wartość średnia oraz odchylenie standardowe sztucznych danych zostały zdefiniowane w równaniach \ref{eq_avg} oraz \ref{eq_std}.
 %
 \begin{subequations}
 	\begin{align}
-	\left \langle \sigma_i^{(art)} \right \rangle &= \frac{1}{N_{rep}} \sum_{k=1}^{N_{rep}} \sigma_i^{(art)(k)}~,
+	\left \langle \sigma_{a,i}^{(art)} \right \rangle_{rep} &= \frac{1}{N_{rep}} \sum_{k=1}^{N_{rep}} \sigma_{a,i}^{(art)(k)}~,
 	\label{eq_avg} \\
-	\left \langle \Delta \sigma_i^{(art)} \right \rangle &= \sqrt{\left \langle \sigma_i^{(art)2} \right\rangle_{rep} - \left\langle \sigma_i^{(art)} \right\rangle^2_{rep} }~.
+	\left \langle \Delta \sigma_{a,i}^{(art)} \right \rangle_{rep} &= \sqrt{\left \langle \sigma_{a,i}^{(art)2} \right\rangle_{rep} - \left\langle \sigma_{a,i}^{(art)} \right\rangle^2_{rep} }~.
 	\label{eq_std}
 	\end{align}
 \end{subequations}
@@ -861,11 +862,49 @@ Ważne jest aby wybrać optymalną wartość liczby replik $N_{rep}$ tak aby roz
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\textwidth]{replicas.eps}
-	\caption{$\left \langle \sigma_i^{(art)} \right\rangle$ vs. $\sigma_i^{(exp)}$ po lewej oraz $\left \langle \Delta \sigma_i^{(art)} \right \rangle$ vs. $\Delta \sigma_i^{(exp)}$ po prawej dla $N_{rep}$ = 10 (czerwony), 100 (zielony), 1000 (niebieski).} 
+	\caption{$\left \langle \sigma_{a,i}^{(art)} \right\rangle$ vs. $\sigma_i^{(exp)}$ po lewej oraz $\left \langle \Delta \sigma_{a,i}^{(art)} \right \rangle$ vs. $\Delta \sigma_i^{(exp)}$ po prawej dla $N_{rep}$ = 10 (czerwony), 100 (zielony), 1000 (niebieski).} 
 	\label{fig:repliki}
 \end{figure}
 %
-Fragment o następnym etapie generowania z wykorzystaniem błędu systematycznego
+Aby wskazać jak bardzo wygenerowane dane różnią się od danych eksperymentalnych zdefiniowano średnią wariancję oraz średni błąd względny dla wszystkich punktów pomiarowych ($N_{dat} = 426$):
+\begin{subequations}
+	\begin{align}
+	\left \langle V	\left[ \left \langle \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat} &= \frac{1}{N_{dat}} \sum_{i=1}^{N_{dat}} \left( \left\langle \sigma_{a,i}^{(art)} \right\rangle_{rep} - \sigma_i^{(exp)}  \right)^2 ~,
+	\label{eq_var} \\
+	\left \langle PE	\left[ \left \langle \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat} &= \frac{1}{N_{dat}} \sum_{i=1}^{N_{dat}} \left| \frac{\left\langle \sigma_{a,i}^{(art)} \right\rangle_{rep} - \sigma_i^{(exp)}}{\sigma_i^{(exp)}}  \right| ~.
+	\label{eq_pe}
+	\end{align}
+\end{subequations}
+
+Analogicznie możemy zdefiniować $\left \langle V	\left[ \left \langle \Delta \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat}$ oraz $\left \langle PE	\left[ \left \langle \Delta \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat}$.
+
+
+\begin{table}
+	\centering
+	\caption{Porównanie pomiędzy danymi eksperymentalnymi i danymi sztucznie wygenerowanymi}\label{tab:nrep} 
+	
+	\begin{tabular}{c|c c c}
+		\hline 
+		$N_{rep}$ & 10 & 100 & 1000 \\\hline
+		\\
+		$ \left \langle V	\left[ \left \langle \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat} $ & $3.6 \times 10^{-3}$ & $4.3 \times 10^{-4}$ & $4.0 \times 10^{-5}$  \\ \\
+		$ \left \langle PE	\left[ \left \langle \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat} $ & 0.60\% & 0.20\% & 0.06\%  \\ 
+		\\ \hline \\
+		$ \left \langle V	\left[ \left \langle \Delta \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat} $ & $1.5 \times 10^{-3}$ & $9.4 \times 10^{-5}$ & $1.4 \times 10^{-5}$   \\ \\
+		$ \left \langle PE	\left[ \left \langle \Delta \sigma_{a,i}^{(art)} \right \rangle_{rep} \right] \right \rangle_{dat} $ & 19.4\% & 5.8\% & 1.7\%  \\ \\ \hline
+
+
+	\end{tabular}
+\end{table}
+
+\tablename{} \ref{tab:nrep} przedstawiona różnice między zbiorami danych dla 10, 100 oraz 1000 replik danych. Wariancja wartości sredniej zachowuje się zgodnie z przewidywaniami wynikającymi z teorii Monte Carlo i jest proporcjonalna do $1/N_{rep}$. Podobnie jest w przypadku wariancji odchylenia standardowego, które powinno maleć wraz ze wzrostem $N_{rep}$ proporcjonalnie do $1/\sqrt{N_{rep}}$ \cite{2002JHEP...05..062F}. Aby osiągnąć ponad 99\% zgodność w wartości średniej oraz około 99\% zgodność w niepewności pomiarowej należy wygenerować około 1000 replik danych.
+%
+Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową niepewność systematyczną $\Delta\eta$, która powinna zostać uwzględniona podczas następnego etapu generowania replik danych. Dla każdego z 14 zbiorów losowana jest jedna wartość $\mathcal{N}\left( 0, \Delta \eta \right)$ i ostatecznie generowane punkty przyjmują postać:
+
+\begin{eqnarray}
+\sigma^{(art)(k)}_{i}  &=& \sigma^{(art)(k)}_{a,i} \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right) \\ 
+&=& \left(\sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}\right) \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right)
+\end{eqnarray}
 
 \section{Funkcja straty}
 Czemu jest taka funkcja i skąd warunek na eta, podciągnąć ten fragment pod poprzedni podrozdział?
