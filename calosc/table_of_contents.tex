@@ -170,7 +170,7 @@
 \begin{itemize}
 	\item podczas pisania zacząć dodawać cytowania
 	\item dokończyć fragment o generowaniu danych i funkcji straty
-	
+	\item \textbf{dane, funkcja straty, detale analizy osobne dla każdej analizy!}
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
 			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia
@@ -327,13 +327,13 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 
 \section{Opis algorytmu uczenia prostej sieci}
 
-\subsection{Dane}
+\subsubsection{Dane}
 
 Zbiór danych treningowych zawiera $m$ jednowymiarowych próbek zadanych przez wektory $X \in \mathbb{R}^{1\times m}$ i odpowiadające im wyniki $Y\in \mathbb{R}^{1\times m}$.
 
 
 
-\subsection{Parametry}
+\subsubsection{Parametry}
 
 Sieć ma dwie warstwy: 1) ukryta, zawierająca $L$ neuronów i 2) wyjściowa, składająca się z $1$ neuronu. Warstwy są zdefiniowane przez:
 
@@ -344,7 +344,7 @@ macierz wag $W^h\in\mathbb{R}^{L\times 1	}$ i wektor parametru bias $b^h\in\math
 macierz wag $W^o\in{1\times L}$ i wektor bias $b^o\in\mathbb{R}^{1\times 1}$.
 
 
-\subsection{Propagacja sygnału}
+\subsubsection{Propagacja sygnału}
 
 Wejście każdego neuronu w warstwie ukrytej jest iloczynem danych wejściowych i odpowiadającej im wagi plus parametr bias. Na przykład dla $i$-tego przykładu danych wejściowych, w $l$-tym neuronie mamy
 
@@ -387,7 +387,7 @@ J(\Theta) &= \frac{1}{m}\sum_{i=1}^m J^{(i)}(\Theta)= \frac{1}{2m}\sum_{i=1}^m \
 \end{equation}
 
 
-\subsection{Propagacja wsteczna}
+\subsubsection{Propagacja wsteczna}
 
 
 Użycie reguły łańcuchowej umożliwia obliczenie gradientu funkcji straty względem parametrów sieci neuronowej.
@@ -826,23 +826,12 @@ model.fit(inputs = X, outputs = Y, epochs = 100)
 
 
 
-\section{Dane wejściowe oraz generowanie sztucznych danych}
+\section{Generowanie sztucznych danych}
 
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
-
-Na zbiór analizowanych danych składa się 14 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.
-
-%\begin{itemize}
-%\setlength\itemsep{0.em}	
-%\item $\sigma$ - przekrój czynny 	
-%\item $\Delta \sigma$ - niepewność pomiaru
-%\item $Q^2$ - kwadrat przekazanego czteropędu
-%\item $\varepsilon$ - czynnik kinematyczny
-%\item $\Delta \eta$ - niepwność systematyczna
-%\end{itemize}
-%
-Każdy punkt pomiarowy oprócz przekroju czynnego zawiera przypisaną do niego niepewność pomiaru. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. 
+%generowanie danych dotyczy tez stosunkow zcynników postaci?
+Każdy punkt pomiarowy oprócz zmiennej objaśnianej zawiera przypisaną do niej niepewność pomiaru. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. 
 %
 \begin{equation}
 \sigma^{(art)(k)}_{a,i} = \sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}
@@ -899,24 +888,13 @@ Analogicznie możemy zdefiniować $\left \langle V	\left[ \left \langle \Delta \
 
 \tablename{} \ref{tab:nrep} przedstawiona różnice między zbiorami danych dla 10, 100 oraz 1000 replik danych. Wariancja wartości sredniej zachowuje się zgodnie z przewidywaniami wynikającymi z teorii Monte Carlo i jest proporcjonalna do $1/N_{rep}$. Podobnie jest w przypadku wariancji odchylenia standardowego, które powinno maleć wraz ze wzrostem $N_{rep}$ proporcjonalnie do $1/\sqrt{N_{rep}}$ \cite{2002JHEP...05..062F}. Aby osiągnąć ponad 99\% zgodność w wartości średniej oraz około 99\% zgodność w niepewności pomiarowej należy wygenerować około 1000 replik danych.
 %
-Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową niepewność systematyczną $\Delta\eta$, która powinna zostać uwzględniona podczas następnego etapu generowania replik danych. Dla każdego z 14 zbiorów losowana jest jedna wartość $\mathcal{N}\left( 0, \Delta \eta \right)$ i ostatecznie generowane punkty przyjmują postać:
+Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową niepewność systematyczną $\Delta\eta$, która powinna zostać uwzględniona podczas następnego etapu generowania replik danych. Dla każdego z 14 zbiorów losowana jest jedna wartość $\mathcal{N}\left( 0, \Delta \eta \right)$ i ostatecznie generowane punkty przyjmują postać
 
 \begin{eqnarray}
-\sigma^{(art)(k)}_{i}  &=& \sigma^{(art)(k)}_{a,i} \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right) \\ 
-&=& \left(\sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}\right) \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right)
+\sigma^{(art)(k)}_{i}  &=& \sigma^{(art)(k)}_{a,i} \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right) \nonumber\\
+&=& \left(\sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}\right) \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right).
 \end{eqnarray}
 
-\section{Funkcja straty}
-Czemu jest taka funkcja i skąd warunek na eta, podciągnąć ten fragment pod poprzedni podrozdział?
-
-\begin{equation}
-\chi^2 = \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\eta_k}\right)^2 \right]
-\end{equation}
-
-
-\begin{equation}
-\eta_k = \frac{\sum_{i=1}^{n_k}\frac{\sigma_{ki}^{th} \sigma_{ki}^{ex}}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}{\sum_{i=1}^{n_k}\frac{\left(\sigma_{ki}^{th}\right)^2}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}
-\end{equation}
 
 \section{Walidacja krzyżowa}
 
@@ -1145,7 +1123,58 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 
 
 \chapter{Wyniki analizy}
-\section{}
+
+\section{Analiza nr 1}
+
+
+Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie dane przekrojów czynnych rozpraszania elektron-proton w przybliżeniu jednofotonowym (\textit{OPE?}).
+
+\subsection{Dane wejściowe i funkcja straty}
+%
+%opis = https://arxiv.org/pdf/0812.3539.pdf
+%dane = https://arxiv.org/pdf/1106.1204.pdf
+%
+Na zbiór analizowanych danych składa się 24 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.  Dodatkowo do każdego ze zbiorów dodano sztuczny punkt pomiarowy, który korzysta z założenia, że $\sigma \left(Q^2 = 0, \, \varepsilon = 1 \right) = 1$, niepewność pomiarowa punktu wynosi $\Delta \sigma = 0.01$, zwiększa to liczbę wszystkich punktów pomiarowych do 450.
+%
+%\begin{itemize}
+%\setlength\itemsep{0.em}	
+%\item $\sigma$ - przekrój czynny 	
+%\item $\Delta \sigma$ - niepewność pomiaru
+%\item $Q^2$ - kwadrat przekazanego czteropędu
+%\item $\varepsilon$ - czynnik kinematyczny
+%\item $\Delta \eta$ - niepwność systematyczna
+%\end{itemize}
+%
+%
+Funkcja straty to z definicji funkcja przyporządkowująca nieujemną wielkość kary poprzez porównanie zmiennej objaśnianej do wyliczonego estymatora. W modelach regresyjnych bardzo często jako funkcję straty stosuje się błąd średnio kwadratowy (\textit{MSE}) zdefiniowany jako
+%
+\begin{equation}
+\operatorname {MSE} = \frac{1}{n} \sum_{i=1}^{n} \left({\hat {Y_i }}-Y_i \right)^{2}.
+\end{equation}
+%
+W przedstawionym modelu, wykorzystana została zmodyfikowana postać funkcji chi-kwadrat, która bierze pod uwagę nipewność pomiarową oraz systematyczną
+%
+%\begin{equation}
+%\chi_{\sigma}^2 + \chi_{PT}^2 + \chi_{\pm}^2 + \chi_{G_M}^2 + \chi_{G_E}^2    
+%\end{equation}
+%
+\begin{equation}
+\chi_{\sigma}^2 = \frac{1}{n}  \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\eta_k}\right)^2 \right],
+\end{equation}
+%
+gdzie $N_{\sigma}$ to liczba zbiorów danych z niezależnych eksperymentów, $n_k$ to liczba punktów w $k$-tym zbiorze danych, $n = \sum_{k=1}^{N_{\sigma}}n_k$ to liczba wszystkich punktów pomiarowych, $\eta_k$ to parametr normalizacyjny dla $k$-tego zbioru danych, $\Delta \eta_k$ to błąd systematyczny. $\sigma^{ex}_{ki}$ to wartość eksperymentalna przekroju czynnego $i$-tego pomiaru z $k$-tego zbioru danych, zmierzona dla określonego $Q^2_{ki}$, $\varepsilon_{ki}$, $\Delta \sigma_{ki}^{ex}$ oznacza odpowiadającą niepewność pomiaru, $\sigma_{ki}^{th}$ to przewidywanie modelu statystycznego. Parametry normalizacyjne $\eta_k$, $k =1,2,\dots, N_{\sigma}$ powinny spełniać warunek \ref{eq_eta1}. Ich wartość jest aktualizowana podczas każdej itereacji nauki modelu  \cite{PhysRevC.84.034314}.
+
+\begin{equation}
+\frac{\partial \chi_{\sigma}^2}{\partial \eta_k} = 0, \; k = 1,\dots,N_{\sigma}, \label{eq_eta1}
+\end{equation}
+
+co można zapisać jako
+%
+\begin{equation}
+\eta_k = \frac{\sum_{i=1}^{n_k}\frac{\sigma_{ki}^{th} \sigma_{ki}^{ex}}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}{\sum_{i=1}^{n_k}\frac{\left(\sigma_{ki}^{th}\right)^2}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}. \label{eq_eta2}
+\end{equation}
+%
+
 
 \bibliographystyle{abbrv}
 \bibliography{references}
