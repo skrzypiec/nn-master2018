@@ -914,7 +914,7 @@ W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony
 	\label{fig:cross-val}
 \end{figure}
 
-Cytując [Page 184, An Introduction to Statistical Learning, 2013.], "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybrano $k = 6$, wykorzystując fakt, że liczba próbek w zbiorze danych jest całkowicie podzielna przez tę liczbę co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
+Cytując [Page 184, An Introduction to Statistical Learning, 2013.], "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybierano więc takie $k$ z zakresu $[5,10]$, dla którego liczba próbek w zbiorze danych jest całkowicie podzielna przez $k$ co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
 
 \section{Wczesne zatrzymanie}
 Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
@@ -1129,7 +1129,7 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 
 Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie dane przekrojów czynnych rozpraszania elektron-proton w przybliżeniu jednofotonowym (\textit{OPE?}).
 
-\subsection{Dane wejściowe i funkcja straty}
+\subsubsection{Dane wejściowe i funkcja straty}
 %
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
@@ -1146,20 +1146,14 @@ Na zbiór analizowanych danych składa się 24 niezależnych zbiorów danych z e
 %\end{itemize}
 %
 %
-Funkcja straty to z definicji funkcja przyporządkowująca nieujemną wielkość kary poprzez porównanie zmiennej objaśnianej do wyliczonego estymatora. W modelach regresyjnych bardzo często jako funkcję straty stosuje się błąd średnio kwadratowy (\textit{MSE}) zdefiniowany jako
-%
-\begin{equation}
-\operatorname {MSE} = \frac{1}{n} \sum_{i=1}^{n} \left({\hat {Y_i }}-Y_i \right)^{2}.
-\end{equation}
-%
-W przedstawionym modelu, wykorzystana została zmodyfikowana postać funkcji chi-kwadrat, która bierze pod uwagę nipewność pomiarową oraz systematyczną
+Funkcja straty to z definicji funkcja przyporządkowująca nieujemną wielkość kary poprzez porównanie zmiennej objaśnianej do wyliczonego estymatora. W przedstawionym modelu, wykorzystana została zmodyfikowana postać funkcji chi-kwadrat, która bierze pod uwagę nipewność pomiarową oraz systematyczną
 %
 %\begin{equation}
 %\chi_{\sigma}^2 + \chi_{PT}^2 + \chi_{\pm}^2 + \chi_{G_M}^2 + \chi_{G_E}^2    
 %\end{equation}
 %
 \begin{equation}
-\chi_{\sigma}^2 = \frac{1}{n}  \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\eta_k}\right)^2 \right],
+\chi_{\sigma}^2 = \frac{1}{n}  \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\Delta \eta_k}\right)^2 \right],
 \end{equation}
 %
 gdzie $N_{\sigma}$ to liczba zbiorów danych z niezależnych eksperymentów, $n_k$ to liczba punktów w $k$-tym zbiorze danych, $n = \sum_{k=1}^{N_{\sigma}}n_k$ to liczba wszystkich punktów pomiarowych, $\eta_k$ to parametr normalizacyjny dla $k$-tego zbioru danych, $\Delta \eta_k$ to błąd systematyczny. $\sigma^{ex}_{ki}$ to wartość eksperymentalna przekroju czynnego $i$-tego pomiaru z $k$-tego zbioru danych, zmierzona dla określonego $Q^2_{ki}$, $\varepsilon_{ki}$, $\Delta \sigma_{ki}^{ex}$ oznacza odpowiadającą niepewność pomiaru, $\sigma_{ki}^{th}$ to przewidywanie modelu statystycznego. Parametry normalizacyjne $\eta_k$, $k =1,2,\dots, N_{\sigma}$ powinny spełniać warunek \ref{eq_eta1}. Ich wartość jest aktualizowana podczas każdej itereacji nauki modelu  \cite{PhysRevC.84.034314}.
@@ -1174,6 +1168,64 @@ co można zapisać jako
 \eta_k = \frac{\sum_{i=1}^{n_k}\frac{\sigma_{ki}^{th} \sigma_{ki}^{ex}}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}{\sum_{i=1}^{n_k}\frac{\left(\sigma_{ki}^{th}\right)^2}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}. \label{eq_eta2}
 \end{equation}
 %
+
+\subsubsection{Parametry sieci?}
+Hiperparametry - tabela, komentarz
+Tabela z wartościami $\eta_k$, pokazanie wyników dla const q2 i eps, dojscie do form faktorów wykresy form faktorow i porownanie do pracy K.Graczyka, opis
+
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{const_q2.eps}
+	\caption{} 
+	\label{fig:const_q2}
+\end{figure}
+%
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{const_eps.eps}
+	\caption{} 
+	\label{fig:const_eps}
+\end{figure}
+
+
+
+\begin{table}
+	\centering
+	\caption{}\label{tab:etak} 
+	
+\begin{tabular}{c|c c c}
+\hline 
+L.p & Zbiór danaych & $\Delta \eta_k$ & $\eta_k$  \\\hline
+1& \texttt{And94\_000.dat}&1,77&1,014\\ \hline
+2& \texttt{And94\_100.dat}&2,70&1,018\\ \hline
+3& \texttt{Arn86\_1500.dat}&3,00&1,017\\ \hline
+4& \texttt{Bar66\_1700.dat}&2,50&0,981\\ \hline
+5& \texttt{Bar73\_200.dat}&2,10&0,971\\ \hline
+6& \texttt{Bar73\_300.dat}&2,10&0,998\\ \hline
+7& \texttt{Bar73\_400.dat}&2,10&0,980\\ \hline
+8& \texttt{Ber71\_700.dat}&4,00&0,947\\ \hline
+9& \texttt{Bor74\_1900.dat}&2,00&0,971\\ \hline
+10& \texttt{Chr03\_500.dat}&1,50&0,959\\ \hline
+11& \texttt{Dut03\_1400.dat}&1,90&0,989\\ \hline
+12& \texttt{Goi70\_1800.dat}&3,80&0,936\\ \hline
+13& \texttt{Jan66\_1600.dat}&1,60&0,965\\ \hline
+14& \texttt{Kir73\_1100.dat}&4,00&1,050\\ \hline
+15& \texttt{Lit67\_600.dat}&4,00&0,941\\ \hline
+16& \texttt{Mur74\_2200.dat}&4,60&1,016\\ \hline
+17& \texttt{Nic99\_1300.dat}&1,90&1,025\\ \hline
+18& \texttt{Pri71\_900.dat}&1,90&1,009\\ \hline
+19& \texttt{Qat05\_2300.dat}&3,00&0,981\\ \hline
+20& \texttt{Sil93\_1000.dat}&3,00&0,997\\ \hline
+21& \texttt{Sim80\_2100.dat}&0,50&1,017\\ \hline
+22& \texttt{Sim81\_2000.dat}&0,50&0,997\\ \hline
+23& \texttt{Ste75\_800.dat}&2,40&0,983\\ \hline
+24& \texttt{Wal94\_1200.dat}&1,90&0,964\\ \hline
+
+\end{tabular}
+\end{table}
+
+
 
 
 \bibliographystyle{abbrv}
