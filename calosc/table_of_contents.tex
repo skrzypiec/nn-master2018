@@ -11,11 +11,12 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \usepackage{sidecap}
 \usepackage{polski}
+\usepackage{subcaption}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{caption} 
 \captionsetup[table]{skip=10pt}
-\usepackage{subfigure}
+%\usepackage{subfigure}
 \sidecaptionvpos{figure}{t}
 \usetikzlibrary{calc,arrows}
 \usepackage{slashbox}
@@ -168,15 +169,22 @@
 
 \textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
-	\item podczas pisania zacząć dodawać cytowania
-	\item dokończyć fragment o generowaniu danych i funkcji straty
-	\item \textbf{dane, funkcja straty, detale analizy osobne dla każdej analizy!}
+	\item analiza1
+	\begin{itemize}
+		\item skomentowac otrzymane funkcje postaci, zwrocic uwage jak bylo liczone, skad bledy, co sie zgadza/niezgadza
+	\end{itemize}
+	\item analiza2
+	\begin{itemize}
+		\item skomentowac wyniki
+		\item wkleic tabelke z wartosciami eta?
+		
+	\end{itemize}
+	\item napisać o więzach, cross validacja w inny sposób dla tych dwóch zbiorow, dodajemy 2 punkty i jest 520
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
-			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia
+			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia?
 			\item  opisać wizualne przedstawienie twierdzenia i stworzyć rysunki z polskimi podpisami				
 	\end{itemize}
-	\item opisać analizę nr 1
 	\item tekst o sigmoidzie też do ponownego przejrzenia
 	\item uporządkowaąć kolejność podrozdziałów nt. metodologii
 	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie
@@ -722,54 +730,89 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 
 \section{Fizyka zjawiska}
 
-\textbf{(Część przeniesiona z działu o danych, bardziej notatki niż tekst)}
-
-Pomiar polaryzacji odrzuconego protonu oraz asymetrii pozwalają określić stosunek elektrycznego oraz magnetycznego czynników postaci.
-
+%\subsubsection{I}
+%
+\begin{figure}[htp!]
+	\centering
+\includegraphics[width=\linewidth]{rozpraszanie}
+	\caption{Rozpraszanie elastyczne elektronu o energii początkowej $E_0$  i energii kończowej $E'$ na jądrze atomu wodoru, $\theta$ to kąt rozpraszania.}
+	\label{fig:scactter}
+\end{figure}
+%
+Energia rozproszonego elektronu $E'$ jest mniejsza niż energia początkowa $E_0$ o wartość energii przekazanej protonowi o masie $M$ i wynosi
+%
+\begin{equation}
+E' = \frac{E_0}{1 + \frac{2E_0}{M}\sin^2 \theta / 2}
+\end{equation}
+%
+Zdefiniujmy $ Q^2 \equiv - q^2 $, $q$ to przekaz czteropędu.
+%
+\begin{equation}
+\begin{split}
+Q^2 \equiv - q^2 = -(p^{\mu} - p^{'\mu})^2 &= 2M\left(E_0 - E'\right) \\
+& = 4 E_0 E' \sin^2 \frac{\theta}{2}
+\end{split}
+\end{equation}
+%
+Struktura protonu opisywana jest przez dwie funkcje postaci, elektryczną $G_{Ep}$ i magnetyczną $G_{Mp}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. Zmierzony w laboratorium przekrój czynny rozpraszania można w przybliżeniu jednofotonowym wyrazić formułą:
+%
+\begin{equation}
+\frac{d\sigma}{d\Omega} = \left( \frac{d\sigma}{d\Omega} \right)_M \times \left[ G_{Ep}^2 + \frac{\tau}{\epsilon} G_{Mp}^2 \right] \frac{1}{\left(1 + \tau\right)}
+\end{equation}
+%
+gdzie $\left( \frac{d\sigma}{d\Omega} \right)_M $ to przekrój czynny Motta, który wynosi
+%
+\begin{equation}
+\left( \frac{d\sigma}{d\Omega} \right)_M  = \frac{\pi \alpha^2 E' \cos^2 \left(\theta/2\right)}{2E^3 \sin^4 \left(\theta /2\right)},
+\end{equation}
+%
+ponadto
+%
 $$
-\mathcal{R}\left(Q^2\right) \equiv \mu_p \frac{G_{E_p}\left(Q^2\right)}{G_{M_p}\left(Q^2\right)}
+\tau = \frac{Q^2}{4M^2},
 $$
-
-$ Q^2 \equiv - q^2 $, $q$ to przekaz czteropędu. W przybliżeniu jednofotonowym, $q$ jest czteropędem wirtualnego fotonu. 
-
-Z drugiej strony, dzięki separacji na kierunki wzajemnie prostopadłe otrzymujemy \cite{2007PrPNP..59..694P}:
-
+% 
+%
+$$
+\epsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1},
+$$
+%
+$\epsilon$ jest czynnikiem kinematycznym i także polaryzacją wirtualnego fotonu. Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}
+%
+\begin{equation}
+\begin{split}
+\sigma_R(\epsilon, Q^2) &\equiv \epsilon \left(1 + \tau \right) \left(\frac{d\sigma}{d\Omega}\right) / \left( \frac{d\sigma}{d\Omega} \right)_M \\
+&=\tau G_{Mp}^2(Q^2) + \epsilon G_{Ep}^2(Q^2).
+\end{split}
+\end{equation}
+%
+%\subsubsection{II}
+%
+Kolejna metody oparte są na pomiarach transferu polaryzacji odbitego podczas rozpraszania protonu lub na pomiarach asymetrii rozpraszania, pozwalają one określić wzajemny stosunek elektrycznego oraz magnetycznego czynnika postaci
+%
+$$
+\mathcal{R}\left(Q^2\right) \equiv \mu_p \frac{G_{E_p}\left(Q^2\right)}{G_{M_p}\left(Q^2\right)},
+$$
+gdzie $\mu_p = 2,793$ to moment magnetyczny protonu. W przybliżeniu jednofotonowym, otrzymujemy tylko dwa niezerowe składniki wektora polaryzacji, poprzeczny $P_t$ oraz podłużny $P_l$. Stosunek czynników postaci możemy otrzymać bezpośrednio ze stosunku składowych polaryzacji, otrzymujemy \cite{2007PrPNP..59..694P}:
+%
 $$
 \mathcal{R}\left(Q^2\right) \equiv -\mu_p  \frac{P_t}{P_l} \frac{E + E'}{2M} \tan^2  \left(\frac{\theta}{2}\right) 
 $$
-
-gdzie $P_l$ i $P_t$ to podłużny (longitudinal) i poprzeczny (transverse) składniki polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu. Możemy zatem napisac:
-
+%
+gdzie $P_l$ i $P_t$ to podłużny i poprzeczny składnik wektora polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu.
+%
+Współczynnik $\mathcal{R}\left(Q^2\right)$ może także zostać wyznaczony na podstawie pomiaru asymetrii podczas sprężystego rozpraszania elektron-proton \cite{2009PhRvC..79f5204A, 2007PrPNP..59..694P}
+%
 $$
-Q^2 = 4 E E' \sin^2 \left(\frac{\theta}{2}\right)
+\frac{\sigma_+ - \sigma_-}{\sigma_+ + \sigma_-} = -2\mu_p \sqrt{\tau \left(1+\tau\right)} \tan \left(\frac{\theta}{2}\right) \frac{\mathcal{R} \sin \theta^* \cos \phi^* + \mu_p \sqrt{\tau \left[ 1 + \left(1+\tau\right) \tan^2 \left(\frac{\theta}{2}\right) \right]} \cos \theta^* }{\mathcal{R}^2 + \mu_p \tau / \epsilon},
 $$
-
-Współczynnik $\mathcal{R}\left(Q^2\right)$ został także wyznaczony na podstawie pomiaru asymetrii podczas sprężystego rozpraszania elektron-proton. 
-
-$$
-\frac{\sigma_+ - \sigma_-}{\sigma_+ + \sigma_-} = -2\mu_p \sqrt{\tau \left(1+\tau\right)} \tan \left(\frac{\theta}{2}\right) \frac{\mathcal{R} \sin \theta^* \cos \phi^* + \mu_p \sqrt{\tau \left[ 1 + \left(1+\tau\right) \tan^2 \left(\frac{\theta}{2}\right) \right]} \cos \theta^* }{\mathcal{R}^2 + \mu_p \tau / \varepsilon}
-$$
-
-gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny ...
-
-gdzie
-
-$$
-\tau \equiv \frac{Q^2}{4M^2}
-$$
-
-oraz 
-
-$$
-\varepsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1}
-$$
-
-jest czynnikiem kinematycznym oraz polaryzacją wirtualnego fotonu.
-
-
+%
+gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny polaryzacji protonu względem wektora przekazu pędu $\vec{q}$ i płaszczyzny rozpraszania.
+%
+Podczas analizy wykorzystano stosunki funkcji postaci opublikowane w pracach: 25-36 z pracy \cite{2009PhRvC..79f5204A} (uzupełnić)
 \section{Keras}
-Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Dzięki temu, że jest rozpowszechniany pod licencją MIT, co oznacza, że może być za darmo wykorzystywany w projektach komercyjnych, zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software. Kaggle to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników. Jednym z najpopularniejszych narzędzi wykorzystywanych przez analityków jest Keras, wiele z konkursów zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
-
+Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Dzięki temu, że jest rozpowszechniany pod licencją MIT, co oznacza, że może być za darmo wykorzystywany w projektach komercyjnych, zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software \cite{Chollet:2017}. Kaggle to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników. Jednym z najpopularniejszych narzędzi wykorzystywanych przez analityków jest Keras, wiele z konkursów zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
+%
 Do największych zalet Keras należą:
 \begin{itemize}
 	\setlength\itemsep{0.em}
@@ -781,11 +824,9 @@ Do największych zalet Keras należą:
 	\item posiada wbudowane wsparcie dla splotowych sieci neuronowych oraz rekurencyjnych sieci neuronowych
 	\item  pozwala na bezproblemowe działanie tego samego kodu na CPU oraz GPU
 \end{itemize}
-
-
-Keras jest biblioteką, o której można powiedzieć, że zapewnia cegły służące do zbudowania modelu głębokiego uczenia natomiast w minimalnym stopniu pozwala użytkownikom na ingerencję w ich strukturę. W zamian wykorzystuje wyspecjalizowaną i dobrze zoptymalizowaną bibliotekę wyspecjalizowaną w operacjach na tensorach. Szczególnie szybko wykonują się obliczenia numeryczne typowe dla algorytmów uczenia maszynowego takich jak mnożenie macierzy i obliczanie gradientu.  Można wybierać wśród trzech istniejących implementacji, każda z nich ma otwarte źródło. Pierwsza z nich wykorzystuje Tensorflow opracowany i rozwijany przez Google'a, druga korzysta z Theano opracowanego i rozwijanamegp przez LISA Lab w Uniwersytecie Montrealskim, ostatnia i najmniej popularna wykorzystuje CNTK opracowane i rozwijane przez Microsoft. W przyszłości prawdopodobnie pojawi się więcej możliwości wyboru, między innymi niedawno powstały, zdobywający coraz większą popularność projekt Torch finansowany przez Facebooka. Obecnie najczęściej wykorzystywany jest TensorFlow, został on także wykorzystany w tej pracy. 
-
-
+%
+Keras jest biblioteką, o której można powiedzieć, że zapewnia cegły służące do zbudowania modelu głębokiego uczenia natomiast w minimalnym stopniu pozwala użytkownikom na ingerencję w ich strukturę. W zamian wykorzystuje wyspecjalizowaną i dobrze zoptymalizowaną bibliotekę wyspecjalizowaną w operacjach na tensorach. Szczególnie szybko wykonują się obliczenia numeryczne typowe dla algorytmów uczenia maszynowego takich jak mnożenie macierzy i obliczanie gradientu.  Można wybierać wśród trzech istniejących implementacji, każda z nich ma otwarte źródło. Pierwsza z nich wykorzystuje Tensorflow opracowany i rozwijany przez Google'a, druga korzysta z Theano opracowanego i rozwijanamego przez LISA Lab w Uniwersytecie Montrealskim, ostatnia i najmniej popularna wykorzystuje CNTK opracowane i rozwijane przez Microsoft. W przyszłości prawdopodobnie pojawi się więcej możliwości wyboru, między innymi niedawno powstały, zdobywający coraz większą popularność projekt Torch finansowany przez Facebooka. Obecnie najczęściej wykorzystywany jest TensorFlow, został on także wykorzystany w tej pracy. 
+%
 Poniżej zaprezentuję jak proste jest zbudowanie i wytrenowanie bardzo podstawowego przykładu sieci neuronowej przy użyciu biblioteki Keras. Cały proces wymaga wykonania kilku kroków:
 \begin{enumerate}
 	\setlength\itemsep{0.em}
@@ -794,10 +835,9 @@ Poniżej zaprezentuję jak proste jest zbudowanie i wytrenowanie bardzo podstawo
 	\item Skonfiguruj proces uczenia poprzez wybranie funkcji straty, algorytmu szukającego minimum funkcji straty
 	\item Przeprowadź odpowiednią do wytrenowania sieci ilość iteracji
 \end{enumerate}
-
+%
 Zdefiniowana poniżej sieć składa się z dwóch warstw ukrytych o odpowiednio 10 i 5 neuronach ukrytych. Funkcją aktywacji w pierwszej warstwie jest sigmoida, dane wejściowe zawierają dwie cechy, które posłużą do zbudowania modelu, druga warstwa wykorzystuje tangens hiperboliczny jako funkcję aktywacji. Model podczas nauki minimalizuje błąd średniokwadratowy, wykorzystuje do tego algorytm rmsprop, trenownanie modelu skończy się po 100 pełnych iteracjach zbioru danych.
-
-
+%
 \begin{lstlisting}
 #Zaimportuj wymagane pliki
 from keras import models
@@ -823,9 +863,6 @@ model.fit(inputs = X, outputs = Y, epochs = 100)
 \end{lstlisting}
 
 %Deep Learning with Python Francois Chollet Manning Shelter Island 2018
-
-
-
 \section{Generowanie sztucznych danych}
 
 %opis = https://arxiv.org/pdf/0812.3539.pdf
@@ -895,6 +932,8 @@ Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową ni
 &=& \left(\sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}\right) \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right).
 \end{eqnarray}
 
+Przedstawiona w dalszej części pracy analiza opiera się na aż trzech różnych zbiorach danych. Oprócz powyższego zbioru dysponujemy zależnością przekroju czynnego od $Q^2$ i $\epsilon$ poprawioną o poprawkę dwufotonową oraz stosunkiem funkcji postaci w zależności od $Q^2$. Do tych zbiorów danych zostały zastosowane analogiczne kroki służące wygenerowaniu sztucznych danych.
+
 
 \section{Walidacja krzyżowa}
 
@@ -909,12 +948,11 @@ W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\textwidth]{cross_val.png}
-	\caption{Na podstawie [Python Machine Learning
-		Book by Sebastian Raschka]}
+	\caption{Przykład 10-krotnej walidacji krzyżowej, kolor niebieski oznacza podzbiór testowy, pozostała część zbioru to podzbiór treningowy. Wynik końcowy jest średnią z wyników wszystkich iteracji. Rysunek przetłumaczony na język polski z \cite{Raschka:2015:PML:2886323}.}
 	\label{fig:cross-val}
 \end{figure}
 
-Cytując [Page 184, An Introduction to Statistical Learning, 2013.], "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybierano więc takie $k$ z zakresu $[5,10]$, dla którego liczba próbek w zbiorze danych jest całkowicie podzielna przez $k$ co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
+Cytując \cite{James:2014:ISL:2517747}: "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybierano więc takie $k$ z zakresu $[5,10]$, dla którego liczba próbek w zbiorze danych jest całkowicie podzielna przez $k$ co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
 
 \section{Wczesne zatrzymanie}
 Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
@@ -945,9 +983,7 @@ Oraz zdefiniujmy pomocniczy parametr $GL(t)$
 $$
 GL(t) \equiv \frac{\Theta_{sr}(t)}{\Theta_{min}} - 1
 $$
-
-
-Podczas nauki przedstawioneg modelu, do wczesnego zatrzymania wystarczyło spełnienie jednego z dwóch obowiązujących warunków:
+Podczas nauki przedstawionych modeli statystycznych oprócz wykorzystania metody wczesnego zatrzymania została ustalona minimalna wymagana liczba epok. Z powodu startu algorytmu uczącego z losowymi parametrami, szczególnie w pierwszych iteracjach nauki funkcja błędu może być poddana dużym fluktuacjom. Po przekroczeniu minimalnej liczby epok do wczesnego zatrzymania wystarczyło spełnienie jednego z dwóch obowiązujących warunków:
 
 \begin{itemize}
 	\item $\Theta_{min}(t) = \Theta_{min}(t+ 200)$ dla wszystkich $t \in [t,t+200]$, brak zmniejszenia minimalnej wartości funkcji straty dla zbioru walidacyjnego przez 200 epok 
@@ -992,15 +1028,131 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 \end{figure}
 
 
+
+
+
+\section{Algorytm uczący}
+
+
+Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu. "Każda z $N$ wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej $N$ parametrów może być traktowany jako punkt na $N$-wymiarowej hiperpłaszczyźnie. $N+1$ wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni $N+1$-wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej $N$-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami $N$-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu. Przy stosowaniu modeli liniowych z funkcją błędu opartą na sumie kwadratów powierzchnia błędu ma kształt paraboloidy (funkcji kwadratowej), ma więc kształt kielicha o gładkich powierzchniach bocznych i o jednym wyraźnym minimum. Z tego powodu wyznaczenie w tym przypadku wartości minimalnej nie stwarza większych problemów."\cite{Statsoft}
+
+Jeżeli dysponujemy niewielkim zbiorem danych treningowych, do znalezienia optimum funkcji doskonale sprawdzą się metody quasi-Newtonowskie. Ich zaletą jest bardzo szybka zbieżność, niestety obliczenie hesjanu funkcji wielu zmiennych charakteryzuje się dużą złożonością pamięciową $O(n^2)$ i jeszcze większą złożonością obliczeniową $O(n^3)$. Z tego powodu możliwość ich zastosowania ogranicza się do niewielu przypadków. Najbardziej znane algorytmy quasi-Newtonowskie to m.in: \textit{LM-BFGS, Levenberg-Marquardt.} Dysponując dużym zbiorem danych należy wybrać inny algorytm. Po za losowym poszukiwaniem parametrów, najłatwiejszym z nich i bardzo intuicyjnym jest metoda gradientu prostego (\textit{gradient descent}). Parametry $\theta$ aktualizowane są w następujący sposób:
+
+
+\begin{equation}
+\theta^{k+1} = \theta^{k} - \alpha \nabla J(\theta^{k})
+\end{equation}
+
+
+gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność \cite{Dennis:1996:NMU:1096889}. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. Algorytm jednak jest bardzo wolny, co jest jego największą słabością. Ze względu na częstość aktualizacji wag, metodę gradientu prostego możemy podzielić na \textit{batch gradient descent} oraz \textit{stochastic gradient descent}. W pierwszym przypadku wagi są dostosowywane po przetworzeniu pełnego zbioru danych, w metodzie stochastycznej zbiór uczący dzielony jest na podzbiory a wagi aktualizowane są po przetworzeniu każdego z podzbiorów. Druga metoda jest szczególnie użyteczna dla dużych zbiorów danych. Spodziewamy się, że dla dobrze przygotowanych danych kierunek podążania wartości wag będzie podobny jeśli policzymy gradient zarówno dla 10\% jak i dla 100\% zbioru treningowego.
+
+
+Wyobraźmy sobie, że poszukiwanie minimum powierzchni błędu to przemierzanie przestrzeni pełnej dolin, pagórków, wąwozów. W kolejnych iteracjach przeskakujemy między tymi obszarami, w pewnym momencie może się zdarzyć, że gradient zaniknie lub będzie bardzo słaby a nasze poszukiwania zatrzymają się nie osiągając wystarczającego minimum. Idea pędu inspirowana zjawiskami fizycznymi to nadanie gradientowi krótkotrwałej pamięci. Posługując się kolejną analogią, popchnięta w dół piłka nabierając prędkości zwiększa swój pęd. To samo dzieje się z parametrami sieci, wartość pędu wzrasta dla wymiarów, których gradienty wskazują te same kierunki i zmniejsza modyfikacje wartości dla wymiarów, w których gradienty zmieniają kierunki. W rezultacje otrzymujemy szybszą zbieżność i mniejsze oscylacje.
+
+\begin{align} 
+v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k}) \\[0.4em]
+\theta^{k+1} &=  \theta^{k }- \alpha v^{k+1}
+\end{align}
+
+Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu prostego, zazwyczaj jednak ustala się wartość parametru $\beta$, zwanego pędem na około $0.9$ \cite{1986Natur.323..533R}. 
+
+\begin{figure}[h	]
+	\centering
+	\includegraphics[width=1\textwidth]{gd_sgd.png}
+	\caption{Funkcja  $f(x,y) =(1.5 - x + xy)^2 + (2.25 - x + xy^2)^2 + (2.625 - x + xy^3)^2$, osiąga minimum równe 0, w punkcie $(3,0.5)$ oznaczonym  czarną gwiazdą. Grafika przedstawia porównanie działania metody gradientu prostego oraz jego modyfikacji poprzez dodanie pędu. Przyjmując, że punkt początkowy to $(2,1)$, $\alpha = 0.001$ i $\beta = 0.9$, możemy prześledzić trajektorie algorytmów przez pierwsze 500 iteracji działania.} 
+	\label{fig:gd_sgd}
+\end{figure}
+
+Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na \figurename{} \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
+
+
+Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci. Algorytm opisują równania \ref{eq:nesterov1}, \ref{eq:nesterov2} \cite{2016arXiv160904747R}.
+
+\begin{align} 
+v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k} - \beta v^{k}) \label{eq:nesterov1} \\[0.4em]
+\theta^{k+1} &=  \theta^{k }- \alpha v^{k+1} \label{eq:nesterov2}
+\end{align}
+
+
+
+Niezywkle istotnym parametrem algorytmu jest $\alpha$, jego niezmienność wraz z postępem iteracji powoduje bardzo niską efektywność algorytmu. Ze względu na metodę zmiany tego parametru, który może być indywidualnie ustalany dla każdej wagi powstało wiele szeroko wykorzystywanych algorytmów. Do najpopularniejszych należą między innymi \textit{Adam, Nadam, Adagrad, Adadelta, AMSGrad, RMSprop}. 
+
+W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wzrostem iteracji. Ponadto szybkość uczenia zależna jest od wybranego parametru $\lambda$ decydującego o tym z jaką szybkością maleje.
+
+\begin{equation}
+\alpha(i) = \alpha_0 \times \frac{1}{1 + \lambda \times i}
+\end{equation}
+
+\figurename{} \ref{fig:hyperparameters} przedstawia porównanie przykładowych krzywych zmian wartości funkcji straty w czasie dla różnych wartości $\alpha$ i $\lambda$. Na ich podstawie widać jak duży wpływ wnosi parametr $\alpha$ w proces nauki modelu. Zbyt duża szybkość uczenia powoduje bardzo duże oscylacje krzywej funkcji straty, za mała wartość $\alpha$ bardzo mocno spowalnia proces nauki. Pewien kompromis przynosi wybranie odpowiednio dużej początkowej wartości szybkości uczenia, co przynosi szybkie przejście algorytmu w obszar minimum i następnie zmniejszenie go do wartości potrafiącej efektywnie dalej poszukiwać optimum. Zadowalający przebieg mają krzywe o parametrach $\alpha = 0.005$, $\lambda = 0.001$, które przedstawiają porządany, eksponencjalny kształt o niewielkiej oscylacji. Na podstawie powyższej analizy to właśnie te hiperparametry zostały wykorzystane w modelu, dodatkowo parametr pędu $\beta$ został ustalony na wartość $0.9$
+
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\textwidth]{hyperparameter14_16a.png}
+	\caption{Porównanie przykładowych krzywych zmiany wartości funkcji straty w czasie dla zbiorów treningowego (kolor pomarańczowy) i walidacyjnego (kolor niebieski) ze względu na parametry $\alpha$ (\textit{learning rate}) oraz $\lambda$ (\textit{decay})}
+	\label{fig:hyperparameters}
+\end{figure}
+
+
+\chapter{Wyniki analizy}
+
+\section{Analiza nr 1}
+%
+Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie dane przekrojów czynnych rozpraszania elektron-proton w eksperymentach (lista referencji).
+%
+\subsubsection{Dane wejściowe i funkcja straty}
+%
+%opis = https://arxiv.org/pdf/0812.3539.pdf
+%dane = https://arxiv.org/pdf/1106.1204.pdf
+%
+Na zbiór analizowanych danych składa się 24 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.  Dodatkowo do każdego ze zbiorów dodano sztuczny punkt pomiarowy, który korzysta z założenia, że $\sigma \left(Q^2 = 0, \, \varepsilon = 1 \right) = 1$, niepewność pomiarowa punktu wynosi $\Delta \sigma = 0.01$, zwiększa to liczbę wszystkich punktów pomiarowych do 450.
+%
+%\begin{itemize}
+%\setlength\itemsep{0.em}	
+%\item $\sigma$ - przekrój czynny 	
+%\item $\Delta \sigma$ - niepewność pomiaru
+%\item $Q^2$ - kwadrat przekazanego czteropędu
+%\item $\varepsilon$ - czynnik kinematyczny
+%\item $\Delta \eta$ - niepwność systematyczna
+%\end{itemize}
+%
+%
+Funkcja straty to z definicji funkcja przyporządkowująca nieujemną wielkość kary poprzez porównanie zmiennej objaśnianej do wyliczonego estymatora. W przedstawionym modelu, wykorzystana została zmodyfikowana postać funkcji chi-kwadrat, która bierze pod uwagę zarówno nipewność pomiarową oraz systematyczną
+%
+\begin{equation}
+\chi^2 = \frac{1}{n} \chi_{\sigma}^2
+\end{equation}
+%
+\begin{equation}
+\chi_{\sigma}^2 = \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\Delta \eta_k}\right)^2 \right],
+\end{equation}
+%
+gdzie $N_{\sigma}$ to liczba zbiorów danych z niezależnych eksperymentów, $n_k$ to liczba punktów w $k$-tym zbiorze danych, $n = \sum_{k=1}^{N_{\sigma}}n_k$ to liczba wszystkich punktów pomiarowych, $\eta_k$ to parametr normalizacyjny dla $k$-tego zbioru danych, $\Delta \eta_k$ to błąd systematyczny. $\sigma^{ex}_{ki}$ to wartość eksperymentalna przekroju czynnego $i$-tego pomiaru z $k$-tego zbioru danych, zmierzona dla określonego $Q^2_{ki}$, $\varepsilon_{ki}$, $\Delta \sigma_{ki}^{ex}$ oznacza odpowiadającą niepewność pomiaru, $\sigma_{ki}^{th}$ to przewidywanie modelu statystycznego. $\eta_k$, $k =1,2,\dots, N_{\sigma}$ to parametry normalizacyjne. Ich wartosci są aktualizowane podczas każdej itereacji nauki modelu \cite{PhysRevC.84.034314}, powinny one spełniać warunek
+%
+\begin{equation}
+\frac{\partial \chi_{\sigma}^2}{\partial \eta_k} = 0, \; k = 1,\dots,N_{\sigma}, \label{eq_eta1}
+\end{equation}
+co można zapisać jako
+%
+\begin{equation}
+\eta_k = \frac{\sum_{i=1}^{n_k}\frac{\sigma_{ki}^{th} \sigma_{ki}^{ex}}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}{\sum_{i=1}^{n_k}\frac{\left(\sigma_{ki}^{th}\right)^2}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}. \label{eq_eta2}
+\end{equation}
+
+
+\subsubsection{Parametry i nauka sieci}
+
+Sieć neuronowa o dwóch wartstwach ukrytych i hiparametrach przedstawionych w Tabeli \ref{tab:hyper1} daje w rezultacie wartość $\sigma$ w zależności od zmiennych $Q^2$ oraz $\epsilon$. Podczas treningu elementy ze zbioru parametrów $\eta_k$ dążą do wartości bliskich 1. %przykładowe wartości będące wynikiem treningu modelu znajdują się w Tabeli \ref{tab:etak}. 
+Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką sieci dla każdego z 24 niezależnych zbiorów danych. Łącznie zostało wytrenowanych 2500 ($N_{rep} \times k$) modeli. Przykładowy przebieg wartości funkcji straty dla zbioru treningowego i walidacyjnego został przedstawiony na Rysunku \ref{fig:learning_cur}, możemy zauważyć, że około 1100 epoki funkcja straty osiąga minimum, zgodnie z opisanymi wcześniej zasadami wczesnego zatrzymania model kończy naukę po następnych 200 epokach. 
+
 \begin{SCfigure}
 	\centering
 	\resizebox{7.cm}{!}{\begin{tikzpicture}
 		[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
 		]
 		\tikzset{normal arrow/.style={draw,-latex}}
-		\node[cnode=white,label=0:Wyjście] (s) at (9,-7) {};
+		\node[cnode=white,label=0:$\sigma$] (s) at (9,-7) {};
 		
-		\node[cnode=white,label=180:\textit{Bias}] (x-3) at (0,-9) {1};
+		\node[cnode=white,label=180:] (x-3) at (0,-9) {1};
 		
 		
 		\node[cnode=white,label=180:] (p-4) at (3,-10) {$1$};
@@ -1008,7 +1160,7 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 		\node[cnode=white,label=180:] (z-6) at (6,-12) {$1$};	
 		
 		
-		\node[cnode=white,label=180:$\varepsilon$] (x-1) at (0,-5) {};
+		\node[cnode=white,label=180:$\epsilon$] (x-1) at (0,-5) {};
 		\node[cnode=white,label=180:$Q^2$] (x-2) at (0,-7) {};
 		
 		\node[cnode=white,label=180:] (p-1) at (3,-4) {};
@@ -1053,182 +1205,286 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 			\fi
 		}
 		\end{tikzpicture}}
-	\caption{Schemat zastosowanej sieci neuronowej, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme} 	
+	\caption{Schemat sieci neuronowej zastosowanej w pierwszej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme} 	
 \end{SCfigure}
 
-\section{Algorytm uczący}
 
-
-Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu "\textit{Każda z N wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej N parametrów może być traktowany jako punkt na N-wymiarowej hiperpłaszczyźnie. N+1 wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni N+1 wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej N-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami N-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu.
-	Przy stosowaniu modeli liniowych z funkcją błędu opartą na sumie kwadratów powierzchnia błędu ma kształt paraboloidy (funkcji kwadratowej), ma więc kształt kielicha o gładkich powierzchniach bocznych i o jednym wyraźnym minimum. Z tego powodu wyznaczenie w tym przypadku wartości minimalnej nie stwarza większych problemów.}"[$https://www.statsoft.pl/textbook/stathome_stat.html?$]
-
-Jeżeli dysponujemy niewielkim zbiorem danych treningowych, do znalezienia optimum funkcji doskonale sprawdzą się metody quasi-Newtonowskie. Ich zaletą jest bardzo szybka zbieżność, niestety obliczenie hesjanu funkcji wielu zmiennych charakteryzuje się dużą złożonością pamięciową $O(n^2)$ i jeszcze większą złożonością obliczeniową $O(n^3)$. Z tego powodu możliwość ich zastosowania ogranicza się do niewielu przypadków. Najbardziej znane algorytmy quasi-Newtonowskie to m.in: \textit{LM-BFGS, Levenberg-Marquardt.} Dysponując dużym zbiorem danych należy wybrać inny algorytm. Po za losowym poszukiwaniem parametrów, najłatwiejszym z nich i bardzo intuicyjnym jest metoda gradientu prostego (\textit{gradient descent}). Parametry $\theta$ aktualizowane są w następujący sposób:
-
-
-\begin{equation}
-\theta^{k+1} = \theta^{k} - \alpha \nabla J(\theta^{k})
-\end{equation}
-
-
-gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność [Dennis, J., Schnabel, R.B.: Numerical Methods For Unconstrained Optimization and Nonlinear Equations. Prentice-Hall, Inc., Englewood Cliffs, New Jersey (1983)
-]. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. Algorytm jednak jest bardzo wolny, co jest jego największą słabością. Ze względu na częstość aktualizacji wag, metodę gradientu prostego możemy podzielić na \textit{batch gradient descent} oraz \textit{stochastic gradient descent}. W pierwszym przypadku wagi są dostosowywane po przetworzeniu pełnego zbioru danych, w metodzie stochastycznej zbiór uczący dzielony jest na podzbiory a wagi aktualizowane są po przetworzeniu każdego z podzbiorów. Druga metoda jest szczególnie użyteczna dla dużych zbiorów danych. Spodziewamy się, że dla dobrze przygotowanych danych kierunek podążania wartości wag będzie podobny jeśli policzymy gradient zarówno dla 10\% jak i dla 100\% zbioru treningowego.
-
-
-Wyobraźmy sobie, że poszukiwanie minimum powierzchni błędu to przemierzanie przestrzeni pełnej dolin, pagórków, wąwozów. W kolejnych iteracjach przeskakujemy między tymi obszarami, w pewnym momencie może się zdarzyć, że gradient zaniknie lub będzie bardzo słaby a nasze poszukiwania zatrzymają się nie osiągając wystarczającego minimum. Idea pędu inspirowana zjawiskami fizycznymi to nadanie gradientowi krótkotrwałej pamięci. Posługując się kolejną analogią, popchnięta w dół piłka nabierając prędkości zwiększa swój pęd. To samo dzieje się z parametrami sieci, wartość pędu wzrasta dla wymiarów, których gradienty wskazują te same kierunki i zmniejsza modyfikacje wartości dla wymiarów, w których gradienty zmieniają kierunki. W rezultacje otrzymujemy szybszą zbieżność i mniejsze oscylacje.
-
-\begin{align} 
-v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k}) \\[0.4em]
-\theta^{k+1} &=  \theta^{k }- \alpha v^{k+1}
-\end{align}
-
-Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu prostego, zazwyczaj jednak ustala się wartość parametru $\beta$, zwanego pędem na około $0.9$. [1986 Nature, Learning representations by back-propagating errors
-David E. Rumelhart, Geoffrey E. Hinton \& Ronald J. Williams] 
-
-\begin{figure}[h	]
+\begin{table}
 	\centering
-	\includegraphics[width=1\textwidth]{gd_sgd.png}
-	\caption{Funkcja  $f(x,y) =(1.5 - x + xy)^2 + (2.25 - x + xy^2)^2 + (2.625 - x + xy^3)^2$, osiąga minimum równe 0, w punkcie $(3,0.5)$ oznaczonym  czarną gwiazdą. Grafika przedstawia porównanie działania metody gradientu prostego oraz jego modyfikacji poprzez dodanie pędu. Przyjmując, że punkt początkowy to $(2,1)$, $\alpha = 0.001$ i $\beta = 0.9$, możemy prześledzić trajektorie algorytmów przez pierwsze 500 iteracji działania.} 
-	\label{fig:gd_sgd}
+	\caption{Hiperparametry modelu}\label{tab:hyper1} 
+	\begin{tabular}{c|c c c}
+		\hline 
+		Kategoria & Parametr & Wartość &   \\\hline
+		Generowanie danych & $N_{rep}$ & 500 & \\ \hline
+		$k$-krotna walidacja krzyżowa & $k$ & 5 &\\ \hline
+		
+		Algorytm uczący& $\alpha$ (\textit{learning rate}) & 0,003 & \\ \hline
+		& $\lambda$ (\textit{decay}) & 0,0005 & \\ \hline
+		& $\beta$ (\textit{pęd}) & 0,9 & \\ \hline
+		Sieć neuronowa & Liczba warstw & 2 & \\ \hline
+		& Ilość neuronów & (3,5) & \\ \hline
+		
+	\end{tabular}
+\end{table}
+%
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{eta.eps}
+	\caption{Ewolucja parametrów $\eta_k$ podczas jednego z treningów modelu. Wraz ze wzrostem epok, wartości parametrów ustalane na podstawie równania \ref{eq_eta2} zbiegają do wartości bliskich 1.} 
+	\label{fig:eta}
 \end{figure}
-
-Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na \figurename{} \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
-
-
-Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci.	
-
-\begin{align} 
-v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k} - \beta v^{k}) \\[0.4em]
-\theta^{k+1} &=  \theta^{k }- \alpha v^{k+1}
-\end{align}
-[https://arxiv.org/abs/1609.04747]
-
-
-Niezywkle istotnym parametrem algorytmu jest $\alpha$, jego niezmienność wraz z postępem iteracji powoduje bardzo niską efektywność algorytmu. Ze względu na metodę zmiany tego parametru, który może być indywidualnie ustalany dla każdej wagi powstało wiele szeroko wykorzystywanych algorytmów. Do najpopularniejszych należą między innymi \textit{Adam, Nadam, Adagrad, Adadelta, AMSGrad, RMSprop}. 
-
-W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wzrostem iteracji. Ponadto szybkość uczenia zależna jest od wybranego parametru $\lambda$ decydującego o tym z jaką szybkością maleje.
-
-\begin{equation}
-\alpha(i) = \alpha_0 \times \frac{1}{1 + \lambda \times i}
-\end{equation}
-
-\figurename{} \ref{fig:hyperparameters} przedstawia porównanie przykładowych krzywych zmian wartości funkcji straty w czasie dla różnych wartości $\alpha$ i $\lambda$. Na ich podstawie widać jak duży wpływ wnosi parametr $\alpha$ w proces nauki modelu. Zbyt duża szybkość uczenia powoduje bardzo duże oscylacje krzywej funkcji straty, za mała wartość $\alpha$ bardzo mocno spowalnia proces nauki. Pewien kompromis przynosi wybranie odpowiednio dużej początkowej wartości szybkości uczenia, co przynosi szybkie przejście algorytmu w obszar minimum i następnie zmniejszenie go do wartości potrafiącej efektywnie dalej poszukiwać optimum. Zadowalający przebieg mają krzywe o parametrach $\alpha = 0.005$, $\lambda = 0.001$, które przedstawiają porządany, eksponencjalny kształt o niewielkiej oscylacji. Na podstawie powyższej analizy to właśnie te hiperparametry zostały wykorzystane w modelu, dodatkowo parametr pędu $\beta$ został ustalony na wartość $0.9$
-
-
+%
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{learning_cur.eps}
+	\caption{Zmiana wartości funkcji straty podczas nauki modelu. Wartość funkcji obliczana na podstawie zbioru treningowego oznaczona jest kolorem niebieskim, dla zbioru walidacyjnego - pomarańczowym.} 
+	\label{fig:learning_cur}
+\end{figure}
+%
+%\begin{figure}[hp!]
+%	\centering
+%	\includegraphics[width=1\textwidth]{eta_lc.eps}
+%	\caption{} 
+%	\label{fig:eta}
+%\end{figure}
+%
+\newpage
+\subsubsection{Wyniki}
+%
+Wyniki wytrenowanych modeli tworzą statystykę, której najważniejszymi parametrami są średnia - często przedstawiana jako wynik analizy, oraz odchylenie standardowe, które przedstawia zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar.
+Rysunek \ref{fig:const_eps} przedstawia zależność przekroju czynnego $\sigma\left(\epsilon\right)$, dla kilku ustalonych wartości $Q^2$. Otrzymane funkcje mają przebieg liniowy o bardzo podobnym współczynniku kierunkowym a błąd modelu $1\sigma$ znacznie wzrasta wraz ze wzrostem $Q^2$.
+%
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1\textwidth]{hyperparameter14_16a.png}
-	\caption{Porównanie przykładowych krzywych zmiany wartości funkcji straty w czasie dla zbiorów treningowego (kolor pomarańczowy) i walidacyjnego (kolor niebieski) ze względu na parametry $\alpha$ (\textit{learning rate}) oraz $\lambda$ (\textit{decay})}
-	\label{fig:hyperparameters}
-\end{figure}
-
-
-\chapter{Wyniki analizy}
-
-\section{Analiza nr 1}
-
-
-Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie dane przekrojów czynnych rozpraszania elektron-proton w przybliżeniu jednofotonowym (\textit{OPE?}).
-
-\subsubsection{Dane wejściowe i funkcja straty}
-%
-%opis = https://arxiv.org/pdf/0812.3539.pdf
-%dane = https://arxiv.org/pdf/1106.1204.pdf
-%
-Na zbiór analizowanych danych składa się 24 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.  Dodatkowo do każdego ze zbiorów dodano sztuczny punkt pomiarowy, który korzysta z założenia, że $\sigma \left(Q^2 = 0, \, \varepsilon = 1 \right) = 1$, niepewność pomiarowa punktu wynosi $\Delta \sigma = 0.01$, zwiększa to liczbę wszystkich punktów pomiarowych do 450.
-%
-%\begin{itemize}
-%\setlength\itemsep{0.em}	
-%\item $\sigma$ - przekrój czynny 	
-%\item $\Delta \sigma$ - niepewność pomiaru
-%\item $Q^2$ - kwadrat przekazanego czteropędu
-%\item $\varepsilon$ - czynnik kinematyczny
-%\item $\Delta \eta$ - niepwność systematyczna
-%\end{itemize}
-%
-%
-Funkcja straty to z definicji funkcja przyporządkowująca nieujemną wielkość kary poprzez porównanie zmiennej objaśnianej do wyliczonego estymatora. W przedstawionym modelu, wykorzystana została zmodyfikowana postać funkcji chi-kwadrat, która bierze pod uwagę nipewność pomiarową oraz systematyczną
-%
-%\begin{equation}
-%\chi_{\sigma}^2 + \chi_{PT}^2 + \chi_{\pm}^2 + \chi_{G_M}^2 + \chi_{G_E}^2    
-%\end{equation}
-%
-\begin{equation}
-\chi_{\sigma}^2 = \frac{1}{n}  \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\Delta \eta_k}\right)^2 \right],
-\end{equation}
-%
-gdzie $N_{\sigma}$ to liczba zbiorów danych z niezależnych eksperymentów, $n_k$ to liczba punktów w $k$-tym zbiorze danych, $n = \sum_{k=1}^{N_{\sigma}}n_k$ to liczba wszystkich punktów pomiarowych, $\eta_k$ to parametr normalizacyjny dla $k$-tego zbioru danych, $\Delta \eta_k$ to błąd systematyczny. $\sigma^{ex}_{ki}$ to wartość eksperymentalna przekroju czynnego $i$-tego pomiaru z $k$-tego zbioru danych, zmierzona dla określonego $Q^2_{ki}$, $\varepsilon_{ki}$, $\Delta \sigma_{ki}^{ex}$ oznacza odpowiadającą niepewność pomiaru, $\sigma_{ki}^{th}$ to przewidywanie modelu statystycznego. Parametry normalizacyjne $\eta_k$, $k =1,2,\dots, N_{\sigma}$ powinny spełniać warunek \ref{eq_eta1}. Ich wartość jest aktualizowana podczas każdej itereacji nauki modelu  \cite{PhysRevC.84.034314}.
-
-\begin{equation}
-\frac{\partial \chi_{\sigma}^2}{\partial \eta_k} = 0, \; k = 1,\dots,N_{\sigma}, \label{eq_eta1}
-\end{equation}
-
-co można zapisać jako
-%
-\begin{equation}
-\eta_k = \frac{\sum_{i=1}^{n_k}\frac{\sigma_{ki}^{th} \sigma_{ki}^{ex}}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}{\sum_{i=1}^{n_k}\frac{\left(\sigma_{ki}^{th}\right)^2}{\left(\Delta \sigma_{ki}\right)^2} + \frac{1}{\left(\Delta \eta_k\right)^2}}. \label{eq_eta2}
-\end{equation}
-%
-
-\subsubsection{Parametry sieci?}
-Hiperparametry - tabela, komentarz
-Tabela z wartościami $\eta_k$, pokazanie wyników dla const q2 i eps, dojscie do form faktorów wykresy form faktorow i porownanie do pracy K.Graczyka, opis
-
-
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=1\textwidth]{const_q2.eps}
-	\caption{} 
+	\includegraphics[width=.98\textwidth]{const_q2.eps}
+	\caption{Zależność przekroju czynnego $\sigma$ od czynnika kinematycznego $\epsilon$ przy ustalonym przekazie czteropędu $Q^2$. Linia ciągła wyznacza średnią wartość po wszystkich wytrenowanych sieciach. Kolor szary wyznacza obszar niepewności $1\sigma$.} 
 	\label{fig:const_q2}
 \end{figure}
 %
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1\textwidth]{const_eps.eps}
-	\caption{} 
+	\includegraphics[width=.98\textwidth]{const_eps.eps}
+	\caption{Zależność przekroju czynnego $\sigma$ od przekazu czteropędu $Q^2$ przy ustalonym czynniku kinematycznym $\epsilon$. Linia ciągła wyznacza średnią wartość po wszystkich wytrenowanych sieciach. Kolor szary wyznacza obszar niepewności $1\sigma$.} 
 	\label{fig:const_eps}
 \end{figure}
+%
+Zależność przekroju czynnego $\sigma \left(Q^2\right)$ przy ustalonym parametrze $\epsilon$ znajduje się na rysnku \ref{fig:const_eps}. Możemy zauważyć, że im niższa wartość $\epsilon$ tym mniejszy przekrój czynny dla $Q^2=0$, następnie krzywe mają bardzo podobny przebieg, niezależnie od ustalonego parametru $\epsilon$ zbiegają do tej samej maksymalnej wartości $\sigma$ wraz ze wzrostem $Q^2$. Ponadto, wraz ze wzrostem $Q^2$ rośnie niepewność otrzymanego wyniku, dla $Q^2 = 10 \text{ GeV}^2$ obszar błędu modelu $1\sigma$ wynosi aż $\pm 1 \text{ GeV}^2$.
+%
+Po zbadaniu podstawowych zależności estymowanej funkcji od kwadratu przekazu czteropędu oraz czynnika kinematycznego wyznaczono elektryczny i magnetyczny funkcji postaci.
+Wiemy, że  
+
+\begin{equation}
+\sigma_R(\epsilon, Q^2) =\tau G_{Mp}^2(Q^2) + \epsilon G_{Ep}^2(Q^2),
+\end{equation}
+
+obliczając pochodną po parametrze $\epsilon$ otrzymamy kwadrat elektrycznej funkcji postaci protonu, więc
+
+\begin{equation}
+G_{Ep}(Q^2) = \sqrt{\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}.
+\end{equation}
+
+Następnie magnetyczna funkcja postaci protonu wyraża się wzorem
+
+\begin{equation}
+G_{Mp}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}{\tau}}
+\end{equation}
+
+%
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{ge.eps}
+		\caption{}
+		\label{fig:ge1} 
+	\end{subfigure}
+	
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{gm.eps}
+		\caption{}
+		\label{fig:gm1}
+	\end{subfigure}
+	
+	\caption{Elektryczna (a) i magnetyczna (b) funkcja postaci. Linia ciągła przedstawia średnią ze wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.}
+\end{figure}
+
+
+
+%
+\newpage
+\section{Analiza nr 2}
+\subsubsection{Dane wejściowe i funkcja straty}
+%
+Dane wejściowe w następnej analizie to 450 punktów pomiarowych analizowanych w pierwszej analizie powiększone o zbiór 68 pomiarów stosunku funkcji postaci $G_{Ep}/G_{Mp}$ wraz z niepewnością pomiarową w zależności od kwadratu przekazu czteropędu $Q^2$. Ponieważ znamy jeden z więzów funkcji postaci, do zbioru dodany został 69 i 70 punkt: $\mathcal{R}\left(Q^2 = 0\right) = 1$, $\Delta \mathcal{R} = 0,01$. Razem otrzymujemy 520 pomiarów co sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$.
+%
+Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss2}) jest modyfikacją funkcji wykorzystanej w pierwszej analizie. Do użytej wcześniej funkcji błędu dodany został składnik (\ref{eq_rat}) uwzględniający błąd estymacji stosunku $G_{Ep}/G_{Mp}$.
+%
+\begin{equation}
+\chi^2 = \frac{1}{n} \left[ \chi_{\sigma}^2 + \chi_{PT}^2  \right] \label{eq_loss2}
+\end{equation}
+%
+\begin{equation}
+\chi_{PT}^2 = \sum_{i=1}^{n_k^{PT}} \left( \frac{\mathcal{R}_i^{th} - \mathcal{R}_i^{ex}}{\Delta \mathcal{R}_{i}} \right)^2 \label{eq_rat}
+\end{equation}
+
+
+
+\subsubsection{Parametry i nauka sieci}
+
+
+\begin{SCfigure}
+	\centering
+	\resizebox{7.cm}{!}{\begin{tikzpicture}
+		[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
+		]
+		\tikzset{normal arrow/.style={draw,-latex}}
+		\node[cnode=white,label=0:$G_{Ep}$] (s) at (9,-6) {};
+		\node[cnode=white,label=0:$G_{Mp}$] (s-1) at (9,-8) {};
+		
+		\node[cnode=white,label=180:\textit{}] (x-2) at (0,-8) {1};
+		
+		
+		\node[cnode=white,label=180:] (p-4) at (3,-10) {$1$};
+		
+		\node[cnode=white,label=180:] (z-6) at (6,-12) {$1$};	
+		
+		
+		%		\node[cnode=white,label=180:$\epsilon$] (x-1) at (0,-5) {};
+		\node[cnode=white,label=180:$Q^2$] (x-1) at (0,-6) {};
+		
+		\node[cnode=white,label=180:] (p-1) at (3,-4) {};
+		\node[cnode=white,label=180:] (p-2) at (3,-6) {};
+		\node[cnode=white,label=180:] (p-3) at (3,-8) {};
+		
+		\node[cnode=white,label=180:] (z-1) at (6,-2) {};
+		\node[cnode=white,label=180:] (z-2) at (6,-4) {};
+		\node[cnode=white,label=180:] (z-3) at (6,-6) {};
+		\node[cnode=white,label=180:] (z-4) at (6,-8) {};
+		\node[cnode=white,label=180:] (z-5) at (6,-10) {};
+		
+		
+		
+		\foreach \x in {1,...,6}
+		{
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s);
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s-1);
+		}
+		
+		
+		\foreach \x in {1,...,2}
+		{   
+			\foreach \y in {1,...,3}
+			{   
+				
+				\path[normal arrow] (x-\x) -- (p-\y); 				
+			}
+		}
+		
+		\foreach \x in {1,...,4}
+		{   
+			\foreach \y in {1,...,5}
+			{   
+				
+				\path[normal arrow] (p-\x) -- (z-\y); 
+			}
+			
+			\ifnum \x=5
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s);
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s-1);
+			\else
+			
+			\fi
+		}
+		\end{tikzpicture}}
+	\caption{Schemat sieci neuronowej zastosowanej w drugiej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z dwoma neuronami. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme1} 	
+\end{SCfigure}
 
 
 
 \begin{table}
 	\centering
-	\caption{}\label{tab:etak} 
-	
-\begin{tabular}{c|c c c}
-\hline 
-L.p & Zbiór danaych & $\Delta \eta_k$ & $\eta_k$  \\\hline
-1& \texttt{And94\_000.dat}&1,77&1,014\\ \hline
-2& \texttt{And94\_100.dat}&2,70&1,018\\ \hline
-3& \texttt{Arn86\_1500.dat}&3,00&1,017\\ \hline
-4& \texttt{Bar66\_1700.dat}&2,50&0,981\\ \hline
-5& \texttt{Bar73\_200.dat}&2,10&0,971\\ \hline
-6& \texttt{Bar73\_300.dat}&2,10&0,998\\ \hline
-7& \texttt{Bar73\_400.dat}&2,10&0,980\\ \hline
-8& \texttt{Ber71\_700.dat}&4,00&0,947\\ \hline
-9& \texttt{Bor74\_1900.dat}&2,00&0,971\\ \hline
-10& \texttt{Chr03\_500.dat}&1,50&0,959\\ \hline
-11& \texttt{Dut03\_1400.dat}&1,90&0,989\\ \hline
-12& \texttt{Goi70\_1800.dat}&3,80&0,936\\ \hline
-13& \texttt{Jan66\_1600.dat}&1,60&0,965\\ \hline
-14& \texttt{Kir73\_1100.dat}&4,00&1,050\\ \hline
-15& \texttt{Lit67\_600.dat}&4,00&0,941\\ \hline
-16& \texttt{Mur74\_2200.dat}&4,60&1,016\\ \hline
-17& \texttt{Nic99\_1300.dat}&1,90&1,025\\ \hline
-18& \texttt{Pri71\_900.dat}&1,90&1,009\\ \hline
-19& \texttt{Qat05\_2300.dat}&3,00&0,981\\ \hline
-20& \texttt{Sil93\_1000.dat}&3,00&0,997\\ \hline
-21& \texttt{Sim80\_2100.dat}&0,50&1,017\\ \hline
-22& \texttt{Sim81\_2000.dat}&0,50&0,997\\ \hline
-23& \texttt{Ste75\_800.dat}&2,40&0,983\\ \hline
-24& \texttt{Wal94\_1200.dat}&1,90&0,964\\ \hline
-
-\end{tabular}
+	\caption{Hiperparametry modelu}\label{tab:hyper2} 
+	\begin{tabular}{c|c c c}
+		\hline 
+		Kategoria & Parametr & Wartość &   \\\hline
+		Generowanie danych & $N_{rep}$ & 500 & \\ \hline
+		$k$-krotna walidacja krzyżowa & $k$ & 5 &\\ \hline
+		
+		Algorytm uczący& $\alpha$ (\textit{learning rate}) & 0,025 & \\ \hline
+		& $\lambda$ (\textit{decay}) & 0,001 & \\ \hline
+		& $\beta$ (\textit{pęd}) & 0,9 & \\ \hline
+		Sieć neuronowa & Liczba warstw & 2 & \\ \hline
+		& Ilość neuronów & (3,5) & \\ \hline
+		
+	\end{tabular}
 \end{table}
 
 
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{anal_2.eps}
+	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
+	\label{fig:gm3}
+\end{figure}
+
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{ratio.eps}
+	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
+	\label{fig:ratio}
+\end{figure}
 
 
 \bibliographystyle{abbrv}
 \bibliography{references}
 
 \end{document}
+
+
+%wartosci parametrow eta
+%
+\begin{table}
+	\centering
+	\caption{Przykładowe końcowe wyniki parametrów $\eta_k$}\label{tab:etak} 
+	\begin{tabular}{c|c c c}
+		\hline 
+		L.p & Zbiór danaych & $\Delta \eta_k [\%]$ & $\eta_k$  \\\hline
+		1& \texttt{And94\_000.dat}&1,77&1,014\\ \hline
+		2& \texttt{And94\_100.dat}&2,70&1,018\\ \hline
+		3& \texttt{Arn86\_1500.dat}&3,00&1,017\\ \hline
+		4& \texttt{Bar66\_1700.dat}&2,50&0,981\\ \hline
+		5& \texttt{Bar73\_200.dat}&2,10&0,971\\ \hline
+		6& \texttt{Bar73\_300.dat}&2,10&0,998\\ \hline
+		7& \texttt{Bar73\_400.dat}&2,10&0,980\\ \hline
+		8& \texttt{Ber71\_700.dat}&4,00&0,947\\ \hline
+		9& \texttt{Bor74\_1900.dat}&2,00&0,971\\ \hline
+		10& \texttt{Chr03\_500.dat}&1,50&0,959\\ \hline
+		11& \texttt{Dut03\_1400.dat}&1,90&0,989\\ \hline
+		12& \texttt{Goi70\_1800.dat}&3,80&0,936\\ \hline
+		13& \texttt{Jan66\_1600.dat}&1,60&0,965\\ \hline
+		14& \texttt{Kir73\_1100.dat}&4,00&1,050\\ \hline
+		15& \texttt{Lit67\_600.dat}&4,00&0,941\\ \hline
+		16& \texttt{Mur74\_2200.dat}&4,60&1,016\\ \hline
+		17& \texttt{Nic99\_1300.dat}&1,90&1,025\\ \hline
+		18& \texttt{Pri71\_900.dat}&1,90&1,009\\ \hline
+		19& \texttt{Qat05\_2300.dat}&3,00&0,981\\ \hline
+		20& \texttt{Sil93\_1000.dat}&3,00&0,997\\ \hline
+		21& \texttt{Sim80\_2100.dat}&0,50&1,017\\ \hline
+		22& \texttt{Sim81\_2000.dat}&0,50&0,997\\ \hline
+		23& \texttt{Ste75\_800.dat}&2,40&0,983\\ \hline
+		24& \texttt{Wal94\_1200.dat}&1,90&0,964\\ \hline
+	\end{tabular}
+\end{table}
+%
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=.98\textwidth]{ge.eps}
+	\caption{Elektryczna funkcja postaci. Linia ciągła przedstawia średnią ze wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.}
+	\label{fig:ge1}
+\end{figure}
+%
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=.98\textwidth]{gm.eps}
+	\caption{Magnetyczna funkcja postaci. Linia ciągła przedstawia średnią ze  wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.} 
+	\label{fig:gm1}
+\end{figure}
