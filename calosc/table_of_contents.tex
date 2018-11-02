@@ -809,7 +809,12 @@ $$
 %
 gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny polaryzacji protonu względem wektora przekazu pędu $\vec{q}$ i płaszczyzny rozpraszania.
 %
-Podczas analizy wykorzystano stosunki funkcji postaci opublikowane w pracach: 25-36 z pracy \cite{2009PhRvC..79f5204A} (uzupełnić)
+\subsubsection{Dane}
+Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach (cytowanie wszystkich prac), które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Dodatkowo każdy z 24 zbiorów danych ma określoną niepewność systematyczną $\Delta \eta$. Rozmiar danych to razm 426 punktów pomiarowcyh. Drugi zestaw tworzą zbiory opublikowane w pracach (cytowanie wszystkich prac), które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych.
+
+[Dodatkowo zdanie nt. danych z poprawką TPE, jak będzie analiza nr 3]
+
+
 \section{Keras}
 Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Dzięki temu, że jest rozpowszechniany pod licencją MIT, co oznacza, że może być za darmo wykorzystywany w projektach komercyjnych, zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software \cite{Chollet:2017}. Kaggle to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników. Jednym z najpopularniejszych narzędzi wykorzystywanych przez analityków jest Keras, wiele z konkursów zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
 %
@@ -868,7 +873,8 @@ model.fit(inputs = X, outputs = Y, epochs = 100)
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
 %generowanie danych dotyczy tez stosunkow zcynników postaci?
-Każdy punkt pomiarowy oprócz zmiennej objaśnianej zawiera przypisaną do niej niepewność pomiaru. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. 
+
+Do opisania przykładu zastosuję dane wykorzystane do treningu pierwszego modelu statystycznego, natomiast należy pamiętać, że wszystkie zbiory danych posiadające wyznaczoną niepewność pomiaru mogą posłużyć do powtórzenia poniżej procedury. Na zestaw danych składa się przekrój czynny $\sigma$, każdy punkt pomiarowy oprócz zmiennej objaśnianej zawiera przypisaną do niej niepewność pomiaru $\Delta \sigma$. Następne dwie kolumny to zmiennej objaśniające $Q^2$ oraz $\epsilon$. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. 
 %
 \begin{equation}
 \sigma^{(art)(k)}_{a,i} = \sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}
@@ -932,7 +938,7 @@ Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową ni
 &=& \left(\sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}\right) \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right).
 \end{eqnarray}
 
-Przedstawiona w dalszej części pracy analiza opiera się na aż trzech różnych zbiorach danych. Oprócz powyższego zbioru dysponujemy zależnością przekroju czynnego od $Q^2$ i $\epsilon$ poprawioną o poprawkę dwufotonową oraz stosunkiem funkcji postaci w zależności od $Q^2$. Do tych zbiorów danych zostały zastosowane analogiczne kroki służące wygenerowaniu sztucznych danych.
+Przedstawiona w dalszej części pracy analiza opiera się na aż trzech różnych zbiorach danych. Oprócz powyższego zbioru dysponujemy zależnością przekroju czynnego od $Q^2$ i $\epsilon$ zmodyfikowaną o poprawkę dwufotonową oraz stosunkiem funkcji postaci w zależności od $Q^2$. Do tych zbiorów danych zostały zastosowane analogiczne kroki służące wygenerowaniu sztucznych danych.
 
 
 \section{Walidacja krzyżowa}
@@ -1098,14 +1104,14 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 
 \section{Analiza nr 1}
 %
-Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie dane przekrojów czynnych rozpraszania elektron-proton w eksperymentach (lista referencji).
+Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie danych przekrojów czynnych rozpraszania elektron-proton w eksperymentach (lista referencji).
 %
 \subsubsection{Dane wejściowe i funkcja straty}
 %
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
 %
-Na zbiór analizowanych danych składa się 24 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynniki kinematyczny $\varepsilon$. Ponadto każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.  Dodatkowo do każdego ze zbiorów dodano sztuczny punkt pomiarowy, który korzysta z założenia, że $\sigma \left(Q^2 = 0, \, \varepsilon = 1 \right) = 1$, niepewność pomiarowa punktu wynosi $\Delta \sigma = 0.01$, zwiększa to liczbę wszystkich punktów pomiarowych do 450.
+Na zbiór analizowanych danych składa się 24 niezależnych zbiorów danych z eksperymentów, w których dokonywano rozpraszania elektron-proton, razem daje to 426 punktów pomiarowych. Zestaw danych składa się z 4 kolumn, które zawierają kolejno zmienną objaśnianą $\sigma$ - przekrój czynny, niepewność pomiaru zmiennej objaśnianej $\Delta \sigma$ oraz dwie zmienne objaśniające $Q^2$ - kwadrat przekazanego czteropędu i czynnik kinematyczny $\epsilon$. Ponadto, każdy z niezależnych zbiorów ma określoną niepewność systematyczną $\Delta \eta$.  Dodatkowo do każdego ze zbiorów dodano sztuczny punkt pomiarowy, który korzysta z założenia, że $\sigma \left(Q^2 = 0, \, \epsilon = 1 \right) = 1$, niepewność pomiarowa punktu wynosi $\Delta \sigma = 0.01$, zwiększa to liczbę wszystkich punktów pomiarowych do 450.
 %
 %\begin{itemize}
 %\setlength\itemsep{0.em}	
@@ -1127,7 +1133,7 @@ Funkcja straty to z definicji funkcja przyporządkowująca nieujemną wielkość
 \chi_{\sigma}^2 = \sum_{k=1}^{N_{\sigma}} \left[ \sum_{i=1}^{n_k} \left( \frac{\eta_k \sigma^{th}_{ki} - \sigma^{ex}_{ki}}{\Delta \sigma_{ki}} \right)^2 + \left(\frac{\eta_k - 1}{\Delta \eta_k}\right)^2 \right],
 \end{equation}
 %
-gdzie $N_{\sigma}$ to liczba zbiorów danych z niezależnych eksperymentów, $n_k$ to liczba punktów w $k$-tym zbiorze danych, $n = \sum_{k=1}^{N_{\sigma}}n_k$ to liczba wszystkich punktów pomiarowych, $\eta_k$ to parametr normalizacyjny dla $k$-tego zbioru danych, $\Delta \eta_k$ to błąd systematyczny. $\sigma^{ex}_{ki}$ to wartość eksperymentalna przekroju czynnego $i$-tego pomiaru z $k$-tego zbioru danych, zmierzona dla określonego $Q^2_{ki}$, $\varepsilon_{ki}$, $\Delta \sigma_{ki}^{ex}$ oznacza odpowiadającą niepewność pomiaru, $\sigma_{ki}^{th}$ to przewidywanie modelu statystycznego. $\eta_k$, $k =1,2,\dots, N_{\sigma}$ to parametry normalizacyjne. Ich wartosci są aktualizowane podczas każdej itereacji nauki modelu \cite{PhysRevC.84.034314}, powinny one spełniać warunek
+gdzie $N_{\sigma}$ to liczba zbiorów danych z niezależnych eksperymentów, $n_k$ to liczba punktów w $k$-tym zbiorze danych, $n = \sum_{k=1}^{N_{\sigma}}n_k$ to liczba wszystkich punktów pomiarowych, $\eta_k$ to parametr normalizacyjny dla $k$-tego zbioru danych, $\Delta \eta_k$ to błąd systematyczny. $\sigma^{ex}_{ki}$ to wartość eksperymentalna przekroju czynnego $i$-tego pomiaru z $k$-tego zbioru danych, zmierzona dla określonych par $Q^2_{ki}$, $\epsilon_{ki}$. $\Delta \sigma_{ki}^{ex}$ oznacza odpowiadającą niepewność pomiaru, $\sigma_{ki}^{th}$ to przewidywanie modelu statystycznego. $\eta_k$, $k =1,2,\dots, N_{\sigma}$ to parametry normalizacyjne. Ich wartosci są aktualizowane podczas każdej itereacji nauki modelu \cite{PhysRevC.84.034314}, powinny one spełniać warunek
 %
 \begin{equation}
 \frac{\partial \chi_{\sigma}^2}{\partial \eta_k} = 0, \; k = 1,\dots,N_{\sigma}, \label{eq_eta1}
@@ -1205,7 +1211,7 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 			\fi
 		}
 		\end{tikzpicture}}
-	\caption{Schemat sieci neuronowej zastosowanej w pierwszej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme} 	
+	\caption{Schemat sieci neuronowej zastosowanej w pierwszej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagi odpowiadające każdej z par neuronów} \label{tab:scheme} 	
 \end{SCfigure}
 
 
@@ -1230,7 +1236,7 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 \begin{figure}[hp!]
 	\centering
 	\includegraphics[width=1\textwidth]{eta.eps}
-	\caption{Ewolucja parametrów $\eta_k$ podczas jednego z treningów modelu. Wraz ze wzrostem epok, wartości parametrów ustalane na podstawie równania \ref{eq_eta2} zbiegają do wartości bliskich 1.} 
+	\caption{Ewolucja parametrów $\eta_k$ podczas jednego z treningów modelu. W ciągu kolejnych epok, wartości parametrów ustalane na podstawie równania \ref{eq_eta2} zbiegają do wartości bliskich 1.} 
 	\label{fig:eta}
 \end{figure}
 %
@@ -1248,10 +1254,10 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 %	\label{fig:eta}
 %\end{figure}
 %
-\newpage
+
 \subsubsection{Wyniki}
 %
-Wyniki wytrenowanych modeli tworzą statystykę, której najważniejszymi parametrami są średnia - często przedstawiana jako wynik analizy, oraz odchylenie standardowe, które przedstawia zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar.
+Wyniki wytrenowanych modeli tworzą statystykę, której najważniejszymi parametrami są średnia - często przedstawiana jako wynik analizy, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar.
 Rysunek \ref{fig:const_eps} przedstawia zależność przekroju czynnego $\sigma\left(\epsilon\right)$, dla kilku ustalonych wartości $Q^2$. Otrzymane funkcje mają przebieg liniowy o bardzo podobnym współczynniku kierunkowym a błąd modelu $1\sigma$ znacznie wzrasta wraz ze wzrostem $Q^2$.
 %
 \begin{figure}[htp!]
@@ -1270,24 +1276,33 @@ Rysunek \ref{fig:const_eps} przedstawia zależność przekroju czynnego $\sigma\
 %
 Zależność przekroju czynnego $\sigma \left(Q^2\right)$ przy ustalonym parametrze $\epsilon$ znajduje się na rysnku \ref{fig:const_eps}. Możemy zauważyć, że im niższa wartość $\epsilon$ tym mniejszy przekrój czynny dla $Q^2=0$, następnie krzywe mają bardzo podobny przebieg, niezależnie od ustalonego parametru $\epsilon$ zbiegają do tej samej maksymalnej wartości $\sigma$ wraz ze wzrostem $Q^2$. Ponadto, wraz ze wzrostem $Q^2$ rośnie niepewność otrzymanego wyniku, dla $Q^2 = 10 \text{ GeV}^2$ obszar błędu modelu $1\sigma$ wynosi aż $\pm 1 \text{ GeV}^2$.
 %
-Po zbadaniu podstawowych zależności estymowanej funkcji od kwadratu przekazu czteropędu oraz czynnika kinematycznego wyznaczono elektryczny i magnetyczny funkcji postaci.
-Wiemy, że  
-
+Po zbadaniu podstawowych zależności estymowanej funkcji od kwadratu przekazu czteropędu oraz czynnika kinematycznego wyznaczono elektryczny i magnetyczny funkcji postaci. Wiemy, że  
+%
 \begin{equation}
 \sigma_R(\epsilon, Q^2) =\tau G_{Mp}^2(Q^2) + \epsilon G_{Ep}^2(Q^2),
 \end{equation}
-
+%
 obliczając pochodną po parametrze $\epsilon$ otrzymamy kwadrat elektrycznej funkcji postaci protonu, więc
-
+%
 \begin{equation}
 G_{Ep}(Q^2) = \sqrt{\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}.
 \end{equation}
-
+%
 Następnie magnetyczna funkcja postaci protonu wyraża się wzorem
-
+%
 \begin{equation}
 G_{Mp}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}{\tau}}
 \end{equation}
+%
+Należy pamiętać, że pochodna $\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}$ musi zostać wyznaczona dla ustalonej wartości czynnika kinematycznego $\epsilon$. Ponieważ przyjmuje on wartość z przedziału $\left[0,1\right]$, pochodną wyznaczano dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$, a następnie uśredniono otrzymane rezultaty. Powtarzając te procedurę dla każdego wytrenowanego modelu otrzymujemy 2500 wyników, ich średnia tworzy wynik modelu. Rysunki \ref{fig:ge1} oraz \ref{fig:gm1} przedstawiają obliczone w ten sposób funkcje postaci protonu. Opisane działanie jest źródłem niepewności otrzymanego wyniku, która ma dwa źródła. Pierwsze z nich zostało oznaczone na rysunkach jako błąd pochodnej, czyli rozbieżność wyników w zależności od wybranego parametru $\epsilon$ podczas liczenia pochodnej. Drugie z nich opisane jako błąd modelu to graficzne przedstawienie statystyki wyników pochodzących ze wszystkich nauczonych modeli.
+%
+Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \cite{2009PhRvC..79f5204A}. Wartość funkcji $G_{Ep}\left(Q^2=0\text{ GeV}^2\right)$ powinna wynosić $1$, mimo że wynik modelu jest niedoszacowany to wartość $1$ znajduje się w obszarze niewielkiego błędu. Niestety wraz ze wzrostem $Q^2$ wzrasta rozbieżność między porównywanymi funkcjami, dla $Q^2 \simeq 2.0\text{ GeV}^2$ obserwujemy nienaturalną zmianę wypukłości funkcji, której się niespodziewamy, i która nie występuje w w wyniku z \cite{2009PhRvC..79f5204A}.  
+
+%Otrzymane funkcje postaci przede wszystkim nie najlepiej spełniają warunek na więz w punkcie $Q^2=0$.  zostały %porównane z funkcjami z publikacji \cite{2009PhRvC..79f5204A}
+%Wyniki przedstawione zostały na rysunkach \ref{fig:ge1} oraz \ref{fig:gm1}. 
+
+% $\left[0,0; 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8; 0,9; 1,0 \right]$ 
+%Dla każdego z 2500 wytrenowanych modeli została wyznaczona zależność $G_{Ep}$ i $G_{Mp}$ od $Q^2$ d Linia ciągła opisana jako wynik działania modelu przedstawia średni wyni
 
 %
 \begin{figure}
@@ -1306,11 +1321,7 @@ G_{Mp}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \s
 	
 	\caption{Elektryczna (a) i magnetyczna (b) funkcja postaci. Linia ciągła przedstawia średnią ze wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.}
 \end{figure}
-
-
-
 %
-\newpage
 \section{Analiza nr 2}
 \subsubsection{Dane wejściowe i funkcja straty}
 %
