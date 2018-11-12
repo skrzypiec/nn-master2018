@@ -3,6 +3,7 @@
 \usepackage[pdftex]{graphicx}	
 \usepackage{amsmath,amsfonts,amsthm}	
 \usepackage{tikz}
+\usepackage{mathtools}
 \usepackage{listings}
 \usetikzlibrary{chains, positioning}
 \newtheorem{theorem}{Twierdzenie}[section]
@@ -15,6 +16,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{caption} 
+\usepackage{siunitx}
 \captionsetup[table]{skip=10pt}
 %\usepackage{subfigure}
 \sidecaptionvpos{figure}{t}
@@ -169,6 +171,7 @@
 
 \textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
+	\item dokonczyc opis fizyczny
 	\item analiza1
 	\begin{itemize}
 		\item skomentowac otrzymane funkcje postaci, zwrocic uwage jak bylo liczone, skad bledy, co sie zgadza/niezgadza
@@ -177,7 +180,10 @@
 	\begin{itemize}
 		\item skomentowac wyniki
 		\item wkleic tabelke z wartosciami eta?
-		
+	\end{itemize}
+	\item analiza3
+	\begin{itemize}
+	\item wszystko do opisania
 	\end{itemize}
 	\item napisać o więzach, cross validacja w inny sposób dla tych dwóch zbiorow, dodajemy 2 punkty i jest 520
 	\item Twierdzeneie Cybenki	
@@ -730,6 +736,47 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 
 \section{Fizyka zjawiska}
 
+W roku Ernest Rutherford wraz ze swoimi studentami Hansem Geigerem i Ernestem Marsdenem badali rozpraszanie cząstek naładowanych na cienkich foliach różnych pierwiastków. Do eksperymentu wykorzystano cząstki $\alpha$ emitowane przez naturalne pierwiastki radioaktywne. Cząstka $\alpha$ to jądro podstawowego izotopu helu składające się z dwóch protonów i dwóch neutronów. Cżastka wysyłana jest przy rozpadzie niestabilnych jąder z prędkością $10^7 \frac{\si{m}}{\si{s}}$ i może przelecieć kilka centymetrów w powietrzu lub około 0,1 mm w ciele stałym zanim zostanie zatrzymana z powodu zderzeń. Masa cząstek $\alpha$ jest około 7300 razy większa od masy elektronu. Atomy folii można sobie wyobrazić jako upakowane dość blisko siebie kule. Ponieważ są neutralne, poza atomami właściwie nie ma oddziaływania z cząstkami $\alpha$. Wewnątrz atomu cząstki mogą oddziaływać zarówno z dodatnim jak i z ujemnym ładunkiem. Ponieważ ujemny ładunek jest
+związany z elektronami, które są o cztery rzędy wielkości lżejsze od cząstek $\alpha$ możemy zaniedbać całkowicie oddziaływanie z elektronami. Oddziaływanie z ładunkiem dodatnim zależy w istotny sposób od rozkładu tego ładunku w atomie. 
+Wyniki były zaskakujące jeśli przyjąć za słuszny model Thompsona z jednorodnym rozkładem masy i ładunku.  Podczas eksperymentu zaobserwowano rozpraszanie pod dużymi kątami, dla niektórych cząstek pod kątem prawie $180^{\circ}$. Oczekiwania związane z eksperymentem były oparte o obliczenia w ramach klasycznej elektrodynamiki. Dawały się jednak wyjaśnić w ramach tej samej teorii klasycznej jeśli założyć, że cały ładunek dodatni i (prawie) cała masa atomy skupione są w bardzo małym obszarze rzędu $10^{-14}$m w środku atomu. Eksperyment potwierdzał więc hipotezę, że atom posiada jądro, bardzo gęstą, bardzo małą strukturę niosącą cały dodatni ładunek atomu i prawie całą (99,95\%) jego masę.
+%
+
+Wyniki eksperymentów rozproszeniowych charakteryzujemy przy pomocy różniczkowego przekroju czynnego. Żeby wprowadzić to pojęcie ustalmy układ współrzędnych w ten sposób, że centrum potencjału rozpraszającego znajduje się w początku układu, a oś OZ skierowana jest wzdłuż padającej wiązki cząstek. Różniczkowy przekrój czynny $\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right)$ definiujemy przy pomocy ilorazu:
+$$
+\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right) = \frac{\splitfrac{\text{ \;\;\;\;\;\; liczba cząstek rozproszonych w jednostce }}{\text {czasu w kąt bryłowy $d\Omega$ wokół kierunku $\left(\theta, \varphi\right)$}}}{\text{\;\;\; strumień cząstek wiązki padającej $\; \times \; \; d\Omega$}}.
+$$
+Strumień cząstek wiązki padającej to liczba cząstek przechodzących w jednostce czasu przez jednostkę powierzchni prostopadłą do osi OZ, w obszarze $z \ll 0$, a więc tam gdzie cząstki wiązki nie oddziałują jeszcze z centrum rozpraszającym. Wielkość ta ma wymiar $\left[\frac{1}{\si{m^2.s}}\right]$, zatem różniczkowy przekrój czynny ma wymiar pola powierzchni. Często stosowaną jednostką, w której wyraża się przekroje czynne jest 1 barn $= 10^{-28}$ \si{m^{2}}. Definicję różniczkowego przekroju czynnego można interpretować następująco: liczba cząstek rozproszonych w jednostce czasu w kąt bryłowy $d\Omega$ jest równa liczbie cząstek pochłoniętych przez tarczę o powierzchni $\frac{d\sigma}{d\Omega} \left( \theta, \varphi \right)d\Omega$ umieszczoną prostopadle do kierunku propagacji wiązki padającej. Całkując po kątach otrzymujemy całkowity przekrój czynny: 
+$$
+\sigma = \int d\Omega \frac{d\sigma}{d\Omega} \left(\theta, \varphi\right) = \int_{0}^{\pi}\sin \theta d\theta \int_{0}^{2\pi} d\varphi \frac{d\sigma}{d\Omega}\left(\theta, \varphi\right).
+$$
+W definicji przekroju czynnego występuje tylko liczba cząstek rozproszonych. Dla kątów $\theta > 0$ możemy przyjąć, że detektor mierzący liczbę cząstek rozproszonych jest na tyle daleko od centrum rozpraszającego, że jest już poza wiązką padającą, która ma wymiar poprzeczny większy od rozmiarów obszaru z potencjałem istotnie różnym od zera, ale jednak skończony. Im mniejszy kąt $\theta$ tym trudniej oddzielić cząstki rozproszone od nierozproszonych. Dla małych kątów można mówić o różniczkowym przekroju czynnym tylko w sensie ekstrapolacji z obszaru $\theta > 0$. Pojęcie różniczkowego i całkowitego przekroju czynnego nie jest ograniczone do rozpraszania elastycznego, stosuje się je także do opisu rozpraszania nieelastycznego.
+%
+Zakładając rozpraszanie cząstki $\alpha$ w polu siły centralej $\sim \frac{1}{r^2}$, wykorzystując zasadę zachowania momentu pędu oraz energii mechanicznej otrzymujemy wzór na różniczkowy przekrój czynny, którym posługiwał się Rutherford
+%
+$$
+\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{1}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}}.
+$$
+%
+Z racji skali cząstek, które biorą udział w tym doświadczeniu, zagadnienie należy jednak rozpatrywać z punktu widzenia mechaniki kwantowej. Szukając stanów stacjonarnych hamiltonianu
+%
+$$
+\hat{H} = \frac{\hat{p}^2}{2\mu} - \frac{e^2}{4\pi\varepsilon_0},
+$$
+%
+przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda na różniczkowy przekrój czynny na rozpraszanie w potencjale kulombowskim $-\frac{\alpha}{r}$:
+%
+$$
+\frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{\alpha^2}{4k^4 \sin^4 \frac{\theta}{2}}.
+$$
+%
+W granicy $\theta \rightarrow 0$ różniczkowy przekrój czynny staje się nieskończony. Całka po kątach jest rozbieżna i całkowity przekrój czynny jest nieskończony. Źródłem tych nieskończoności jest długozasięgowy charakter potencjału kulombowskiego, w sytuacjach fizycznych nie spotykamy czystego potencjału kulombowskiego, jest on zwykle mniej lub bardziej skutecznie ekranowany.
+%
+
+To, że wynik otrzymany w ramach mechaniki kwantowej jest taki sam jak w mechanice klasycznej miało zasadniczy wpływ na rozwój mechaniki kwantowej. To dzięki temu zbiegowi okoliczności wnioski Rutherforda dotyczące budowy atomu wyciągnięte na podstawie wzorów klasycznych okazały się słuszne, a pytanie o stabilność układu składającego się z dodatnio naładowanego jądra i krążących wokół niego elektronów stało się podstawowym problemem teoretycznym dla ówczesnych fizyków.
+%
+
+Okazuje się, że badanie rozpraszania cząstek mikroskopowych to jeden z najlepszych eksperymentalnych sposobów poznania ich struktury oraz oddziaływań pomiędzy nimi. W trakcie zderzeń może ulec zmianie struktura wewnętrzna cząstek, a nawet ich rodzaj i liczba. Dzieje się tak gdy energia zderzenia jest dostatecznie wysoka. Takie zdarzenia nazywamy nieelastycznymi, w elastycznych procesach rozpraszania liczba cząstek się nie zmienia i wewnętrzne stopnie swobody nie ulegają wzbudzeniu, można więc zaniedbać strukturę wewnętrzną cząstek. 
+%Jakie rozpraszanie opisuje itp, dlaczego akurat takie jakie to przyniesie wyniki?
 %\subsubsection{I}
 %
 \begin{figure}[htp!]
@@ -1233,16 +1280,30 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 	\end{tabular}
 \end{table}
 %
+%\begin{figure}[hp!]
+%	\centering
+%	\includegraphics[width=1\textwidth]{eta.eps}
+%	\caption{Ewolucja parametrów $\eta_k$ podczas jednego z treningów modelu. W ciągu kolejnych epok, wartości parametrów ustalane na podstawie równania \ref{eq_eta2} zbiegają do wartości bliskich 1.} 
+%	\label{fig:eta}
+%\end{figure}
+%
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=1\textwidth]{eta.eps}
+	\includegraphics[width=1\textwidth]{eta_proba.eps}
 	\caption{Ewolucja parametrów $\eta_k$ podczas jednego z treningów modelu. W ciągu kolejnych epok, wartości parametrów ustalane na podstawie równania \ref{eq_eta2} zbiegają do wartości bliskich 1.} 
 	\label{fig:eta}
 \end{figure}
 %
+%\begin{figure}[hp!]
+%	\centering
+%	\includegraphics[width=1\textwidth]{learning_cur.eps}
+%	\caption{Zmiana wartości funkcji straty podczas nauki modelu. Wartość funkcji obliczana na podstawie zbioru treningowego oznaczona jest kolorem niebieskim, dla zbioru walidacyjnego - pomarańczowym.} 
+%	\label{fig:learning_cur}
+%\end{figure}
+%
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=1\textwidth]{learning_cur.eps}
+	\includegraphics[width=1\textwidth]{learning_cur_proba.eps}
 	\caption{Zmiana wartości funkcji straty podczas nauki modelu. Wartość funkcji obliczana na podstawie zbioru treningowego oznaczona jest kolorem niebieskim, dla zbioru walidacyjnego - pomarańczowym.} 
 	\label{fig:learning_cur}
 \end{figure}
@@ -1260,16 +1321,30 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 Wyniki wytrenowanych modeli tworzą statystykę, której najważniejszymi parametrami są średnia - często przedstawiana jako wynik analizy, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar.
 Rysunek \ref{fig:const_eps} przedstawia zależność przekroju czynnego $\sigma\left(\epsilon\right)$, dla kilku ustalonych wartości $Q^2$. Otrzymane funkcje mają przebieg liniowy o bardzo podobnym współczynniku kierunkowym a błąd modelu $1\sigma$ znacznie wzrasta wraz ze wzrostem $Q^2$.
 %
+%\begin{figure}[htp!]
+%	\centering
+%	\includegraphics[width=.98\textwidth]{const_q2.eps}
+%	\caption{Zależność przekroju czynnego $\sigma$ od czynnika kinematycznego $\epsilon$ przy ustalonym przekazie czteropędu $Q^2$. Linia ciągła wyznacza średnią wartość po wszystkich wytrenowanych sieciach. Kolor szary wyznacza obszar niepewności $1\sigma$.} 
+%	\label{fig:const_q2}
+%\end{figure}
+%
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=.98\textwidth]{const_q2.eps}
+	\includegraphics[width=.98\textwidth]{const_q2_data.eps}
 	\caption{Zależność przekroju czynnego $\sigma$ od czynnika kinematycznego $\epsilon$ przy ustalonym przekazie czteropędu $Q^2$. Linia ciągła wyznacza średnią wartość po wszystkich wytrenowanych sieciach. Kolor szary wyznacza obszar niepewności $1\sigma$.} 
 	\label{fig:const_q2}
 \end{figure}
 %
+%\begin{figure}[htp!]
+%	\centering
+%	\includegraphics[width=.98\textwidth]{const_eps.eps}
+%	\caption{Zależność przekroju czynnego $\sigma$ od przekazu czteropędu $Q^2$ przy ustalonym czynniku kinematycznym $\epsilon$. Linia ciągła wyznacza średnią wartość po wszystkich wytrenowanych sieciach. Kolor szary wyznacza obszar niepewności $1\sigma$.} 
+%	\label{fig:const_eps}
+%\end{figure}
+%
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=.98\textwidth]{const_eps.eps}
+	\includegraphics[width=.98\textwidth]{const_eps_data.eps}
 	\caption{Zależność przekroju czynnego $\sigma$ od przekazu czteropędu $Q^2$ przy ustalonym czynniku kinematycznym $\epsilon$. Linia ciągła wyznacza średnią wartość po wszystkich wytrenowanych sieciach. Kolor szary wyznacza obszar niepewności $1\sigma$.} 
 	\label{fig:const_eps}
 \end{figure}
@@ -1296,7 +1371,7 @@ G_{Mp}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \s
 %
 Należy pamiętać, że pochodna $\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}$ musi zostać wyznaczona dla ustalonej wartości czynnika kinematycznego $\epsilon$. Ponieważ przyjmuje on wartość z przedziału $\left[0,1\right]$, pochodną wyznaczano dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$, a następnie uśredniono otrzymane rezultaty. Powtarzając te procedurę dla każdego wytrenowanego modelu otrzymujemy 2500 wyników, ich średnia tworzy wynik modelu. Rysunki \ref{fig:ge1} oraz \ref{fig:gm1} przedstawiają obliczone w ten sposób funkcje postaci protonu. Opisane działanie jest źródłem niepewności otrzymanego wyniku, która ma dwa źródła. Pierwsze z nich zostało oznaczone na rysunkach jako błąd pochodnej, czyli rozbieżność wyników w zależności od wybranego parametru $\epsilon$ podczas liczenia pochodnej. Drugie z nich opisane jako błąd modelu to graficzne przedstawienie statystyki wyników pochodzących ze wszystkich nauczonych modeli.
 %
-Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \cite{2009PhRvC..79f5204A}. Wartość funkcji $G_{Ep}\left(Q^2=0\text{ GeV}^2\right)$ powinna wynosić $1$, mimo że wynik modelu jest niedoszacowany to wartość $1$ znajduje się w obszarze niewielkiego błędu. Niestety wraz ze wzrostem $Q^2$ wzrasta rozbieżność między porównywanymi funkcjami, dla $Q^2 \simeq 2.0\text{ GeV}^2$ obserwujemy nienaturalną zmianę wypukłości funkcji, której się niespodziewamy, i która nie występuje w w wyniku z \cite{2009PhRvC..79f5204A}.  
+Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \cite{2009PhRvC..79f5204A}. Wartość funkcji $G_{Ep}\left(Q^2=0\text{ GeV}^2\right)$ powinna wynosić $1$, mimo że wynik modelu jest niedoszacowany to wartość $1$ znajduje się w obszarze niewielkiego błędu. Niestety wraz ze wzrostem $Q^2$ wzrasta rozbieżność między porównywanymi funkcjami, dla $Q^2 \simeq 2.0\text{ GeV}^2$ obserwujemy nienaturalną zmianę wypukłości funkcji, której się niespodziewamy, i która nie występuje w wyniku z \cite{2009PhRvC..79f5204A}.  
 
 %Otrzymane funkcje postaci przede wszystkim nie najlepiej spełniają warunek na więz w punkcie $Q^2=0$.  zostały %porównane z funkcjami z publikacji \cite{2009PhRvC..79f5204A}
 %Wyniki przedstawione zostały na rysunkach \ref{fig:ge1} oraz \ref{fig:gm1}. 
@@ -1308,13 +1383,13 @@ Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \ci
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{1\textwidth}
-		\includegraphics[width=1\linewidth]{ge.eps}
+		\includegraphics[width=1\linewidth]{ge_.eps}
 		\caption{}
 		\label{fig:ge1} 
 	\end{subfigure}
 	
 	\begin{subfigure}[b]{1\textwidth}
-		\includegraphics[width=1\linewidth]{gm.eps}
+		\includegraphics[width=1\linewidth]{gm_.eps}
 		\caption{}
 		\label{fig:gm1}
 	\end{subfigure}
@@ -1430,21 +1505,55 @@ Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss
 \end{table}
 
 
+\subsubsection{Wyniki}
+%
+
 \begin{figure}[hp!]
 	\centering
 	\includegraphics[width=1\textwidth]{anal_2.eps}
 	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
-	\label{fig:gm3}
+	\label{fig:gm2}
 \end{figure}
 
 \begin{figure}[hp!]
 	\centering
 	\includegraphics[width=1\textwidth]{ratio.eps}
 	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
-	\label{fig:ratio}
+	\label{fig:ratio2}
 \end{figure}
 
 
+\section{Analiza nr 3}
+\subsubsection{Dane wejściowe i funkcja straty}
+%
+
+\subsubsection{Parametry i nauka sieci}
+
+
+\subsubsection{Wyniki}
+%
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=0.98\textwidth]{anl_3.eps}
+	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
+	\label{fig:gm3}
+\end{figure}
+
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=0.98\textwidth]{ratio_3.eps}
+	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
+	\label{fig:ratio3}
+\end{figure}
+
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{c2_eps.eps}
+	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
+	\label{fig:c2}
+\end{figure}
+
+%cos z podsumowaniem wszystkie modele przedstawione razem??
 \bibliographystyle{abbrv}
 \bibliography{references}
 
