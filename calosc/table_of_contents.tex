@@ -5,6 +5,7 @@
 \usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{listings}
+\usepackage{natbib}
 \usetikzlibrary{chains, positioning}
 \newtheorem{theorem}{Twierdzenie}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -23,6 +24,16 @@
 \usetikzlibrary{calc,arrows}
 \usepackage{slashbox}
 \usetikzlibrary{chains, positioning}
+
+\usepackage{xcolor}
+\colorlet{RED}{black} % don't color running headers
+\colorlet{BLUE}{black}
+\usepackage[titles]{tocloft}
+
+\renewcommand{\cftchappagefont}{\bfseries\color{red}}
+
+
+
 %\newgeometry{tmargin=2.5cm, bmargin=2cm, lmargin=3.5cm, rmargin=2cm}
 \theoremstyle{definition}
 \newtheorem{definition}{Definicja}[section]
@@ -171,11 +182,6 @@
 
 \textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
-	\item dokonczyc opis fizyczny
-	\item analiza1
-	\begin{itemize}
-		\item skomentowac otrzymane funkcje postaci, zwrocic uwage jak bylo liczone, skad bledy, co sie zgadza/niezgadza
-	\end{itemize}
 	\item analiza2
 	\begin{itemize}
 		\item skomentowac wyniki
@@ -185,27 +191,34 @@
 	\begin{itemize}
 	\item wszystko do opisania
 	\end{itemize}
-	\item napisać o więzach, cross validacja w inny sposób dla tych dwóch zbiorow, dodajemy 2 punkty i jest 520
+	\item problem puzzle proton size opisac we wstepie
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
 			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia?
 			\item  opisać wizualne przedstawienie twierdzenia i stworzyć rysunki z polskimi podpisami				
 	\end{itemize}
 	\item tekst o sigmoidzie też do ponownego przejrzenia
-	\item uporządkowaąć kolejność podrozdziałów nt. metodologii
+	\item bias - variance
+	\item wstep, zakonczenie
 	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie
 \end{itemize}
 
+
 \tableofcontents
+\addtocontents{toc}{~\hfill\textbf{Strona}\par}
 
-\chapter{Wstęp}
-\section{Fizyka zagadnienia i cel pracy - bardzo ogólnie}
-\section{Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja - bardzo ogólnie}
+%\chapter{Wstęp}
+\chapter[\color{red}Wstęp]{Wstęp}
+
+\section[\color{red}Fizyka zagadnienia i cel pracy - bardzo ogólnie]{Fizyka zagadnienia i cel pracy - bardzo ogólnie}
+
+\section[\color{red}Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja - bardzo ogólnie]{Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja - bardzo ogólnie}
 
 
-\chapter{Sieci Neuronowe}
-\section{Historia sieci - perceptron, biologia}
-\section{Funkcje aktywacji, dlaczego sigmoidy}
+\chapter[\color{red}Sieci Neuronowe]{Sieci Neuronowe}
+
+\section[\color{red}Historia sieci - perceptron, biologia]{Historia sieci - perceptron, biologia}
+\section[\color{red}Funkcje aktywacji, dlaczego sigmoidy]{Funkcje aktywacji, dlaczego sigmoidy}
 %[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
 Funckja aktywacji to funkcja, która działa na każdy neuron w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci neuronowej może mieć zdefiniowaną inną funckję aktywacji.
 
@@ -252,7 +265,7 @@ Innym przykładem często wykorzystywanej w sztucznych sieciach neuronowych funk
 %
 Jedną z zalet tej funkcji jest symetryczność względem początku układu współrzędnych.
 %
-\subsection{Interpretacja probabilistyczna sigmoidy}
+\subsection[\color{red} Interpretacja probabilistyczna sigmoidy]{Interpretacja probabilistyczna sigmoidy}
 %
 Zastosowanie sigmoidy jako funkcji aktywacji naturalnie wynika z postaci prawdopodobieństwa a posteriori w Bayesowskim podejściu do problemu klasyfikacji dwóch klas.
 %
@@ -339,7 +352,7 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 %
 
 
-\section{Opis algorytmu uczenia prostej sieci}
+\section[\color{red}Opis algorytmu uczenia prostej sieci]{Opis algorytmu uczenia prostej sieci}
 
 \subsubsection{Dane}
 
@@ -442,9 +455,9 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 
 
 
-\section{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
+\section[\color{red}Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)]{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
 
-\subsection{Dowód matematyczny}
+\subsection[\color{red} Dowód matematyczny]{Dowód matematyczny}
 
 
 \begin{center}
@@ -711,7 +724,7 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 
 
 
-\subsection{Przedstawienie wizualne działania}
+\subsection[\color{red}Przedstawienie wizualne działania]{Przedstawienie wizualne działania}
 
 
 
@@ -729,7 +742,7 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 
 
 
-\section{Problem Bias - Variance}
+\section[\color{red} Problem Bias - Variance]{Problem Bias - Variance}
 
 \newpage
 \chapter{Metodologia analizy}
@@ -742,54 +755,67 @@ Wyniki były zaskakujące jeśli przyjąć za słuszny model Thompsona z jednoro
 %
 
 Wyniki eksperymentów rozproszeniowych charakteryzujemy przy pomocy różniczkowego przekroju czynnego. Żeby wprowadzić to pojęcie ustalmy układ współrzędnych w ten sposób, że centrum potencjału rozpraszającego znajduje się w początku układu, a oś OZ skierowana jest wzdłuż padającej wiązki cząstek. Różniczkowy przekrój czynny $\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right)$ definiujemy przy pomocy ilorazu:
-$$
+\begin{equation}
 \frac{d\sigma}{d\Omega}\left(\theta, \varphi\right) = \frac{\splitfrac{\text{ \;\;\;\;\;\; liczba cząstek rozproszonych w jednostce }}{\text {czasu w kąt bryłowy $d\Omega$ wokół kierunku $\left(\theta, \varphi\right)$}}}{\text{\;\;\; strumień cząstek wiązki padającej $\; \times \; \; d\Omega$}}.
-$$
+\end{equation}
+
 Strumień cząstek wiązki padającej to liczba cząstek przechodzących w jednostce czasu przez jednostkę powierzchni prostopadłą do osi OZ, w obszarze $z \ll 0$, a więc tam gdzie cząstki wiązki nie oddziałują jeszcze z centrum rozpraszającym. Wielkość ta ma wymiar $\left[\frac{1}{\si{m^2.s}}\right]$, zatem różniczkowy przekrój czynny ma wymiar pola powierzchni. Często stosowaną jednostką, w której wyraża się przekroje czynne jest 1 barn $= 10^{-28}$ \si{m^{2}}. Definicję różniczkowego przekroju czynnego można interpretować następująco: liczba cząstek rozproszonych w jednostce czasu w kąt bryłowy $d\Omega$ jest równa liczbie cząstek pochłoniętych przez tarczę o powierzchni $\frac{d\sigma}{d\Omega} \left( \theta, \varphi \right)d\Omega$ umieszczoną prostopadle do kierunku propagacji wiązki padającej. Całkując po kątach otrzymujemy całkowity przekrój czynny: 
-$$
+\begin{equation}
 \sigma = \int d\Omega \frac{d\sigma}{d\Omega} \left(\theta, \varphi\right) = \int_{0}^{\pi}\sin \theta d\theta \int_{0}^{2\pi} d\varphi \frac{d\sigma}{d\Omega}\left(\theta, \varphi\right).
-$$
+\end{equation}
 W definicji przekroju czynnego występuje tylko liczba cząstek rozproszonych. Dla kątów $\theta > 0$ możemy przyjąć, że detektor mierzący liczbę cząstek rozproszonych jest na tyle daleko od centrum rozpraszającego, że jest już poza wiązką padającą, która ma wymiar poprzeczny większy od rozmiarów obszaru z potencjałem istotnie różnym od zera, ale jednak skończony. Im mniejszy kąt $\theta$ tym trudniej oddzielić cząstki rozproszone od nierozproszonych. Dla małych kątów można mówić o różniczkowym przekroju czynnym tylko w sensie ekstrapolacji z obszaru $\theta > 0$. Pojęcie różniczkowego i całkowitego przekroju czynnego nie jest ograniczone do rozpraszania elastycznego, stosuje się je także do opisu rozpraszania nieelastycznego.
 %
+
 Zakładając rozpraszanie cząstki $\alpha$ w polu siły centralej $\sim \frac{1}{r^2}$, wykorzystując zasadę zachowania momentu pędu oraz energii mechanicznej otrzymujemy wzór na różniczkowy przekrój czynny, którym posługiwał się Rutherford
 %
-$$
-\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{1}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}}.
-$$
+\begin{equation}
+\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}}.
+\end{equation}
 %
 Z racji skali cząstek, które biorą udział w tym doświadczeniu, zagadnienie należy jednak rozpatrywać z punktu widzenia mechaniki kwantowej. Szukając stanów stacjonarnych hamiltonianu
 %
-$$
-\hat{H} = \frac{\hat{p}^2}{2\mu} - \frac{e^2}{4\pi\varepsilon_0},
-$$
+\begin{equation}
+\hat{H} = \frac{\hat{p}^2}{2\mu} - \frac{e^2}{4\pi\varepsilon_0} \frac{1}{r},
+\end{equation}
 %
-przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda na różniczkowy przekrój czynny na rozpraszanie w potencjale kulombowskim $-\frac{\alpha}{r}$:
+przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda na różniczkowy przekrój czynny na rozpraszanie w potencjale kulombowskim $-\frac{\alpha}{r} = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r}$:
 %
-$$
-\frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{\alpha^2}{4k^4 \sin^4 \frac{\theta}{2}}.
-$$
+\begin{equation}
+\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{\alpha}{2 E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}} = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}} \label{eq:ruth}
+\end{equation}
 %
 W granicy $\theta \rightarrow 0$ różniczkowy przekrój czynny staje się nieskończony. Całka po kątach jest rozbieżna i całkowity przekrój czynny jest nieskończony. Źródłem tych nieskończoności jest długozasięgowy charakter potencjału kulombowskiego, w sytuacjach fizycznych nie spotykamy czystego potencjału kulombowskiego, jest on zwykle mniej lub bardziej skutecznie ekranowany.
 %
-
 To, że wynik otrzymany w ramach mechaniki kwantowej jest taki sam jak w mechanice klasycznej miało zasadniczy wpływ na rozwój mechaniki kwantowej. To dzięki temu zbiegowi okoliczności wnioski Rutherforda dotyczące budowy atomu wyciągnięte na podstawie wzorów klasycznych okazały się słuszne, a pytanie o stabilność układu składającego się z dodatnio naładowanego jądra i krążących wokół niego elektronów stało się podstawowym problemem teoretycznym dla ówczesnych fizyków.
 %
 
 Okazuje się, że badanie rozpraszania cząstek mikroskopowych to jeden z najlepszych eksperymentalnych sposobów poznania ich struktury oraz oddziaływań pomiędzy nimi. W trakcie zderzeń może ulec zmianie struktura wewnętrzna cząstek, a nawet ich rodzaj i liczba. Dzieje się tak gdy energia zderzenia jest dostatecznie wysoka. Takie zdarzenia nazywamy nieelastycznymi, w elastycznych procesach rozpraszania liczba cząstek się nie zmienia i wewnętrzne stopnie swobody nie ulegają wzbudzeniu, można więc zaniedbać strukturę wewnętrzną cząstek. 
-%Jakie rozpraszanie opisuje itp, dlaczego akurat takie jakie to przyniesie wyniki?
+
+Wraz z budową akceleratorów cząstek oraz rozwojem aparatury eksperymentalnej dokonał się ogromny postęp w poznaniu budowy podstawowych składników materii. Możliwość produkcji wiązki elektronów o wysokiej enegii i dużym natężeniu spowodowały, że od lat 60 XX wieku, rozpraszanie elektronów i protonów stało się skuteczną metodą badania struktury protonu.
+%O poprawce TPE
 %\subsubsection{I}
 %
+Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między naładowanymi elektrycznie elektronem i protonem. Wynik rozpraszania $e-p\rightarrow e-p$ jest ściśle zależny od długości fali $\lambda = hc / E$ wymienionego podczas oddziaływania fotonu, więskza energia pozwala spojrzeć bardziej wgłąb struktury cząstki.
+\begin{itemize}
+	\item Dla bardzo małej energii elektronu, $\lambda \gg r_p$, gdzie $r_p$ jest promieniem protonu, rozpraszanie jest równoważne rozpraszaniu na punktowej, bezspinowej cząstce.
+	\item Dla małej energii elektornu, $\lambda \sim r_p$, rozpraszanie jest równoważne rozpraszaniu na naładowanej cząstce niepunktowej.
+	\item Dla dużej energii elektronu, $\lambda < r_p$, długość fali jest wystarczająco mała aby dostrzec strukturę protonu, źródłem rozpraszania są kwarki.
+	\item Dla bardzo dużych energii elektornu, $\lambda \ll r_p$, źródłem rozpraszania jest morze kwarkowo-gluonowe
+\end{itemize}
+
+\subsubsection{Metoda Rosenblutha}
+
 \begin{figure}[htp!]
 	\centering
 \includegraphics[width=\linewidth]{rozpraszanie}
-	\caption{Rozpraszanie elastyczne elektronu o energii początkowej $E_0$  i energii kończowej $E'$ na jądrze atomu wodoru, $\theta$ to kąt rozpraszania.}
+	\caption{Prosty schemat rozpraszania elastycznego elektronu o energii początkowej $E_0$  i energii kończowej $E'$ na jądrze atomu wodoru, $\theta$ to kąt rozpraszania.}
 	\label{fig:scactter}
 \end{figure}
 %
 Energia rozproszonego elektronu $E'$ jest mniejsza niż energia początkowa $E_0$ o wartość energii przekazanej protonowi o masie $M$ i wynosi
 %
 \begin{equation}
-E' = \frac{E_0}{1 + \frac{2E_0}{M}\sin^2 \theta / 2}
+E' = \frac{E_0}{1 + \frac{2E_0}{M}\sin^2 \frac{\theta}{2}}
 \end{equation}
 %
 Zdefiniujmy $ Q^2 \equiv - q^2 $, $q$ to przekaz czteropędu.
@@ -801,40 +827,61 @@ Q^2 \equiv - q^2 = -(p^{\mu} - p^{'\mu})^2 &= 2M\left(E_0 - E'\right) \\
 \end{split}
 \end{equation}
 %
-Struktura protonu opisywana jest przez dwie funkcje postaci, elektryczną $G_{Ep}$ i magnetyczną $G_{Mp}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. Zmierzony w laboratorium przekrój czynny rozpraszania można w przybliżeniu jednofotonowym wyrazić formułą:
-%
-\begin{equation}
-\frac{d\sigma}{d\Omega} = \left( \frac{d\sigma}{d\Omega} \right)_M \times \left[ G_{Ep}^2 + \frac{\tau}{\epsilon} G_{Mp}^2 \right] \frac{1}{\left(1 + \tau\right)}
-\end{equation}
-%
-gdzie $\left( \frac{d\sigma}{d\Omega} \right)_M $ to przekrój czynny Motta, który wynosi
-%
-\begin{equation}
-\left( \frac{d\sigma}{d\Omega} \right)_M  = \frac{\pi \alpha^2 E' \cos^2 \left(\theta/2\right)}{2E^3 \sin^4 \left(\theta /2\right)},
-\end{equation}
-%
-ponadto
-%
-$$
-\tau = \frac{Q^2}{4M^2},
-$$
-% 
-%
-$$
-\epsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1},
-$$
-%
-$\epsilon$ jest czynnikiem kinematycznym i także polaryzacją wirtualnego fotonu. Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}
-%
+Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się przy opisie rozpraszania nierelatywistycznych elektronów. Przekrój czynny szybkich elektronów $p_e = E_e$ wymaga uwzględnienia dodatkowych czynników. Są nimi: efekty relatywistycznye, odrzut protonu oraz oddziaływanie spin-spin. Zmodyfikowany przekrój czynny opisywany jest przez formułę Motta:
+
+%\begin{equation}
+%\left( \frac{d\sigma}{d\Omega} \right)_M  = \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} %\times 4\cos^2 \frac{\theta}{2} = 
+%\frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \cos^2 \frac{\theta}{2}.
+%\end{equation}
+
+
 \begin{equation}
 \begin{split}
-\sigma_R(\epsilon, Q^2) &\equiv \epsilon \left(1 + \tau \right) \left(\frac{d\sigma}{d\Omega}\right) / \left( \frac{d\sigma}{d\Omega} \right)_M \\
-&=\tau G_{Mp}^2(Q^2) + \epsilon G_{Ep}^2(Q^2).
+\left( \frac{d\sigma}{d\Omega} \right)_M  &= \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} \times 4\frac{E'}{E}\left( \cos^2 \frac{\theta}{2} + \frac{Q^2}{2M^2}\sin^2\frac{\theta}{2}\right) \\ 
+& =  \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E} \left( \cos^2 \frac{\theta}{2} + \frac{Q^2}{2M^2}\sin^2\frac{\theta}{2}\right). \label{eq:mott}
 \end{split}
 \end{equation}
+
+
+%\begin{equation}
+%\left( \frac{d\sigma}{d\Omega} \right)  = \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} %\frac{E'}{E} \left( \cos^2 \frac{\theta}{2} - \frac{q^2}{2M^2}\sin^2\frac{\theta}{2}\right).
+%\end{equation}
+
+
+Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha
+
+\begin{equation}
+\begin{split}
+\left( \frac{d\sigma}{d\Omega} \right)_R  &= \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E} \left(\frac{G_{E_p}^2 + \tau G_{M_p}^2}{1+\tau} \cos^2 \frac{\theta}{2} + 2\tau G_{M_p}^2\sin^2\frac{\theta}{2}\right) \\
+&=  \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E}  \cos^2 \frac{\theta}{2} \times \left[ G_{Ep}^2 + \frac{\tau}{\epsilon} G_{M_p}^2 \right] \frac{1}{\left(1 + \tau\right)} \\
+&= \left( \frac{d\sigma}{d\Omega} \right)_0 \times \left[ G_{E_p}^2 + \frac{\tau}{\epsilon} G_{M_p}^2 \right] \frac{1}{\left(1 + \tau\right)},
+\end{split}
+\end{equation}
+
+gdzie $\epsilon$ jest czynnikiem kinematycznym i także polaryzacją wirtualnego fotonu
+$$\epsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1},$$
+ponadto $$\tau = \frac{Q^2}{4M^2}.$$
+
+Funkcje $G_{E_p}$, $ G_{M_p}$ są zależne tylko od przekazu czteropędu $Q^2$ i spełniają poniższe warunki brzegowe:
+
+\begin{eqnarray*}
+ &G_{E_p} = G_{E_p}(Q^2)  &G_{E_p}(0) = 1\\
+ &G_{M_p} = G_{M_p}(Q^2)  &G_{M_p}(0) = \mu_p, 
+\end{eqnarray*}
+gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. Zmierzony w laboratorium całkowity przekrój czynny rozpraszania można w przybliżeniu jednofotonowym wyrazić formułą:
+% 
+\begin{equation}
+\begin{split}
+\sigma_R(\epsilon, Q^2) &\equiv \epsilon \left(1 + \tau \right) \frac{\sigma \left(\epsilon,Q^2\right)}{\sigma_0\left(\epsilon, Q^2\right) }\\
+&=\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2).
+\end{split} \label{eq:rosen}
+\end{equation}
+
+Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}
 %
-%\subsubsection{II}
-%
+
+\subsubsection{Transfer polaryzacji}
+
 Kolejna metody oparte są na pomiarach transferu polaryzacji odbitego podczas rozpraszania protonu lub na pomiarach asymetrii rozpraszania, pozwalają one określić wzajemny stosunek elektrycznego oraz magnetycznego czynnika postaci
 %
 $$
@@ -856,11 +903,30 @@ $$
 %
 gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny polaryzacji protonu względem wektora przekazu pędu $\vec{q}$ i płaszczyzny rozpraszania.
 %
+
+\subsubsection{Poprawka dwufotonowa (TPE)}
+Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynnych wskazują, że do uzyskania całkowitej zgodność z danymi pomiarów transferu polaryzacji niezbędne jest uwzględnienie dodatkowych poprawek do równania \ref{eq:rosen}. Po za klasycznymi poprawkami radiacyjnymi należy rozważyć poprawkę dwufotonową, która może zostać zapisana jako dodatkowy składnik równania.
+
+\begin{equation}
+\sigma_R \rightarrow \sigma_R + \delta_{TPE}
+\end{equation}
+
+Obliczenie poprawki jest trudne i zależne od modelu, wiedząc jednak, że amplituda rozpraszania musi spełniać ogólne zasady symetrii możemy założyć, że 
+
+\begin{equation}
+\sigma_R \rightarrow \sigma_R + \delta_{TPE}\left(Q^2, \epsilon\right)
+\end{equation}
+
+W jednej z przedstawionej poniżej analiz wpływ poprawki dwufotonowej zostanie uwzględniony. Dokładne oszacowanie przebiegów funkcji postaci $G_{E_p}$ i $G_{M_p}$ jest niezwykle ważne, poniważ może posłużyć do oszacowania promienia protonu, który wyraża się wzorem:
+
+\begin{equation}
+r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\rvert_{Q^2 = 0}
+\end{equation}
+
+
+
 \subsubsection{Dane}
-Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach (cytowanie wszystkich prac), które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Dodatkowo każdy z 24 zbiorów danych ma określoną niepewność systematyczną $\Delta \eta$. Rozmiar danych to razm 426 punktów pomiarowcyh. Drugi zestaw tworzą zbiory opublikowane w pracach (cytowanie wszystkich prac), które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych.
-
-[Dodatkowo zdanie nt. danych z poprawką TPE, jak będzie analiza nr 3]
-
+Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach \cite{1966PhRv..142..922J, 1966PhRvL..17..608B, 1967PhRvL..18.1014A, 1970PhLB...31...40L, 1970PhRvD...1.2449G, 1971PhLB...35...87B, 1971PhRvD...4...45P, 1974NuPhA.222..269B, 1973NuPhB..58..429B, 1973PhRvD...8...63K, 1993PhRvD..48...29S, 1994PhRvD..49.5671W, 1994PhRvD..50.5491A, 1975NuPhB..93..461B, 1975PhRvD..12.1884S, 1974PhRvC..10.2111M, 1980NuPhA.333..381S, 1981NuPhA.364..285S, 1992PhRvD..46...24R, 2003PhRvC..68f4603D, 2004PhRvC..70a5206C}, które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Dodatkowo każdy z 24 zbiorów danych ma określoną niepewność systematyczną $\Delta \eta$. Ponadto w jednej z analiz zostanie wykorzystany powyższy zbiór danych z wartościami przekrojów czynnych $\sigma_R$ zmodyfikowanych o poprawkę wynikającą z wymiany dwóch fotonów podczas rozpraszania.  Rozmiar danych to razem 426 punktów pomiarowcyh. Drugi zestaw tworzą zbiory opublikowane w pracach \cite{1999PhRvL..82.2221M, 2000PhRvL..84.1398J, 2001PhLB..500...47D, 2001EPJA...12..125P, 2002PhRvL..88i2301G, 2001PhRvC..64c8202G, 2005PhRvC..71e5202P, 2006PhRvC..73f4004H, 2006NuPhA.764..261M, 2006PhRvC..74c5201J, 2007PhRvL..99t2002R, 2007PhRvL..98e2301C}, które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych. 
 
 \section{Keras}
 Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Dzięki temu, że jest rozpowszechniany pod licencją MIT, co oznacza, że może być za darmo wykorzystywany w projektach komercyjnych, zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software \cite{Chollet:2017}. Kaggle to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników. Jednym z najpopularniejszych narzędzi wykorzystywanych przez analityków jest Keras, wiele z konkursów zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
@@ -1151,7 +1217,8 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 
 \section{Analiza nr 1}
 %
-Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie danych przekrojów czynnych rozpraszania elektron-proton w eksperymentach (lista referencji).
+Celem pierwszej analizy jest modelowanie elektrycznego i magnetycznego czynnika postaci przy wykorzystaniu wyłącznie danych przekrojów czynnych rozpraszania elektron-proton.
+
 %
 \subsubsection{Dane wejściowe i funkcja straty}
 %
@@ -1193,6 +1260,25 @@ co można zapisać jako
 
 
 \subsubsection{Parametry i nauka sieci}
+
+
+\begin{table}
+	\centering
+	\caption{Hiperparametry modelu}\label{tab:hyper1} 
+	\begin{tabular}{c|c c c}
+		\hline 
+		Kategoria & Parametr & Wartość &   \\\hline
+		Generowanie danych & $N_{rep}$ & 500 & \\ \hline
+		$k$-krotna walidacja krzyżowa & $k$ & 5 &\\ \hline
+		
+		Algorytm uczący& $\alpha$ (\textit{learning rate}) & 0,003 & \\ \hline
+		& $\lambda$ (\textit{decay}) & 0,0005 & \\ \hline
+		& $\beta$ (\textit{pęd}) & 0,9 & \\ \hline
+		Sieć neuronowa & Liczba warstw & 2 & \\ \hline
+		& Ilość neuronów & (3,5) & \\ \hline
+		
+	\end{tabular}
+\end{table}
 
 Sieć neuronowa o dwóch wartstwach ukrytych i hiparametrach przedstawionych w Tabeli \ref{tab:hyper1} daje w rezultacie wartość $\sigma$ w zależności od zmiennych $Q^2$ oraz $\epsilon$. Podczas treningu elementy ze zbioru parametrów $\eta_k$ dążą do wartości bliskich 1. %przykładowe wartości będące wynikiem treningu modelu znajdują się w Tabeli \ref{tab:etak}. 
 Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką sieci dla każdego z 24 niezależnych zbiorów danych. Łącznie zostało wytrenowanych 2500 ($N_{rep} \times k$) modeli. Przykładowy przebieg wartości funkcji straty dla zbioru treningowego i walidacyjnego został przedstawiony na Rysunku \ref{fig:learning_cur}, możemy zauważyć, że około 1100 epoki funkcja straty osiąga minimum, zgodnie z opisanymi wcześniej zasadami wczesnego zatrzymania model kończy naukę po następnych 200 epokach. 
@@ -1258,27 +1344,10 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 			\fi
 		}
 		\end{tikzpicture}}
-	\caption{Schemat sieci neuronowej zastosowanej w pierwszej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagi odpowiadające każdej z par neuronów} \label{tab:scheme} 	
+	\caption{Schemat sieci neuronowej zastosowanej w pierwszej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z jednym neuronem. Linie zakończone strzałką oznaczają wagi odpowiadające każdej z par neuronów} \label{tab:scheme1} 	
 \end{SCfigure}
 
 
-\begin{table}
-	\centering
-	\caption{Hiperparametry modelu}\label{tab:hyper1} 
-	\begin{tabular}{c|c c c}
-		\hline 
-		Kategoria & Parametr & Wartość &   \\\hline
-		Generowanie danych & $N_{rep}$ & 500 & \\ \hline
-		$k$-krotna walidacja krzyżowa & $k$ & 5 &\\ \hline
-		
-		Algorytm uczący& $\alpha$ (\textit{learning rate}) & 0,003 & \\ \hline
-		& $\lambda$ (\textit{decay}) & 0,0005 & \\ \hline
-		& $\beta$ (\textit{pęd}) & 0,9 & \\ \hline
-		Sieć neuronowa & Liczba warstw & 2 & \\ \hline
-		& Ilość neuronów & (3,5) & \\ \hline
-		
-	\end{tabular}
-\end{table}
 %
 %\begin{figure}[hp!]
 %	\centering
@@ -1318,7 +1387,7 @@ Rysunek \ref{fig:eta} przedstawia ewolucje parametrów $\eta_k$ wraz z nauką si
 
 \subsubsection{Wyniki}
 %
-Wyniki wytrenowanych modeli tworzą statystykę, której najważniejszymi parametrami są średnia - często przedstawiana jako wynik analizy, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar.
+Wyniki wytrenowanych modeli tworzą statystykę, której najważniejszymi parametrami są średnia przedstawiana jako wynik analizy, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar.
 Rysunek \ref{fig:const_eps} przedstawia zależność przekroju czynnego $\sigma\left(\epsilon\right)$, dla kilku ustalonych wartości $Q^2$. Otrzymane funkcje mają przebieg liniowy o bardzo podobnym współczynniku kierunkowym a błąd modelu $1\sigma$ znacznie wzrasta wraz ze wzrostem $Q^2$.
 %
 %\begin{figure}[htp!]
@@ -1354,24 +1423,26 @@ Zależność przekroju czynnego $\sigma \left(Q^2\right)$ przy ustalonym paramet
 Po zbadaniu podstawowych zależności estymowanej funkcji od kwadratu przekazu czteropędu oraz czynnika kinematycznego wyznaczono elektryczny i magnetyczny funkcji postaci. Wiemy, że  
 %
 \begin{equation}
-\sigma_R(\epsilon, Q^2) =\tau G_{Mp}^2(Q^2) + \epsilon G_{Ep}^2(Q^2),
+\sigma_R(\epsilon, Q^2) =\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2),
 \end{equation}
 %
 obliczając pochodną po parametrze $\epsilon$ otrzymamy kwadrat elektrycznej funkcji postaci protonu, więc
 %
 \begin{equation}
-G_{Ep}(Q^2) = \sqrt{\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}.
+G_{E_p}(Q^2) = \sqrt{\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}.
 \end{equation}
 %
 Następnie magnetyczna funkcja postaci protonu wyraża się wzorem
 %
 \begin{equation}
-G_{Mp}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}{\tau}}
+G_{M_p}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}{\tau}}
 \end{equation}
 %
-Należy pamiętać, że pochodna $\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}$ musi zostać wyznaczona dla ustalonej wartości czynnika kinematycznego $\epsilon$. Ponieważ przyjmuje on wartość z przedziału $\left[0,1\right]$, pochodną wyznaczano dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$, a następnie uśredniono otrzymane rezultaty. Powtarzając te procedurę dla każdego wytrenowanego modelu otrzymujemy 2500 wyników, ich średnia tworzy wynik modelu. Rysunki \ref{fig:ge1} oraz \ref{fig:gm1} przedstawiają obliczone w ten sposób funkcje postaci protonu. Opisane działanie jest źródłem niepewności otrzymanego wyniku, która ma dwa źródła. Pierwsze z nich zostało oznaczone na rysunkach jako błąd pochodnej, czyli rozbieżność wyników w zależności od wybranego parametru $\epsilon$ podczas liczenia pochodnej. Drugie z nich opisane jako błąd modelu to graficzne przedstawienie statystyki wyników pochodzących ze wszystkich nauczonych modeli.
+Należy pamiętać, że pochodna $\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}$ musi zostać wyznaczona dla ustalonej wartości czynnika kinematycznego $\epsilon$. Ponieważ przyjmuje on wartość z przedziału $\left[0,1\right]$, pochodną wyznaczano dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$. Powtarzając te procedurę dla każdego wytrenowanego modelu otrzymujemy $2500 \times 11$ wyników, ich średnia tworzy wynik modelu. Rysunki \ref{fig:ge1} oraz \ref{fig:gm1} przedstawiają obliczone w ten sposób funkcje postaci protonu. Opisane działanie jest przyczyną niepewności otrzymanego wyniku, która ma dwa źródła. Pierwsze z nich to błąd pochodnej, czyli rozbieżność wyników w zależności od wybranego parametru $\epsilon$ podczas liczenia pochodnej. Drugie z nich spowodowane jest liczbą wytrenowanych modeli, z których każdy przyjmuje nieco inne dane wejściowe, tworzy to dużą statystykę wyników pochodzących ze wszystkich nauczonych modeli.
 %
-Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \cite{2009PhRvC..79f5204A}. Wartość funkcji $G_{Ep}\left(Q^2=0\text{ GeV}^2\right)$ powinna wynosić $1$, mimo że wynik modelu jest niedoszacowany to wartość $1$ znajduje się w obszarze niewielkiego błędu. Niestety wraz ze wzrostem $Q^2$ wzrasta rozbieżność między porównywanymi funkcjami, dla $Q^2 \simeq 2.0\text{ GeV}^2$ obserwujemy nienaturalną zmianę wypukłości funkcji, której się niespodziewamy, i która nie występuje w wyniku z \cite{2009PhRvC..79f5204A}.  
+Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \cite{2009PhRvC..79f5204A} i ich graficzne przedstawienie znajduje się na rysunkach \ref{fig:ge1} i \ref{fig:gm1}. Wartość funkcji $G_{E_p}\left(Q^2=0\text{ GeV}^2\right)$ powinna wynosić $1$, mimo że wynik modelu jest niedoszacowany to wartość $1$ znajduje się w obszarze niewielkiego błędu. Niestety wraz ze wzrostem $Q^2$ wzrasta rozbieżność między porównywanymi funkcjami, dla $Q^2 \simeq 2.0\text{ GeV}^2$ obserwujemy nienaturalną zmianę wypukłości funkcji, której się niespodziewamy, i która nie występuje w wyniku z \cite{2009PhRvC..79f5204A}. Jest to jedyny obszar, w którym porównywana funkcja znajduje się po za obszarem niepewności modelu $2\sigma$. Przebieg magnetycznej funkcji postaci $G_{M_p}$ charakteryzuje się bardzo dużą niepewnością w rejonach niskiej wartości $Q^2$, mimo to średni wynik jest bliski pożądanej wartości bliskiej 1. Powyżej wartości $Q^2 \simeq 0.2\text{ GeV}^2$ niepewność pomiaru znacznie się zmniejsza, porównywany rezultat znajduje się na granicy niepewności $2\sigma$ różniąc się od wyniku modelu o stałą wartość około $0.05$, modele zaczynają się znacznie różnić dopiero dla wartości $Q^2$ przekraczajączych $10 \text{ GeV}^2$.
+
+ Całkowity rezultat należy jednak ocenic pozytywnie, porównywana funkcja rzadko znajduje się po za obszarem niepewności modelu $2\sigma$
 
 %Otrzymane funkcje postaci przede wszystkim nie najlepiej spełniają warunek na więz w punkcie $Q^2=0$.  zostały %porównane z funkcjami z publikacji \cite{2009PhRvC..79f5204A}
 %Wyniki przedstawione zostały na rysunkach \ref{fig:ge1} oraz \ref{fig:gm1}. 
@@ -1397,12 +1468,12 @@ Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \ci
 	\caption{Elektryczna (a) i magnetyczna (b) funkcja postaci. Linia ciągła przedstawia średnią ze wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.}
 \end{figure}
 %
-\section{Analiza nr 2}
+\section[\color{red} Analiza nr 2]{Analiza nr 2}
 \subsubsection{Dane wejściowe i funkcja straty}
 %
-Dane wejściowe w następnej analizie to 450 punktów pomiarowych analizowanych w pierwszej analizie powiększone o zbiór 68 pomiarów stosunku funkcji postaci $G_{Ep}/G_{Mp}$ wraz z niepewnością pomiarową w zależności od kwadratu przekazu czteropędu $Q^2$. Ponieważ znamy jeden z więzów funkcji postaci, do zbioru dodany został 69 i 70 punkt: $\mathcal{R}\left(Q^2 = 0\right) = 1$, $\Delta \mathcal{R} = 0,01$. Razem otrzymujemy 520 pomiarów co sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$.
+Dane wejściowe w następnej analizie to 450 punktów pomiarowych analizowanych w pierwszej analizie powiększone o zbiór 68 pomiarów stosunku funkcji postaci $G_{E_p}/G_{M_p}$ wraz z niepewnością pomiarową w zależności od kwadratu przekazu czteropędu $Q^2$. Ponieważ znamy jeden z więzów funkcji postaci, do zbioru dodany został 69 i 70 punkt: $\mathcal{R}\left(Q^2 = 0\right) = 1$, $\Delta \mathcal{R} = 0,01$. Razem otrzymujemy 520 pomiarów co sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$.
 %
-Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss2}) jest modyfikacją funkcji wykorzystanej w pierwszej analizie. Do użytej wcześniej funkcji błędu dodany został składnik (\ref{eq_rat}) uwzględniający błąd estymacji stosunku $G_{Ep}/G_{Mp}$.
+Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss2}) jest modyfikacją funkcji wykorzystanej w pierwszej analizie. Do użytej wcześniej funkcji błędu dodany został składnik (\ref{eq_rat}) uwzględniający błąd estymacji stosunku $G_{E_p}/G_{M_p}$.
 %
 \begin{equation}
 \chi^2 = \frac{1}{n} \left[ \chi_{\sigma}^2 + \chi_{PT}^2  \right] \label{eq_loss2}
@@ -1423,8 +1494,8 @@ Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss
 		[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
 		]
 		\tikzset{normal arrow/.style={draw,-latex}}
-		\node[cnode=white,label=0:$G_{Ep}$] (s) at (9,-6) {};
-		\node[cnode=white,label=0:$G_{Mp}$] (s-1) at (9,-8) {};
+		\node[cnode=white,label=0:$G_{E_p}$] (s) at (9,-6) {};
+		\node[cnode=white,label=0:$G_{M_p}$] (s-1) at (9,-8) {};
 		
 		\node[cnode=white,label=180:\textit{}] (x-2) at (0,-8) {1};
 		
@@ -1481,7 +1552,7 @@ Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss
 			\fi
 		}
 		\end{tikzpicture}}
-	\caption{Schemat sieci neuronowej zastosowanej w drugiej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z dwoma neuronami. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme1} 	
+	\caption{Schemat sieci neuronowej zastosowanej w drugiej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio trzema i pięcioma neuronami, iii) warstwy wyjściowej z dwoma neuronami. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme2} 	
 \end{SCfigure}
 
 
@@ -1523,11 +1594,101 @@ Wykorzystana podczas nauki drugiego modelu funkcja straty $\chi^2$ (\ref{eq_loss
 \end{figure}
 
 
-\section{Analiza nr 3}
+\section[\color{red} Analiza nr 3]{Analiza nr 3}
 \subsubsection{Dane wejściowe i funkcja straty}
 %
 
 \subsubsection{Parametry i nauka sieci}
+
+\begin{SCfigure}
+	\centering
+	\resizebox{7.cm}{!}{\begin{tikzpicture}
+		[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
+		]
+		\tikzset{normal arrow/.style={draw,-latex}}
+		\node[cnode=white,label=0:$G_{E_p}$] (s) at (9,-5) {};
+		\node[cnode=white,label=0:$G_{M_p}$] (s-1) at (9,-7) {};
+	    \node[cnode=white,label=0:$\Delta C_2$] (s-2) at (9,-9) {};
+		
+		\node[cnode=white,label=180:\textit{}] (x-3) at (0,-9) {1};
+		
+		
+		\node[cnode=white,label=180:] (p-5) at (3,-11) {$1$};
+		
+		\node[cnode=white,label=180:] (z-6) at (6,-12) {$1$};	
+		
+		
+		\node[cnode=white,label=180:$Q^2$] (x-1) at (0,-5) {};
+		\node[cnode=white,label=180:$\epsilon$] (x-2) at (0,-7) {};
+		
+		\node[cnode=white,label=180:] (p-1) at (3,-3) {};
+		\node[cnode=white,label=180:] (p-2) at (3,-5) {};
+		\node[cnode=white,label=180:] (p-3) at (3,-7) {};
+		\node[cnode=white,label=180:] (p-4) at (3,-9) {};
+		
+		\node[cnode=white,label=180:] (z-1) at (6,-2) {};
+		\node[cnode=white,label=180:] (z-2) at (6,-4) {};
+		\node[cnode=white,label=180:] (z-3) at (6,-6) {};
+		\node[cnode=white,label=180:] (z-4) at (6,-8) {};
+		\node[cnode=white,label=180:] (z-5) at (6,-10) {};
+		
+				
+		\foreach \y in {1,...,3}
+			{   
+				
+				\path[normal arrow] (x-1) -- (p-\y); 				
+				\path[normal arrow] (x-3) -- (p-\y); 		
+				
+			}
+
+
+		\path[normal arrow] (x-2) -- (p-4); 				
+		\path[normal arrow] (x-3) -- (p-4); 								
+
+
+		\foreach \x in {1,...,5}
+		{   
+			\foreach \y in {1,...,3}
+			{   
+				\ifnum \x=4
+				\else
+					\path[normal arrow] (p-\x) -- (z-\y); 
+				\fi
+			}		
+		}
+	
+
+		\foreach \x in {4,...,5}
+		{   
+			\foreach \y in {4,...,5}
+			{   
+				\path[normal arrow] (p-\x) -- (z-\y); 
+			}	
+		}	
+	
+				
+		\foreach \x in {1,...,3}
+		{
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s);
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s-1);
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s-2);
+		}
+	
+		\foreach \x in {4,...,5}
+		{
+			\path[normal arrow] (z-\x) -- node[above,sloped,pos=0.4] {} (s-2);
+		}
+			\path[normal arrow] (z-6) -- node[above,sloped,pos=0.4] {} (s);
+			\path[normal arrow] (z-6) -- node[above,sloped,pos=0.4] {} (s-1);
+			\path[normal arrow] (z-6) -- node[above,sloped,pos=0.4] {} (s-2);
+	
+	
+	
+	
+	
+		\end{tikzpicture}}
+	\caption{Schemat sieci neuronowej zastosowanej w trzeciej analizie, która składa się z: i) warstwy wejściowej z dwoma neuronami, ii) dwóch warstw ukrytych z odpowiednio czterema i pięcioma neuronami, iii) warstwy wyjściowej z trzema neuronami. Linie zakończone strzałką oznaczają wagę odpowiadającą każdej z par neuronów} \label{tab:scheme3} 	
+\end{SCfigure}
 
 
 \subsubsection{Wyniki}
