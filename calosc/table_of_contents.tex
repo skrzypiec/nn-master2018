@@ -63,7 +63,7 @@
 	framexbottommargin=2pt,
 	inputencoding=utf8,
 	extendedchars=true,
-	literate={ą}{{\k a}}1 {ę}{{\k e}}1,} %{ś}{{\'s}}1,
+	literate={ą}{{\k a}}1 {ę}{{\k e}}1 {ó}{{\' o}}1,} %{ś}{{\'s}}1,
 
 
 \title{}
@@ -182,15 +182,7 @@
 
 \textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
-	\item analiza2
-	\begin{itemize}
-		\item skomentowac wyniki
-		\item wkleic tabelke z wartosciami eta?
-	\end{itemize}
-	\item analiza3
-	\begin{itemize}
-	\item wszystko do opisania
-	\end{itemize}
+	\item 4.4 porownanie wynikow
 	\item problem puzzle proton size opisac we wstepie
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
@@ -200,7 +192,7 @@
 	\item tekst o sigmoidzie też do ponownego przejrzenia
 	\item bias - variance
 	\item wstep, zakonczenie
-	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie
+	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie np. wszystkie analizy razem
 \end{itemize}
 
 
@@ -209,6 +201,22 @@
 
 %\chapter{Wstęp}
 \chapter[\color{red}Wstęp]{Wstęp}
+
+Proton to trwała cząsteczka subatomowa o dodatnim ładunku elektrycznym o wartości $+e$ i masie spoczynkowej około 938 MeV, nieznacznie mniejszej od masy neutronu. Według teorii modelu standardowego jest fermionem o spinie 1/2, składa się z dwóch kwarków górnych i jednego kwarka dolnego związanych ze sobą dzięki oddziaływaniom silnym, których pośrednikiem są gluony. Mimo, że jest to jeden z podstawowych składników materii i jądro atomowe każdego pierwiastka zawiera jeden lub więcej protonów, nie wszystkie jego właściwości są dobrze poznane. Wśród nich znajduje się promień protonu $r_p$, wielkość tę można zmierzyć używając albo elektronów albo mionów, problemem jest, że w każdej z metod otrzymywane są zupełnie inne odpowiedzi. 
+
+Źródłem pomiarów eksperymentalnych uzyskanych przy użyciu elektronów jest rozpraszanie elektron-proton lub spektroskopia atomowa podczas, której mozna zaobserwować niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Otrzymane w ten sposób w wielu eksperymentach rezultaty są spójne i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. 
+
+Wykorzystując miony dysponujemy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu swojej masy orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
+	\caption{}
+	\label{fig:porownaniewielkosci}
+\end{figure}
+
 
 \section[\color{red}Fizyka zagadnienia i cel pracy - bardzo ogólnie]{Fizyka zagadnienia i cel pracy - bardzo ogólnie}
 
@@ -765,8 +773,7 @@ Strumień cząstek wiązki padającej to liczba cząstek przechodzących w jedno
 \end{equation}
 W definicji przekroju czynnego występuje tylko liczba cząstek rozproszonych. Dla kątów $\theta > 0$ możemy przyjąć, że detektor mierzący liczbę cząstek rozproszonych jest na tyle daleko od centrum rozpraszającego, że jest już poza wiązką padającą, która ma wymiar poprzeczny większy od rozmiarów obszaru z potencjałem istotnie różnym od zera, ale jednak skończony. Im mniejszy kąt $\theta$ tym trudniej oddzielić cząstki rozproszone od nierozproszonych. Dla małych kątów można mówić o różniczkowym przekroju czynnym tylko w sensie ekstrapolacji z obszaru $\theta > 0$. Pojęcie różniczkowego i całkowitego przekroju czynnego nie jest ograniczone do rozpraszania elastycznego, stosuje się je także do opisu rozpraszania nieelastycznego.
 %
-
-Zakładając rozpraszanie cząstki $\alpha$ w polu siły centralej $\sim \frac{1}{r^2}$, wykorzystując zasadę zachowania momentu pędu oraz energii mechanicznej otrzymujemy wzór na różniczkowy przekrój czynny, którym posługiwał się Rutherford
+Zakładając rozpraszanie cząstki $\alpha$ w polu siły centralej $\sim \frac{1}{r^2}$, wykorzystując zasadę zachowania momentu pędu oraz energii mechanicznej otrzymujemy wzór na różniczkowy przekrój czynny, którym posługiwał się Rutherford \cite{10.1088/978-0-7503-1140-3}
 %
 \begin{equation}
 \frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}}.
@@ -778,7 +785,7 @@ Z racji skali cząstek, które biorą udział w tym doświadczeniu, zagadnienie 
 \hat{H} = \frac{\hat{p}^2}{2\mu} - \frac{e^2}{4\pi\varepsilon_0} \frac{1}{r},
 \end{equation}
 %
-przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda na różniczkowy przekrój czynny na rozpraszanie w potencjale kulombowskim $-\frac{\alpha}{r} = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r}$:
+przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda  \cite{Jaskolski..MQ}  na różniczkowy przekrój czynny na rozpraszanie na potencjale kulombowskim $-\frac{\alpha}{r} = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r}$:
 %
 \begin{equation}
 \frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{\alpha}{2 E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}} = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}} \label{eq:ruth}
@@ -795,9 +802,9 @@ Wraz z budową akceleratorów cząstek oraz rozwojem aparatury eksperymentalnej 
 %O poprawce TPE
 %\subsubsection{I}
 %
-Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między naładowanymi elektrycznie elektronem i protonem. Wynik rozpraszania $e-p\rightarrow e-p$ jest ściśle zależny od długości fali $\lambda = hc / E$ wymienionego podczas oddziaływania fotonu, więskza energia pozwala spojrzeć bardziej wgłąb struktury cząstki.
+Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między naładowanymi elektrycznie elektronem i protonem. Wynik rozpraszania $e^- p\rightarrow e^- p$ jest ściśle zależny od długości fali $\lambda = hc / E$ wymienionego podczas oddziaływania fotonu, więskza energia pozwala spojrzeć bardziej wgłąb struktury cząstki.
 \begin{itemize}
-	\item Dla bardzo małej energii elektronu, $\lambda \gg r_p$, gdzie $r_p$ jest promieniem protonu, rozpraszanie jest równoważne rozpraszaniu na punktowej, bezspinowej cząstce.
+	\item Dla bardzo małej energii elektronu, $\lambda \gg r_p$, gdzie $r_p$ jest promieniem protonu, rozpraszanie jest równoważne rozpraszaniu na punktowej cząstce.
 	\item Dla małej energii elektornu, $\lambda \sim r_p$, rozpraszanie jest równoważne rozpraszaniu na naładowanej cząstce niepunktowej.
 	\item Dla dużej energii elektronu, $\lambda < r_p$, długość fali jest wystarczająco mała aby dostrzec strukturę protonu, źródłem rozpraszania są kwarki.
 	\item Dla bardzo dużych energii elektornu, $\lambda \ll r_p$, źródłem rozpraszania jest morze kwarkowo-gluonowe
@@ -812,7 +819,7 @@ Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między
 	\label{fig:scactter}
 \end{figure}
 %
-Energia rozproszonego elektronu $E'$ jest mniejsza niż energia początkowa $E_0$ o wartość energii przekazanej protonowi o masie $M$ i wynosi
+Energia rozproszonego elektronu $E'$ jest mniejsza niż energia początkowa $E_0$ o wartość energii przekazanej protonowi o masie $M$ i wynosi:
 %
 \begin{equation}
 E' = \frac{E_0}{1 + \frac{2E_0}{M}\sin^2 \frac{\theta}{2}}
@@ -827,7 +834,7 @@ Q^2 \equiv - q^2 = -(p^{\mu} - p^{'\mu})^2 &= 2M\left(E_0 - E'\right) \\
 \end{split}
 \end{equation}
 %
-Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się przy opisie rozpraszania nierelatywistycznych elektronów. Przekrój czynny szybkich elektronów $p_e = E_e$ wymaga uwzględnienia dodatkowych czynników. Są nimi: efekty relatywistycznye, odrzut protonu oraz oddziaływanie spin-spin. Zmodyfikowany przekrój czynny opisywany jest przez formułę Motta:
+Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się przy opisie rozpraszania nierelatywistycznych elektronów. Przekrój czynny szybkich elektronów $p_e = E_e$ wymaga uwzględnienia dodatkowych czynników. Są nimi: efekty relatywistycznye, odrzut protonu oraz oddziaływanie spin-spin. Zmodyfikowany przekrój czynny opisywany jest przez formułę Motta \cite{10.1088/978-0-7503-1140-3}:
 
 %\begin{equation}
 %\left( \frac{d\sigma}{d\Omega} \right)_M  = \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} %\times 4\cos^2 \frac{\theta}{2} = 
@@ -848,7 +855,7 @@ Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się pr
 %\end{equation}
 
 
-Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha
+Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha \cite{1990..Taylor}:
 
 \begin{equation}
 \begin{split}
@@ -868,7 +875,7 @@ Funkcje $G_{E_p}$, $ G_{M_p}$ są zależne tylko od przekazu czteropędu $Q^2$ i
  &G_{E_p} = G_{E_p}(Q^2)  &G_{E_p}(0) = 1\\
  &G_{M_p} = G_{M_p}(Q^2)  &G_{M_p}(0) = \mu_p, 
 \end{eqnarray*}
-gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. Zmierzony w laboratorium całkowity przekrój czynny rozpraszania można w przybliżeniu jednofotonowym wyrazić formułą:
+gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. Teoretycznie podczas rozpraszania elektron z protonem wymieniają między sobą nieskończoną ilość fotonów, w pierwszym przybliżeniu można założyć, że pośrednikiem oddziaływania jest tylko jeden foton. Zmierzony w laboratorium całkowity przekrój czynny rozpraszania można w przybliżeniu jednofotonowym wyrazić formułą \cite{2009PhRvC..79f5204A}:
 % 
 \begin{equation}
 \begin{split}
@@ -880,9 +887,9 @@ gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji s�
 Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}
 %
 
-\subsubsection{Transfer polaryzacji}
+\subsubsection{Pomiar polaryzacji protonu}
 
-Kolejna metody oparte są na pomiarach transferu polaryzacji odbitego podczas rozpraszania protonu lub na pomiarach asymetrii rozpraszania, pozwalają one określić wzajemny stosunek elektrycznego oraz magnetycznego czynnika postaci
+Kolejna metody oparte są na pomiarach polaryzacji odbitego protonu podczas rozpraszania spolaryzowanych elektronów lub na pomiarach asymetrii rozpraszania, pozwalają one określić wzajemny stosunek elektrycznego oraz magnetycznego czynnika postaci
 %
 $$
 \mathcal{R}\left(Q^2\right) \equiv \mu_p \frac{G_{E_p}\left(Q^2\right)}{G_{M_p}\left(Q^2\right)},
@@ -911,7 +918,16 @@ Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynn
 \sigma_R \rightarrow \sigma_R + \delta_{TPE}
 \end{equation}
 
-Obliczenie poprawki jest trudne i zależne od modelu, wiedząc jednak, że amplituda rozpraszania musi spełniać ogólne zasady symetrii możemy założyć, że 
+%
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1.\textwidth]{tpe}
+	\caption{Diagram dwufotonowy dla elastycznego rozpraszania elektron-proton} 
+	\label{fig:tpe}
+\end{figure}
+
+
+Diagram Feynmana dla tego zjawisku został przedstawiony na rysunku \ref{fig:tpe}. Obliczenie poprawki jest trudne i zależne od modelu, wiedząc jednak, że amplituda rozpraszania musi spełniać ogólne zasady symetrii możemy założyć, że 
 
 \begin{equation}
 \sigma_R \rightarrow \sigma_R + \delta_{TPE}\left(Q^2, \epsilon\right)
@@ -925,11 +941,16 @@ r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\
 
 
 
-\subsubsection{Dane}
-Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach \cite{1966PhRv..142..922J, 1966PhRvL..17..608B, 1967PhRvL..18.1014A, 1970PhLB...31...40L, 1970PhRvD...1.2449G, 1971PhLB...35...87B, 1971PhRvD...4...45P, 1974NuPhA.222..269B, 1973NuPhB..58..429B, 1973PhRvD...8...63K, 1993PhRvD..48...29S, 1994PhRvD..49.5671W, 1994PhRvD..50.5491A, 1975NuPhB..93..461B, 1975PhRvD..12.1884S, 1974PhRvC..10.2111M, 1980NuPhA.333..381S, 1981NuPhA.364..285S, 1992PhRvD..46...24R, 2003PhRvC..68f4603D, 2004PhRvC..70a5206C}, które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Dodatkowo każdy z 24 zbiorów danych ma określoną niepewność systematyczną $\Delta \eta$. Ponadto w jednej z analiz zostanie wykorzystany powyższy zbiór danych z wartościami przekrojów czynnych $\sigma_R$ zmodyfikowanych o poprawkę wynikającą z wymiany dwóch fotonów podczas rozpraszania.  Rozmiar danych to razem 426 punktów pomiarowcyh. Drugi zestaw tworzą zbiory opublikowane w pracach \cite{1999PhRvL..82.2221M, 2000PhRvL..84.1398J, 2001PhLB..500...47D, 2001EPJA...12..125P, 2002PhRvL..88i2301G, 2001PhRvC..64c8202G, 2005PhRvC..71e5202P, 2006PhRvC..73f4004H, 2006NuPhA.764..261M, 2006PhRvC..74c5201J, 2007PhRvL..99t2002R, 2007PhRvL..98e2301C}, które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych. 
+\subsubsection{Pomiary doświadczalne}
+Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach \cite{1966PhRv..142..922J, 1966PhRvL..17..608B, 1967PhRvL..18.1014A, 1970PhLB...31...40L, 1970PhRvD...1.2449G, 1971PhLB...35...87B, 1971PhRvD...4...45P, 1974NuPhA.222..269B, 1973NuPhB..58..429B, 1973PhRvD...8...63K, 1993PhRvD..48...29S, 1994PhRvD..49.5671W, 1994PhRvD..50.5491A, 1975NuPhB..93..461B, 1975PhRvD..12.1884S, 1974PhRvC..10.2111M, 1980NuPhA.333..381S, 1981NuPhA.364..285S, 1992PhRvD..46...24R, 2003PhRvC..68f4603D, 2004PhRvC..70a5206C}, które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Ponadto w jednej z analiz zostanie wykorzystany powyższy zbiór danych z wartościami przekrojów czynnych $\sigma_R$ zmodyfikowanych o poprawkę wynikającą z wymiany dwóch fotonów podczas rozpraszania.  Rozmiar danych to razem 426 punktów pomiarowcyh. 
+
+Drugi zestaw tworzą zbiory opublikowane w pracach \cite{1999PhRvL..82.2221M, 2000PhRvL..84.1398J, 2001PhLB..500...47D, 2001EPJA...12..125P, 2002PhRvL..88i2301G, 2001PhRvC..64c8202G, 2005PhRvC..71e5202P, 2006PhRvC..73f4004H, 2006NuPhA.764..261M, 2006PhRvC..74c5201J, 2007PhRvL..99t2002R, 2007PhRvL..98e2301C}, które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych.  
+
+Dodatkowo każdy z 24 zbiorów danych zawierających pomiary całkowitego przekroju czynnego ma określoną niepewność systematyczną $\Delta \eta$ wynikającą z rozbieżności pomiędzy pomiarami całkowitych przekrojów czynnych i pomiarami podłużnej i poprzecznej składowej polaryzacji protonów dającymi w rezultacie stosunki funkcji postaci protonu. 
+
 
 \section{Keras}
-Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Dzięki temu, że jest rozpowszechniany pod licencją MIT, co oznacza, że może być za darmo wykorzystywany w projektach komercyjnych, zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software \cite{Chollet:2017}. Kaggle to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników. Jednym z najpopularniejszych narzędzi wykorzystywanych przez analityków jest Keras, wiele z konkursów zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
+Modele sieci neuronowych opisywane w tej pracy zostały zaprogramowane przy użyciu biblioteki Keras. Keras jest interfejsem API wysokiego poziomu służącym do tworzenia i szkolenia modeli głębokiego uczenia. Początkowo Keras został opracowany dla naukowców, którzy mogli dzięki niemu dokonywać szybkich eksperymentów i symulacji. Jednak na skutek tego, że jest rozpowszechniany pod licencją MIT (może być za darmo wykorzystywany w projektach komercyjnych) zdobył dużą popularność. Dziś ma on kilka set tysięcy użytkowników, od nauczycieli akademickich po inżynierów oprogramowania pracujących zarówno w start-upach jak i dużych firmach, i hobbystów. Jego zalety są wykorzystywane między innymi w wiodących ośrodkach naukowych takich jak Europejska Organizacja Badań Jądrowych CERN i setkach firm, z których największe to Google, Netflix, Uber, Yelp, Opera Software \cite{Chollet:2017}. Ponadto jego zalety zostały docenione przez analityków całego świata, którzy chętnie wykorzystują jego możliwości w konkursach Kaggle. Jest to platforma internetowa, która organizuje konkursy na najlepsze modele służące do przewidywania i opisywania zbiorów danych przesyłanych przez firmy i użytkowników, wiele z rywalizacji zostało wygranych przez modele zbudowane przy użyciu wspomnianego interfejsu API.
 %
 Do największych zalet Keras należą:
 \begin{itemize}
@@ -943,9 +964,10 @@ Do największych zalet Keras należą:
 	\item  pozwala na bezproblemowe działanie tego samego kodu na CPU oraz GPU
 \end{itemize}
 %
-Keras jest biblioteką, o której można powiedzieć, że zapewnia cegły służące do zbudowania modelu głębokiego uczenia natomiast w minimalnym stopniu pozwala użytkownikom na ingerencję w ich strukturę. W zamian wykorzystuje wyspecjalizowaną i dobrze zoptymalizowaną bibliotekę wyspecjalizowaną w operacjach na tensorach. Szczególnie szybko wykonują się obliczenia numeryczne typowe dla algorytmów uczenia maszynowego takich jak mnożenie macierzy i obliczanie gradientu.  Można wybierać wśród trzech istniejących implementacji, każda z nich ma otwarte źródło. Pierwsza z nich wykorzystuje Tensorflow opracowany i rozwijany przez Google'a, druga korzysta z Theano opracowanego i rozwijanamego przez LISA Lab w Uniwersytecie Montrealskim, ostatnia i najmniej popularna wykorzystuje CNTK opracowane i rozwijane przez Microsoft. W przyszłości prawdopodobnie pojawi się więcej możliwości wyboru, między innymi niedawno powstały, zdobywający coraz większą popularność projekt Torch finansowany przez Facebooka. Obecnie najczęściej wykorzystywany jest TensorFlow, został on także wykorzystany w tej pracy. 
+Keras jest biblioteką, o której można powiedzieć, że zapewnia cegiełki służące do zbudowania modelu głębokiego uczenia natomiast w minimalnym stopniu pozwala użytkownikom na ingerencję w ich strukturę. W zamian wykorzystuje wyspecjalizowaną i dobrze zoptymalizowaną bibliotekę wyspecjalizowaną w operacjach na tensorach. Szczególnie szybko wykonują się obliczenia numeryczne typowe dla algorytmów uczenia maszynowego takich jak mnożenie macierzy i obliczanie gradientu.  Można wybierać wśród trzech istniejących implementacji, każda z nich ma otwarte źródło. Pierwsza z nich wykorzystuje Tensorflow opracowany i rozwijany przez Google'a, druga korzysta z Theano opracowanego i rozwijanamego przez LISA Lab w Uniwersytecie Montrealskim, ostatnia i najmniej popularna wykorzystuje CNTK opracowane i rozwijane przez Microsoft. W przyszłości prawdopodobnie pojawi się więcej możliwości wyboru, między innymi niedawno powstały, zdobywający coraz większą popularność projekt Torch finansowany przez Facebooka. Obecnie najczęściej wykorzystywany jest TensorFlow, został on także wykorzystany w tej pracy. 
 %
-Poniżej zaprezentuję jak proste jest zbudowanie i wytrenowanie bardzo podstawowego przykładu sieci neuronowej przy użyciu biblioteki Keras. Cały proces wymaga wykonania kilku kroków:
+
+Proces budowy oraz treningu modelu sieci neuronowej jest bardzo prosty i wymaga wykonania następujących kroków
 \begin{enumerate}
 	\setlength\itemsep{0.em}
 	\item Zdefiniuj swoje dane treningowe: dane wejściowe i dane wyjściowe
@@ -953,8 +975,10 @@ Poniżej zaprezentuję jak proste jest zbudowanie i wytrenowanie bardzo podstawo
 	\item Skonfiguruj proces uczenia poprzez wybranie funkcji straty, algorytmu szukającego minimum funkcji straty
 	\item Przeprowadź odpowiednią do wytrenowania sieci ilość iteracji
 \end{enumerate}
-%
-Zdefiniowana poniżej sieć składa się z dwóch warstw ukrytych o odpowiednio 10 i 5 neuronach ukrytych. Funkcją aktywacji w pierwszej warstwie jest sigmoida, dane wejściowe zawierają dwie cechy, które posłużą do zbudowania modelu, druga warstwa wykorzystuje tangens hiperboliczny jako funkcję aktywacji. Model podczas nauki minimalizuje błąd średniokwadratowy, wykorzystuje do tego algorytm rmsprop, trenownanie modelu skończy się po 100 pełnych iteracjach zbioru danych.
+
+Ponizszy przykład prezentuje jak proste jest zbudowanie i wytrenowanie bardzo podstawowego, wymagającego minimum zaangażowania przykładu sieci neuronowej przy użyciu biblioteki Keras.
+
+
 %
 \begin{lstlisting}
 #Zaimportuj wymagane pliki
@@ -980,20 +1004,35 @@ model.compile(optimizer = 'rmsprop', loss='mse')
 model.fit(inputs = X, outputs = Y, epochs = 100)
 \end{lstlisting}
 
+Zdefiniowana powyżej sieć składa się z dwóch warstw ukrytych o odpowiednio 10 i 5 neuronach. Funkcją aktywacji w pierwszej warstwie jest sigmoida, dane wejściowe zawierają dwie cechy, które posłużą do zbudowania modelu, druga warstwa wykorzystuje tangens hiperboliczny jako funkcję aktywacji. Wynikiem sieci jest zgodnie z definicją warstwy wyjściowej jednowymiarowy wektor. Model podczas nauki minimalizuje błąd średniokwadratowy, wykorzystuje do tego algorytm \textit{rmsprop}, trenownanie modelu skończy się po 100 pełnych iteracjach zbioru danych.
+
+\begin{lstlisting}
+#X_new - nowe dane 
+
+#Stwórz predykcje
+Y_new = model.predict(X_new)
+\end{lstlisting}
+
+Mając gotowy model i zapewniając nowe dane wejściowe możemy z łatwością wygenerować przewidywania sieci używając funkcji \textit{predict}.
+
 %Deep Learning with Python Francois Chollet Manning Shelter Island 2018
 \section{Generowanie sztucznych danych}
 
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
-%generowanie danych dotyczy tez stosunkow zcynników postaci?
 
-Do opisania przykładu zastosuję dane wykorzystane do treningu pierwszego modelu statystycznego, natomiast należy pamiętać, że wszystkie zbiory danych posiadające wyznaczoną niepewność pomiaru mogą posłużyć do powtórzenia poniżej procedury. Na zestaw danych składa się przekrój czynny $\sigma$, każdy punkt pomiarowy oprócz zmiennej objaśnianej zawiera przypisaną do niej niepewność pomiaru $\Delta \sigma$. Następne dwie kolumny to zmiennej objaśniające $Q^2$ oraz $\epsilon$. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. 
+Każdy pomiar eksperymentalny obarczony jest niepewnością wyniku. Niedokładność pomiaru pochodzi nie tylko z niedoskonałości aparatury i zmysłów obserwatora, ale jest nieodłączną cechą takiej operacji. W przypadku analizowanych poniżej danych mamy doczynienia z niepewnościami pomiarów oraz z błędami systematycznymi wynikającymi z rozbieżności pomiędzy pomiarami całkowitych przekrojów czynnych i pomiarami podłużnej i poprzecznej składowej polaryzacji protonów dającymi w rezultacie stosunki funkcji postaci protonu. Na pierwszy zestaw analizowanych danych składa 426 pomiarów przekrojów czynnych $\sigma$, każdy punkt pomiarowy oprócz zmiennej objaśnianej zawiera przypisaną do niej niepewność pomiaru $\Delta \sigma$. Następne dwie kolumny to zmiennej objaśniające $Q^2$ oraz $\epsilon$. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewność pomiaru oraz błędzie systematycznym możemy wygenerować następne zestawy danych, które będą zawierały wartości przekrojów czynnych z zakresów, w których były możliwe do zmierzenia dla zadanych wartości $Q^2$ i $\varepsilon$. Następnie każda z replik posłuży do treningu osobnej sieci neuronowej, co pozwoli otrzymać rozkład funkcji $\sigma^{(net)}(Q^2,\varepsilon)$. W \cite{2002JHEP...05..062F} pokazano, że tak otrzymana przestrzeń funkcyjna zapewnia nieobciążoną estymację wszystkich pomiarów doświadczalnych przy równoczesnym otrzymaniu gładkiej interpolacji. 
+
+Do opisania przykładu zastosuję dane wykorzystane do treningu pierwszego modelu statystycznego, natomiast należy pamiętać, że wszystkie zbiory danych posiadające wyznaczoną niepewność pomiaru mogą posłużyć do powtórzenia poniżej procedury. Zakładając, że pomiary eksperymentalne $\sigma^{(exp)}$ są wartościami zmiennej losowej o rozkładzie normalnym $\mathcal{N}\left( \sigma^{(exp)}, \Delta \sigma_i^{(exp)} \right)$  możemy wygenerować kolejne pomiary korzystając z poniższego równania:
+
 %
 \begin{equation}
-\sigma^{(art)(k)}_{a,i} = \sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}
+\sigma^{(art)(k)}_{a,i} = \sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)},
 \end{equation} 
+
+gdzie $\sigma_i^{(exp)}$ to kolejny pomiar eksperymentalny a $k$ to kolejny wygenerowany zestaw danych.
 %
-Ważne jest aby wybrać optymalną wartość liczby replik $N_{rep}$ tak aby rozkład wygenerowanych danych zawierał charakterystyki zgodne z danymi eksperymantalnymi. Aby dokonać wyboru odpowiedniej wartości $N_{rep}$ porównano wartości średnie oraz odchylenie standardowe próbek po wygenerowaniu sztucznych danych. \figurename{} \ref{fig:repliki} przedstawia dwa wykresy punktowe powyższych wartości dla 10, 100 oraz 1000 replik. Szczególny wpływ ilości wygenerowanych danych widoczny jest w części przedstawiającej porównanie odchyleń standardowych. Większa liczba klonów powoduje, że charakterystyki rozkładów wygenerowanych oraz eksperymentalnych danych są bardziej zgodne, co na wykresach prezentuje się jako ułożenie punktów wzdłuż prostej $y=x$. Wartość średnia oraz odchylenie standardowe sztucznych danych zostały zdefiniowane w równaniach \ref{eq_avg} oraz \ref{eq_std}.
+Korzystając z opisanej wyżej metody kluczowy jest wybór optymalnej wartości liczby replik $N_{rep}$ tak aby rozkład wygenerowanych danych zawierał charakterystyki zgodne z danymi eksperymantalnymi. Aby dokonać wyboru odpowiedniej wartości $N_{rep}$ porównano wartości średnie oraz odchylenie standardowe próbek po wygenerowaniu sztucznych danych. \figurename{} \ref{fig:repliki} przedstawia dwa wykresy punktowe powyższych wartości dla 10, 100 oraz 1000 replik. Szczególny wpływ ilości wygenerowanych danych widoczny jest w części przedstawiającej porównanie odchyleń standardowych. Większa liczba klonów powoduje, że charakterystyki rozkładów wygenerowanych oraz eksperymentalnych danych są bardziej zgodne, co na wykresach prezentuje się jako ułożenie punktów wzdłuż prostej $y=x$. Wartość średnia oraz odchylenie standardowe sztucznych danych zostały zdefiniowane w równaniach \ref{eq_avg} oraz \ref{eq_std}.
 %
 \begin{subequations}
 	\begin{align}
@@ -1115,7 +1154,7 @@ Po skończeniu nauki, wybierany jest model, który ma najmniejszą wartość fun
 
 Architektura sieci neuronowej, tzn. ilość warstw ukrytych oraz ilość neuronów w warstwach ukrytych jest zdeterminowana przez wymiar danych wejściowych, rodzaj rozwiązywanego problemu (klasyfikacja czy regresja) oraz relację między zmiennymi objaśniającymi i zmienną objaśnianą.
 
-Uogólniony model liniowy przydatny w szerokim zakresie zastosowań, nie potrzebuję żadnej warstwy ukrytej. Bywa szczególnie przydatny gdy zbiór zawiera mało danych lub są one obarczone dużą niedokładnością. Nawet w przypadku gdy relacja między zmiennymi jest lekko nieliniowa, użycie prostego modelu liniowego może skutkować lepszym uogólnieniem problemu niż skomplikowany model będący wrażliwy na każdy szum znajdujący się w danych. Zgodnie z uniwersalnym twierdzeniem aproksymacyjnym jedna warstwa ukryta z wystarczająco dużą liczbą neuronów wystarcza aby z dowolną dokładnością dowolną ciągłą funkcję [cybenko]. Jeśli zmienna objaśniająca jest jednowymiarowa, wydaje się, że nie odniesiemy żadnej korzyści z skonstruowania sieci neuronowej o więcej niż jednej warstwie ukrytej. Sprawy komplikują się jednak gdy zmienna wejściowa jest dwu lub więcej wymiarowa. Dwuwarstowa sieć neuronowa zachowuje właściwości jednowarstwowej sieci neuronowej oraz osiąga zdolność nauki każdego problemu klasyfikacyjnego [1995 Bishop 123], ponadto wielowarstwowa sieć neuronowa z dwoma warstwami może skutkować dokładniejszymi wynikami wykorzystując mniejszą ilość parametrów niż jednowarstwowa sieć [Chester (1990)]. Na tej podstawie, do rozwiązania problemu regresji gdzie wejściem jest para liczb $(\varepsilon, Q^2)$ postanowiłem wybrać sieć neuronowa z dwoma warstwami ukrytymi. 
+Uogólniony model liniowy przydatny w szerokim zakresie zastosowań, nie potrzebuję żadnej warstwy ukrytej. Bywa szczególnie przydatny gdy zbiór zawiera mało danych lub są one obarczone dużą niedokładnością. Nawet w przypadku gdy relacja między zmiennymi jest lekko nieliniowa, użycie prostego modelu li	niowego może skutkować lepszym uogólnieniem problemu niż skomplikowany model będący wrażliwy na każdy szum znajdujący się w danych. Zgodnie z uniwersalnym twierdzeniem aproksymacyjnym jedna warstwa ukryta z wystarczająco dużą liczbą neuronów wystarcza aby z dowolną dokładnością dowolną ciągłą funkcję [cybenko]. Jeśli zmienna objaśniająca jest jednowymiarowa, wydaje się, że nie odniesiemy żadnej korzyści z skonstruowania sieci neuronowej o więcej niż jednej warstwie ukrytej. Sprawy komplikują się jednak gdy zmienna wejściowa jest dwu lub więcej wymiarowa. Dwuwarstowa sieć neuronowa zachowuje właściwości jednowarstwowej sieci neuronowej oraz osiąga zdolność nauki każdego problemu klasyfikacyjnego [1995 Bishop 123], ponadto wielowarstwowa sieć neuronowa z dwoma warstwami może skutkować dokładniejszymi wynikami wykorzystując mniejszą ilość parametrów niż jednowarstwowa sieć [Chester (1990)]. Na tej podstawie, do rozwiązania problemu regresji gdzie wejściem jest para liczb $(\varepsilon, Q^2)$ postanowiłem wybrać sieć neuronowa z dwoma warstwami ukrytymi. 
 
 
 \begin{table}
@@ -1163,7 +1202,7 @@ Jeżeli dysponujemy niewielkim zbiorem danych treningowych, do znalezienia optim
 \end{equation}
 
 
-gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność \cite{Dennis:1996:NMU:1096889}. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. Algorytm jednak jest bardzo wolny, co jest jego największą słabością. Ze względu na częstość aktualizacji wag, metodę gradientu prostego możemy podzielić na \textit{batch gradient descent} oraz \textit{stochastic gradient descent}. W pierwszym przypadku wagi są dostosowywane po przetworzeniu pełnego zbioru danych, w metodzie stochastycznej zbiór uczący dzielony jest na podzbiory a wagi aktualizowane są po przetworzeniu każdego z podzbiorów. Druga metoda jest szczególnie użyteczna dla dużych zbiorów danych. Spodziewamy się, że dla dobrze przygotowanych danych kierunek podążania wartości wag będzie podobny jeśli policzymy gradient zarówno dla 10\% jak i dla 100\% zbioru treningowego.
+gdzie $\alpha$ to wybrany odpowiednio parametr szybkości uczenia (\textit{learning rate}) odpowiedzialny za stopień zmiany parametrów w kolejnych iteracjach. Jeśli $\theta^0$ znajduje się odpowiednio blisko minimum funkcji, i parametr $\alpha$ jest wystarczcająco niewielki, algorytm osiąga liniową zbieżność \cite{Dennis:1996:NMU:1096889}. W ogólności metoda gradientu prostego gwarantuje zbieżność do globalnego minimum w przypadku funkcji błędu o wypukłej powierzchni i do lokalnego minimum dla funkcji błędu o powierzchni nie wypukłej. Algorytm jednak jest bardzo wolny, co jest jego największą słabością. Ze względu na częstość aktualizacji wag, metodę gradientu prostego możemy podzielić na \textit{batch gradient descent} oraz \textit{astic gradient descent}. W pierwszym przypadku wagi są dostosowywane po przetworzeniu pełnego zbioru danych, w metodzie stochastycznej zbiór uczący dzielony jest na podzbiory a wagi aktualizowane są po przetworzeniu każdego z podzbiorów. Druga metoda jest szczególnie użyteczna dla dużych zbiorów danych. Spodziewamy się, że dla dobrze przygotowanych danych kierunek podążania wartości wag będzie podobny jeśli policzymy gradient zarówno dla 10\% jak i dla 100\% zbioru treningowego.
 
 
 Wyobraźmy sobie, że poszukiwanie minimum powierzchni błędu to przemierzanie przestrzeni pełnej dolin, pagórków, wąwozów. W kolejnych iteracjach przeskakujemy między tymi obszarami, w pewnym momencie może się zdarzyć, że gradient zaniknie lub będzie bardzo słaby a nasze poszukiwania zatrzymają się nie osiągając wystarczającego minimum. Idea pędu inspirowana zjawiskami fizycznymi to nadanie gradientowi krótkotrwałej pamięci. Posługując się kolejną analogią, popchnięta w dół piłka nabierając prędkości zwiększa swój pęd. To samo dzieje się z parametrami sieci, wartość pędu wzrasta dla wymiarów, których gradienty wskazują te same kierunki i zmniejsza modyfikacje wartości dla wymiarów, w których gradienty zmieniają kierunki. W rezultacje otrzymujemy szybszą zbieżność i mniejsze oscylacje.
@@ -1182,7 +1221,7 @@ Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu p
 	\label{fig:gd_sgd}
 \end{figure}
 
-Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na \figurename{} \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
+Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na rysunku \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
 
 
 Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci. Algorytm opisują równania \ref{eq:nesterov1}, \ref{eq:nesterov2} \cite{2016arXiv160904747R}.
@@ -1438,7 +1477,7 @@ Następnie magnetyczna funkcja postaci protonu wyraża się wzorem
 G_{M_p}(Q^2) =   \sqrt{\frac{\sigma_R(\epsilon, Q^2) - \epsilon \frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}}{\tau}}
 \end{equation}
 %
-Należy pamiętać, że pochodna $\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}$ musi zostać wyznaczona dla ustalonej wartości czynnika kinematycznego $\epsilon$. Ponieważ przyjmuje on wartość z przedziału $\left[0,1\right]$, pochodną wyznaczano dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$. Powtarzając te procedurę dla każdego wytrenowanego modelu otrzymujemy $2500 \times 11$ wyników, ich średnia tworzy wynik modelu. Rysunki \ref{fig:ge1} oraz \ref{fig:gm1} przedstawiają obliczone w ten sposób funkcje postaci protonu. Opisane działanie jest przyczyną niepewności otrzymanego wyniku, która ma dwa źródła. Pierwsze z nich to błąd pochodnej, czyli rozbieżność wyników w zależności od wybranego parametru $\epsilon$ podczas liczenia pochodnej. Drugie z nich spowodowane jest liczbą wytrenowanych modeli, z których każdy przyjmuje nieco inne dane wejściowe, tworzy to dużą statystykę wyników pochodzących ze wszystkich nauczonych modeli.
+Należy pamiętać, że pochodna $\frac{\partial \sigma_R(\epsilon, Q^2)}{\partial \epsilon}$ musi zostać wyznaczona dla ustalonej wartości czynnika kinematycznego $\epsilon$. Ponieważ przyjmuje on wartość z przedziału $\left[0,1\right]$, pochodną wyznaczano dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$. Powtarzając te procedurę dla każdego wytrenowanego modelu otrzymujemy $2500 \times 11$ wyników, ich średnia tworzy wynik modelu. Wykresy \ref{fig:ff1} przedstawiają obliczone w ten sposób funkcje postaci protonu. Opisane działanie jest przyczyną niepewności otrzymanego wyniku, która ma dwa źródła. Pierwsze z nich to błąd pochodnej, czyli rozbieżność wyników w zależności od wybranego parametru $\epsilon$ podczas liczenia pochodnej. Drugie z nich spowodowane jest liczbą wytrenowanych modeli, z których każdy przyjmuje nieco inne dane wejściowe, tworzy to dużą statystykę wyników pochodzących ze wszystkich nauczonych modeli.
 %
 Otrzymane funkcje postaci zostały porównane z przewidywaniami z publikacji \cite{2009PhRvC..79f5204A} i ich graficzne przedstawienie znajduje się na rysunku \ref{fig:ff1}. Wartość funkcji $G_{E_p}\left(Q^2=0\text{ GeV}^2\right)$ powinna wynosić $1$, mimo że wynik modelu jest niedoszacowany to wartość $1$ znajduje się w obszarze niewielkiego błędu. Niestety wraz ze wzrostem $Q^2$ wzrasta rozbieżność między porównywanymi funkcjami, dla $Q^2 \simeq 2.0\text{ GeV}^2$ obserwujemy nienaturalną zmianę wypukłości funkcji, której się niespodziewamy, i która nie występuje w wyniku z \cite{2009PhRvC..79f5204A}. Jest to jedyny obszar, w którym porównywana funkcja znajduje się po za obszarem niepewności modelu $2\sigma$. Przebieg magnetycznej funkcji postaci $G_{M_p}$ charakteryzuje się bardzo dużą niepewnością w rejonach niskiej wartości $Q^2$, mimo to średni wynik jest bliski pożądanej wartości bliskiej 1. Powyżej wartości $Q^2 \simeq 0.2\text{ GeV}^2$ niepewność pomiaru znacznie się zmniejsza, porównywany rezultat znajduje się na granicy niepewności $2\sigma$ różniąc się od wyniku modelu o stałą wartość około $0.05$, modele zaczynają się znacznie różnić dopiero dla wartości $Q^2$ przekraczajączych $10 \text{ GeV}^2$. Całkowity rezultat należy jednak ocenic pozytywnie, porównywana funkcja rzadko znajduje się po za obszarem niepewności modelu $2\sigma$. 
 
@@ -1629,7 +1668,7 @@ gdzie $\bar{x}$ to średnia cechy $x$, a $\sigma$ to odchylenie standardowe cech
 
 \subsubsection{Wyniki}
 %
-Wyniki nauczonych modeli tworzą statystykę, której najważniejszymi parametrami są średnia przedstawiana jako wynik modelu, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar. Rysunek \ref{fig:ff2} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Otrzymane wyniki są znacznie bliższe przebiegom funkcji z publikacji \cite{2009PhRvC..79f5204A} i prawie całkowicie mieszczą się w zaznaczonych ciemnym kolorem obszarach $\pm 2\sigma$. Wariancja magnetycznej funkcji postaci jest w przybliżeniu stały na całej długości przedstawionego przebiegu funkcji i wynosi około $0.025$, odchylenie standardowe dla elektrycznej funkcji postaci w pobliżu $Q^2 \rightarrow 0$ jest bardzo niewielkie i znacznie wzrasta wraz z $Q^2$ osiągając wysoką wartość $0.1$. Może to być spowodowane mniejszą ilością pomiarów doświadczalnych dla dużych wartości $Q^2$.
+Wyniki nauczonych modeli tworzą statystykę, której najważniejszymi parametrami są średnia przedstawiana jako wynik modelu, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników, na wykresie przedstawiany jako zacieniowany obszar. Rysunek \ref{fig:ff2} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Otrzymane wyniki są znacznie bliższe przebiegom funkcji z publikacji \cite{2009PhRvC..79f5204A} i prawie całkowicie mieszczą się w zaznaczonych ciemnym kolorem obszarach $\pm 2\sigma$. Wariancja magnetycznej funkcji postaci jest w przybliżeniu stały na całej długości przedstawionego przebiegu funkcji i wynosi około $0.015$, odchylenie standardowe dla elektrycznej funkcji postaci w pobliżu $Q^2 \rightarrow 0$ jest bardzo niewielkie i znacznie wzrasta wraz z $Q^2$ osiągając wysoką wartość $0.1$. Może to być spowodowane mniejszą ilością pomiarów doświadczalnych dla dużych wartości $Q^2$.
 % 
 \begin{figure}[hp!]
 	\centering
@@ -1650,11 +1689,27 @@ Dodatkowym źródłem danych służącym do nauki sieci neuronowej w stosunku do
 
 
 \newpage
-\section[\color{red} Analiza nr 3]{Analiza nr 3}
+\section{Analiza nr 3}
 \subsubsection{Dane wejściowe i funkcja straty}
 %
-\newpage
+%
+Wykorzystane podczas analizy dane składają sie z dwóch zestawów. Pierwszy to 450 punktów pomiarowych przekrojów czynnych, których wartości zostały zmodyfikowane o poprawkę dwufotonową. Struktura danych wejściowych jest analogiczna do tych wykorzystywanych w powyższych analizach - cztery kolumny zawierają zmienną objaśnianą $\sigma$ , niepewność pomiaru przekroju czynnego $\Delta \sigma$ i dwie zmienne objaśniające $Q^2$ oraz $\epsilon$. Drugi zestaw to 70 pomiarów doświadczalnych stosunków funkcji postaci $G_{E_p} / G_{M_p}$ wraz z niepewnością pomiarową w zależności od kwadratu czteropędu $Q^2$. Razem otrzymujemy 520 pomiarów co ponownie sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$. Zastosowana podczas nauki trzeciego modelu funkcja straty $\chi^2$ (\ref{eq_loss3}) składa się się z tych samych składników co funkcja wykorzystana podczas drugiej analizy (\ref{eq_loss2}), jednak do całkowitego przekroju czynnego należy dodać poprawkę zależną od kwadratu przekazu czteropędu $Q^2$ i czynnika kinematycznego $\epsilon$ jak przedstawiono w równaniu \ref{eq:sigma_c2}.
+%
+\begin{equation}
+\sigma_R(\epsilon, Q^2) =\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2) + \Delta C_{2 \gamma} \left(Q^2, \epsilon \right), \label{eq:sigma_c2}
+\end{equation}
+%
+\begin{equation}
+\chi^2 = \frac{1}{n} \left[ \chi_{\sigma}^2 + \chi_{PT}^2 + \chi_{G_M}^2  + \chi_{G_E}^2  \right]. \label{eq_loss3}
+\end{equation}
+
+
 \subsubsection{Parametry i nauka sieci}
+Podczas ostatniej analizy na szczególną uwagę zasługuję struktura sieci neuronowej przedstawiona na rysunku \ref{tab:scheme3}. Wynikiem działania sieci są funkcje postaci $G_{M_p}$ oraz $G_{E_p}$ w zależności od $Q^2$ oraz poprawka $\Delta C_{2\gamma}$ zależna od $Q^2$ i $\epsilon$, takie wymagania wymuszają przerwanie połączeń między niektórymi neuronami. Sieć składa się z warstwy wejściowej, dwóch warstw ukrytych oraz warstwy wyjściowej, wejściowa składa się z dwóch neuronów $(Q^2, \epsilon)$. Pierwsza warstwa ukryta zawiera trzy neurony połączone wyłącznie z $Q^2$ oraz jeden połączony wyłącznie z $\epsilon$ (3-1). Druga warstwa ukryta to pięć neuronów, ponownie trzy z nich połączone są z neuronami łączącymi się wyłącznie z kwadratem przekazu czteropędu, pozostałe dwa połączone są z neuronem z poprzedniej warstwy połączonym z czynnikiem kinematycznym (3-2). Ostatnia warstwa wyjściowa składa się z trzech neuronów, dwie funkcje postaci otrzymują sygnał pochądzący z trzech neuronów przekazujących sygnał zależny od wartości $Q^2$ natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. 
+
+Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. Normalizacja danych oraz inicjalizacja wag zostały wykonane identycznie jak w poprzednich analizach.
+
+
 \begin{SCfigure}
 	\centering
 	\resizebox{8.cm}{!}{\begin{tikzpicture}
@@ -1663,7 +1718,7 @@ Dodatkowym źródłem danych służącym do nauki sieci neuronowej w stosunku do
 		\tikzset{normal arrow/.style={draw,-latex}}
 		\node[cnode=white,label=0:$G_{E_p}$] (s) at (9,-5) {};
 		\node[cnode=white,label=0:$G_{M_p}$] (s-1) at (9,-7) {};
-	    \node[cnode=white,label=0:$\Delta C_2$] (s-2) at (9,-9) {};
+	    \node[cnode=white,label=0:$\Delta C_{2\gamma}$] (s-2) at (9,-9) {};
 		
 		\node[cnode=white,label=180:\textit{}] (x-3) at (0,-9) {1};
 		
@@ -1755,37 +1810,62 @@ Dodatkowym źródłem danych służącym do nauki sieci neuronowej w stosunku do
 		Generowanie danych & $N_{rep}$ & 500 & \\ \hline
 		$k$-krotna walidacja krzyżowa & $k$ & 5 &\\ \hline
 		
-		Algorytm uczący& $\alpha$ (\textit{learning rate}) & 0,02 & \\ \hline
-		& $\lambda$ (\textit{decay}) & 0,001 & \\ \hline
+		Algorytm uczący& $\alpha$ (\textit{learning rate}) & 0,02 & \\
+		& $\lambda$ (\textit{decay}) & 0,001 & \\ 
 		& $\beta$ (\textit{pęd}) & 0,9 & \\ \hline
-		Sieć neuronowa & Liczba warstw & 2 & \\ \hline
+		Sieć neuronowa & Liczba warstw & 2 & \\ 
 		& Ilość neuronów & ((3-1),(3-2)) & \\ \hline
 		
 	\end{tabular}
 \end{table}
 
+
 \subsubsection{Wyniki}
 %
+%
+
+Rysunek \ref{fig:ff3} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Otrzymane wyniki zostały ponownie porównywane są z rezultatami publikacji \cite{2009PhRvC..79f5204A}, które całkowicie zawierają się w obszarze $\pm 2\sigma$ otrzymanych wyników. W przypadku magnetycznej funkcji postaci główna różnica to brak przegięcia funkcji będącej wynikiem modelu, w okolicach $Q^2 \simeq 0.15 \text{ GeV}^2$ oraz późniejsze niedoszacowanie względem porównywanej funkcji, nie przekraczające różnicy 0.02. Elektryczna funkcja postaci również pozbawiona jest pierwszego niewielkiego przecięcia, następnie spadek wartości zaczyna się wcześniej, tzn. dla nieco mniejszej wartości $Q^2$, jednak jest on mniej gwałtowny. Odchylenie standardowe magnetycznej funkcji postaci jest w przybliżeniu stałe na całej długości przedstawionego przebiegu funkcji i wynosi około $0.01$, wariancja elektrycznej funkcji postaci w pobliżu $Q^2 \rightarrow 0$ jest bardzo niewielka i znacznie wzrasta wraz z $Q^2$.
+% 
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=0.98\textwidth]{anl_3.eps}
+	\includegraphics[width=1.2\textwidth]{anl_3.eps}
 	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
-	\label{fig:gm3}
+	\label{fig:ff3}
 \end{figure}
+
+Rysunek \ref{fig:ratio3} przedstawia pomiary eksperymentalne stosunku funkcji postaci wraz z zaznaczoną niepewnością pomiarow, przerywaną linią zaznaczono dopasowanie liniowe oraz wynik modelu wraz z odchyleniami standardowymi. Iloraz $\mu G_{E_p} / G_{M_p}$ szczególnie dobrze opisywany jest przez model dla niewielkich wartości $Q^2$ i cechuje się w tym obszarze bardzo niewieką niepewnością. Wraz ze wzrostem $Q^2$ maleje gęstość pomiarów, $G_{E_p}$ staje się przeszacowane, a odchylenie standardowe znacznie wzrasta. Większość pomiarów doświadczalnych znajduje się jednak w obszarze niepewności $-2\sigma$.
 
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=0.98\textwidth]{ratio_3.eps}
+	\includegraphics[width=1.\textwidth]{ratio_3.eps}
 	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
 	\label{fig:ratio3}
 \end{figure}
 
+Jednym z wyników sieci nieuwzględnionym podczas wcześniejszych analiz jest poprawka dwufotonowa $\Delta C_{2\gamma}$, rysunek \ref{fig:c2} przedstawia jej zależność od kwadratu przekazu czteropędu dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$. Dla wartości $Q^2 < 1 \text{ GeV}^2$ poprawka ma niewielką wartość i niewielkie odchylenie standardowe, zatem ma niewielki wpływ na wartość całkowitego przekroju czynnego.  Dla $Q^2 > 1 \text{ GeV}^2$ jej średnia wartość zaczyna rosnąć wraz z $Q^2$ do około 0.3, odchylenie standardowe również gwałtownie wzrasta i osiąga wartość około 0.2.
+
+
+
 \begin{figure}[hp!]
 	\centering
 	\includegraphics[width=1\textwidth]{c2_q2.eps}
-	\caption{} 
+	\caption{Poprawka dwufotonowa w zależności od $Q^2$, ciągła linia to wynik modelu, kolory szarne oznaczją odchylenie standardowe $1\sigma$ oraz $2\sigma$.} 
 	\label{fig:c2}
 \end{figure}
+
+
+\section[\color{red}Porównanie rezultatów]{Porównanie rezultatów}
+
+
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{cmp_all.eps}
+	\caption{} 
+	\label{fig:cmp_all}
+\end{figure}
+
+\chapter[\color{red}Zakończenie]{Zakończenie}
+
 
 %cos z podsumowaniem wszystkie modele przedstawione razem??
 \bibliographystyle{abbrv}
@@ -1842,3 +1922,67 @@ Dodatkowym źródłem danych służącym do nauki sieci neuronowej w stosunku do
 	\caption{Magnetyczna funkcja postaci. Linia ciągła przedstawia średnią ze  wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.} 
 	\label{fig:gm1}
 \end{figure}
+
+The proton radius conflict is a prime problem in proton structure physics. To state the problem is
+simple: we measure the proton radius using electrons, and we measure the proton radius using muons,
+and we get incompatibly different answers.
+Measurements made using electrons come either from electron-proton scattering or from atomic
+spectroscopy, where there are small but measurable shifts in the hydrogen spectrum due to the proton
+size. The proton charge radius obtained from different electron measurements substantially agree, and
+gave a result with an uncertainly of order 0.6%.
+On the muonic side, there is only one set of measurements, but it is one with a very small uncertainty
+limit. The announcement came in 2010 [1], with follow-up in 2013 [2], of the proton size measured from
+its effect on the muonic hydrogen spectrum, specifically the 2S-2P Lamb shift. The muon, because of
+its mass, orbits closer to the proton than an electron, and it energy levels are more strongly affected by
+the proton size. This allows a proton radius measurement with an error bar more than 10 times smaller
+than obtained from the collected electronic measurements, despite the limited lifetime of the muon.
+The proton radius from the muonic Lamb shift is a startling 4%, or 7 of the current electronic
+standard deviations, smaller than the previously accepted result.
+The reasons for this are not yet clear. We will make some comments here about what has been
+thought about, beginning with a brief description of the electron based experiments followed by some
+remarks about how the muonic Lamb measurements are carried out to give the charge radius. We will
+then comment on some (but far from all) of the theory calculations needed to interpret the experiments.
+Much work has been done checking the corrections involved in pulling out the charge radius from the
+muonic experiment, but nothing big enough to affect the result that has been found. Then we will
+comment at some length about suggestions that have been made to reconcile the two measurements,
+including speculation about anomalous QCD corrections, speculation about connections to physics
+beyond the standard model, and questions raised about the interpretation of the experiments using
+electrons. The importance of the problem has led to a number of experiments to check aspects of the
+conflict, and we will catalog some of them in anticipation of their success. We will offer some concluding
+remarks, but the main concluding remark, unfortunately or otherwise, is that the problem remains.
+Previous reviews are found in [3, 4].
+
+Proton puzzle - co to za problem? skąd wynika, co sprawia ze jest ciekawy...
+
+Atomic measurements
+add weight to recent work
+suggesting that the proton
+is significantly smaller than
+previously thought.
+In 2010, researchers studied
+muonic hydrogen (in which
+the electron is replaced with a
+muon, a bigger particle that is
+also negatively charged), which
+allowed them to measure the
+nuclear radius much more
+accurately than is possible with
+ordinary hydrogen. The proton
+size they found was smaller
+than expected from previous
+measurements. To confirm
+the results, the same team, led
+by Randolf Pohl of the MaxPlanck
+Institute for Quantum
+Optics in Garching, Germany,
+studied the nucleus of muonic
+deuterium, which contains a
+proton and a neutron. They
+calculated that the proton
+radius is about 5% smaller
+than previously measured — a
+similar result to that of 2010.
+Several laboratories are
+redoing the measurements in
+ordinary hydrogen atoms to
+try to resolve the contradiction.
