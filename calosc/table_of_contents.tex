@@ -202,15 +202,52 @@
 %\chapter{Wstęp}
 \chapter[\color{red}Wstęp]{Wstęp}
 
-Proton to trwała cząsteczka subatomowa o dodatnim ładunku elektrycznym o wartości $+e$ i masie spoczynkowej około 938 MeV, nieznacznie mniejszej od masy neutronu. Według teorii modelu standardowego jest fermionem o spinie 1/2, składa się z dwóch kwarków górnych i jednego kwarka dolnego związanych ze sobą dzięki oddziaływaniom silnym, których pośrednikiem są gluony. Mimo, że jest to jeden z podstawowych składników materii i jądro atomowe każdego pierwiastka zawiera jeden lub więcej protonów, nie wszystkie jego właściwości są dobrze poznane. Wśród nich znajduje się promień protonu $r_p$, wielkość tę można zmierzyć używając albo elektronów albo mionów, problemem jest, że w każdej z metod otrzymywane są zupełnie inne odpowiedzi. 
+Proton to trwała cząsteczka subatomowa o dodatnim ładunku elektrycznym o wartości $+e$ i masie spoczynkowej około 938 MeV, nieznacznie mniejszej od masy neutronu. Według teorii modelu standardowego jest fermionem o spinie 1/2, składa się z dwóch kwarków górnych i jednego kwarka dolnego związanych ze sobą dzięki oddziaływaniom silnym, których pośrednikiem są gluony. Mimo, że jest to jeden z podstawowych składników materii i jądro atomowe każdego pierwiastka zawiera jeden lub więcej protonów, nie wszystkie jego właściwości są dobrze poznane. Zrozumienie ich stanowi istotny problem fizyki cząstek elementarnych.
 
-Źródłem pomiarów eksperymentalnych uzyskanych przy użyciu elektronów jest rozpraszanie elektron-proton lub spektroskopia atomowa podczas, której mozna zaobserwować niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Otrzymane w ten sposób w wielu eksperymentach rezultaty są spójne i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. 
-
-Wykorzystując miony dysponujemy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu swojej masy orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.
+Funkcje postaci protonu opisują przestrzenny rozkład ładunku elektrycznego we wnętrzu protonu, są zatem dobrym dostarczycielem informacji o jego wewnętrznej strukturze i jednym z kluczowych składników, które mogą pomóc ją poznać i zrozumieć. Funkcje postaci protonu mierzone są poprzez rozpraszanie elektronów na protonach. W granicy nierelatywistycznej definiowane są w następujący sposób \cite{Carlson:2015jba}:
 
 
+\begin{equation}
+G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} ,
+\end{equation}
 
-\begin{figure}
+całkując po całej objętości protonu, $\vec{Q}$ to przekaz czteropędu podczas rozpraszania. Wyróżniamy elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ funkcje postaci, które dla niewielkich wartości $\vec{Q}$ mogą być utożsamiane z transformatami Fouriera gęstości ładunku elektrycznego i prądu magnetyzacji wewnątrz protonu. Ponadto rozwinięcie w szereg dla niewielkich $Q^2$ daje:
+
+\begin{equation}
+G(Q^2) = 1 - \frac{1}{6}\langle r^2 \rangle Q^2 + \dots,
+\end{equation}
+
+gdzie $\langle r^2 \rangle$ to kwadrat średniej kwadratowej promienia protonu. Znajomość funkcji postaci pozwala przy pomocy poniższego równania na oszacowanie promienia protonu czyli jednej z ciągle wątpliwie poznanych właśności cząstki.
+
+\begin{equation}
+r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\rvert_{Q^2 = 0}
+\end{equation}
+
+Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane na skutek badania spektroskopii atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Jedne z najdokładniejszych pomiarów rozpraszania zostały opublikowane w \cite{Bernauer:2010wm}, natomiast wartość promienia protonu została oszacowana na
+
+\begin{equation}
+	R_E = 0.879(8) \; \text{fm}.
+\end{equation}
+
+Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając dodatkowo pomiary spektroskopowe rekomenduje wartość \cite{2012RvMP...84.1527M}
+
+\begin{equation}
+R_E = 0.8775(51) \; \text{fm}. \label{r_codata}
+\end{equation}
+
+
+
+
+Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony. Dysponujemy wtedy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu masy około 200-krotnie większej od elektronu orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.  Obecne rezultaty wskazują na wartość \cite{Antognini417}
+
+\begin{equation}
+R_E = 0.84087(39) \; \text{fm}.
+\end{equation}
+
+To wartość o 4\% mniejsza od rekomendowanej przez CODATA \ref{r_codata}, będąca rozbieżnością na poziomie $7\sigma$.
+	
+
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
 	\caption{}
@@ -884,7 +921,7 @@ gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji s�
 \end{split} \label{eq:rosen}
 \end{equation}
 
-Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}
+Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}.
 %
 
 \subsubsection{Pomiar polaryzacji protonu}
@@ -900,7 +937,7 @@ $$
 \mathcal{R}\left(Q^2\right) \equiv -\mu_p  \frac{P_t}{P_l} \frac{E + E'}{2M} \tan^2  \left(\frac{\theta}{2}\right) 
 $$
 %
-gdzie $P_l$ i $P_t$ to podłużny i poprzeczny składnik wektora polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu.
+gdzie $P_l$ i $P_t$ to podłużny i poprzeczny składnik wektora polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu. Schemat procesu pokazany został na rysunku \ref{fig:recoil}
 %
 Współczynnik $\mathcal{R}\left(Q^2\right)$ może także zostać wyznaczony na podstawie pomiaru asymetrii podczas sprężystego rozpraszania elektron-proton \cite{2009PhRvC..79f5204A, 2007PrPNP..59..694P}
 %
@@ -911,7 +948,16 @@ $$
 gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny polaryzacji protonu względem wektora przekazu pędu $\vec{q}$ i płaszczyzny rozpraszania.
 %
 
-\subsubsection{Poprawka dwufotonowa (TPE)}
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1.\textwidth]{Epkin_recoil_colour}
+	\caption{Schemat rozpraszania spolaryzowanego podłużnie elektronu na protonie w przyybliżeniu jednofotonowym.} 
+	\label{fig:recoil}
+\end{figure}
+
+
+
+\subsubsection{Poprawka dwufotonowa}
 Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynnych wskazują, że do uzyskania całkowitej zgodność z danymi pomiarów transferu polaryzacji niezbędne jest uwzględnienie dodatkowych poprawek do równania \ref{eq:rosen}. Po za klasycznymi poprawkami radiacyjnymi należy rozważyć poprawkę dwufotonową, która może zostać zapisana jako dodatkowy składnik równania.
 
 \begin{equation}
