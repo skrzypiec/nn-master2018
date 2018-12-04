@@ -183,7 +183,7 @@
 \textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
 	\item 4.4 porownanie wynikow
-	\item problem puzzle proton size opisac we wstepie
+	\item zastanowic się czy wstępu nie przeniesc do fizyki zjawiska
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
 			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia?
@@ -192,7 +192,7 @@
 	\item tekst o sigmoidzie też do ponownego przejrzenia
 	\item bias - variance
 	\item wstep, zakonczenie
-	\item spis treści mniej szczegółowy, tak aby zmieścił się na jednej stronie np. wszystkie analizy razem
+	\item spis treści tak aby zmieścił się na jednej stronie
 \end{itemize}
 
 
@@ -216,7 +216,7 @@ całkując po całej objętości protonu, $\vec{Q}$ to przekaz czteropędu podcz
 \begin{equation}
 G(Q^2) = 1 - \frac{1}{6}\langle r^2 \rangle Q^2 + \dots,
 \end{equation}
-
+%
 gdzie $\langle r^2 \rangle$ to kwadrat średniej kwadratowej promienia protonu. Znajomość funkcji postaci pozwala przy pomocy poniższego równania na oszacowanie promienia protonu czyli jednej z ciągle wątpliwie poznanych właśności cząstki.
 
 \begin{equation}
@@ -224,51 +224,46 @@ r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\
 \end{equation}
 
 Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane na skutek badania spektroskopii atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Jedne z najdokładniejszych pomiarów rozpraszania zostały opublikowane w \cite{Bernauer:2010wm}, natomiast wartość promienia protonu została oszacowana na
-
+%
 \begin{equation}
 	R_E = 0.879(8) \; \text{fm}.
 \end{equation}
-
+%
 Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając dodatkowo pomiary spektroskopowe rekomenduje wartość \cite{2012RvMP...84.1527M}
-
+%
 \begin{equation}
 R_E = 0.8775(51) \; \text{fm}. \label{r_codata}
 \end{equation}
 
-
-
-
 Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony. Dysponujemy wtedy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu masy około 200-krotnie większej od elektronu orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.  Obecne rezultaty wskazują na wartość \cite{Antognini417}
-
+%
 \begin{equation}
 R_E = 0.84087(39) \; \text{fm}.
 \end{equation}
-
-To wartość o 4\% mniejsza od rekomendowanej przez CODATA \ref{r_codata}, będąca rozbieżnością na poziomie $7\sigma$.
+%
+To wartość o 4\% mniejsza od rekomendowanej przez CODATA (\ref{r_codata}), będąca rozbieżnością na poziomie $7\sigma$.
 	
+	
+Celem tej pracy magisterskiej jest zbudowanie modelu statystycznego, który wykorzystując pomiary eksperymentalne rozpraszania elektron-proton da w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. Zainspirowany poprzednimi badaniami \cite{2009PhRvC..79f5204A}, \cite{PhysRevC.84.034314} wykorzystam do tego celu popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy. Sieci neuronowe są przykładem systemów uczących się, i znalazły szerokie zastosowanie w problemach klasyfikacyjnych oraz regresyjnych. Swoją popularność zawdzięczają biologicznym analogią, ich konstrukcja inspirowana jest budową znajdujących się w mózgu struktur stworzonych przez naturalne neurony i łączące je synapsy. 
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
-	\caption{}
-	\label{fig:porownaniewielkosci}
-\end{figure}
+Następny rozdział to wprowadzenie do tematyki sieci neuronowych, przedstawiona jest w nim ich historia, struktura i sposób działania. Ponadto przedstawię działanie twierdzenia, które mówi o tym, że sieć neuronowa może realizować aproksymację z dowolnie małym błędem. Rozdział 3 to wprowadzenie do metodologii budowy i nauki modelu statystycznego wraz z omówieniem fizyki zjawiska rozpraszania elektron-proton. W rozdziale 4 zostaną przedstawione wyniki trzech analiz wynikające z wykorzystania różnych technik modelowania oraz rodzajów pomiarów eksperymentalnych. Uzyskane wyniki zostaną porównane z rezultatami przedstawionymi w pracy \cite{PhysRevC.84.034314}. Praca kończy się podsumowaniem w rozdziale 5.
 
-
-\section[\color{red}Fizyka zagadnienia i cel pracy - bardzo ogólnie]{Fizyka zagadnienia i cel pracy - bardzo ogólnie}
-
-\section[\color{red}Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja - bardzo ogólnie]{Sieci neuronowe, wysokopoziomwy opis, zastosowania - regresja i klasyfikacja - bardzo ogólnie}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
+%	\caption{}
+%	\label{fig:porownaniewielkosci}
+%\end{figure}
 
 
 \chapter[\color{red}Sieci Neuronowe]{Sieci Neuronowe}
-
+\label{sieci}
 \section[\color{red}Historia sieci - perceptron, biologia]{Historia sieci - perceptron, biologia}
 \section[\color{red}Funkcje aktywacji, dlaczego sigmoidy]{Funkcje aktywacji, dlaczego sigmoidy}
 %[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
 Funckja aktywacji to funkcja, która działa na każdy neuron w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci neuronowej może mieć zdefiniowaną inną funckję aktywacji.
 
-Perceptron, który był inspiracją powstania sieci neuronowcyh został skonstruowany jako uproszczony model biologicznego neuronu. W neurobiologii, neuron jest 
-komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony połączone są ze sobą przez synapsy, jeden neuron może otrzymywać informacje od wielu komórek nerwowych. Jeśli suma sygnałów elektrycznych z wejściowych synaps przekroczy pewien próg, wtedy neuron transmituje dalej sygnał elektryczny. Perceptron naśladował ten mechanizm stosując przedstawioną w lewym górnym rogu na Rys.~\ref{fig:activations} funckję Heaviside'a jako funkcję aktywacji. Funkcja przyjmuję wartość jeden jeśli suma wartości wejściowych jest większa od zera, w innym przypadku funkcja przyjmuje wartość zero i neuron nie propaguje sygnału. Perceptron jest najprostszym przykładem sieci neuronowej.
+Perceptron, który był inspiracją powstania sieci neuronowcyh został skonstruowany jako uproszczony model biologicznego neuronu. W neurobiologii, neuron jest komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony połączone są ze sobą przez synapsy, jeden neuron może otrzymywać informacje od wielu komórek nerwowych. Jeśli suma sygnałów elektrycznych z wejściowych synaps przekroczy pewien próg, wtedy neuron transmituje dalej sygnał elektryczny. Perceptron naśladował ten mechanizm stosując przedstawioną w lewym górnym rogu na Rys.~\ref{fig:activations} funckję Heaviside'a jako funkcję aktywacji. Funkcja przyjmuję wartość jeden jeśli suma wartości wejściowych jest większa od zera, w innym przypadku funkcja przyjmuje wartość zero i neuron nie propaguje sygnału. Perceptron jest najprostszym przykładem sieci neuronowej.
 
 Wyniki badań przeprowadzonych przez [publikacja, publikacja] pokazały, że wśród pożądanych cech funkcji aktywacji znajdują się atrybuty, których funkcja Heaviside'a nie posiada, z tego powodu nie jest w praktyce często stosowana.
 
