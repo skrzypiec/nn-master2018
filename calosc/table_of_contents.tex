@@ -5,6 +5,8 @@
 \usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{listings}
+\usepackage{geometry}
+\usepackage{afterpage}
 \usepackage{natbib}
 \usetikzlibrary{chains, positioning}
 \newtheorem{theorem}{Twierdzenie}[section]
@@ -23,6 +25,7 @@
 \sidecaptionvpos{figure}{t}
 \usetikzlibrary{calc,arrows}
 \usepackage{slashbox}
+\usepackage[normalem]{ulem}
 \usetikzlibrary{chains, positioning}
 
 \usepackage{xcolor}
@@ -155,7 +158,6 @@
 
 
 \begin{document}
-
 %\maketitle
 %\tableofcontents
 
@@ -183,7 +185,6 @@
 \textbf{Co poprawić z obecnego tekstu według priorytetu:}
 \begin{itemize}
 	\item 4.4 porownanie wynikow
-	\item zastanowic się czy wstępu nie przeniesc do fizyki zjawiska
 	\item Twierdzeneie Cybenki	
 	\begin{itemize}
 			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia?
@@ -191,69 +192,30 @@
 	\end{itemize}
 	\item tekst o sigmoidzie też do ponownego przejrzenia
 	\item bias - variance
-	\item wstep, zakonczenie
+	\item zakonczenie
 	\item spis treści tak aby zmieścił się na jednej stronie
 \end{itemize}
 
 
 \tableofcontents
 \addtocontents{toc}{~\hfill\textbf{Strona}\par}
-
+\newgeometry{tmargin=3.cm, bmargin=3.0cm, lmargin=3.5cm, rmargin=2.5cm}
 %\chapter{Wstęp}
-\chapter[\color{red}Wstęp]{Wstęp}
+\chapter{Wstęp}
 
-Proton to trwała cząsteczka subatomowa o dodatnim ładunku elektrycznym o wartości $+e$ i masie spoczynkowej około 938 MeV, nieznacznie mniejszej od masy neutronu. Według teorii modelu standardowego jest fermionem o spinie 1/2, składa się z dwóch kwarków górnych i jednego kwarka dolnego związanych ze sobą dzięki oddziaływaniom silnym, których pośrednikiem są gluony. Mimo, że jest to jeden z podstawowych składników materii i jądro atomowe każdego pierwiastka zawiera jeden lub więcej protonów, nie wszystkie jego właściwości są dobrze poznane. Zrozumienie ich stanowi istotny problem fizyki cząstek elementarnych.
+Proton to trwała cząsteczka subatomowa o dodatnim ładunku elektrycznym o wartości $+e$ i masie spoczynkowej około 938 MeV \cite{2012RvMP...84.1527M}, nieznacznie mniejszej od masy neutronu. Według teorii modelu standardowego jest fermionem o spinie 1/2, składa się z dwóch kwarków górnych i jednego kwarka dolnego związanych ze sobą dzięki oddziaływaniom silnym, których pośrednikiem są gluony. Mimo, że jest to jeden z podstawowych składników materii i jądro atomowe każdego pierwiastka zawiera jeden lub więcej protonów, nie wszystkie jego właściwości są dobrze poznane. Zrozumienie ich stanowi istotny problem fizyki cząstek elementarnych.
 
-Funkcje postaci protonu opisują przestrzenny rozkład ładunku elektrycznego we wnętrzu protonu, są zatem dobrym dostarczycielem informacji o jego wewnętrznej strukturze i jednym z kluczowych składników, które mogą pomóc ją poznać i zrozumieć. Funkcje postaci protonu mierzone są poprzez rozpraszanie elektronów na protonach. W granicy nierelatywistycznej definiowane są w następujący sposób \cite{Carlson:2015jba}:
+Funkcje postaci protonu opisują przestrzenny rozkład ładunku elektrycznego we wnętrzu protonu, są zatem dobrym dostarczycielem informacji o jego wewnętrznej strukturze i jednym z kluczowych składników, które mogą pomóc ją poznać i zrozumieć. Funkcje postaci protonu mierzone poprzez wykorzystanie pomiarów eksperymentalnych rozpraszania elektronów na protonach. Wyróżniamy elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ funkcje postaci, które dla niewielkich wartości przekazu czteropędu mogą być utożsamiane z transformatami Fouriera gęstości ładunku elektrycznego i prądu magnetyzacji wewnątrz protonu. 
 
+Znajomość funkcji postaci pozwala na oszacowanie promienia protonu czyli jednej z ciągle wątpliwie poznanych właśności cząstki. Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane na skutek badania spektroskopii atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając pomiary z obu metod rekomenduje wartość \cite{2012RvMP...84.1527M}
+$R_E = 0.8775(51) \; \text{fm}$. Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony, które są około 200-krotnie cięższe od elektronów. Eskperymenty obserwacji przesunięcia Lamba 2S-2P w spektrum wodoru mionowego zostały opublikowane w 2010 roku \cite{2010Nature..Pohl}. Wykorzystana do obliczeń metoda daje wyniki obarczone 10 razy mniejszą niepewnością niż wcześniej \cite{Carlson:2015jba}. Ostatnie publikacje  \cite{Antognini417} wskazują na wartość $R_E = 0.84087(39) \; \text{fm}.$ To wartość aż o 4\% mniejsza od rekomendowanej przez CODATA. Takie rozbieżności wskazują na poważne braki w dotychczasowej teorii co równocześnie wzbudza zainteresowanie tą dziedziną fizyki.
 
-\begin{equation}
-G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} ,
-\end{equation}
+Celem tej pracy magisterskiej jest zbudowanie modelu statystycznego, który wykorzystując pomiary eksperymentalne rozpraszania elektron-proton da w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. Przedstawione analizy zaprezentują wykorzystują trzy modele, które w różny sposób starają się rozwiązać to zadanie. Pierwszy z nich do nauki wykorzystuje tylko pomiary całkowitych przekrójów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$ i estymuje całkowity przekrój czynny. Następnie operacje różniczkowania pozwalaja na separacje funkcji postaci. Drugi z modelów wykorzystuje dodatkowo pomiary stosunków funkcji postaci, jego wynikiem są explicite elektrtyczna i magnetyczna funkcja postaci. Trzeci model oprócz szacowania funkcji postaci przewiduje wartość poprawki dwufotonowej.
 
-całkując po całej objętości protonu, $\vec{Q}$ to przekaz czteropędu podczas rozpraszania. Wyróżniamy elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ funkcje postaci, które dla niewielkich wartości $\vec{Q}$ mogą być utożsamiane z transformatami Fouriera gęstości ładunku elektrycznego i prądu magnetyzacji wewnątrz protonu. Ponadto rozwinięcie w szereg dla niewielkich $Q^2$ daje:
+Zainspirowany poprzednimi badaniami \cite{2009PhRvC..79f5204A}, \cite{PhysRevC.84.034314} wykorzystano do tego celu popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy. Sieci neuronowe są przykładem systemów uczących się, i znalazły szerokie zastosowanie w problemach klasyfikacyjnych oraz regresyjnych. Swoją popularność zawdzięczają biologicznym analogiom, ich konstrukcja inspirowana jest budową znajdujących się w mózgu struktur stworzonych przez neurony - komórkę nerwową, która na podstawie sygnałów wejściowych wyznacza wartość wysyłanego przez nią sygnału wyjściowego \cite{1957Rosenblatt}. Tak zdefiniowane bardzo ogólnie neurony możemy łączyć w rozbudowane struktury tworząc sieć neuronową. Połączone w dowolny sposób komórki tworzą graf, w którym każda krawędź ma przypisaną liczbę nazywaną wagą. Jej wartość świadczy o istotności połączenia i jest ustalana jest podczasa nauki modelu. Uczenie modelu wymaga przygotowania odpowiedniego zestawu danych, który składa się ze zmiennych objaśniających czyli danych wejściowych oraz zmiennej objaśnianej czyli oczekiwanej wartości wyjściowej. Następnie uczący algorytm propagacji wstecznej modyfikuje wagi łączące neurony tak aby zminimalizować wartość błędu pomiędzy oczekiwanymi wartościami wyjściowymi oraz wynikiem modelu. 
 
-\begin{equation}
-G(Q^2) = 1 - \frac{1}{6}\langle r^2 \rangle Q^2 + \dots,
-\end{equation}
-%
-gdzie $\langle r^2 \rangle$ to kwadrat średniej kwadratowej promienia protonu. Znajomość funkcji postaci pozwala przy pomocy poniższego równania na oszacowanie promienia protonu czyli jednej z ciągle wątpliwie poznanych właśności cząstki.
+Praca magisterska została podzielona na pięć rozdziałów, następny zawiera wprowadzenie do tematyki sieci neuronowych, przedstawiona jest w nim ich historia, struktura i sposób działania. Następnie zaprezentowano wizualne działanie twierdzenia mówiące, że sieć neuronowa może realizować aproksymację z dowolnie małym błędem oraz problem osiągnięcia kompromisu pomiędzy obciążeniem i wariancją modelu. Rozdział 3 zaczyna się od opisu fizyki rozpraszania elektron-proton wraz z metodą separacji Rosenblutha \cite{PhysRev.79.615} oraz pomiarem polaryzacji protonu \cite{Akhiezer:1974em}. Kolejne sekcje wprowadzenie do metodologii budowy i nauki modelu sieci neuronowych wraz z omówieniem wykorzystanych algorytmów m.in. generowania sztucznych danych, wczesnego zatrzymania nauki modelu oraz walidacji krzyżowej . W rozdziale 4 zostaną przedstawione wyniki trzech analiz wynikające z wykorzystania różnych technik modelowania oraz rodzajów pomiarów eksperymentalnych. Uzyskane wyniki zostaną porównane z rezultatami przedstawionymi w pracy \cite{PhysRevC.84.034314}. Praca kończy się podsumowaniem w rozdziale 5.
 
-\begin{equation}
-r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\rvert_{Q^2 = 0}
-\end{equation}
-
-Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane na skutek badania spektroskopii atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Jedne z najdokładniejszych pomiarów rozpraszania zostały opublikowane w \cite{Bernauer:2010wm}, natomiast wartość promienia protonu została oszacowana na
-%
-\begin{equation}
-	R_E = 0.879(8) \; \text{fm}.
-\end{equation}
-%
-Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając dodatkowo pomiary spektroskopowe rekomenduje wartość \cite{2012RvMP...84.1527M}
-%
-\begin{equation}
-R_E = 0.8775(51) \; \text{fm}. \label{r_codata}
-\end{equation}
-
-Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony. Dysponujemy wtedy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu masy około 200-krotnie większej od elektronu orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.  Obecne rezultaty wskazują na wartość \cite{Antognini417}
-%
-\begin{equation}
-R_E = 0.84087(39) \; \text{fm}.
-\end{equation}
-%
-To wartość o 4\% mniejsza od rekomendowanej przez CODATA (\ref{r_codata}), będąca rozbieżnością na poziomie $7\sigma$.
-	
-	
-Celem tej pracy magisterskiej jest zbudowanie modelu statystycznego, który wykorzystując pomiary eksperymentalne rozpraszania elektron-proton da w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. Zainspirowany poprzednimi badaniami \cite{2009PhRvC..79f5204A}, \cite{PhysRevC.84.034314} wykorzystam do tego celu popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy. Sieci neuronowe są przykładem systemów uczących się, i znalazły szerokie zastosowanie w problemach klasyfikacyjnych oraz regresyjnych. Swoją popularność zawdzięczają biologicznym analogią, ich konstrukcja inspirowana jest budową znajdujących się w mózgu struktur stworzonych przez naturalne neurony i łączące je synapsy. 
-
-Następny rozdział to wprowadzenie do tematyki sieci neuronowych, przedstawiona jest w nim ich historia, struktura i sposób działania. Ponadto przedstawię działanie twierdzenia, które mówi o tym, że sieć neuronowa może realizować aproksymację z dowolnie małym błędem. Rozdział 3 to wprowadzenie do metodologii budowy i nauki modelu statystycznego wraz z omówieniem fizyki zjawiska rozpraszania elektron-proton. W rozdziale 4 zostaną przedstawione wyniki trzech analiz wynikające z wykorzystania różnych technik modelowania oraz rodzajów pomiarów eksperymentalnych. Uzyskane wyniki zostaną porównane z rezultatami przedstawionymi w pracy \cite{PhysRevC.84.034314}. Praca kończy się podsumowaniem w rozdziale 5.
-
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
-%	\caption{}
-%	\label{fig:porownaniewielkosci}
-%\end{figure}
 
 
 \chapter[\color{red}Sieci Neuronowe]{Sieci Neuronowe}
@@ -846,7 +808,7 @@ Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między
 
 \begin{figure}[htp!]
 	\centering
-\includegraphics[width=\linewidth]{rozpraszanie}
+\includegraphics[width=0.8\linewidth]{rozpraszanie}
 	\caption{Prosty schemat rozpraszania elastycznego elektronu o energii początkowej $E_0$  i energii kończowej $E'$ na jądrze atomu wodoru, $\theta$ to kąt rozpraszania.}
 	\label{fig:scactter}
 \end{figure}
@@ -887,7 +849,16 @@ Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się pr
 %\end{equation}
 
 
-Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha \cite{1990..Taylor}:
+Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. 
+
+
+Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Funkcje postaci protonu opisują przestrzenny rozkład ładunku elektrycznego we wnętrzu protonu, są zatem dobrym dostarczycielem informacji o jego wewnętrznej strukturze i jednym z kluczowych składników, które mogą pomóc ją poznać i zrozumieć. W granicy nierelatywistycznej definiowane są w następujący sposób \cite{Carlson:2015jba}:
+
+\begin{equation}
+G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} , \label{eq:formfactor}
+\end{equation}
+
+całkując po całej objętości protonu. Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha \cite{1990..Taylor}:
 
 \begin{equation}
 \begin{split}
@@ -945,7 +916,7 @@ gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skręt
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1.\textwidth]{Epkin_recoil_colour}
+	\includegraphics[width=.7\textwidth]{Epkin_recoil_colour}
 	\caption{Schemat rozpraszania spolaryzowanego podłużnie elektronu na protonie w przyybliżeniu jednofotonowym.} 
 	\label{fig:recoil}
 \end{figure}
@@ -962,8 +933,8 @@ Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynn
 %
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1.\textwidth]{tpe}
-	\caption{Diagram dwufotonowy dla elastycznego rozpraszania elektron-proton} 
+	\includegraphics[width=.6\textwidth]{tpe}
+	\caption{Diagram dwufotonowy dla elastycznego rozpraszania elektron-proton.} 
 	\label{fig:tpe}
 \end{figure}
 
@@ -974,11 +945,58 @@ Diagram Feynmana dla tego zjawisku został przedstawiony na rysunku \ref{fig:tpe
 \sigma_R \rightarrow \sigma_R + \delta_{TPE}\left(Q^2, \epsilon\right)
 \end{equation}
 
-W jednej z przedstawionej poniżej analiz wpływ poprawki dwufotonowej zostanie uwzględniony. Dokładne oszacowanie przebiegów funkcji postaci $G_{E_p}$ i $G_{M_p}$ jest niezwykle ważne, poniważ może posłużyć do oszacowania promienia protonu, który wyraża się wzorem:
+Wpływ poprawki dwufotonowej zostanie uwzględniony w jednej z przedstawionej poniżej analiz. 
+
+\subsubsection{Promień protonu}
+
+Zgodnie z równianiem (\ref{eq:formfactor}), funkcje postaci w granicy nierelatywistycznej definiowane są w następujący sposób:
+
+\begin{equation*}
+G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} ,
+\end{equation*}
+
+Ponadto rozwinięcie w szereg dla niewielkich $Q^2$ daje:
+
+\begin{equation}
+G(Q^2) = 1 - \frac{1}{6}\langle r^2 \rangle Q^2 + \dots,
+\end{equation}
+
+gdzie $\langle r^2 \rangle$ to kwadrat średniej kwadratowej promienia protonu. 
+Dokładne oszacowanie przebiegów funkcji postaci $G_{E_p}$ i $G_{M_p}$ jest niezwykle ważne, poniważ ich znajomość może posłużyć do oszacowania promienia protonu, który wyraża się poniższym wzorem: 
+
+
 
 \begin{equation}
 r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\rvert_{Q^2 = 0}
 \end{equation}
+
+Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane na skutek badania spektroskopii atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Jedne z najdokładniejszych pomiarów rozpraszania zostały opublikowane w \cite{Bernauer:2010wm}, natomiast wartość promienia protonu została oszacowana na
+%
+\begin{equation}
+R_E = 0.879(8) \; \text{fm}.
+\end{equation}
+%
+Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając dodatkowo pomiary spektroskopowe rekomenduje wartość \cite{2012RvMP...84.1527M}
+%
+\begin{equation}
+R_E = 0.8775(51) \; \text{fm}. \label{r_codata}
+\end{equation}
+
+Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony. Dysponujemy wtedy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu masy około 200-krotnie większej od elektronu orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.  Obecne rezultaty wskazują na wartość \cite{Antognini417}
+%
+\begin{equation}
+R_E = 0.84087(39) \; \text{fm}.
+\end{equation}
+%
+To wartość o 4\% mniejsza od rekomendowanej przez CODATA (\ref{r_codata}), będąca rozbieżnością na poziomie $7\sigma$. Wartości stałych fizycznych bardzo często znacząco zmieniały swoją wartość wraz z zmianą techniki pomiaru i wzrostem czułości urządzeń pomiarowych. Rysunek \ref{fig:porownaniewielkosci} przedstawia ewolucje wartości średniego czasu życia neutronu oraz masy mezonu eta w czasie. Możemy zauważyć, że w obu tych przykładach najnowsza wartość nie znajduje się nawet w obszarze niepewności pomiarowej początkowych wskazań.
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
+	\caption{Przykłady zmian szacowanych wielkości fizycznych w czasie. Na wykresie po lewej stronie średni czas życia swobodnego neutronu, po prawej stronie masa mezonu eta \cite{PhysRevD.86.010001}}
+	\label{fig:porownaniewielkosci}
+\end{figure}
 
 
 
@@ -1257,7 +1275,7 @@ Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu p
 
 \begin{figure}[h	]
 	\centering
-	\includegraphics[width=1.\textwidth]{gd_sgd.png}
+	\includegraphics[width=1.\textwidth]{gd_sgd.eps}
 	\caption{Funkcja  $f(x,y) =(1.5 - x + xy)^2 + (2.25 - x + xy^2)^2 + (2.625 - x + xy^3)^2$, osiąga minimum równe 0, w punkcie $(3,0.5)$ oznaczonym  czarną gwiazdą. Grafika przedstawia porównanie działania metody gradientu prostego oraz jego modyfikacji poprzez dodanie pędu. Przyjmując, że punkt początkowy to $(2,1)$, $\alpha = 0.001$ i $\beta = 0.9$, możemy prześledzić trajektorie algorytmów przez pierwsze 500 iteracji działania.} 
 	\label{fig:gd_sgd}
 \end{figure}
@@ -1713,7 +1731,7 @@ Wyniki nauczonych modeli tworzą statystykę, której najważniejszymi parametra
 % 
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=1.2\textwidth]{anl_2.eps}
+	\includegraphics[width=1.\textwidth]{anl_2.eps}
 	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
 	\label{fig:ff2}
 \end{figure}
@@ -1723,7 +1741,7 @@ Dodatkowym źródłem danych służącym do nauki sieci neuronowej w stosunku do
 %
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=1.2\textwidth]{ratio_2.eps}
+	\includegraphics[width=1.\textwidth]{ratio_2.eps}
 	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
 	\label{fig:ratio2}
 \end{figure}
@@ -1869,7 +1887,7 @@ Rysunek \ref{fig:ff3} przedstawia wykresy otrzymanych funkcji postaci protonu. L
 % 
 \begin{figure}[hp!]
 	\centering
-	\includegraphics[width=1.2\textwidth]{anl_3.eps}
+	\includegraphics[width=1.\textwidth]{anl_3.eps}
 	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
 	\label{fig:ff3}
 \end{figure}
