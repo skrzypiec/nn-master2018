@@ -280,7 +280,7 @@ y(\mathbf{x}) = \mathbf{w}^\mathsf{T} \mathbf{x} + b_0.
 %\label{sum}
 \end{equation}
 %
-Wektor $\mathbf{w}$, to $d$-wymiarowy wektor wag, natomiast parametr $b_0$ to bias.
+Wektor $\mathbf{w}$, to $d$-wymiarowy wektor wag, natomiast parametr $b_0$ to parametr obciążenia.
 %
 Rozważmy funkcję $g(\cdot)$ nazywaną dalej funkcją aktywacji, która jako argument przyjmuje jako argument sumę z równania (\ref{suma}):
 %
@@ -301,7 +301,7 @@ y = g\left(\mathbf{w}^\mathsf{T} \mathbf{x} + b_0 \right)
 	\node[cnode=white,label=90:Wyjście] (s) at (5,-3.2) {$ g\left(\mathbf{w}^\mathsf{T} \mathbf{x} + b_0 \right)$};
 	\node at (0,-3.9) {$\vdots$};
 	
-	\node[cnode=white,label=180:Bias] (x-5) at (0,-6) {1};
+	\node[cnode=white,label=180:Parametr obciążenia] (x-5) at (0,-6) {1};
 	
 	\foreach \x in {1,...,4}
 	{
@@ -317,7 +317,7 @@ y = g\left(\mathbf{w}^\mathsf{T} \mathbf{x} + b_0 \right)
 	}
 	\path[normal arrow] (x-5) -- node[above,sloped,pos=0.4] {$b_0$} (s);	
 	\end{tikzpicture}
-	\caption{ Reprezentacja funkcji dyskryminacyjnej $y(x)$ w postaci diagramu sieci neuronowej, mającej $n$ wejść, parametr bias i jedno wyjście.  }
+	\caption{ Reprezentacja funkcji dyskryminacyjnej $y(x)$ w postaci diagramu sieci neuronowej, mającej $n$ wejść, parametr obciążenia i jedno wyjście.  }
 \end{SCfigure}
 %
 Załóżmy, że funkcja rozkładu prawdopodobieństwa danych pod warunkiem klasy $C_k$ zadane jest przez wielowymiarowy rozkład normalny z równymi macierzami kowariancji $ \Sigma_1 = \Sigma_2 = \Sigma$
@@ -354,135 +354,50 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 %
 
 
-\section[\color{red}Opis algorytmu uczenia prostej sieci]{Opis algorytmu uczenia prostej sieci}
+\section{Uczenie sieci neuronowej}
+
+
+Uczenie się to proces pozyskiwania nowej lub modyfikacji nabytej wiedzy, zachowania lub umiejętności pod wpływem doświadczeń \cite{2008:Biologia}. Systemy uczące się (\textit{machine learning}) to jedna z gałęzi dziedziny sztucznej inteligencji, która zajmuje się badaniem algorytmów oraz modeli matematycznych wykorzystywanych przez systemy komputerowe do stopniowego zwiększania efektywności wykonywania określonego zadania. Wśród metod nauki możemy wyróżnić uczenie nienadzorowane oraz nadzorowane. Pierwsze z nich do nauki wykorzystuje zbiór danych zawierający cechy, a następnie stara się nauczyć użytecznych właściwości dotyczących struktury tego zbioru danych. Algorytmy wykorzystujące uczenie nienadzorowane stosowane są na przykład w problemach segmentacji danych lub detekcji anomalii. Nadzorowane algorytmy uczące się poznają zbiór danych zawierający cechy lecz do każdego przykładu przypisana jest również etykieta, zadaniem algorytmu jest nauczenie się w jaki sposób trafnie przypisywać etykiety \cite{Goodfellow-et-al-2016}. Ten rodzaj algorytmów wykorzystywany jest najczęściej w problemach klasyfikacyjnych oraz regresyjnych. W poniższym rozdziale opiszę proces nadzorowanego uczenia się jenokierunkowej sieci neuronowej o jednej warstwie ukrytej, której zadaniem będzie nauka relacji $f(X)  = Y$.
+
 
 \subsubsection{Dane}
 
-Zbiór danych treningowych zawiera $m$ jednowymiarowych próbek zadanych przez wektory $X \in \mathbb{R}^{1\times m}$ i odpowiadające im wyniki $Y\in \mathbb{R}^{1\times m}$.
-
-
+U podstaw każdego modelu statystycznego leży zbiór danych służący do nauki modelu, to on bardzo często determinuje jego wybór i jest źródłem wiedzy dla modelu. Jakość modelu powstałego modelu jest ściśle zależna od jakości i spójności dostarczonych danych. Niech zbiór danych treningowych zawiera $m$ jednowymiarowych próbek zadanych przez wektory $X \in \mathbb{R}^{1\times m}$ i odpowiadające im wyniki $Y\in \mathbb{R}^{1\times m}$.
 
 \subsubsection{Parametry}
 
-Sieć ma dwie warstwy: 1) ukryta, zawierająca $L$ neuronów i 2) wyjściowa, składająca się z $1$ neuronu. Warstwy są zdefiniowane przez:
+Niech sieć przedstawiona na rysunku \ref{scheme:nn} składa się z dwóch warstw: 1) ukrytej zawierającej $L$ neuronów i 2) warstwy wyjściowej składającej się z $1$ neuronu. Warstwy są zdefiniowane przez:
 
-1. parametry wartstwy ukrytej, które odwzorowują $1$-wymiarowe wektory wejściowe w aktywacje $L$ neuronów:
-macierz wag $W^h\in\mathbb{R}^{L\times 1	}$ i wektor parametru bias $b^h\in\mathbb{R}^{L\times 1}$,
+\begin{enumerate}
+	\item parametry wartstwy ukrytej, które odwzorowują $1$-wymiarowe wektory wejściowe w aktywacje $L$ neuronów:
+	macierz wag $W^h\in\mathbb{R}^{L\times 1	}$ i wektor parametru obciążenia $b^h\in\mathbb{R}^{L\times 1}$,
+	\item parametry wartstwy wyjściowe, które odwzorowują $L$-wymiarowy wektor aktywacji neuronów ukrytych w jeden neuron wartstwy wyjściowej:
+macierz wag $W^o\in{1\times L}$ i wektor parametru obciążenia $b^o\in\mathbb{R}^{1\times 1}$.	
+\end{enumerate}
 
-2. parametry wartstwy wyjściowe, które odwzorowują $L$-wymiarowy wektor aktywacji neuronów ukrytych w jeden neuron wartstwy wyjściowej:
-macierz wag $W^o\in{1\times L}$ i wektor bias $b^o\in\mathbb{R}^{1\times 1}$.
-
-
-\subsubsection{Propagacja sygnału}
-
-Wejście każdego neuronu w warstwie ukrytej jest iloczynem danych wejściowych i odpowiadającej im wagi plus parametr bias. Na przykład dla $i$-tego przykładu danych wejściowych, w $l$-tym neuronie mamy
-
-\begin{equation}
-{a^h}^{(i)}_l = {W^h}_{l}x^{(i)} + {b^h}_l
-\end{equation}
-
-%Wejście wszystkich neuronów dla wszystkich przykładów może być wyrażone przez macierze, używając mnożenia macierzy oraz broadcastingu (możliwości dodania wektora kolumnowego do wszystkich wektorów kolumnowych w macierzy) mamy
-
-%\begin{equation}
-%{a^h} = W^h\cdot x + b^h
-%\end{equation}
-%Co w Pythonie można zapisać jako $ah = W.dot(x) + b$
+Inicjalizacja wartości początkowych parametrów pełni istotną rolę w skuteczności procesu uczenia, na przykład inicjalizacja wag z wartością zero uniemożliwi jakąkolwiek naukę. Wagi powinny być są inicjalizowane losowo, jedną z metod skutecznej inicjalizacji wag jest metoda Xaviera \cite{Glorot10understandingthe}. Parametry nauczonego modelu powinny skutkować najlepszą aproksymacją funkcji $f$.
 
 
-Funkcją aktywacyjną neuronów jest sigmoida $\sigma(a) = \frac{1}{1+e^{-a}}$, jako argument przyjmuje ona wejście neuronów:
-
-\begin{equation}
-{h^h}^{(i)}_l=\sigma({a^h}^{(i)}_l)
-\end{equation}
-
-
-Neuron warstwy wyjściowej zawiera sumę iloczynów aktywacji neuronów i odpowiadających im wag plus parametr bias. Dla $i$-tego przykładu mamy
-
-\begin{equation}
-\begin{split}
-{a^o}^{(i)} &= \sum_{l} {W^o}_l{h^h}^{(i)}_l + {b^o} \\
-& = \sum_{l} {W^o}_l\sigma({a^h}^{(i)}_l) + {b^o} \\
-& = \sum_{l} {W^o}_l\sigma({W^h}_{l}x^{(i)} + {b^h}_l) + {b^o}
-\end{split}
-\end{equation}
-
-Jako funkcja straty zostanie wykorzystany błąd średniokwadratowy
-
-\begin{equation}
-\begin{split}
-J^{(i)}(\Theta) &= \frac{1}{2} \left( y^{(i)}- a^{o{(i)}}  \right)  ^2 \\
-J(\Theta) &= \frac{1}{m}\sum_{i=1}^m J^{(i)}(\Theta)= \frac{1}{2m}\sum_{i=1}^m \left( y^{(i)}- a^{o{(i)}}  \right)  ^2  .
-\end{split}
-\end{equation}
-
-
-\subsubsection{Propagacja wsteczna}
-
-
-Użycie reguły łańcuchowej umożliwia obliczenie gradientu funkcji straty względem parametrów sieci neuronowej.
-
-Na początku policzmy gradient względem wyniku wartstwy wyjściowej.
-
-
-
-\begin{equation}
-\frac{\partial J}{\partial {a^o}^{(i)}} = \frac{1}{m} \left( y^{(i)}- a^{o{(i)}}  \right),
-\end{equation}
-
-następnie policzmy gradient wyjścia neuronów ukrytych:
-
-\begin{equation}
-\frac{\partial J}{\partial {h^h}^{(i)}_l} = \frac{\partial J}{\partial {a^o}^{(i)}} \frac{\partial {a^o}^{(i)}}{\partial {h^h}^{(i)}_l} =  \frac{\partial J}{\partial {a^o}^{(i)}} {W^o}_{l},
-\end{equation}
-
-co umożliwia obliczenie gradientu względem wejścia neruonów ukrytych:
-
-\begin{equation}
-\frac{\partial J}{\partial {a^h}^{(i)}_l} = \frac{\partial J}{\partial {h^h}^{(i)}_l}\frac{\partial {h^h}^{(i)}_l}{\partial {a^h}^{(i)}_l} = \frac{\partial J}{\partial {h^h}^{(i)}_l} {h^h}^{(i)}_l(1-{h^h}^{(i)}_l) 
-\end{equation}
-
-gdzie została wykorzystana relacja
-$$\frac{\partial \sigma(x)}{\partial x} = \sigma(x)(1-\sigma(x)).$$
-
-
-Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla warstwy wejściowej:
-
-\begin{equation}
-\frac{\partial J}{\partial {W^o}_{l}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}\frac{\partial {a^o}^{(i)}}{\partial {W^o}_{l}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}{h^h}^{(i)}_l,
-\end{equation}
-
-\begin{equation}
-\frac{\partial J}{\partial {b^o}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}\frac{\partial {a^o}^{(i)}}{\partial {b^o}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}.
-\end{equation}
-
-
-
-\section[\color{red}Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)]{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
-
-\subsection[\color{red} Dowód matematyczny]{Dowód matematyczny}
-
-
-\begin{center}
-	
-	
+\begin{figure}[h!]
+	\centering	
 	\begin{tikzpicture}
 	[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
 	]
 	\tikzset{normal arrow/.style={draw,-latex}}
-	\node[cnode=white,label=90:Output] (s) at (9,-6) {$\sum_{i} w^o_{i} h^h_i + b^0$};
-	\node[cnode=white,label=180:Bias term] (x-2) at (0,-8) {1};
+	\node[cnode=white,label=90:Wyjście] (s) at (9,-6) {$\sum_{i} w^o_{i} h^h_i + b^0$};
+	\node[cnode=white,label=180:Parametr obciążenia] (x-2) at (0,-8) {1};
 	\node[cnode=white,label=180:] (p-5) at (5,-11) {1};
 	\node at (5,-7.5) {$\vdots$};
 	
-	\node[cnode=white,label=180:Input] (x-1) at (0,-5) {$x$};
+	\node[cnode=white,label=180:Wejście] (x-1) at (0,-5) {$x$};
 	
 	\foreach \x in {1,...,5}
 	{
-		\pgfmathparse{\x<4 ? \x : "n"}	   
+		\pgfmathparse{\x<4 ? \x : "L"}	   
 		\ifnum \x = 4
 		
 		
-		\node[cnode=white,label=90:] (p-\x) at (5,{-2.*\x-div(\x,4)}) {${h^h}_n$};
+		\node[cnode=white,label=90:] (p-\x) at (5,{-2.*\x-div(\x,4)}) {${h^h}_L$};
 		
 		\else
 		
@@ -513,11 +428,11 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 		{   
 			\ifnum \x=1
 			\ifnum \y=4
-			\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.2] {$w^h_{n}$};
+			\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.2] {$w^h_{L}$};
 			
 			\else
 			\ifnum \y=5
-			\path[normal arrow] (x-\x) -- (p-\y) node[below,sloped,pos=0.15] {$w_{w n+1}$};
+			\path[normal arrow] (x-\x) -- (p-\y) node[below,sloped,pos=0.15] {$w_{w L+1}$};
 			\else 
 			\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.25] {$w^h_{\y}$};
 			
@@ -529,7 +444,7 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 			
 			\ifnum \x=2
 			\ifnum \y=4
-			\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.25] {$b^h_{n}$};
+			\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.25] {$b^h_{L}$};
 			\else
 			\ifnum \y=2
 			\path[normal arrow] (x-\x) -- (p-\y) node[above,sloped,pos=0.42] {$b^h_{\y}$};
@@ -547,9 +462,101 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 			%\draw (x-\x) -- (p-\y) node[above,sloped,pos=0.3] {$\omega_{\x\y}$};
 		}
 	}
-	\end{tikzpicture}
-	
-\end{center}
+
+\end{tikzpicture}
+\caption{Schemat sieci neuronowej o jednej warstwie ukrytej} \label{scheme:nn}
+\end{figure}
+
+
+\subsubsection{Propagacja sygnału}
+
+Wejście każdego neuronu w warstwie ukrytej jest iloczynem danych wejściowych i odpowiadającej im wagi plus parametr obciążenia. Na przykład dla $i$-tego przykładu danych wejściowych, w $l$-tym neuronie mamy
+
+\begin{equation}
+{a^h}^{(i)}_l = {W^h}_{l}x^{(i)} + {b^h}_l
+\end{equation}
+
+%Wejście wszystkich neuronów dla wszystkich przykładów może być wyrażone przez macierze, używając mnożenia macierzy oraz broadcastingu (możliwości dodania wektora kolumnowego do wszystkich wektorów kolumnowych w macierzy) mamy
+
+%\begin{equation}
+%{a^h} = W^h\cdot x + b^h
+%\end{equation}
+%Co w Pythonie można zapisać jako $ah = W.dot(x) + b$
+
+
+Niech funkcją aktywacyjną neuronów jest sigmoida $\sigma(a) = \frac{1}{1+e^{-a}}$, jako argument przyjmuje ona wejście neuronów:
+
+\begin{equation}
+{h^h}^{(i)}_l=\sigma({a^h}^{(i)}_l)
+\end{equation}
+
+
+Neuron warstwy wyjściowej zawiera sumę iloczynów aktywacji neuronów i odpowiadających im wag plus parametr obciążenia. Dla $i$-tego przykładu mamy
+
+\begin{equation}
+\begin{split}
+{a^o}^{(i)} &= \sum_{l} {W^o}_l{h^h}^{(i)}_l + {b^o} \\
+& = \sum_{l} {W^o}_l\sigma({a^h}^{(i)}_l) + {b^o} \\
+& = \sum_{l} {W^o}_l\sigma({W^h}_{l}x^{(i)} + {b^h}_l) + {b^o}
+\end{split}
+\end{equation}
+
+\subsubsection{Funkcja straty}
+
+Funkcja straty lub inaczej funkcja kosztu $J(\Theta)$ to z definicji funkcja przyporządkowująca nieujemną wielkość kary poprzez porównanie zmiennej objaśnianej do wyliczonego estymatora. Nauka modelu polega na umiejętnym minimalizowaniu wartości tej funkcji poprzez modyfikacje parametrów modelu. W problemach regresyjnych bardzo często jako funkcje straty wykorzystuje się błąd średniokwadratowy. Jest to wartość oczekiwana kwadratu błędu pomiędzy estymatorem i wartością estymowaną, w przedstawianym przykładzie funkcja ma postać błędu średniokwadratowego przemnożonego przez czynnik 1/2 co okazuje się przydatne podczas dalszych obliczeń.
+
+\begin{equation}
+\begin{split}
+J^{(i)}(\Theta) &= \frac{1}{2} \left( y^{(i)}- a^{o{(i)}}  \right)  ^2, \\
+J(\Theta) &= \frac{1}{m}\sum_{i=1}^m J^{(i)}(\Theta)= \frac{1}{2m}\sum_{i=1}^m \left( y^{(i)}- a^{o{(i)}}  \right)  ^2. \label{eq:err}
+\end{split}
+\end{equation}
+
+
+\subsubsection{Propagacja wsteczna}
+
+Po obliczeniu skalarnej straty wynikającej z równania (\ref{eq:err}) należy przekazać tę informację do poprzednich warstw sieci i zaktualizować parametry. Algorytm propagacji wstecznej \cite{1986Natur.323..533R} pozwala informacji o błędzie płynąć wstecz przez sieć, aby obliczyć gradient. Użycie reguły łańcuchowej umożliwia zapisanie procedury propagacji wstecznej i obliczenie gradientu funkcji straty względem parametrów sieci neuronowej. 
+
+Na początku policzmy pochodną funkcji kosztu względem wyniku wartstwy wyjściowej.
+%
+\begin{equation}
+\frac{\partial J}{\partial {a^o}^{(i)}} = \frac{1}{m} \left( y^{(i)}- a^{o{(i)}}  \right),
+\end{equation}
+%
+następnie policzmy gradient wyjścia neuronów ukrytych:
+%
+\begin{equation}
+\frac{\partial J}{\partial {h^h}^{(i)}_l} = \frac{\partial J}{\partial {a^o}^{(i)}} \frac{\partial {a^o}^{(i)}}{\partial {h^h}^{(i)}_l} =  \frac{\partial J}{\partial {a^o}^{(i)}} {W^o}_{l},
+\end{equation}
+%
+co umożliwia obliczenie gradientu względem wejścia neruonów ukrytych:
+%
+\begin{equation}
+\frac{\partial J}{\partial {a^h}^{(i)}_l} = \frac{\partial J}{\partial {h^h}^{(i)}_l}\frac{\partial {h^h}^{(i)}_l}{\partial {a^h}^{(i)}_l} = \frac{\partial J}{\partial {h^h}^{(i)}_l} {h^h}^{(i)}_l(1-{h^h}^{(i)}_l), 
+\end{equation}
+%
+gdzie została wykorzystana relacja:
+$$\frac{\partial \sigma(x)}{\partial x} = \sigma(x)(1-\sigma(x)).$$
+%
+Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla warstwy wejściowej:
+%
+\begin{equation}
+\frac{\partial J}{\partial {W^o}_{l}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}\frac{\partial {a^o}^{(i)}}{\partial {W^o}_{l}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}{h^h}^{(i)}_l,
+\end{equation}
+%
+\begin{equation}
+\frac{\partial J}{\partial {b^o}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}\frac{\partial {a^o}^{(i)}}{\partial {b^o}} = \sum_{i}\frac{\partial J}{\partial {a^o}^{(i)}}.
+\end{equation}
+
+
+Ostatnim, bardzo istotnym elementem tworzonego modelu jest wybór algorytmu uczącego, poszukującego minimum funkcji straty (\ref{eq:err}). Algorytm propagacji wstecznej odnosi się do metody obliczania pochodnych i pozwala na propagację informacji o błędzie do parametrów sieci lecz realizacja uczenia się za jego pomocą wykorzystywana jest przez szereg algorytmów nazywanych algorytmami uczenia się. Ich przegląd i analiza znajdują się w rozdziale \ref{alg_ucz}. Proces uczenia modelu sieci neuronowej zazwyczaj kończy się po ustalonej liczbie epok lub osiągnięciu odpowiedniej wartości funkcji straty, metody tzw. wczesnego zatrzymania algorytmu są dokładniej opisana w rozdziale \ref{wcz_zat}. Jedna epoka oznacza jedną iterację po wszystkich elementach zbioru treningowego.
+
+
+\section[\color{red}Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)]{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
+
+\subsection[\color{red} Dowód matematyczny]{Dowód matematyczny}
+
+
 
 Według uniwersalnego twierdzenia aproksymacyjnego jednokierunkowa sieć neuronowa z jedną warstwą ukrytą i skończoną ale wystarczająco dużą liczbą neuronów, może przybliżyć z dowolną dokładnością każdą funkcję.
 
@@ -993,7 +1000,7 @@ To wartość o 4\% mniejsza od rekomendowanej przez CODATA (\ref{r_codata}), bę
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
+		\includegraphics[width=1\linewidth]{porownanie_wielkosci}
 	\caption{Przykłady zmian szacowanych wielkości fizycznych w czasie. Na wykresie po lewej stronie średni czas życia swobodnego neutronu, po prawej stronie masa mezonu eta \cite{PhysRevD.86.010001}}
 	\label{fig:porownaniewielkosci}
 \end{figure}
@@ -1172,6 +1179,8 @@ W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony
 Cytując \cite{James:2014:ISL:2517747}: "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybierano więc takie $k$ z zakresu $[5,10]$, dla którego liczba próbek w zbiorze danych jest całkowicie podzielna przez $k$ co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
 
 \section{Wczesne zatrzymanie}
+ \label{wcz_zat}
+ 
 Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
 
 
@@ -1249,7 +1258,7 @@ Aby znaleźć odpowiednią liczbę neuronów w dwóch warstwach ukrytych, stworz
 
 
 \section{Algorytm uczący}
-
+\label{alg_ucz}
 
 Bardzo istotnym elementem tworzonego modelu jest wybór algorytmu poszukującego minimum funkcji straty oznaczonej na potrzeby tego paragrafu jako $J(\theta)$. Na podstawie jego wyników aktualizowane będą parametry tworzonej sieci neuronowej. Bardzo pomocną koncepcją pozwalającą zrozumieć istotę trudności problemu jest powierzchnia błędu. "Każda z $N$ wag i wartości progowych sieci (tzn. wszystkie wolne parametry modelu) traktowana jest jako jeden z wymiarów przestrzeni. W ten sposób każdy stan sieci, wyznaczony przez aktualne wartości jej $N$ parametrów może być traktowany jako punkt na $N$-wymiarowej hiperpłaszczyźnie. $N+1$ wymiarem (zaznaczanym jako wysokość ponad wspomnianą wyżej hiperpowierzchnią) jest błąd, jaki popełnia sieć. Dla każdego możliwego zestawu wag i progów może więc zostać narysowany punkt w przestrzeni $N+1$-wymiarowej, w taki sposób, że stan sieci wynikający z aktualnego zestawu jej parametrów lokuje ten punkt na wspomnianej wyżej $N$-wymiarowej hiperpłaszczyźnie zaś wartość błędu, jaki popełnia sieć dla tych właśnie wartości parametrów stanowi wysokość umieszczenia punktu ponad tą płaszczyzną. Gdybyśmy opisaną procedurę powtórzyli dla wszystkich możliwych wartości kombinacji wag i progów sieci, wówczas otrzymalibyśmy "chmurę" punktów rozciągających się ponad wszystkimi punktami $N$-wymiarowej hiperpłaszczyzny parametrów sieci, tworzącą właśnie rozważaną powierzchnię błędu. Celem uczenia sieci jest znalezienie na tej wielowymiarowej powierzchni punktu o najmniejszej wysokości, czyli ustalenie takiego zestawu wag i progów, który odpowiada najmniejszej wartości błędu. Przy stosowaniu modeli liniowych z funkcją błędu opartą na sumie kwadratów powierzchnia błędu ma kształt paraboloidy (funkcji kwadratowej), ma więc kształt kielicha o gładkich powierzchniach bocznych i o jednym wyraźnym minimum. Z tego powodu wyznaczenie w tym przypadku wartości minimalnej nie stwarza większych problemów."\cite{Statsoft}
 
@@ -1283,7 +1292,7 @@ Zmiana jest niewielka, gdy $\beta = 0$, otrzymujemy zwykłą metodę gradientu p
 Porównanie efektywności przedstawionych wyżej algorytmów znajduje się na rysunku \ref{fig:gd_sgd}, w zaprezentowanym przykładzie metoda gradientu prostego potrzebuje około 10 razy więcej iteracji od modyfikacji z pędem aby dotrzeć do minimum zaprezentowanej funkcji. Jest to przykład świadczący o tym jak duży wpływ na szybkość działania algorytmu wywiera ta niewieka modyfikacja. 
 
 
-Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci. Algorytm opisują równania \ref{eq:nesterov1}, \ref{eq:nesterov2} \cite{2016arXiv160904747R}.
+Wykorzystany podczas treningu modelu algorytm korzysta jednak z jeszcze z jednej modyfikacji. Nie chcielibyśmy aby piłka spuszczona w dół ślepo podążała za zboczem widząc, że za niedługo mocno się ono podniesie. Przyspieszenie Nesterova (\textit{NAG}) jest sposobem na uwzględnienie podczas obliczania gradientu przybliżonej przyszłej pozycji parametrów sieci. Algorytm opisują równania (\ref{eq:nesterov1}) i (\ref{eq:nesterov2}) \cite{2016arXiv160904747R}.
 
 \begin{align} 
 v^{k+1} &=  \beta v^{k}+ \nabla J(\theta^{k} - \beta v^{k}) \label{eq:nesterov1} \\[0.4em]
