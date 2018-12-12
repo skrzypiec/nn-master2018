@@ -357,7 +357,7 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 \section{Uczenie sieci neuronowej}
 
 
-Uczenie się to proces pozyskiwania nowej lub modyfikacji nabytej wiedzy, zachowania lub umiejętności pod wpływem doświadczeń \cite{2008:Biologia}. Systemy uczące się (\textit{machine learning}) to jedna z gałęzi dziedziny sztucznej inteligencji, która zajmuje się badaniem algorytmów oraz modeli matematycznych wykorzystywanych przez systemy komputerowe do stopniowego zwiększania efektywności wykonywania określonego zadania. Wśród metod nauki możemy wyróżnić uczenie nienadzorowane oraz nadzorowane. Pierwsze z nich do nauki wykorzystuje zbiór danych zawierający cechy, a następnie stara się nauczyć użytecznych właściwości dotyczących struktury tego zbioru danych. Algorytmy wykorzystujące uczenie nienadzorowane stosowane są na przykład w problemach segmentacji danych lub detekcji anomalii. Nadzorowane algorytmy uczące się poznają zbiór danych zawierający cechy lecz do każdego przykładu przypisana jest również etykieta, zadaniem algorytmu jest nauczenie się w jaki sposób trafnie przypisywać etykiety \cite{Goodfellow-et-al-2016}. Ten rodzaj algorytmów wykorzystywany jest najczęściej w problemach klasyfikacyjnych oraz regresyjnych. W poniższym rozdziale opiszę proces nadzorowanego uczenia się jenokierunkowej sieci neuronowej o jednej warstwie ukrytej, której zadaniem będzie nauka relacji $f(X)  = Y$.
+Uczenie się to proces pozyskiwania nowej lub modyfikacji nabytej wiedzy, zachowania lub umiejętności pod wpływem doświadczeń \cite{2008:Biologia}. Systemy uczące się (\textit{machine learning}) to jedna z gałęzi dziedziny sztucznej inteligencji, która zajmuje się badaniem algorytmów oraz modeli matematycznych wykorzystywanych przez systemy komputerowe do stopniowego zwiększania efektywności wykonywania określonego zadania. Wśród metod nauki możemy wyróżnić uczenie nienadzorowane oraz nadzorowane. Pierwsze z nich do nauki wykorzystuje zbiór danych zawierający cechy, a następnie stara się nauczyć użytecznych właściwości dotyczących struktury tego zbioru danych. Algorytmy wykorzystujące uczenie nienadzorowane stosowane są na przykład w problemach segmentacji danych lub detekcji anomalii. Nadzorowane algorytmy uczące się poznają zbiór danych zawierający cechy lecz do każdego przykładu przypisana jest również etykieta, zadaniem algorytmu jest nauczenie się w jaki sposób trafnie przypisywać etykiety \cite{Goodfellow-et-al-2016}. Ten rodzaj algorytmów wykorzystywany jest najczęściej w problemach klasyfikacyjnych oraz regresyjnych. W poniższym rozdziale opisuję proces nadzorowanego uczenia się jenokierunkowej sieci neuronowej o jednej warstwie ukrytej, której zadaniem będzie nauka relacji $f(X)  = Y$.
 
 
 \subsubsection{Dane}
@@ -552,35 +552,11 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 Ostatnim, bardzo istotnym elementem tworzonego modelu jest wybór algorytmu uczącego, poszukującego minimum funkcji straty (\ref{eq:err}). Algorytm propagacji wstecznej odnosi się do metody obliczania pochodnych i pozwala na propagację informacji o błędzie do parametrów sieci lecz realizacja uczenia się za jego pomocą wykorzystywana jest przez szereg algorytmów nazywanych algorytmami uczenia się. Ich przegląd i analiza znajdują się w rozdziale \ref{alg_ucz}. Proces uczenia modelu sieci neuronowej zazwyczaj kończy się po ustalonej liczbie epok lub osiągnięciu odpowiedniej wartości funkcji straty, metody tzw. wczesnego zatrzymania algorytmu są dokładniej opisana w rozdziale \ref{wcz_zat}. Jedna epoka oznacza jedną iterację po wszystkich elementach zbioru treningowego.
 
 
-\section[\color{red}Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)]{Uniwersalne twierdzenie aproksymacyjne (Twierdzenie Cybenki)}
+\section[\color{red}Uniwersalne twierdzenie aproksymacyjne]{Uniwersalne twierdzenie aproksymacyjne}
 
-\subsection[\color{red} Dowód matematyczny]{Dowód matematyczny}
+Według uniwersalnego twierdzenia aproksymacyjnego jednokierunkowa sieć neuronowa z jedną warstwą ukrytą i skończoną ale wystarczająco dużą liczbą neuronów, może przybliżyć z dowolną dokładnością każdą funkcję. W 1989 roku Cybenko \cite{Cybenko1989} udowodnił uniwersalne twierdzenie aproksymacyjne dla jednokierunkowej sieci neuronowej z sigmoidalną funkcją aktywacji. Jeszcze w tym samym roku, po pracy Cybenki ukazała się praca Hornika, Stinchcombe'a i White'a \cite{Hornik1989}, którzy udowodnili prawdziwość powyższego twierdzenia dla dowolnej funkcji aktywacji. W tej części prezentuję dowód wizualny działania uniwersalnego twierdzenia aproksymacyjnego posługując się sigmoidą jako funkcją aktywacji neuronów.
 
-
-
-Według uniwersalnego twierdzenia aproksymacyjnego jednokierunkowa sieć neuronowa z jedną warstwą ukrytą i skończoną ale wystarczająco dużą liczbą neuronów, może przybliżyć z dowolną dokładnością każdą funkcję.
-
-W 1989 roku Cybenko [cytowanie] udowodnił uniwersalne twierdzenie aproksymacyjne dla jednokierunkowej sieci neuronowej z sigmoidalną funkcją aktywacji. Jeszcze w tym samym roku, po pracy Cybenki ukazała się praca Hornika, Stinchcombe'a and White'a, którzy udowodnili prawdziwość powyższego twierdzenia dla dowolnej funkcji aktywacji.
-
-Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych sieciach neuronowych, szczególnie tych stworzonych do celów regresji. W tej części zaprezentuję dowód uniwersalnego twierdzenia aproksymacyjnego podany przez Cybenkę w 1989 roku, następnie zademonstruję dowód wizualny posługując się sigmoidą jako funkcją aktywacji.
-
-
-
-Niech $I_n$ oznacza $n$-wymiarową jednostkową kostkę , $[0,1]^n$. $C(I_n)$ to przestrzeń ciągłych funkjci na $I_n$. Dodatkowo, niech $M(I_n)$ oznacza przestrzeń skończonych, regularnych miar borelowskich na $n$-wymiarowej kostce jednostkowej $I_n$.
-
-\begin{definition}
-	Miara $\mu$ jest regularna jeśli dla każdego mierzelnego zbioru $A$, $\mu(A)$ równa się supremum miar zamkniętych podzbiorów $A$ i infimum otwartych nadzbiorów $A$. [Probability measures on metric spaces K.R. Parthasarathy]	
-\end{definition}
-
-
-%\begin{definition} Zobaczymy czy się przyda
-%	$f:I_n \rightarrow C(I_n),$
-%	$||f|| = \sup {|f(x)| : x \in I_n }$.
-%\end{definition}
-% 
-% 
-% $||f||$ is used to denote the supremum norm of an $f \in C(I_n)$. 
-
+Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych sieciach neuronowych, szczególnie tych stworzonych w celach regresji. 
 \begin{definition}
 	Funkcja $\sigma: \mathbb{R} \rightarrow \mathbb{R}$ jest funkcją sigmoidalną jeśli
 	\begin{eqnarray*}
@@ -592,7 +568,7 @@ Niech $I_n$ oznacza $n$-wymiarową jednostkową kostkę , $[0,1]^n$. $C(I_n)$ to
 
 
 \begin{definition}
-	Funkcja $\sigma$ jest funkcją dyskryminaczyjną jeśli dla miary $\mu \in M(I_n)$ zachodzi 
+	Funkcja $\sigma$ jest funkcją dyskryminacyjną jeśli dla miary $\mu \in M(I_n)$ zachodzi 
 	
 	\begin{equation}
 	\int_{I_n} \sigma \left( w^\mathsf{T}x + b_0 \right) d\mu(x) = 0
@@ -603,63 +579,11 @@ Niech $I_n$ oznacza $n$-wymiarową jednostkową kostkę , $[0,1]^n$. $C(I_n)$ to
 
 
 \begin{theorem}
-	Każda ograniczona, mierzalna funkcja sigmoidalna $\sigma$ jest funkcją dyskryminacyjną. W szczególności każda ciągła funkcja sigmoidalna jest dyskryminacyjna.
-	[cytowanie Cybenko]
-\end{theorem}
-
-Dowód uniwesalnego twierdzenia aproksymacyjnego przy wykorzystaniu funkcji sigmoidalnych wymaga wprowadzenia kilku przydatnych definicji i twierdzeń. Pierwsze z nich to twierdzenie Hahna-Banacha, które formułuje możliwość rozszerzenia każdego ograniczonego funkcjonału liniowego z podprzestrzeni unormowanej na całą podprzestrzeń, przy zachowaniu jego właściwości.
-
-
-\begin{theorem}[Twierdzenie Hahna-Banacha]
-	
-	
-	Niech $X$ to rzeczywista przestrzeń wektorowa, $p$ to funkcja rzeczywista zdefiniowana na $X$ spełniająca
-	
-	$$	p \left(\alpha x + (1-\alpha) y \right) \leq \alpha p(x)  + (1 - \alpha)p(y) \;\;\;\;\;\; \forall \alpha \in \left[0,1\right], x, y \in X$$
-	
-	
-	Przypuśmy, że $\lambda$ to funkcjonał liniowy zdefiniowany na zbiorze $Y\subset X $, który spełnia
-	$$\lambda(x) \leq p(x) \;\;\;\;\;\; \forall x \in Y.$$
-	
-	
-	Wtedy istnieje funkcjonał liniowy $\Lambda$ zdefiniowany na $X$ spełniający
-	$$\Lambda(x) \leq p(x) \;\;\;\;\;\; \forall x \in X,$$
-	
-	tak, że
-	
-	$$\Lambda(x) = \lambda(x) \;\;\;\;\;\; \forall x \in Y.$$
-	
-	
-	Reed \& Simon (1980), Methods of Modern Mathematical Physics. Functional Analysis
+	Każda ograniczona, mierzalna funkcja sigmoidalna $\sigma$ jest funkcją dyskryminacyjną. W szczególności każda ciągła funkcja sigmoidalna jest dyskryminacyjna. \cite{Cybenko1989}
 \end{theorem}
 
 
-\begin{definition}	
-	
-	Przestrzeń $\mathcal{L}\left(\mathcal{H}, \mathbb{C}\right)$ nazywana jest przestrzenią dualną przestrzeni Hilberta $\mathcal{H}$ i oznaczamy ją przez $\mathcal{H^*}$. Elementy $\mathcal{H^*}$ nazywane są ciągłymi funkcjonałami liniowymi.
-	
-	
-	Reed \& Simon (1980), Methods of Modern Mathematical Physics. Functional Analysis
-	
-\end{definition}	
-
-
-Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.  
-
-
-\begin{theorem}[Twierdzenie Riesza (znaleźć polskie źródło)]
-	
-	Dla każdego $T \in \mathcal{H^*}$, istnieje unikalne $y_T \in \mathcal{H}$ takie, że $$T(x) = \langle y_T, x \rangle \;\;\;\;\;\; \forall x \in \mathcal{H} $$
-	
-	
-	Ponadto $$||y_T ||_{\mathcal{H}}  = ||T||_{\mathcal{H^*}}$$
-	
-	Reed \& Simon (1980), Methods of Modern Mathematical Physics. Functional Analysis
-	
-\end{theorem}
-
-
-\begin{theorem}[]
+\begin{theorem}[Uniwersalne twierdzenie aproksymacyjne]
 	
 	Niech $\sigma$ będzie ciągłą funkcją dyskryminacyjną, wtedy skończona suma
 	
@@ -676,80 +600,25 @@ Twierdzenie Riesza opisuje przestrzeń $\mathcal{H^*}$.
 	$$
 \end{theorem}
 
-\begin{proof}
-	
-	
-	Niech $S \subset C(I_n)$ będzie zbiorem funkcji w postaci $G(x)$ lub w innych słowach - zbiorem sieci neuronowych. Z pewnością $S$ jest podprzestrzenią liniową $C(I_n)$. Jeśli $S$ jest gęsty, domknięcie $S$ jest całą przestrzenią $C(I_n)$.
-	
-	Przyjmijmy, że domknięcie $S$ nie jest całą przestrzenią $C(I_n)$. Wtedy domknięcie $S$ -- $S'$ jest domkniętą podprzestrzenią $C(I_n)$. Przez twierdzenie Hahna-Banacha, istnieje ograniczony funkcjonał liniowy na $C(I_n)$, nazwijmy go $L$, z własnością, że $L \neq 0$ ale $L(S') = L(S) = 0$.
-	
-	Przez twierdzenie Riesza, ograniczony funkcjonał liniowy $L$ ma postać
-	
-	$$
-	L(h) = \int_{I_n} h(x)d\mu(x)
-	$$
-	
-	dla $\mu \in M(I_n)$, dla każdego $h \in C(I_n)$. W szczególności, odkąd $\sigma(w^\mathsf{T}x + b)$  $\in S'$ dla każdego $w$ i $b$, musi zachodzić
-	
-	$$
-	\int_{I_n} \sigma \left(w^\mathsf{T}x + b \right) d\mu(x) = 0 
-	$$
-	
-	Jednakże, założyliśmy, że $\sigma$ jest funkcją dyskryminacyjną, ten warunek implikuje, że $\mu = 0$ co jest sprzeczne z naszym założeniem. Stąd, podprzestrzeń $S$ jest gęsta w $C(I_n)$.
-	
-	Pokazuje to, że suma
-	
-	$$
-	G\left(x\right) = \sum_{i=1}^{N} w^{o}_i \sigma\left({w^h_i}^{\mathsf{T}}x + b^h_i\right)
-	$$
-	
-	jest gęsta w $C(I_n)$ pod warunkiem, że $\sigma$ jest ciągła i dyskryminacyjna.
-	
-	Z twierdzenia wynika, że każda sieć neuronowa o wystarczająco dużej liczbie neuronów w jednej warstwie ukrytej i sigmoidalną funkcją aktywacyjną może z dowolną dokładnością przybliżyć przebieg każdej funkcji.
-	
-\end{proof}
-
-
-
-%\begin{table}
-%		\begin{center}
-%	\begin{tabular}{ | l | c | }
-%		\hline
-%		Number of hidden neurons & Mean squared error \\ \hline
-%		1 & 0.00942516615858  \\ \hline
-%		2 & 0.00277472585580  \\ \hline
-%		3 & 0.00135999931016  \\ \hline
-%		4 & 5.33546419190e-05  \\ \hline
-%		10 & 1.70243920789e-06  \\ \hline
-%		100 & 1.11243069317e-06  \\ \hline
-%		\hline
-%	\end{tabular}
-%		\end{center}
-%\end{table}
-
-
-
-
-
-
-
-\subsection[\color{red}Przedstawienie wizualne działania]{Przedstawienie wizualne działania}
-
 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{cybenko14_12_1}
+	\includegraphics[width=\linewidth]{cybenko}
 	
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{mse}
+	\includegraphics[width=\linewidth]{mse.eps}
 	
 \end{figure}
 
-
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{cybenko_act}
+	
+\end{figure}
 
 \section[\color{red} Problem Bias - Variance]{Problem Bias - Variance}
 
