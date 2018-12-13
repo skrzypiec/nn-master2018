@@ -182,18 +182,11 @@
 
 \vspace{2cm}
 
-\textbf{Co poprawić z obecnego tekstu według priorytetu:}
+\textbf{To do list:}
 \begin{itemize}
-	\item 4.4 porownanie wynikow
-	\item Twierdzeneie Cybenki	
-	\begin{itemize}
-			\item  bardziej dokładnie i logicznie przeprowadzić dowód twierdzenia?
-			\item  opisać wizualne przedstawienie twierdzenia i stworzyć rysunki z polskimi podpisami				
-	\end{itemize}
-	\item tekst o sigmoidzie też do ponownego przejrzenia
-	\item bias - variance
-	\item zakonczenie
-	\item spis treści tak aby zmieścił się na jednej stronie
+	\item rozdziały na czerwono
+	\item wstep do rozdziału nr 3
+
 \end{itemize}
 
 
@@ -552,11 +545,14 @@ Ostatecznie możemy policzyć gradienty względem parametrów sieci, np. dla war
 Ostatnim, bardzo istotnym elementem tworzonego modelu jest wybór algorytmu uczącego, poszukującego minimum funkcji straty (\ref{eq:err}). Algorytm propagacji wstecznej odnosi się do metody obliczania pochodnych i pozwala na propagację informacji o błędzie do parametrów sieci lecz realizacja uczenia się za jego pomocą wykorzystywana jest przez szereg algorytmów nazywanych algorytmami uczenia się. Ich przegląd i analiza znajdują się w rozdziale \ref{alg_ucz}. Proces uczenia modelu sieci neuronowej zazwyczaj kończy się po ustalonej liczbie epok lub osiągnięciu odpowiedniej wartości funkcji straty, metody tzw. wczesnego zatrzymania algorytmu są dokładniej opisana w rozdziale \ref{wcz_zat}. Jedna epoka oznacza jedną iterację po wszystkich elementach zbioru treningowego.
 
 
-\section[\color{red}Uniwersalne twierdzenie aproksymacyjne]{Uniwersalne twierdzenie aproksymacyjne}
+\section{Uniwersalne twierdzenie aproksymacyjne}
 
-Według uniwersalnego twierdzenia aproksymacyjnego jednokierunkowa sieć neuronowa z jedną warstwą ukrytą i skończoną ale wystarczająco dużą liczbą neuronów, może przybliżyć z dowolną dokładnością każdą funkcję. W 1989 roku Cybenko \cite{Cybenko1989} udowodnił uniwersalne twierdzenie aproksymacyjne dla jednokierunkowej sieci neuronowej z sigmoidalną funkcją aktywacji. Jeszcze w tym samym roku, po pracy Cybenki ukazała się praca Hornika, Stinchcombe'a i White'a \cite{Hornik1989}, którzy udowodnili prawdziwość powyższego twierdzenia dla dowolnej funkcji aktywacji. W tej części prezentuję dowód wizualny działania uniwersalnego twierdzenia aproksymacyjnego posługując się sigmoidą jako funkcją aktywacji neuronów.
 
-Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych sieciach neuronowych, szczególnie tych stworzonych w celach regresji. 
+Według uniwersalnego twierdzenia aproksymacyjnego jednokierunkowa sieć neuronowa z jedną warstwą ukrytą i skończoną ale wystarczająco dużą liczbą neuronów, może przybliżyć dowolną mierzalną funkcję borelowską z jednej przestrzeni o skończonej liczbie wymiarów do drugiej z dowolnym niezerowym poziomem błędu. W tej części prezentuję dowód wizualny działania uniwersalnego twierdzenia aproksymacyjnego pokazując wpływ ilości neuronów w warstwie ukrytej oraz stosowanej funkcji aktywacji na jakość przybliżenia.
+
+
+W 1989 roku Cybenko \cite{Cybenko1989} udowodnił uniwersalne twierdzenie aproksymacyjne dla jednokierunkowego perceptronu wielowarstwowego z sigmoidalną funkcją aktywacji. Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych sieciach neuronowych, szczególnie tych stworzonych w celach regresji. 
+%
 \begin{definition}
 	Funkcja $\sigma: \mathbb{R} \rightarrow \mathbb{R}$ jest funkcją sigmoidalną jeśli
 	\begin{eqnarray*}
@@ -564,9 +560,7 @@ Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych s
 	\end{eqnarray*}
 	
 \end{definition}
-
-
-
+%
 \begin{definition}
 	Funkcja $\sigma$ jest funkcją dyskryminacyjną jeśli dla miary $\mu \in M(I_n)$ zachodzi 
 	
@@ -576,14 +570,12 @@ Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych s
 	dla każdego $w\in \mathbb{R}$ i $b_0 \in \mathbb{R}$ co implikuje, że $\mu = 0$.
 	
 \end{definition}
-
-
+%
 \begin{theorem}
 	Każda ograniczona, mierzalna funkcja sigmoidalna $\sigma$ jest funkcją dyskryminacyjną. W szczególności każda ciągła funkcja sigmoidalna jest dyskryminacyjna. \cite{Cybenko1989}
 \end{theorem}
-
-
-\begin{theorem}[Uniwersalne twierdzenie aproksymacyjne]
+%
+\begin{theorem}[Uniwersalne twierdzenie aproksymacyjne wg. Cybenki]
 	
 	Niech $\sigma$ będzie ciągłą funkcją dyskryminacyjną, wtedy skończona suma
 	
@@ -601,23 +593,54 @@ Funkcje sigmoidalne to rodzina funkcji szeroko stosowanych w jednokierunkowych s
 \end{theorem}
 
 
+Jeszcze w tym samym roku, po pracy Cybenki ukazała się praca Hornika, Stinchcombe'a i White'a \cite{Hornik1989}, którzy udowodnili prawdziwość powyższego twierdzenia dla dowolnej "ściskającej" funkcji aktywacji. Do tej klasy należy zaliczyć funkcje, które mają ograniczony zbiór wartości i są niemalejące jako przykład może posłużyć nieciągła funkcja skokowa Heaviside'a. 
+%
+\begin{definition}
+	Funkcja $\Psi : \mathbb{R}\rightarrow [0,1]$ jest funkcją ściskającą jeśli zachodzą wszystkie poniższe warunki:
+	\begin{enumerate}
+		\setlength\itemsep{0.em}
+		\item $\Psi$ jest niemalejąca,
+		\item $\lim_{\lambda \rightarrow \infty} \Psi(\lambda) = 1$,
+		\item $\lim_{\lambda \rightarrow -\infty} \Psi(\lambda) = 0$.
+	\end{enumerate}
+
+\end{definition}
+%
+Następnie uniwersalne twierdzenie aproksymacyjne zostało rozszerone o bardzo szeroką klasę funkcji aktywacji niebędących wielomianami \cite{Leshno1993MultilayerFN}. Obejmuje ona bardzo często obecnie stosowaną poprawioną jednostkę liniową (ReLU). 
+
+
+W celu demonstracji działania uniwersalnego twierdzenia aproksymacyjnego nauczono sieci neuronowe o jednej warstwie ukrytej lecz o różnej ilości neuronów przebiegu funkcji zdefiniowanej poniższym równaniem:
+%
+\begin{equation}
+f(x) = 3\log\left(x+2\right) \left(0.4x^2+0.3x\sin(15(x-1))+0.05\cos\left(50(x-1)\right)\right) \label{eq:cybenko}
+\end{equation}
+%
+Należy pamiętać, że chociaż uniwersalne twierdzenie aproksymacyjne zapewnia istnienie perceptronu wielowarstwowego, który odwzoruje tę funkcję z dowolnie małym błędem to nauka modelu może się nie powieść, ponieważ algorytm uczący może nie być w stanie znaleźć wartości parametrów odpowiadającyh szukanej funkcji. Dane uczące składały się z tysiąca par punktów $(x,f(x))$ z przedziału $x\in [-0.5,0.5]$, zadaniem modelu była jak najdokładniejsza aproksymacja wartości funkcji poprzez minimalizację błędu średniokwadratowego. 
+%
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{mse.eps}
+	\caption{Błąd średniokwadratowy w zależności od liczby neuronów w warstwie ukrytej podczas aproksymacji funkcji z równania (\ref{eq:cybenko}).}
+	\label{fig:cybenko1}
+\end{figure}
+Rysunek \ref{fig:cybenko1} przedstawia uzyskaną zależność wartości funkcji błędu od liczby neuronów w warstwie ukrytej przy wykorzystaniu sigmoidy jako funkcji aktywacji. Wartość błędu maleje eksponencjalnie wraz ze wzrostem liczby neuronów osiągając wartość $\simeq 10^{-5}$ dla 20 neuronów.
+%
+Natomiast przebieg aproksymowanych funkcji możemy zaobserwować na rysunku \ref{fig:cybenko2}. Dla 1 neuronu w wartstwie ukrytej, funkcją wyjściową jest po prostu sigmoida o postaci $$G\left(x\right) = w^o_1 \sigma\left(w^h_1x + b_1\right),$$ następne neurony dodają do funkcji $G(x)$ kolejne składniki tej postaci. Dla przedstawianego przykładu, sieć o 10 neuronach ukrytych bardzo dobrze odwzorowuje przebieg funkcji uwzględniając wszystkie wypukłości.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{cybenko}
-	
+	\caption{Aproksymacja funkcji o równaniu (\ref{eq:cybenko}) przez sieć neuronową w zależności od liczby neuronów w warstwie ukrytej. Rysunki przedstawiają aproksymacje funkcje otrzymane dla 1, 2, 3, 4, 10 i 100 neuronów. Przebieg funkcji (\ref{eq:cybenko}) to niebieska przerywana linia, wynik modelu to ciągła czarna linia.}
+		 \label{fig:cybenko2}
 \end{figure}
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{mse.eps}
+Zgodnie z treścią twierdzenia udowodnionego w 1993 roku \cite{Leshno1993MultilayerFN}, sieć neuronowa ma zdolność przybliżania funkcji nawet przy wykorzystaniu nieciągłych i nieograniczonych funkcji aktywacji. Rysunek \ref{fig:cybenko3} pokazuje przybliżenia otrzymane przy użyciu funkcji: $(a)$ Heaviside'a, $(b)$ ReLU, $(c)$ softplus oraz $(d)$ sigmoidy dla 100 neuronów w warstwie ukrytej. Można zauważyć, że zapewnienie niskiej wartości błędu przy wykorzystaniu nieciągłych funkcji aktywacji wymaga znacznie większej ilości neuronów niż w przypadku użycia ciągłych funkcji jak softplus czy sigmoida. Należy również pamiętać, że wykorzystanie funkcji Heaviside'a uniemożliwia skorzystanie z wprowadzonej w poprzednim podrozdziale metody propagacji wstecznej, ponieważ pochodna w punkcie $x=0$ jest nieskończona.
 	
-\end{figure}
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{cybenko_act}
-	
+	\caption{Porównanie jakości aproksymacji funkcji o równaniu (\ref{eq:cybenko}) w zależności od zastosowanej funkcji aktywacji. Przebieg funkcji (\ref{eq:cybenko}) to niebieska przerywana linia, wynik modelu o 100 neuronach ukrytych to ciągła czarna linia.}
+		 \label{fig:cybenko3}
 \end{figure}
 
 \section[\color{red} Problem Bias - Variance]{Problem Bias - Variance}
