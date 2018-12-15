@@ -643,9 +643,103 @@ Zgodnie z treścią twierdzenia udowodnionego w 1993 roku \cite{Leshno1993Multil
 		 \label{fig:cybenko3}
 \end{figure}
 
-\section[\color{red} Problem Bias - Variance]{Problem Bias - Variance}
+\section[\color{red} Kompromis między obciążeniem a wariancją]{Kompromis między obciążeniem a wariancją}
 
-\newpage
+
+Błąd predykcyjnych modelów statystycznych może być rozłożony na dwa główne składniki - błąd spowodowany obciążeniem i wariancją. Zrozumienie tych błędów umożliwia skonstruowanie modelu, który w kompromisowy sposób minimalizuje zarówno obciążenie jak i wariancję, co pozwala uniknąć nadmiernego dopasowania lub niedopasowania modelu. W poniższej sekcji zdefiniujemy te błędy i tutaj reszta co dalej zrobimy....
+
+Defnicja obciążenia i wariancji tutaj:
+
+
+Obciążenie estymatora to różnica pomiędzy oczekiwaną wartością estymatora i prawdziwą wartością estymowanego parametru. Estymator, którego obciążenie wynosi zero nazywamy estymatorem nieobciążonym, w przeciwnym razie estymatorem obciążonym. Załóżmy, że model statystyczny opisywany jest przez parametr $\theta$, tak że $P_{\theta }(x)=P(x\mid \theta)$, natomiast $\hat{\theta}$ to estymator $\theta$ będący funkcją danych $x$. Zakładamy, że dane są zgodne z nieznanym rozkładem $P_{\theta }(x)=P(x\mid \theta)$, natomiast $\theta$ ma ustaloną wartość i jest parametrem tego rozkładu, następnie konstruujemy estymator $\hat{\theta}$.
+
+\begin{definition}
+Obciążenie estymatora $\hat{\theta}$ względem parametru $\theta$ definiujemy jako:
+	\begin{equation}
+	\text{bias}_{\theta}\left[\hat{\theta}\right] = \mathbb{E}_{x \mid \theta }\left[\hat{\theta}\right] - \theta = \mathbb{E}_{x\mid \theta} \left[\hat{\theta}-\theta\right].
+	\end{equation}
+	
+\end{definition}
+%
+\noindent\textbf{Przykład:} 
+
+\noindent Rozważmy zbiór niezależnych i równomiernie rozłożonych zmiennych losowych $\{{ x^{(1)}, \dots, x^{(m)} }\}$ zgodnie z rozkładem zero-jedynkowym o średniej $\theta$,
+
+\begin{equation}
+P(x^{(i)};\theta) = \theta^{x^{(i)}} \left( 1-\theta \right)^{(1-x^{(i)})}.
+\end{equation}
+%
+Niech estymatorem wartości średniej rozkładu będzie średnia arytmetyczna próbki:
+\begin{equation}
+\theta_m = \frac{1}{m} \sum_{i=1}^m x^{(i)}
+\end{equation}
+Wtedy obiążenie średniej arytmetycznej próbki wynosi:
+\begin{eqnarray}
+\text{bias}\left(\hat{\theta}_m\right) &=& \mathbb{E} \left[\hat{\theta}_m \right] - \theta \nonumber \\
+&=& \mathbb{E} \left[\frac{1}{m} \sum_{i=1}^m x^{(i)} \right] - \theta\nonumber \\
+&=& \frac{1}{m} \sum_{i=1}^{m} \mathbb{E} \left[x^{(i)} \right] - \theta \nonumber \\
+&=& \frac{1}{m} \sum_{i=1}^{m} \sum_{x^{(i)=0}}^{1} \left(x^{(i)}\theta^{x^{(i)}} (1-\theta)^{(1-x^{(i)})}\right) - \theta \nonumber \\
+&=&  \frac{1}{m} \sum_{i=1}^{m} \left(\theta\right) - \theta \nonumber \\
+&=& \theta - \theta = 0
+\end{eqnarray}
+%
+Stąd widać, że średnia arytmetyczna próbki jest nieobciążonym estymatorem średniej rozkładu zero-jedynkowego.
+
+Wariancja estymatora to kolejna właściwość estymatora, którą warto wziąć pod uwagę. W statystyce wariancję definiuje się ją jako wartość oczekiwaną kwadratu różnicy odchyleń wartości cechy od wartości oczekiwanej. 
+%
+\begin{definition}
+Wariancja zmiennej losowej $X$ o wartości oczekiwanej $\mu$, zdefiniowana jest wzorem
+\begin{equation}
+\text{Var}(X) = \mathbb{E} \left[ \left(X - \mu \right)^2 \right]
+\end{equation}
+\end{definition}
+\noindent\textbf{Przykład:} 
+
+\noindent Ponownie rozważmy zbiór niezależnych i równomiernie rozłożonych zmiennych losowych $\{{ x^{(1)}, \dots, x^{(m)} }\}$ zgodnie z rozkładem zero-jedynkowym o średniej $\theta$. Obliczmy wariancję estymatora średniej rozkładu $\theta_m = \frac{1}{m} \sum_{i=1}^m x^{(i)}$
+
+
+\begin{eqnarray}
+\text{Var}\left(\hat{\theta}_m\right) &=& \text{Var}\left( \frac{1}{m} \sum_{i=1}^m x^{(i)} \right) \nonumber \\
+&=& \frac{1}{m^2} \sum_{i=1}^m   \text{Var} \left( x^{(i)} \right) \nonumber \\
+&=& \frac{1}{m^2} \sum_{i=1}^m   \theta \left( 1-\theta \right) \nonumber \\
+&=& \frac{1}{m^2} m \theta \left( 1-\theta \right) \nonumber \\
+&=& \frac{1}{m} \theta \left( 1-\theta \right).
+\end{eqnarray}
+%
+
+
+
+
+
+
+
+
+
+
+
+Jeśli oznaczymy przez $Y$ zmienną objaśnianą i przez $X$ zmienną objasniającą, możemy przyjąć, że istnieje relacja łącząca obie te zmienne
+%
+\begin{equation}
+ Y = f(X) + \varepsilon,
+\end{equation}
+%
+gdzie $\varepsilon$ to część $Y$ niemożliwa to przewidzenia na podstawie $X$, jest to błąd losowy o rozkładzie normalnym i wartości oczekiwanej zero,  $\varepsilon \sim \mathcal{N}(0, \sigma_{\varepsilon})$. Następnie możemy stworzyć model, którego wynikiem będzie estymacja funkcji $f(X)$ -- $\hat{f}(X)$, błąd średniokwadratowy predykcji modelu (MSE) w punkcie $x$ to:
+%
+\begin{equation}
+\text{MSE}(x) = \mathbb{E} \left[ \left(Y - \hat{f}(x)\right)^2  \right] 
+\end{equation}
+
+Możemy go rozłożyć na składniki opisujące obiążenie i wariancję.
+
+\begin{equation}
+\text{MSE}(x) =  \left(  \mathbb{E}\left[\hat{f}(x)\right] - f(x) \right)^2 +  \mathbb{E} \left[ \left(\hat{f}(x) - \mathbb{E}\left[ \hat{f}(x)\right]\right)^2  \right]  + \sigma^2_{\varepsilon}
+\end{equation}
+
+$$
+\text{MSE}(x) = \text{Obciążenie}^2 + \text{Wariancja} + \text{Nieusuwalny błąd}
+$$
+
+
 \chapter{Metodologia analizy}
 
 \section{Fizyka zjawiska}
