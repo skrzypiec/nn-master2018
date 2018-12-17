@@ -186,6 +186,7 @@
 \begin{itemize}
 	\item rozdziały na czerwono
 	\item wstep do rozdziału nr 3
+	\item cytowania rozdzial bias-variance
 
 \end{itemize}
 
@@ -643,14 +644,13 @@ Zgodnie z treścią twierdzenia udowodnionego w 1993 roku \cite{Leshno1993Multil
 		 \label{fig:cybenko3}
 \end{figure}
 
-\section[\color{red} Kompromis między obciążeniem a wariancją]{Kompromis między obciążeniem a wariancją}
+\section{Kompromis między obciążeniem i wariancją}
 
 
-Błąd predykcyjnych modelów statystycznych może być rozłożony na dwa główne składniki - błąd spowodowany obciążeniem i wariancją. Zrozumienie tych błędów umożliwia skonstruowanie modelu, który w kompromisowy sposób minimalizuje zarówno obciążenie jak i wariancję, co pozwala uniknąć nadmiernego dopasowania lub niedopasowania modelu. W poniższej sekcji zdefiniujemy te błędy i tutaj reszta co dalej zrobimy....
-
-Defnicja obciążenia i wariancji tutaj:
+Błąd predykcyjnych modelów statystycznych może być rozłożony na dwa główne składniki -- błąd spowodowany obciążeniem i wariancją. Zrozumienie tych błędów umożliwia skonstruowanie modelu, który w kompromisowy sposób minimalizuje zarówno obciążenie jak i wariancję, co pozwala uniknąć nadmiernego dopasowania lub niedopasowania modelu. W poniższej sekcji zdefiniuję te błędy i wyjaśnię dlaczego dobry model powinien zachowywać kompromis pomiędzy obciążeniem i wariancją.
 
 
+\subsubsection{Obciążenie}
 Obciążenie estymatora to różnica pomiędzy oczekiwaną wartością estymatora i prawdziwą wartością estymowanego parametru. Estymator, którego obciążenie wynosi zero nazywamy estymatorem nieobciążonym, w przeciwnym razie estymatorem obciążonym. Załóżmy, że model statystyczny opisywany jest przez parametr $\theta$, tak że $P_{\theta }(x)=P(x\mid \theta)$, natomiast $\hat{\theta}$ to estymator $\theta$ będący funkcją danych $x$. Zakładamy, że dane są zgodne z nieznanym rozkładem $P_{\theta }(x)=P(x\mid \theta)$, natomiast $\theta$ ma ustaloną wartość i jest parametrem tego rozkładu, następnie konstruujemy estymator $\hat{\theta}$.
 
 \begin{definition}
@@ -680,12 +680,15 @@ Wtedy obiążenie średniej arytmetycznej próbki wynosi:
 &=& \frac{1}{m} \sum_{i=1}^{m} \mathbb{E} \left[x^{(i)} \right] - \theta \nonumber \\
 &=& \frac{1}{m} \sum_{i=1}^{m} \sum_{x^{(i)=0}}^{1} \left(x^{(i)}\theta^{x^{(i)}} (1-\theta)^{(1-x^{(i)})}\right) - \theta \nonumber \\
 &=&  \frac{1}{m} \sum_{i=1}^{m} \left(\theta\right) - \theta \nonumber \\
-&=& \theta - \theta = 0
+&=& \theta - \theta = 0.
 \end{eqnarray}
 %
-Stąd widać, że średnia arytmetyczna próbki jest nieobciążonym estymatorem średniej rozkładu zero-jedynkowego.
+Ponieważ obciążenie estymatora równe jest zero, średnia arytmetyczna próbki jest nieobciążonym estymatorem średniej rozkładu zero-jedynkowego.
 
-Wariancja estymatora to kolejna właściwość estymatora, którą warto wziąć pod uwagę. W statystyce wariancję definiuje się ją jako wartość oczekiwaną kwadratu różnicy odchyleń wartości cechy od wartości oczekiwanej. 
+
+\subsubsection{Wariancja}
+
+Wariancja to kolejna właściwość estymatora, którą warto wziąć pod uwagę. W statystyce definiuje się ją jako wartość oczekiwaną kwadratu różnicy odchyleń wartości cechy od wartości oczekiwanej. 
 %
 \begin{definition}
 Wariancja zmiennej losowej $X$ o wartości oczekiwanej $\mu$, zdefiniowana jest wzorem
@@ -706,18 +709,11 @@ Wariancja zmiennej losowej $X$ o wartości oczekiwanej $\mu$, zdefiniowana jest 
 &=& \frac{1}{m} \theta \left( 1-\theta \right).
 \end{eqnarray}
 %
+Otrzymana wariancja jest malejącą funkcją zależną od $m$, które jest wielkością próbki losowej. Jest to zgodny z intuicją rezultat, wariancja estymatora maleje wraz ze zwiększeniem liczby przykładów w zbiorze danych.
 
+\subsubsection{Kompromis między obciążeniem i wariancją}
 
-
-
-
-
-
-
-
-
-
-Jeśli oznaczymy przez $Y$ zmienną objaśnianą i przez $X$ zmienną objasniającą, możemy przyjąć, że istnieje relacja łącząca obie te zmienne
+Celem modelu statystycznego zbudowanego na potrzeby tej pracy jest estymacja funkcji. Jeśli oznaczymy przez $Y$ zmienną objaśnianą i przez $X$ zmienną objasniającą, możemy przyjąć, że istnieje relacja łącząca obie te zmienne
 %
 \begin{equation}
  Y = f(X) + \varepsilon,
@@ -728,16 +724,34 @@ gdzie $\varepsilon$ to część $Y$ niemożliwa to przewidzenia na podstawie $X$
 \begin{equation}
 \text{MSE}(x) = \mathbb{E} \left[ \left(Y - \hat{f}(x)\right)^2  \right] 
 \end{equation}
-
+%
 Możemy go rozłożyć na składniki opisujące obiążenie i wariancję.
-
+%
 \begin{equation}
 \text{MSE}(x) =  \left(  \mathbb{E}\left[\hat{f}(x)\right] - f(x) \right)^2 +  \mathbb{E} \left[ \left(\hat{f}(x) - \mathbb{E}\left[ \hat{f}(x)\right]\right)^2  \right]  + \sigma^2_{\varepsilon}
 \end{equation}
-
+%
 $$
 \text{MSE}(x) = \text{Obciążenie}^2 + \text{Wariancja} + \text{Nieusuwalny błąd}
 $$
+
+Pojemność modelu to jego zdolność do dopasowania do wielu różnych funkcji. Modele o dużej pojemności są zdolne odwzorować bardziej złożone zależności między zmiennymi lecz zagrożeniem płynącym z ich strony jest nadmierne dopasowanie modelu do danych treningowych. Rysunek \ref{fig:pojemnosc} przedstawia typową zależność obciążenia i wariancji w zależności od pojemności modelu. Wraz ze wzrostem pojemności obciążenie ma tendencję malejącą, natomiast wariancja rosnącą co skutkuje charakterystycznym U-kształtem sumy tych błędów - błędu uogólnienia. Model o optymalnej pojemności minimalizuje błąd uogólnienia co charakteryzuje się zachowanym kompromisem między wielkością obciążenia i wariancji. 
+%
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{curves.png}
+	\caption{Zależność błędu modelu spowodowanego obciążeniem i wariancją od pojemności. Rysunek przetłumaczony na język polski z \cite{Goodfellow-et-al-2016}.}
+	\label{fig:pojemnosc}
+\end{figure}
+
+Wysokie obciążenie może powodować pominięcie istotnych zależności pomiędzy zmienną objaśnianą i zmiennymi objaśniającymi co prowadzi do niedopasowania. Wysoka wariancja może powodować dopasowanie modelu do szumu znajdującego się w danych co skutkuje nadmiernym dopasowaniem. Rysunek \ref{fig:pojemnosc} przedstawia przykładowy zbiór szkoleniowy tzn. dziesięć wylosowanych punktów spełniających zależność $y = x^2 + \varepsilon$. Do zbioru danych dopasowyjemy trzy modele, funkcję liniową, kwadratową oraz wielomian 10 stopnia. Łatwo zauważyć, że funkcja liniowa nie może odwzorować odpowiedniego parabolicznego kształtu, chociaż poprawnie wskazuje trend jest to model o dużym obciążeniu. Krzywa będąca wielomianem 10 stopnia mimo tego, że przechodzi przez wszystkie punkty pomiarowe prawdopodobnie będzie skutkowała największym błędem w przypadku dostarczenia nowych danych, model charakteryzuje się bardzo dużą wariancją. Wielomian drugiego stopnia dobrze odwzorowuje strukture danych i spodziewamy się, że nie zmieni się to w przypadku uwzględnienia nowych danych, model ma małe obciążenie i wariancję
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{biasvar.eps}
+	\caption{Wykresy punktowe przedstawiające dziesięć wygenerowanych punktów spełniających zależność $y = x^2 + \varepsilon$ linie ciągłe oznaczają dopasowane krzywe, od lewej odpowiednio wielomian pierwszego, drugiego i dwudziestego stopnia.}
+	\label{fig:biasvar}
+\end{figure}
 
 
 \chapter{Metodologia analizy}
