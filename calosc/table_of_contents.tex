@@ -214,26 +214,45 @@ Praca magisterska została podzielona na pięć rozdziałów, następny zawiera 
 
 \chapter[\color{red}Sieci Neuronowe]{Sieci Neuronowe}
 \label{sieci}
+
+
 \section[\color{red}Historia sieci - perceptron, biologia]{Historia sieci - perceptron, biologia}
-\section[\color{red}Funkcje aktywacji, dlaczego sigmoidy]{Funkcje aktywacji, dlaczego sigmoidy}
-%[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
-Funckja aktywacji to funkcja, która działa na każdy neuron w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci neuronowej może mieć zdefiniowaną inną funckję aktywacji.
 
 Perceptron, który był inspiracją powstania sieci neuronowcyh został skonstruowany jako uproszczony model biologicznego neuronu. W neurobiologii, neuron jest komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony połączone są ze sobą przez synapsy, jeden neuron może otrzymywać informacje od wielu komórek nerwowych. Jeśli suma sygnałów elektrycznych z wejściowych synaps przekroczy pewien próg, wtedy neuron transmituje dalej sygnał elektryczny. Perceptron naśladował ten mechanizm stosując przedstawioną w lewym górnym rogu na Rys.~\ref{fig:activations} funckję Heaviside'a jako funkcję aktywacji. Funkcja przyjmuję wartość jeden jeśli suma wartości wejściowych jest większa od zera, w innym przypadku funkcja przyjmuje wartość zero i neuron nie propaguje sygnału. Perceptron jest najprostszym przykładem sieci neuronowej.
 
-Wyniki badań przeprowadzonych przez [publikacja, publikacja] pokazały, że wśród pożądanych cech funkcji aktywacji znajdują się atrybuty, których funkcja Heaviside'a nie posiada, z tego powodu nie jest w praktyce często stosowana.
 
-Koniecznym wymaganiem jest nieliniowość stosowanej funkcji, jest to cecha, która pozwala sieci neuronowej odwzorować nieliniowe zależności [LeCun, Cybenko?, Hornik]. Jedynym wyjątkiem od reguły jest stosowanie w problemach regresyjnych funkcji tożsamościowej w ostatniej warstwie wyjściowej. Dobrze gdy funkcja posiada ciągłą pochodną, pozwala to na stosowanie metod optymizacji opartych o obliczanie gradientu. Tu wyjątkiem jest stosowana poprawiona jednostka liniowa (ReLU), również przedstawiona na Rys.~\ref{fig:activations}. Zakładając, że w zerze jej gradient równy jest zero możemy skorzystać z jej wielu zalet. Wśród nich wymienia się dokładniejsze odwzorowanie obserwowanego w neurobiologii zjawiska -- tylko neurony, które otrzymały odpowiednio silny sygnał są aktywowane. Brak podatności na przeuczenie, podczas inicjalizacji sieci losowymi wagami, tylko około 50\% ukrytych neuronów jest aktywowanych. Brak problemu znikającego gradientu uniemożliwiającego uczenie, w porównaniu do sigmoidy, u której wysyca się on w obu kierunkach. Jest to również funkcja często wykorzystywana w metodach głębokiego uczenia. W warstwach splotowych sieci która służy do rozpoznawania obrazów wykorzystamy ReLU poszukując atrybutów, które nie zmieniają się podczas jej użycia.
+
+\newpage
+
+\section[\color{red}Funkcje aktywacji]{Funkcje aktywacji}
+%[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
+Jednym z podstawowych problemów podczas wyboru struktury sieci neuronowej jest wybór typu ukrytej jednostki. Funckja aktywacji to funkcja, która działa na każdy neuron ukryty w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci  neuronowej lub nawet każdy neuron może mieć zdefiniowaną inną funckję aktywacji.
+
+Perceptron, który był inspiracją powstania sieci neuronowcyh został skonstruowany jako uproszczony model biologicznego neuronu. W neurobiologii, neuron jest komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony połączone są ze sobą przez synapsy, jeden neuron może otrzymywać informacje od wielu komórek nerwowych. Jeśli suma sygnałów elektrycznych z wejściowych synaps przekroczy pewien próg, wtedy neuron transmituje dalej sygnał elektryczny. Perceptron naśladował ten mechanizm stosując przedstawioną w lewym górnym rogu na rysunku ~\ref{fig:activations} funckję Heaviside'a jako funkcję aktywacji. Funkcja przyjmuję wartość jeden jeśli suma wartości wejściowych jest większa od zera, w innym przypadku funkcja przyjmuje wartość zero i neuron nie propaguje sygnału. O funkcji skokowej Heaviside'a zdecydowanie warto wspomnieć ze względów historycznych, jednak obecnie budowane sieci z niej nie korzystają. Główną wadą jest brak ciągłości funkcji, brak ciągłości pochodnej a w szczególności brak skończonej wartości pochodnej dla argumentu równego zero. Taka własność utrudnia skorzystanie z wykorzystywanego podczas nauki algorytmu propagacji wstecznej \cite{1986Natur.323..533R}.
+
+Następną grupę stosowanych funkcji aktywacji zajmują poprawione jednostki liniowe (ReLU) oraz jej modyfikacje.
+
+
+Potem o Sigmoidalnych
+
+Potem podsumowanie o pożądanych cechach
+
+Potem podrozdział o interpretacji probabilistycznej
+
+
+Wśród pożądanych cech funkcji aktywacji znajdują się takie atrybuty jak nieliniowość, jest to cecha, która pozwala sieci neuronowej odwzorować nieliniowe zależności \cite{LeCun:1998:EB:645754.668382}, \cite{Hornik1989}. Jedynym wyjątkiem od reguły jest stosowanie w problemach regresyjnych funkcji tożsamościowej w ostatniej warstwie wyjściowej. Ciągła pochodna pozwala na stosowanie metod optymizacji opartych o obliczanie gradientu. Tu wyjątkiem jest stosowana poprawiona jednostka liniowa (ReLU), również przedstawiona na Rys.~\ref{fig:activations}. Zakładając, że w zerze jej gradient równy jest zero możemy skorzystać z jej wielu zalet. Wśród nich wymienia się dokładniejsze odwzorowanie obserwowanego w neurobiologii zjawiska -- tylko neurony, które otrzymały odpowiednio silny sygnał są aktywowane. Brak podatności na przeuczenie, podczas inicjalizacji sieci losowymi wagami, tylko około 50\% ukrytych neuronów jest aktywowanych. Brak problemu znikającego gradientu uniemożliwiającego uczenie, w porównaniu do sigmoidy, u której wysyca się on w obu kierunkach. 
+
+
+
+Jest to również funkcja często wykorzystywana w metodach głębokiego uczenia. W warstwach splotowych sieci która służy do rozpoznawania obrazów wykorzystamy ReLU poszukując atrybutów, które nie zmieniają się podczas jej użycia.
 %
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{activations14_12}
+	\includegraphics[width=\linewidth]{activations}
 	\caption{Kilka przykładów często stosowanych funkcji aktywacji.}
 	\label{fig:activations}
 \end{figure}
 %
-%
-\subsubsection{Funkcje sigmoidalne}
 %
 Częstym wyborem funkcji aktywacji są funkcje sigmiodalne. Jest to grupa monotonicznie rosnących funkcji, których zbiór wartości jest ograniczony przez asymptoty o skończonych wartościach, do których wartość funkcji dąży w $\pm \infty$ [lecun98]. Jednym z najczęściej wykorzystywanych przykładów funkcji sigmoidalnych jest sigmoida zdefiniowana równaniem
 %
@@ -248,12 +267,6 @@ Sigmoida jest różniczkowalna w każdym punkcie co pozwala używać podczas pro
 \end{equation}
 %
 %
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{sigmoid14_8}
-	\caption{Przykład funkcji sigmoidalnej - sigmoida, $\sigma(x) = \frac{1}{1+e^{-x}}$}
-\end{figure} 
-
 Innym przykładem często wykorzystywanej w sztucznych sieciach neuronowych funkcji sigmoidalnej jest tangens hyperboliczny (prawy dolny róg Rys. \ref{fig:activations}). Wzór tej funkcji możemy wyrazić korzystając z definicji sigmoidy
 \begin{equation}
 \tanh(x) = 2\sigma(2x)-1
@@ -261,7 +274,7 @@ Innym przykładem często wykorzystywanej w sztucznych sieciach neuronowych funk
 %
 Jedną z zalet tej funkcji jest symetryczność względem początku układu współrzędnych.
 %
-\subsection[\color{red} Interpretacja probabilistyczna sigmoidy]{Interpretacja probabilistyczna sigmoidy}
+\subsubsection{Interpretacja probabilistyczna sigmoidy}
 %
 Zastosowanie sigmoidy jako funkcji aktywacji naturalnie wynika z postaci prawdopodobieństwa a posteriori w Bayesowskim podejściu do problemu klasyfikacji dwóch klas.
 %
@@ -735,7 +748,7 @@ $$
 \text{MSE}(x) = \text{Obciążenie}^2 + \text{Wariancja} + \text{Nieusuwalny błąd}
 $$
 
-Pojemność modelu to jego zdolność do dopasowania do wielu różnych funkcji. Modele o dużej pojemności są zdolne odwzorować bardziej złożone zależności między zmiennymi lecz zagrożeniem płynącym z ich strony jest nadmierne dopasowanie modelu do danych treningowych. Rysunek \ref{fig:pojemnosc} przedstawia typową zależność obciążenia i wariancji w zależności od pojemności modelu. Wraz ze wzrostem pojemności obciążenie ma tendencję malejącą, natomiast wariancja rosnącą co skutkuje charakterystycznym U-kształtem sumy tych błędów - błędu uogólnienia. Model o optymalnej pojemności minimalizuje błąd uogólnienia co charakteryzuje się zachowanym kompromisem między wielkością obciążenia i wariancji. 
+Pojemność modelu to jego zdolność do dopasowania do wielu różnych funkcji \cite{Goodfellow-et-al-2016}. Modele o dużej pojemności są zdolne odwzorować bardziej złożone zależności między zmiennymi lecz zagrożeniem płynącym z ich strony jest nadmierne dopasowanie modelu do danych treningowych. Rysunek \ref{fig:pojemnosc} przedstawia typową zależność obciążenia i wariancji w zależności od pojemności modelu. Wraz ze wzrostem pojemności obciążenie ma tendencję malejącą, natomiast wariancja rosnącą co skutkuje charakterystycznym U-kształtem sumy tych błędów - błędu uogólnienia. Model o optymalnej pojemności minimalizuje błąd uogólnienia co charakteryzuje się zachowanym kompromisem między wielkością obciążenia i wariancji. 
 %
 \begin{figure}[h!]
 	\centering
