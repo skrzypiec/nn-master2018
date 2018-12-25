@@ -218,20 +218,25 @@ Praca magisterska została podzielona na pięć rozdziałów, następny zawiera 
 
 \section[\color{red}Historia i zastosowanie]{Historia i zastosowanie}
 
-Neuron w neurobiologii jest komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony połączone są ze sobą przez synapsy, jeden neuron może otrzymywać informacje od wielu komórek nerwowych. Jeśli suma sygnałów elektrycznych z wejściowych synaps przekroczy pewien próg, wtedy neuron transmituje dalej sygnał elektryczny. Inspirując się opisanym powyżej, uproszczonym schematem działania neuronów, Frank Rosenblatt w 1957 roku zaproponował pojęcie perceptronu. Dziś rozumiane jest jako algorytm służący nauce binarnej klasyfikacji czyli funkcji, która jako wejście przyjmuje wektor liczb rzeczywistych $x$ a jej wyjściem jest 0 lub 1
+Neuron w neurobiologii jest komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony pokryte są wypustkami, z których jedna, przesyłająca sygnał to akson, pozostałe, odbierające sygnały to dendryty.  Jeden neuron może więc otrzymywać informacje od wielu komórek nerwowych, które połączone są ze sobą przez synapsy. Jeśli suma sygnałów elektrycznych z wejściowych połączeń przekroczy pewien próg, zależne od napięcia kanały sodowe otwierają się pozwalając neuronowi na dalszą transmisję sygnału elektrycznego \cite{NeuronyDelta}. Inspirując się opisanym powyżej, uproszczonym schematem działania neuronów, Frank Rosenblatt w 1957 roku zaproponował pojęcie perceptronu. Dziś rozumiane jest jako algorytm służący nauce binarnej klasyfikacji czyli funkcji, która jako wejście przyjmuje wektor liczb rzeczywistych $x$ a jej wyjściem jest 0 lub 1
 
 \begin{eqnarray*}
 	f(x) = \begin{cases} 1 \;\;\;\text{gdy} & wx + b > 0 \\ 0 \;\;\;\text{gdy} &wx + b \leq 0.  \end{cases}
 \end{eqnarray*}
+Gdzie $w$ to wektor wartości wag symbolizujących synapsy odpowiadające parametrom wejściowym $x$, $wx$ to iloczyn skalarny $\sum_{i}w_i x_i$. Analogicznie do uproszczonego modelu biologicznego neuronu, wynik wyjściowy jest pozytywny po przekroczeniu przez sumę sygnałów wejściowych pewnego progu $b$ - parametru obciążenia. 
 
-Gdzie $w$ to wektor wartości wag symbolizujących synapsy odpowiadające parametrom wejściowym $x$, $wx$ to iloczyn skalarny $\sum_{i}w_i x_i$. Analogicznie do uproszczonego modelu biologicznego neuronu, wynik wyjściowy jest pozytywny po przekroczeniu przez sumę sygnałów wejściowych pewnego progu $b$ - parametru obciążenia.
+%ograniczeznie jesdnego
+Tak zdefiniowany perceptron ma ograniczone możliwości klasyfikacji, jednak użycie bardziej skomplikowanych, szczególnie nieliniowych funkcji aktywacji opisanych w rozdziale \ref{activation} pozwala imitować perceptronowi każdą bramkę logiczną. Ponadto okazuje się, że połączenie wielu perceptronów w jedną warstwę daje nieskończone możliwości klasyfikacyjne i regresyjne, co opisano w sekcji \ref{uniapprox}. Następny przełom w dziedzinie perceptronów nastąpił  w latach 80 wraz ze zdefiniowaniem efektywnej metody nauki perceptronów wielowarstwowych przedstawionej w rozdziale \ref{backprop}.
 
 
 
-
+%cos o tym mechanizmie
+%jak wyewoluowało
+%co teraz z tym
 \newpage
 
 \section{Funkcje aktywacji}
+\label{activation}
 %[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
 Jednym z podstawowych problemów podczas wyboru struktury sieci neuronowej jest wybór typu ukrytej jednostki. Funckja aktywacji to funkcja, która działa na każdy neuron ukryty w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci  neuronowej lub nawet każdy neuron może mieć zdefiniowaną inną funckję aktywacji.
 
@@ -357,7 +362,7 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 
 
 \section{Uczenie sieci neuronowej}
-
+\label{backprop}
 
 Uczenie się to proces pozyskiwania nowej lub modyfikacji nabytej wiedzy, zachowania lub umiejętności pod wpływem doświadczeń \cite{2008:Biologia}. Systemy uczące się (\textit{machine learning}) to jedna z gałęzi dziedziny sztucznej inteligencji, która zajmuje się badaniem algorytmów oraz modeli matematycznych wykorzystywanych przez systemy komputerowe do stopniowego zwiększania efektywności wykonywania określonego zadania. Wśród metod nauki możemy wyróżnić uczenie nienadzorowane oraz nadzorowane. Pierwsze z nich do nauki wykorzystuje zbiór danych zawierający cechy, a następnie stara się nauczyć użytecznych właściwości dotyczących struktury tego zbioru danych. Algorytmy wykorzystujące uczenie nienadzorowane stosowane są na przykład w problemach segmentacji danych lub detekcji anomalii. Nadzorowane algorytmy uczące się poznają zbiór danych zawierający cechy lecz do każdego przykładu przypisana jest również etykieta, zadaniem algorytmu jest nauczenie się w jaki sposób trafnie przypisywać etykiety \cite{Goodfellow-et-al-2016}. Ten rodzaj algorytmów wykorzystywany jest najczęściej w problemach klasyfikacyjnych oraz regresyjnych. W poniższym rozdziale opisuję proces nadzorowanego uczenia się jenokierunkowej sieci neuronowej o jednej warstwie ukrytej, której zadaniem będzie nauka relacji $f(X)  = Y$.
 
@@ -555,7 +560,7 @@ Ostatnim, bardzo istotnym elementem tworzonego modelu jest wybór algorytmu ucz�
 
 
 \section{Uniwersalne twierdzenie aproksymacyjne}
-
+\label{uniapprox}
 
 Według uniwersalnego twierdzenia aproksymacyjnego jednokierunkowa sieć neuronowa z jedną warstwą ukrytą i skończoną ale wystarczająco dużą liczbą neuronów, może przybliżyć dowolną mierzalną funkcję borelowską z jednej przestrzeni o skończonej liczbie wymiarów do drugiej z dowolnym niezerowym poziomem błędu. W tej części prezentuję dowód wizualny działania uniwersalnego twierdzenia aproksymacyjnego pokazując wpływ ilości neuronów w warstwie ukrytej oraz stosowanej funkcji aktywacji na jakość przybliżenia.
 
