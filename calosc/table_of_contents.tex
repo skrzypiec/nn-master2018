@@ -182,14 +182,6 @@
 
 \vspace{2cm}
 
-\textbf{To do list:}
-\begin{itemize}
-	\item rozdziały na czerwono
-	\item wstep do rozdziału nr 3
-	\item cytowania rozdzial bias-variance
-
-\end{itemize}
-
 
 \tableofcontents
 \addtocontents{toc}{~\hfill\textbf{Strona}\par}
@@ -212,11 +204,11 @@ Praca magisterska została podzielona na pięć rozdziałów, następny zawiera 
 
 
 
-\chapter[\color{red}Sieci Neuronowe]{Sieci Neuronowe}
+\chapter{Sieci Neuronowe}
 \label{sieci}
 
 
-\section[\color{red}Historia i zastosowanie]{Historia i zastosowanie}
+\section{Historia i rozwój sieci neuronowych}
 
 Neuron w neurobiologii jest komórką, która odbiera, przetwarza i przesyła informacje wykorzystując elektryczne i chemiczne sygnały. Neurony pokryte są wypustkami, z których jedna, przesyłająca sygnał to akson, pozostałe, odbierające sygnały to dendryty.  Jeden neuron może więc otrzymywać informacje od wielu komórek nerwowych, które połączone są ze sobą przez synapsy. Jeśli suma sygnałów elektrycznych z wejściowych połączeń przekroczy pewien próg, zależne od napięcia kanały sodowe otwierają się pozwalając neuronowi na dalszą transmisję sygnału elektrycznego \cite{NeuronyDelta}. Inspirując się opisanym powyżej, uproszczonym schematem działania neuronów, Frank Rosenblatt w 1957 roku zaproponował pojęcie perceptronu. Dziś rozumiane jest jako algorytm służący nauce binarnej klasyfikacji czyli funkcji, która jako wejście przyjmuje wektor liczb rzeczywistych $x$ a jej wyjściem jest 0 lub 1
 
@@ -226,18 +218,19 @@ Neuron w neurobiologii jest komórką, która odbiera, przetwarza i przesyła in
 Gdzie $w$ to wektor wartości wag symbolizujących synapsy odpowiadające parametrom wejściowym $x$, $wx$ to iloczyn skalarny $\sum_{i}w_i x_i$. Analogicznie do uproszczonego modelu biologicznego neuronu, wynik wyjściowy jest pozytywny po przekroczeniu przez sumę sygnałów wejściowych pewnego progu $b$ - parametru obciążenia. 
 
 %ograniczeznie jesdnego
-Tak zdefiniowany perceptron ma ograniczone możliwości klasyfikacji, jednak użycie bardziej skomplikowanych, szczególnie nieliniowych funkcji aktywacji opisanych w rozdziale \ref{activation} pozwala imitować perceptronowi każdą bramkę logiczną. Ponadto okazuje się, że połączenie wielu perceptronów w jedną warstwę daje nieskończone możliwości klasyfikacyjne i regresyjne, co opisano w sekcji \ref{uniapprox}. Następny przełom w dziedzinie perceptronów nastąpił  w latach 80 wraz ze zdefiniowaniem efektywnej metody nauki perceptronów wielowarstwowych przedstawionej w rozdziale \ref{backprop}.
+Tak zdefiniowany perceptron ma ograniczone możliwości klasyfikacji, jednak użycie bardziej skomplikowanych, szczególnie nieliniowych funkcji aktywacji opisanych w rozdziale \ref{activation} pozwala imitować perceptronowi każdą bramkę logiczną. Ponadto okazuje się, że połączenie wielu perceptronów w jedną warstwę daje nieskończone możliwości klasyfikacyjne i regresyjne, co opisano w sekcji \ref{uniapprox}. Następny przełom w dziedzinie perceptronów nastąpił  w latach 80 wraz ze zdefiniowaniem efektywnej metody nauki perceptronów wielowarstwowych -- metody propagacji wstecznej przedstawionej w rozdziale \ref{backprop}. 
 
+Pomysł wykorzystania perceptronu jako podstawowej komórki budującej zaowocował stworzeniem wielu różnych struktur sieci neuronowych różniących się sposobem połączenia neuronów oraz metodą przetwarzania danych wejściowych przez neuron. Po za perceptronem wielowarstwowym (MLP), dzięki wykorzystaniu procesorów graficznych w obliczeniach, w ostatnich latach szczególne zainteresowanie wzbudziły konwolucyjne sieci neuronowe (CNN). Ich głównym wykorzystaniem jest przetwarzanie obrazów lub dźwięków. Czarno-biały obraz o wymiarach 100 $\times$ 100 pikseli to 10 tysięcy potencjalnych wag każdego neuronu w wartstwie ukrytej. Inspirując się działaniem ludzkiego narządu wzroku zaproponowano \cite{Lecun98gradient-basedlearning} wykorzystanie w sieci neuronowej warstw konwolucyjnych oraz łączących, które skutecznie zmniejszają rozmiar wektora wejściowego przetworzonego obrazu wraz z zachowaniem jego kluczowych cech. Tak przetworzony wektor jest równocześnie wejściem do dołączonej w następnych wartstwach sieci MLP. 
 
+Kolejną klasę sztucznych sieci neuronowych tworzą rekurencyjne sieci neuronowe (RNN), gdzie komórki zawierają pętlę łączącą wyjście danego neuronu z jego wejściem \cite{1990RNN}. Taki neuron przetwarza więc informacje nie tylko z poprzednich warstw ale także tę, którą zawierał w przeszłości. RNN są skutecznie wykorzystywane szczególnie w przypadku przetwarzania danych sekwencyjnych takich jak rozpoznawanie mowy. Przełomem, który znacznie ułatwił naukę modelów RNN oraz zwiększył ich skuteczność jest koncept komórki LSTM \cite{hochreiter1997long}, która ma bramki wejścia, wyjścia oraz zawiera bramkę zapomnij. Bramka wejściowa decyduje jak dużo informacji z poprzedniej warstwy zostaje zapamiętanych przez neuron, bramka wyjściowa decyduje jak dużo informacji z neuronu zostaje przekazanych do następnej warstwy. Bramka zapomnij determinuje ilość informacji z przeszłości przechowywanych przez neuron.
 
-%cos o tym mechanizmie
-%jak wyewoluowało
-%co teraz z tym
-\newpage
+Stosunkowo nowym pomysłem, który wywodzi się z 2014 roku \cite{2014arXiv1406.2661G} są generatywne sieci antagonistyczne (GAN). Składają się one z dwóch sieci, które są równocześnie uczone. Pierwsza nazywana dyskryminatorem przymjmuje jako wejście np. obraz $Y$ i generuje wyjście w skalarnej postaci $D(Y)$, które wskazuje czy obraz $Y$ wygląda naturalnie czy nie. O $D(Y)$ możemy myśleć jak o funkcji, która ma niską wartość bliską zeru gdy $Y$ jest prawdziwym obrazem i dużą wartość dodatnią jeśli mamy do czynienia z nienaturalnym np. zaszumionym obrazem. Druga sieć nazywana jest generatorem, oznaczmy ją przez $G(Z)$, gdzie $Z$ to wektor losowy, próbkowany z dowolnego rozkładu. Rolą generatora jest wytworzenie obrazów, które będą wejściem dyskryminatora. W czasie treningu $D$ uczy się na prawdziwych obrazach i dopasowuje swoje parametry tak aby minimalizować funkcję $D(Y)$, następnie wejściem $D$ jest obraz wyprodukowany z wektora $Z$, wtedy sieć jest uczona aby maksymalizować wartość $D(G(Z))$. Podczas tego procesu generator może nauczyć się produkować takie obrazy $G(Z)$ aby minimalizować wartość wyjścia dyskryminatora a co za tym idzie oszkuać go nt. prawdziwości tych obrazów. Główne zastosowanie GAN to generowanie fotorealistycznych obrazów oraz filmów wideo.
+
+Wśród innych ciekawych i najpopularniejszych konceptów wykorzystujących sieci neuronowe wywodzące się z idei perceptronu znajdują się autoencodery (AE) \cite{1988Autoencoders}, których zadaniem jest kompresja wejściowej informacji. Sieci Hopfielda \cite{hopfield-neural-networks-and-1982} wykorzystywane do modelowania pamięci skojarzeniowej, sieci Kohonena nazywane inaczej samoorganizującym się odwzorowaniem (SOM) \cite{Kohonen1982}, których wynikiem jest reprezentacja danych wejściowych o zmniejszonej liczbie wymiarów oraz wiele innych sieci zawierających modyfikacje przedstawionych powyżej pomysłów.
+
 
 \section{Funkcje aktywacji}
 \label{activation}
-%[\color{red}Funkcje aktywacji, dlaczego sigmoidy]
 Jednym z podstawowych problemów podczas wyboru struktury sieci neuronowej jest wybór typu ukrytej jednostki. Funckja aktywacji to funkcja, która działa na każdy neuron ukryty w sieci neuronowej, jako argument przyjmuje sumę iloczynów wartości neuronów z warstwy poprzedzającej i odpowiadających im wag. Każda z warstw sieci  neuronowej lub nawet każdy neuron może mieć zdefiniowaną inną funckję aktywacji.
 
 Perceptron, który był inspiracją powstania sieci neuronowcyh został skonstruowany jako uproszczony model biologicznego neuronu, naśladował jego mechanizm stosując przedstawioną w lewym górnym rogu na rysunku \ref{fig:activations} funckję Heaviside'a jako funkcję aktywacji. Funkcja przyjmuję wartość jeden jeśli suma wartości wejściowych jest większa od zera, w innym przypadku funkcja przyjmuje wartość zero i neuron nie propaguje sygnału. O funkcji skokowej Heaviside'a zdecydowanie warto wspomnieć ze względów historycznych, jednak obecnie budowane sieci z niej nie korzystają. Główną wadą jest brak ciągłości funkcji oraz pochodna, która uniemożliwia skorzystanie z wykorzystywanego podczas nauki algorytmu propagacji wstecznej\cite{1986Natur.323..533R}. Pochodna funkcji jest równa zero wszędzie po za argumentem równym zero, gdzie osiąga nieskończoną wartość. Wśród pożądanych cech funkcji aktywacji znajdują się takie atrybuty jak nieliniowość, jest to cecha, która pozwala sieci neuronowej odwzorować nieliniowe zależności \cite{LeCun:1998:EB:645754.668382}, \cite{Hornik1989}. Jedynym wyjątkiem od reguły jest stosowanie w problemach regresyjnych funkcji tożsamościowej w ostatniej warstwie wyjściowej. 
@@ -633,6 +626,13 @@ Należy pamiętać, że chociaż uniwersalne twierdzenie aproksymacyjne zapewnia
 %
 \begin{figure}[h!]
 	\centering
+	\includegraphics[width=\linewidth]{cybenko}
+	\caption{Aproksymacja funkcji o równaniu (\ref{eq:cybenko}) przez sieć neuronową w zależności od liczby neuronów w warstwie ukrytej. Rysunki przedstawiają aproksymacje funkcje otrzymane dla 1, 2, 3, 4, 10 i 100 neuronów. Przebieg funkcji (\ref{eq:cybenko}) to niebieska przerywana linia, wynik modelu to ciągła czarna linia.}
+	\label{fig:cybenko2}
+\end{figure}
+%
+\begin{figure}[h!]
+	\centering
 	\includegraphics[width=\linewidth]{mse.eps}
 	\caption{Błąd średniokwadratowy w zależności od liczby neuronów w warstwie ukrytej podczas aproksymacji funkcji z równania (\ref{eq:cybenko}).}
 	\label{fig:cybenko1}
@@ -641,15 +641,8 @@ Rysunek \ref{fig:cybenko1} przedstawia uzyskaną zależność wartości funkcji 
 %
 Natomiast przebieg aproksymowanych funkcji możemy zaobserwować na rysunku \ref{fig:cybenko2}. Dla 1 neuronu w wartstwie ukrytej, funkcją wyjściową jest po prostu sigmoida o postaci $$G\left(x\right) = w^o_1 \sigma\left(w^h_1x + b_1\right),$$ następne neurony dodają do funkcji $G(x)$ kolejne składniki tej postaci. Dla przedstawianego przykładu, sieć o 10 neuronach ukrytych bardzo dobrze odwzorowuje przebieg funkcji uwzględniając wszystkie wypukłości.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{cybenko}
-	\caption{Aproksymacja funkcji o równaniu (\ref{eq:cybenko}) przez sieć neuronową w zależności od liczby neuronów w warstwie ukrytej. Rysunki przedstawiają aproksymacje funkcje otrzymane dla 1, 2, 3, 4, 10 i 100 neuronów. Przebieg funkcji (\ref{eq:cybenko}) to niebieska przerywana linia, wynik modelu to ciągła czarna linia.}
-		 \label{fig:cybenko2}
-\end{figure}
-
 Zgodnie z treścią twierdzenia udowodnionego w 1993 roku \cite{Leshno1993MultilayerFN}, sieć neuronowa ma zdolność przybliżania funkcji nawet przy wykorzystaniu nieciągłych i nieograniczonych funkcji aktywacji. Rysunek \ref{fig:cybenko3} pokazuje przybliżenia otrzymane przy użyciu funkcji: $(a)$ Heaviside'a, $(b)$ ReLU, $(c)$ softplus oraz $(d)$ sigmoidy dla 100 neuronów w warstwie ukrytej. Można zauważyć, że zapewnienie niskiej wartości błędu przy wykorzystaniu nieciągłych funkcji aktywacji wymaga znacznie większej ilości neuronów niż w przypadku użycia ciągłych funkcji jak softplus czy sigmoida. Należy również pamiętać, że wykorzystanie funkcji Heaviside'a uniemożliwia skorzystanie z wprowadzonej w poprzednim podrozdziale metody propagacji wstecznej, ponieważ pochodna w punkcie $x=0$ jest nieskończona.
-	
+%	
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{cybenko_act}
@@ -752,7 +745,7 @@ Pojemność modelu to jego zdolność do dopasowania do wielu różnych funkcji 
 %
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=1\linewidth]{curves.png}
+	\includegraphics[width=0.8\linewidth]{curves.png}
 	\caption{Zależność błędu modelu spowodowanego obciążeniem i wariancją od pojemności. Rysunek przetłumaczony na język polski z \cite{Goodfellow-et-al-2016}.}
 	\label{fig:pojemnosc}
 \end{figure}
