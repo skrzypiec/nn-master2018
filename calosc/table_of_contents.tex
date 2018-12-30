@@ -35,9 +35,6 @@
 
 \renewcommand{\cftchappagefont}{\bfseries\color{red}}
 
-
-
-%\newgeometry{tmargin=2.5cm, bmargin=2cm, lmargin=3.5cm, rmargin=2cm}
 \theoremstyle{definition}
 \newtheorem{definition}{Definicja}[section]
 \usepackage{color}
@@ -72,7 +69,6 @@
 \title{}
 \author{Rafał Skrzypiec}
 
-%\newgeometry{tmargin=2.5cm, bmargin=2cm, lmargin=3.5cm, rmargin=2cm}
 
 \newcommand\blankpage{%
 	\null
@@ -1898,7 +1894,7 @@ Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej
 %
 %
 
-Rysunek \ref{fig:ff3} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Otrzymane wyniki zostały ponownie porównywane są z rezultatami publikacji \cite{2009PhRvC..79f5204A}, które całkowicie zawierają się w obszarze $\pm 2\sigma$ otrzymanych wyników. W przypadku magnetycznej funkcji postaci główna różnica to brak przegięcia funkcji będącej wynikiem modelu, w okolicach $Q^2 \simeq 0.15 \text{ GeV}^2$ oraz późniejsze niedoszacowanie względem porównywanej funkcji, nie przekraczające różnicy 0.02. Elektryczna funkcja postaci również pozbawiona jest pierwszego niewielkiego przecięcia, następnie spadek wartości zaczyna się wcześniej, tzn. dla nieco mniejszej wartości $Q^2$, jednak jest on mniej gwałtowny. Odchylenie standardowe magnetycznej funkcji postaci jest w przybliżeniu stałe na całej długości przedstawionego przebiegu funkcji i wynosi około $0.01$, wariancja elektrycznej funkcji postaci w pobliżu $Q^2 \rightarrow 0$ jest bardzo niewielka i znacznie wzrasta wraz z $Q^2$.
+Rysunek \ref{fig:ff3} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Otrzymane wyniki zostały ponownie porównywane są z rezultatami publikacji \cite{2009PhRvC..79f5204A}, które całkowicie zawierają się w obszarze $\pm 2\sigma$ otrzymanych wyników. W przypadku magnetycznej funkcji postaci główna różnica to brak zmiany monotoniczności funkcji będącej wynikiem modelu, w okolicach $Q^2 \simeq 0.15 \text{ GeV}^2$ oraz późniejsze niedoszacowanie względem porównywanej funkcji, nie przekraczające różnicy 0.02. Elektryczna funkcja postaci również pozbawiona jest pierwszego niewielkiego przecięcia, następnie spadek wartości zaczyna się wcześniej, tzn. dla nieco mniejszej wartości $Q^2$, jednak jest on mniej gwałtowny. Odchylenie standardowe magnetycznej funkcji postaci jest w przybliżeniu stałe na całej długości przedstawionego przebiegu funkcji i wynosi około $0.01$, wariancja elektrycznej funkcji postaci w pobliżu $Q^2 \rightarrow 0$ jest bardzo niewielka i znacznie wzrasta wraz z $Q^2$.
 % 
 \begin{figure}[hp!]
 	\centering
@@ -1928,29 +1924,25 @@ Jednym z wyników sieci nieuwzględnionym podczas wcześniejszych analiz jest po
 \end{figure}
 
 
-\section[\color{red}Porównanie rezultatów]{Porównanie rezultatów}
-
-
-\begin{figure}[hp!]
-	\centering
-	\includegraphics[width=1\textwidth]{cmp_all.eps}
-	\caption{} 
-	\label{fig:cmp_all}
-\end{figure}
-
-\chapter[\color{red}Zakończenie]{Zakończenie}
+\chapter{Zakończenie}
 \label{summary}
 
 W powyższej pracy zbudowano modele statystyczne, które wykorzystując pomiary eksperymentalne rozpraszania elektron-proton dają w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. W tym celu wykorzystano popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy. Do nauki modelów posłużyły dwa typy danych, pierwszy z nich zawiera pomiary całkowitych przekrojów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$, drugi zawiera pomiary stosunków funkcji postaci w zależności od $Q^2$. Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}, przebiegi funkcji postaci w zależności od $Q^2$ zawierają się w zakresach niepewności pomiarowych zaprezentowanych na wykresach.
 
 
-Proces analizy wymagał zrozumienia zarówno fizyki badanego zjawiska jak i dziedziny nauki zajmującej się algorytmami uczenia maszynowego. Opisano metody budowy sieci neuronowych, w tym szczególnie perceptronu wielowarstwowego wraz z metodą nauki modelu. Zwrócono uwagę na istotną zdolność uniwersalnej aproksymacji oraz na charakterystyczne problemy predykcyjnych modelów statystycznych takie jak kompromis między obciążeniem i wariancją. Nauka model statystycznego została zaprogramowana w języku Python przy wykorzystaniu biblioteki Keras. Zaimplementowano działanie niestandardowej funkcji straty, która bierze pod uwagę wyniki operacji przeprowadzanych na dwóch różnych zbiorach danych (równanie \ref{eq_loss3}). Dodatkowo zaprogramowano algorytm walidacji krzyżowej oraz wczesnego zatrzymania nauki sieci, które pomogły uniknąć przeuczenia modelu statystycznego. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewności pomiarowe oraz błędy systematyczne wygenerowano zestawy sztucznych zestawów danych, których celem było zapewnienie gładkiej interpolacji funkcji postaci przy równoczesnym zapewnieniu nieobciążonej estymacji wszystkich pomiarów. Ponadto opisano proces wyboru hiperparametrów modelu.
+Proces analizy wymagał zrozumienia zarówno fizyki badanego zjawiska jak i dziedziny nauki zajmującej się algorytmami uczenia maszynowego. Opisano metody budowy sieci neuronowych, w tym szczególnie perceptronu wielowarstwowego wraz z metodą nauki modelu. Zwrócono uwagę na istotną zdolność uniwersalnej aproksymacji oraz na charakterystyczne problemy predykcyjnych modelów statystycznych takie jak kompromis między obciążeniem i wariancją. Nauka model statystycznego została zaprogramowana w języku Python przy wykorzystaniu biblioteki Keras. Zaimplementowano działanie niestandardowej funkcji straty, która bierze pod uwagę wyniki operacji przeprowadzanych na dwóch różnych zbiorach danych (równanie \ref{eq_loss3}). Dodatkowo zaprogramowano algorytm walidacji krzyżowej oraz wczesnego zatrzymania nauki sieci, które pomogły uniknąć przeuczenia modelu statystycznego. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewności pomiarowe oraz błędy systematyczne wygenerowano zestawy sztucznych zestawów danych, których celem było zapewnienie gładkiej interpolacji funkcji postaci przy równoczesnym zapewnieniu nieobciążonej estymacji wszystkich pomiarów. Ponadto opisano proces wyboru hiperparametrów modelu i szczegóły działania wybranego algorytmu uczącego.
 
 
-Przedstawione analizy zaprezentują wykorzystują trzy modele, które w różny sposób starają się przewidywać elektryczną i magnetyczną funkcje postaci. Pierwszy z nich do nauki wykorzystuje tylko pomiary całkowitych przekrójów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$ i estymuje całkowity przekrój czynny. Następnie operacje różniczkowania pozwalaja na separacje funkcji postaci. Drugi z modelów wykorzystuje dodatkowo pomiary stosunków funkcji postaci, jego wynikiem są explicite elektrtyczna i magnetyczna funkcja postaci. Trzeci model oprócz szacowania funkcji postaci przewiduje wartość poprawki dwufotonowej.
+Przedstawione analizy prezentują wyniki działania trzech modelów, które w różny sposób starają się przewidywać elektryczną i magnetyczną funkcje postaci. Pierwszy z nich do nauki wykorzystuje tylko pomiary całkowitych przekrójów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$ i estymuje całkowity przekrój czynny. Następnie operacje różniczkowania pozwalaja na separacje funkcji postaci. Drugi z modelów wykorzystuje dodatkowo pomiary stosunków funkcji postaci, jego wynikiem są explicite elektrtyczna i magnetyczna funkcja postaci. Trzeci model oprócz szacowania funkcji postaci przewiduje wartość poprawki dwufotonowej. Podczas nauki każdego z modelów skorzystano z metody 5-krotnej walidacji krzyżowej oraz 500 wygenerowanych zestawów sztucznych danych co spowodowało, że jeden model wymagał wytrenowania 2500 sieci neuronowych. Wyniki nauczonych modeli tworzą statystykę, której najważniejszymi parametrami są średnia przedstawiana jako wynik modelu, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników.
 
-%cos dalej zadowolony czy nie?
+\begin{figure}[hp!]
+	\centering
+	\includegraphics[width=1\textwidth]{cmp_all.eps}
+	\caption{Porównanie funkcji postaci protonu wynikających z analiz nr 2 (linia przerywana) oraz 3 (linia ciągła) z wynikami przedstawionymi w \cite{2009PhRvC..79f5204A} (linia kropkowana).} 
+	\label{fig:cmp_all}
+\end{figure}
 
+Analiza nr 1 prezentowała najprostszy sposób rozwiązania problemu, korzystała tylko z jednego rodzaju danych i jej wynikiem był całkowity przekrój czynny. Ekstrakcja funkcji postaci z przekroju czynnego była obarczona dużym błędem co negatywnie odbiło się na wynikach modelu i skutkowało dużą wariancją otrzymanych rezultatów. Uwzględnienie pomiarów doświadczalnych stosunków funkcji postaci znacznie podniosło jakość wyników. Rysunek \ref{fig:cmp_all} przedstawia porównanie funkcji postaci otrzymanych w analizach nr 2 oraz 3. Różnice między analizami nr 2 i 3 wynikające z uwzględnienia poprawki dwufotonowej widoczne są przede wszystkim dla magnetycznej funkcji postaci. Największa różnica w magnetycznych funkcjach postaci w porównaniu do krzywej pochodzącej z \cite{2009PhRvC..79f5204A} pojawia się dla małych wartości $Q^2$, w wynikach analizy w tym obszarze nie występuje zmiana monotoniczności funkcji. Elektryczna funkcja postaci również pozbawiona jest pierwszego niewielkiego przecięcia, następnie spadek wartości zaczyna się dla nieco mniejszej wartości $Q^2$, jednak jest on mniej gwałtowny. Całkowite różnice są niewielkie a wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}, przebiegi funkcji postaci w zależności od $Q^2$ zawierają się w zakresach niepewności pomiarowych co przedstawiono na rysunkach \ref{fig:ff2}, \ref{fig:ff3}.
 
 
 %cos z podsumowaniem wszystkie modele przedstawione razem??
