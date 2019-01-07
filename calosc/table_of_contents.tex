@@ -217,7 +217,7 @@ Gdzie $w^\mathsf{T}$ to wektor wartości wag symbolizujących synapsy odpowiadaj
 
 \begin{SCfigure}
 	\centering
-		\resizebox{10	cm}{!}{
+		\resizebox{9 cm}{!}{
 	\begin{tikzpicture}
 	[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=6mm,circle},
 	]
@@ -269,7 +269,7 @@ W ogólności od funkcji aktywacji nie jest wymagana ciągłość pochodnej, gru
 %
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{activations}
+	\includegraphics[width=1\linewidth]{activations}
 	\caption{Kilka przykładów często stosowanych funkcji aktywacji.}
 	\label{fig:activations}
 \end{figure}
@@ -385,7 +385,7 @@ Zatem widzimy, że użycie funkcji aktywacji w postaci sigmoidy pozwala nie tylk
 \section{Uczenie sieci neuronowej}
 \label{backprop}
 
-W biologii, uczeniem nazywamy proces pozyskiwania nowej lub modyfikacji nabytej wiedzy, zachowania lub umiejętności pod wpływem doświadczeń \cite{2008:Biologia}. Systemy uczące się (\textit{machine learning}) to jedna z gałęzi dziedziny sztucznej inteligencji, która zajmuje się badaniem algorytmów oraz modeli matematycznych wykorzystywanych przez systemy komputerowe do stopniowego zwiększania efektywności wykonywania określonego zadania. Wśród metod nauki możemy wyróżnić uczenie nienadzorowane oraz nadzorowane. Pierwsze z nich do nauki wykorzystuje zbiór danych zawierający cechy, a następnie stara się nauczyć użytecznych właściwości dotyczących struktury tego zbioru danych. Algorytmy wykorzystujące uczenie nienadzorowane stosowane są na przykład w problemach segmentacji danych lub detekcji anomalii. Nadzorowane algorytmy uczące się poznają zbiór danych zawierający cechy lecz do każdego przykładu przypisana jest również etykieta, zadaniem algorytmu jest nauczenie się w jaki sposób trafnie przypisywać etykiety \cite{Goodfellow-et-al-2016}. Ten rodzaj algorytmów wykorzystywany jest najczęściej w problemach klasyfikacyjnych oraz regresyjnych. W poniższym rozdziale opisuję proces nadzorowanego uczenia się jenokierunkowej sieci neuronowej o jednej warstwie ukrytej, której zadaniem będzie nauka relacji $f(X)  = Y$.
+W biologii, uczeniem nazywamy proces pozyskiwania nowej lub modyfikacji nabytej wiedzy, zachowania lub umiejętności pod wpływem doświadczeń \cite{2008:Biologia}. Systemy uczące się (\textit{machine learning}) to jedna z gałęzi dziedziny sztucznej inteligencji, która zajmuje się badaniem algorytmów oraz modeli matematycznych wykorzystywanych przez systemy komputerowe do stopniowego zwiększania efektywności wykonywania określonego zadania. Wśród metod nauki możemy wyróżnić uczenie nienadzorowane oraz nadzorowane. Pierwsze z nich do nauki wykorzystuje zbiór danych zawierający cechy, a następnie stara się nauczyć użytecznych właściwości dotyczących struktury tego zbioru danych. Algorytmy wykorzystujące uczenie nienadzorowane stosowane są na przykład w problemach segmentacji danych lub detekcji anomalii. Nadzorowane algorytmy uczące się poznają zbiór danych zawierający cechy lecz do każdego przykładu przypisana jest również etykieta, zadaniem algorytmu jest nauczenie się w jaki sposób trafnie przypisywać etykiety \cite{Goodfellow-et-al-2016}. Ten rodzaj algorytmów wykorzystywany jest najczęściej w problemach klasyfikacyjnych oraz regresyjnych. Z matematycznego punktu widzenia, uczenie się to problem optymalizacyjny polegający na poszukiwaniu ekstremum funkcji, która jest kryterium jakości nauki. W poniższym rozdziale opisuję proces nadzorowanego uczenia się jenokierunkowej sieci neuronowej o jednej warstwie ukrytej, której zadaniem będzie nauka relacji $f(X)  = Y$.
 
 
 \subsubsection{Dane}
@@ -681,9 +681,9 @@ Zgodnie z treścią twierdzenia udowodnionego w 1993 roku \cite{Leshno1993Multil
 
 \section{Kompromis między obciążeniem i wariancją}
 
+Jednym z głównych wyzwań podczas budowy predykcyjnych modelów statystycznych jest stworzenie modelu, który będzie miał możliwość uogólnienia. Uogólnienie to zdolność algorytmu do dobrego działania zarówno na danych, które posłużyły do nauki modelu i na nowych, wcześniej nieznanych pomiarach. Aby to osiągnąć zestaw dostępnych danych dzieli się na dwa zbiory: szkoleniowy oraz walidacyjny. Minimalizacja wartości funkcji straty obliczonej na podstawie zbioru szkoleniowego prowadzi do nauki modelu, natomiast obserwacja wartości błędu obliczonego na podstawie zbioru walidacyjnego pozwala sprawdzić jakość uogólnienia modelu.
 
 Błąd predykcyjnych modelów statystycznych może być rozłożony na dwa główne składniki -- błąd spowodowany obciążeniem i wariancją. Zrozumienie tych błędów umożliwia skonstruowanie modelu, który równocześnie minimalizuje zarówno obciążenie jak i wariancję, co pozwala uniknąć nadmiernego dopasowania lub niedopasowania modelu. W poniższej sekcji zdefiniuję te błędy i wyjaśnię dlaczego dobry model powinien zachowywać kompromis pomiędzy obciążeniem i wariancją.
-
 
 \subsubsection{Obciążenie}
 Obciążenie estymatora to różnica pomiędzy oczekiwaną wartością estymatora i prawdziwą wartością estymowanego parametru. Estymator, którego obciążenie wynosi zero nazywamy estymatorem nieobciążonym, w przeciwnym razie estymatorem obciążonym. Załóżmy, że model statystyczny opisywany jest przez parametr $\theta$, tak że $P_{\theta }(x)=P(x\mid \theta)$, natomiast $\hat{\theta}$ to estymator $\theta$ będący funkcją danych $x$. Zakładamy, że dane są zgodne z nieznanym rozkładem $P_{\theta }(x)=P(x\mid \theta)$, natomiast $\theta$ ma ustaloną wartość i jest parametrem tego rozkładu, następnie konstruujemy estymator $\hat{\theta}$.
