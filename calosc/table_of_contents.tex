@@ -180,7 +180,7 @@
 
 \vspace{2cm}
 
-
+\newgeometry{tmargin=3.cm, bmargin=2.0cm, lmargin=3.5cm, rmargin=2.5cm}
 \tableofcontents
 \addtocontents{toc}{~\hfill\textbf{Strona}\par}
 \newgeometry{tmargin=3.cm, bmargin=3.0cm, lmargin=3.5cm, rmargin=2.5cm}
@@ -200,11 +200,284 @@ Zainspirowany poprzednimi badaniami \cite{2009PhRvC..79f5204A}, \cite{PhysRevC.8
 
 Przedłożona praca została podzielona na pięć rozdziałów, następny zawiera wprowadzenie do tematyki sieci neuronowych, przedstawiona jest w nim ich historia, struktura i sposób działania. Następnie zaprezentowano wizualne działanie twierdzenia mówiącego, że sieć neuronowa może realizować aproksymację z dowolnie małym błędem oraz problem osiągnięcia kompromisu pomiędzy obciążeniem i wariancją modelu. Rozdział 3 zaczyna się od opisu fizyki rozpraszania elastycznego elektron-proton wraz z metodą separacji Rosenblutha \cite{PhysRev.79.615} oraz pomiarem polaryzacji protonu \cite{Akhiezer:1974em}. Kolejne sekcje to wprowadzenie do metodologii budowy i nauki modelu sieci neuronowych wraz z omówieniem wykorzystanych algorytmów m.in. generowania sztucznych danych, wczesnego zatrzymania nauki modelu oraz walidacji krzyżowej . W rozdziale 4 zostaną przedstawione wyniki trzech analiz wynikające z wykorzystania różnych technik modelowania oraz rodzajów pomiarów eksperymentalnych. Uzyskane wyniki zostaną porównane z rezultatami przedstawionymi w pracy \cite{PhysRevC.84.034314}. Praca kończy się podsumowaniem w rozdziale 5.
 
+\chapter{Elastyczne rozpraszanie elektronów na protonie}
+\section{Rys historyczny}
+
+W roku Ernest Rutherford wraz ze swoimi studentami Hansem Geigerem i Ernestem Marsdenem badali rozpraszanie cząstek naładowanych na cienkich foliach różnych pierwiastków. Do eksperymentu wykorzystano cząstki $\alpha$ emitowane przez naturalne pierwiastki radioaktywne. 
+
+Cząstka $\alpha$ to jądro podstawowego izotopu helu składające się z dwóch protonów i dwóch neutronów. Cząstka wysyłana jest przy rozpadzie niestabilnych jąder z prędkością $10^7 \frac{\si{m}}{\si{s}}$ i może przelecieć kilka centymetrów w powietrzu lub około 0,1 mm w ciele stałym zanim zostanie zatrzymana z powodu zderzeń. Masa cząstek $\alpha$ jest około 7300 razy większa od masy elektronu. Atomy folii można sobie wyobrazić jako upakowane dość blisko siebie kule. Ponieważ są neutralne, poza atomami właściwie nie ma oddziaływania z cząstkami $\alpha$. Wewnątrz atomu cząstki mogą oddziaływać zarówno z dodatnim jak i z ujemnym ładunkiem. Ponieważ ujemny ładunek jest
+związany z elektronami, które są o cztery rzędy wielkości lżejsze od cząstek $\alpha$ możemy zaniedbać całkowicie oddziaływanie z elektronami. Oddziaływanie z ładunkiem dodatnim zależy w istotny sposób od rozkładu tego ładunku w atomie. 
+Wyniki były zaskakujące jeśli przyjąć za słuszny model Thompsona z jednorodnym rozkładem masy i ładunku.  Podczas eksperymentu zaobserwowano rozpraszanie pod dużymi kątami, dla niektórych cząstek pod kątem prawie $180^{\circ}$. Oczekiwania związane z eksperymentem były oparte o obliczenia w ramach klasycznej elektrodynamiki. Dawały się jednak wyjaśnić w ramach tej samej teorii klasycznej jeśli założyć, że cały ładunek dodatni i (prawie) cała masa atomy skupione są w bardzo małym obszarze rzędu $10^{-14}$m w środku atomu. Eksperyment potwierdzał więc hipotezę, że atom posiada jądro, bardzo gęstą, bardzo małą strukturę niosącą cały dodatni ładunek atomu i prawie całą (99,95\%) jego masę.
+%
+
+\section{Różniczkowy przekrój czynny}
+
+Wyniki eksperymentów rozproszeniowych charakteryzujemy przy pomocy różniczkowego przekroju czynnego. Żeby wprowadzić to pojęcie ustalmy układ współrzędnych w ten sposób, że centrum potencjału rozpraszającego znajduje się w początku układu, a oś OZ skierowana jest wzdłuż padającej wiązki cząstek. Różniczkowy przekrój czynny $\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right)$ definiujemy przy pomocy ilorazu:
+\begin{equation}
+\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right) = \frac{\splitfrac{\text{ \;\;\;\;\;\; liczba cząstek rozproszonych w jednostce }}{\text {czasu w kąt bryłowy $d\Omega$ wokół kierunku $\left(\theta, \varphi\right)$}}}{\text{\;\;\; strumień cząstek wiązki padającej $\; \times \; \; d\Omega$}}.
+\end{equation}
+
+Strumień cząstek wiązki padającej to liczba cząstek przechodzących w jednostce czasu przez jednostkę powierzchni prostopadłą do osi OZ, w obszarze $z \ll 0$, a więc tam gdzie cząstki wiązki nie oddziałują jeszcze z centrum rozpraszającym. Wielkość ta ma wymiar $\left[\frac{1}{\si{m^2.s}}\right]$, zatem różniczkowy przekrój czynny ma wymiar pola powierzchni. Często stosowaną jednostką, w której wyraża się przekroje czynne jest 1 barn $= 10^{-28}$ \si{m^{2}}. Definicję różniczkowego przekroju czynnego można interpretować następująco: liczba cząstek rozproszonych w jednostce czasu w kąt bryłowy $d\Omega$ jest równa liczbie cząstek pochłoniętych przez tarczę o powierzchni $\frac{d\sigma}{d\Omega} \left( \theta, \varphi \right)d\Omega$ umieszczoną prostopadle do kierunku propagacji wiązki padającej. Całkując po kątach otrzymujemy całkowity przekrój czynny: 
+\begin{equation}
+\sigma = \int d\Omega \frac{d\sigma}{d\Omega} \left(\theta, \varphi\right) = \int_{0}^{\pi}\sin \theta d\theta \int_{0}^{2\pi} d\varphi \frac{d\sigma}{d\Omega}\left(\theta, \varphi\right).
+\end{equation}
+W definicji przekroju czynnego występuje tylko liczba cząstek rozproszonych. Dla kątów $\theta > 0$ możemy przyjąć, że detektor mierzący liczbę cząstek rozproszonych jest na tyle daleko od centrum rozpraszającego, że jest już poza wiązką padającą, która ma wymiar poprzeczny większy od rozmiarów obszaru z potencjałem istotnie różnym od zera, ale jednak skończony. Im mniejszy kąt $\theta$ tym trudniej oddzielić cząstki rozproszone od nierozproszonych. Dla małych kątów można mówić o różniczkowym przekroju czynnym tylko w sensie ekstrapolacji z obszaru $\theta > 0$. Pojęcie różniczkowego i całkowitego przekroju czynnego nie jest ograniczone do rozpraszania elastycznego, stosuje się je także do opisu rozpraszania nieelastycznego.
+%
+
+Zakładając rozpraszanie cząstki $\alpha$ w polu siły centralej $\sim \frac{1}{r^2}$, wykorzystując zasadę zachowania momentu pędu oraz energii mechanicznej otrzymujemy wzór na różniczkowy przekrój czynny, którym posługiwał się Rutherford \cite{10.1088/978-0-7503-1140-3}
+%
+\begin{equation}
+\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}},
+\end{equation}
+%
+gdzie $e$ to ładunek elementarny, $\epsilon_0$ to przenikalność elektryczna próżni, $E_{\alpha}$ to energia padającej cząstki $\alpha$ natomiast $\theta$ to kąt rozpraszania.
+
+Z racji skali cząstek, które biorą udział w tym doświadczeniu, zagadnienie należy jednak rozpatrywać z punktu widzenia mechaniki kwantowej. Szukając stanów stacjonarnych hamiltonianu
+%
+\begin{equation}
+\hat{H} = \frac{\hat{p}^2}{2\mu} - \frac{e^2}{4\pi\varepsilon_0} \frac{1}{r},
+\end{equation}
+%
+przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda  \cite{Jaskolski..MQ}  na różniczkowy przekrój czynny na rozpraszanie na potencjale kulombowskim 
+\begin{equation}
+-\frac{\alpha}{r} = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r},
+\end{equation}
+%
+\begin{equation}
+\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{\alpha}{2 E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}} = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}}. \label{eq:ruth}
+\end{equation}
+%
+W granicy $\theta \rightarrow 0$ różniczkowy przekrój czynny staje się nieskończony. Całka po kątach jest rozbieżna i całkowity przekrój czynny jest nieskończony. Źródłem tych nieskończoności jest długozasięgowy charakter potencjału kulombowskiego, w sytuacjach fizycznych nie spotykamy czystego potencjału kulombowskiego, jest on zwykle mniej lub bardziej skutecznie ekranowany.
+%
+To, że wynik otrzymany w ramach mechaniki kwantowej jest taki sam jak w mechanice klasycznej miało zasadniczy wpływ na rozwój mechaniki kwantowej. To dzięki temu zbiegowi okoliczności wnioski Rutherforda dotyczące budowy atomu wyciągnięte na podstawie wzorów klasycznych okazały się słuszne, a pytanie o stabilność układu składającego się z dodatnio naładowanego jądra i krążących wokół niego elektronów stało się podstawowym problemem teoretycznym dla ówczesnych fizyków.
+%
+
+Okazuje się, że badanie rozpraszania cząstek mikroskopowych to jeden z najlepszych eksperymentalnych sposobów poznania ich struktury oraz oddziaływań pomiędzy nimi. W trakcie zderzeń może ulec zmianie struktura wewnętrzna cząstek, a nawet ich rodzaj i liczba. Dzieje się tak gdy energia zderzenia jest dostatecznie wysoka. Takie zdarzenia nazywamy nieelastycznymi, w elastycznych procesach rozpraszania liczba cząstek się nie zmienia i wewnętrzne stopnie swobody nie ulegają wzbudzeniu, można więc zaniedbać strukturę wewnętrzną cząstek. 
+
+Wraz z budową akceleratorów cząstek oraz rozwojem aparatury eksperymentalnej dokonał się ogromny postęp w poznaniu budowy podstawowych składników materii. Możliwość produkcji wiązki elektronów o wysokiej enegii i dużym natężeniu spowodowały, że od lat 60 XX wieku, rozpraszanie elektronów i protonów stało się skuteczną metodą badania struktury protonu.
+%O poprawce TPE
+%\subsubsection{I}
+%
+Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między naładowanymi elektrycznie elektronem i protonem. Wynik rozpraszania $e^- p\rightarrow e^- p$ jest ściśle zależny od długości fali $\lambda = hc / E$ wymienionego podczas oddziaływania fotonu, więskza energia pozwala spojrzeć bardziej wgłąb struktury cząstki.
+\begin{itemize}
+	\item Dla bardzo małej energii elektronu, $\lambda \gg r_p$, gdzie $r_p$ jest promieniem protonu, rozpraszanie jest równoważne rozpraszaniu na punktowej cząstce.
+	\item Dla małej energii elektornu, $\lambda \sim r_p$, rozpraszanie jest równoważne rozpraszaniu na naładowanej cząstce niepunktowej.
+	\item Dla dużej energii elektronu, $\lambda < r_p$, długość fali jest wystarczająco mała aby dostrzec strukturę protonu, źródłem rozpraszania są kwarki.
+	\item Dla bardzo dużych energii elektornu, $\lambda \ll r_p$, źródłem rozpraszania jest morze kwarkowo-gluonowe
+\end{itemize}
+
+\section{Metoda Rosenblutha}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{rozpraszanie}
+	\caption{Prosty schemat rozpraszania elastycznego elektronu o energii początkowej $E_0$  i energii kończowej $E'$ na jądrze atomu wodoru, $\theta$ to kąt rozpraszania.}
+	\label{fig:scactter}
+\end{figure}
+%
+Energia rozproszonego elektronu $E'$ jest mniejsza niż energia początkowa $E_0$ o wartość energii przekazanej protonowi o masie $M$ i wynosi:
+%
+\begin{equation}
+E' = \frac{E_0}{1 + \frac{2E_0}{M}\sin^2 \frac{\theta}{2}}
+\end{equation}
+%
+Zdefiniujmy $ Q^2 \equiv - q^2 $, $q$ to przekaz czteropędu.
+%
+\begin{equation}
+\begin{split}
+Q^2 \equiv - q^2 = -(p^{\mu} - p^{'\mu})^2 &= 2M\left(E_0 - E'\right) \\
+& = 4 E_0 E' \sin^2 \frac{\theta}{2}
+\end{split}
+\end{equation}
+%
+Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się przy opisie rozpraszania nierelatywistycznych elektronów. Przekrój czynny szybkich elektronów $p_e = E_e$ wymaga uwzględnienia dodatkowych czynników. Są nimi: efekty relatywistyczne, odrzut protonu oraz oddziaływanie spin-spin. Należy pamiętać, że poniższe równania odpowiadają układowi jednostek miar HEP (\textit{high energy physics}) powszechnie stosowanemu w fizyce cząstek elementarnych. Zmodyfikowany przekrój czynny opisywany jest przez formułę Motta \cite{10.1088/978-0-7503-1140-3}, 
+
+%\begin{equation}
+%\left( \frac{d\sigma}{d\Omega} \right)_M  = \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} %\times 4\cos^2 \frac{\theta}{2} = 
+%\frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \cos^2 \frac{\theta}{2}.
+%\end{equation}
+
+
+\begin{equation}
+\begin{split}
+\left( \frac{d\sigma}{d\Omega} \right)_M  &= \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} \times 4\frac{E'}{E}\left( \cos^2 \frac{\theta}{2} + \frac{Q^2}{2M^2}\sin^2\frac{\theta}{2}\right) \\ 
+& =  \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E} \left( \cos^2 \frac{\theta}{2} + \frac{Q^2}{2M^2}\sin^2\frac{\theta}{2}\right). \label{eq:mott}
+\end{split}
+\end{equation}
+
+
+%\begin{equation}
+%\left( \frac{d\sigma}{d\Omega} \right)  = \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} %\frac{E'}{E} \left( \cos^2 \frac{\theta}{2} - \frac{q^2}{2M^2}\sin^2\frac{\theta}{2}\right).
+%\end{equation}
+
+
+Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. 
+
+
+Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Funkcje postaci protonu opisują przestrzenny rozkład ładunku elektrycznego we wnętrzu protonu, są zatem dobrym dostarczycielem informacji o jego wewnętrznej strukturze i jednym z kluczowych składników, które mogą pomóc ją poznać i zrozumieć. W granicy nierelatywistycznej definiowane są w następujący sposób \cite{Carlson:2015jba}:
+
+\begin{equation}
+G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} , \label{eq:formfactor}
+\end{equation}
+
+całkując po całej objętości protonu. W praktyce podczas rozpraszania elektron z protonem wymieniają między sobą nieskończoną ilość fotonów, w pierwszym przybliżeniu można założyć, że pośrednikiem oddziaływania jest tylko jeden foton. Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha \cite{1990..Taylor}:
+
+\begin{equation}
+\begin{split}
+\left( \frac{d\sigma}{d\Omega} \right)_R  &= \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E} \left(\frac{G_{E_p}^2 + \tau G_{M_p}^2}{1+\tau} \cos^2 \frac{\theta}{2} + 2\tau G_{M_p}^2\sin^2\frac{\theta}{2}\right) \\
+&=  \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E}  \cos^2 \frac{\theta}{2} \times \left[ G_{Ep}^2 + \frac{\tau}{\epsilon} G_{M_p}^2 \right] \frac{1}{\left(1 + \tau\right)} \\
+&= \left( \frac{d\sigma}{d\Omega} \right)_0 \times \left[ G_{E_p}^2 + \frac{\tau}{\epsilon} G_{M_p}^2 \right] \frac{1}{\left(1 + \tau\right)},
+\end{split}
+\end{equation}
+
+gdzie $\epsilon$ jest czynnikiem kinematycznym i także polaryzacją wirtualnego fotonu
+$$\epsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1},$$
+ponadto $$\tau = \frac{Q^2}{4M^2}.$$
+
+Funkcje $G_{E_p}$, $ G_{M_p}$ są zależne tylko od przekazu czteropędu $Q^2$ i spełniają poniższe warunki brzegowe:
+
+\begin{eqnarray*}
+	&G_{E_p} = G_{E_p}(Q^2)  &G_{E_p}(0) = 1\\
+	&G_{M_p} = G_{M_p}(Q^2)  &G_{M_p}(0) = \mu_p, 
+\end{eqnarray*}
+gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. 
+
+Zmierzony w laboratorium całkowity przekrój czynny rozpraszania w przybliżeniu jednofotonowym wyraża się formułą \cite{2009PhRvC..79f5204A}:
+% 
+\begin{equation}
+\begin{split}
+\sigma_R(\epsilon, Q^2) &\equiv \epsilon \left(1 + \tau \right) \frac{\sigma \left(\epsilon,Q^2\right)}{\sigma_0\left(\epsilon, Q^2\right) }\\
+&=\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2).
+\end{split} \label{eq:rosen}
+\end{equation}
+
+Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla ustalonej wartości $Q^2$ i różncyh wartości $\epsilon$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}, funkcje postaci stają się wtedy odpowiednimi współczynnikami prostej z równania (\ref{eq:rosen}), które można wyznaczyć metodą regresji.
+%
+
+
+\section{Metoda transferu polaryzacji}
+
+Kolejna metody oparte są na pomiarach polaryzacji odbitego protonu podczas rozpraszania spolaryzowanych elektronów lub na pomiarach asymetrii rozpraszania, pozwalają one określić wzajemny stosunek elektrycznego oraz magnetycznego czynnika postaci
+%
+$$
+\mathcal{R}\left(Q^2\right) \equiv \mu_p \frac{G_{E_p}\left(Q^2\right)}{G_{M_p}\left(Q^2\right)},
+$$
+gdzie $\mu_p = 2,793$ to moment magnetyczny protonu. W przybliżeniu jednofotonowym, otrzymujemy tylko dwa niezerowe składniki wektora polaryzacji, poprzeczny $P_t$ oraz podłużny $P_l$, przedstawione na rysunku \ref{fig:recoil}. Stosunek czynników postaci możemy otrzymać bezpośrednio ze stosunku składowych polaryzacji, otrzymujemy \cite{2007PrPNP..59..694P}:
+%
+$$
+\mathcal{R}\left(Q^2\right) \equiv -\mu_p  \frac{P_t}{P_l} \frac{E + E'}{2M} \tan^2  \left(\frac{\theta}{2}\right) 
+$$
+%
+gdzie $P_l$ i $P_t$ to podłużny i poprzeczny składnik wektora polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu. Schemat procesu pokazany został na rysunku \ref{fig:recoil}
+%
+
+Współczynnik $\mathcal{R}\left(Q^2\right)$ może także zostać wyznaczony na podstawie pomiaru asymetrii podczas sprężystego rozpraszania elektron-proton \cite{2009PhRvC..79f5204A, 2007PrPNP..59..694P}
+%
+$$
+\frac{\sigma_+ - \sigma_-}{\sigma_+ + \sigma_-} = -2\mu_p \sqrt{\tau \left(1+\tau\right)} \tan \left(\frac{\theta}{2}\right) \frac{\mathcal{R} \sin \theta^* \cos \phi^* + \mu_p \sqrt{\tau \left[ 1 + \left(1+\tau\right) \tan^2 \left(\frac{\theta}{2}\right) \right]} \cos \theta^* }{\mathcal{R}^2 + \mu_p \tau / \epsilon},
+$$
+%
+gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny polaryzacji protonu względem wektora przekazu pędu $\vec{q}$ i płaszczyzny rozpraszania.
+%
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=.7\textwidth]{Epkin_recoil_colour}
+	\caption{Schemat rozpraszania spolaryzowanego podłużnie elektronu na protonie w przyybliżeniu jednofotonowym.} 
+	\label{fig:recoil}
+\end{figure}
+
+
+
+\section{Poprawka dwu-fotonowa}
+Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynnych wskazują, że do uzyskania całkowitej zgodność z danymi pomiarów transferu polaryzacji niezbędne jest uwzględnienie dodatkowych poprawek do równania \ref{eq:rosen}. Po za klasycznymi poprawkami radiacyjnymi należy rozważyć poprawkę dwufotonową, która może zostać zapisana jako dodatkowy składnik równania.
+
+\begin{equation}
+\sigma_R \rightarrow \sigma_R + \delta_{TPE}
+\end{equation}
+
+%
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=.6\textwidth]{tpe}
+	\caption{Diagram dwufotonowy dla elastycznego rozpraszania elektron-proton.} 
+	\label{fig:tpe}
+\end{figure}
+
+
+Diagram Feynmana dla tego zjawisku został przedstawiony na rysunku \ref{fig:tpe}. Obliczenie poprawki jest trudne i zależne od modelu, wiedząc jednak, że amplituda rozpraszania musi spełniać ogólne zasady symetrii możemy założyć, że 
+
+\begin{equation}
+\sigma_R \rightarrow \sigma_R + \delta_{TPE}\left(Q^2, \epsilon\right)
+\end{equation}
+
+Wpływ poprawki dwufotonowej zostanie uwzględniony w jednej z przedstawionej poniżej analiz. 
+
+\section{Promień protonu}
+
+Zgodnie z równianiem (\ref{eq:formfactor}), funkcje postaci w granicy nierelatywistycznej definiowane są w następujący sposób:
+
+\begin{equation*}
+G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} ,
+\end{equation*}
+
+Ponadto rozwinięcie w szereg dla niewielkich $Q^2$ daje:
+
+\begin{equation}
+G(Q^2) = 1 - \frac{1}{6}\langle r^2 \rangle Q^2 + \dots,
+\end{equation}
+
+gdzie $\langle r^2 \rangle$ to kwadrat średniej kwadratowej promienia protonu. 
+Dokładne oszacowanie przebiegów funkcji postaci $G_{E_p}$ i $G_{M_p}$ jest niezwykle ważne, poniważ ich znajomość może posłużyć do oszacowania promienia protonu, który wyraża się poniższym wzorem: 
+
+
+
+\begin{equation}
+r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\rvert_{Q^2 = 0}
+\end{equation}
+
+Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane w pomiarach spektroskopowych atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Jedne z najdokładniejszych pomiarów rozpraszania zostały opublikowane w \cite{Bernauer:2010wm}, natomiast wartość promienia protonu została oszacowana na
+%
+\begin{equation}
+R_E = 0.879(8) \; \text{fm}.
+\end{equation}
+%
+Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając dodatkowo pomiary spektroskopowe rekomenduje wartość \cite{2012RvMP...84.1527M}
+%
+\begin{equation}
+R_E = 0.8775(51) \; \text{fm}. \label{r_codata}
+\end{equation}
+
+Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony. Dysponujemy wtedy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu masy około 200-krotnie większej od elektronu orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.  Obecne rezultaty wskazują na wartość \cite{Antognini417}
+%
+\begin{equation}
+R_E = 0.84087(39) \; \text{fm}.
+\end{equation}
+%
+To wartość o 4\% mniejsza od rekomendowanej przez CODATA (\ref{r_codata}), będąca rozbieżnością na poziomie $7\sigma$. Wartości stałych fizycznych bardzo często znacząco zmieniały swoją wartość wraz z zmianą techniki pomiaru i wzrostem czułości urządzeń pomiarowych. Rysunek \ref{fig:porownaniewielkosci} przedstawia ewolucje wartości średniego czasu życia neutronu oraz masy mezonu eta w czasie. Możemy zauważyć, że w obu tych przykładach najnowsza wartość nie znajduje się nawet w obszarze niepewności pomiarowej początkowych wskazań.
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{porownanie_wielkosci}
+	\caption{Przykłady zmian szacowanych wielkości fizycznych w czasie. Na wykresie po lewej stronie średni czas życia swobodnego neutronu, po prawej stronie masa mezonu eta. Rysunek zapożyczony z \cite{PhysRevD.86.010001}}
+	\label{fig:porownaniewielkosci}
+\end{figure}
+
+
+
+\section{Cel pracy i pomiary rozproszeniowe}
+Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach \cite{1966PhRv..142..922J, 1966PhRvL..17..608B, 1967PhRvL..18.1014A, 1970PhLB...31...40L, 1970PhRvD...1.2449G, 1971PhLB...35...87B, 1971PhRvD...4...45P, 1974NuPhA.222..269B, 1973NuPhB..58..429B, 1973PhRvD...8...63K, 1993PhRvD..48...29S, 1994PhRvD..49.5671W, 1994PhRvD..50.5491A, 1975NuPhB..93..461B, 1975PhRvD..12.1884S, 1974PhRvC..10.2111M, 1980NuPhA.333..381S, 1981NuPhA.364..285S, 1992PhRvD..46...24R, 2003PhRvC..68f4603D, 2004PhRvC..70a5206C}, które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Ponadto w jednej z analiz zostanie wykorzystany powyższy zbiór danych z wartościami przekrojów czynnych $\sigma_R$ zmodyfikowanych o poprawkę wynikającą z wymiany dwóch fotonów podczas rozpraszania.  Rozmiar danych to razem 426 punktów pomiarowcyh. 
+
+Drugi zestaw tworzą zbiory opublikowane w pracach \cite{1999PhRvL..82.2221M, 2000PhRvL..84.1398J, 2001PhLB..500...47D, 2001EPJA...12..125P, 2002PhRvL..88i2301G, 2001PhRvC..64c8202G, 2005PhRvC..71e5202P, 2006PhRvC..73f4004H, 2006NuPhA.764..261M, 2006PhRvC..74c5201J, 2007PhRvL..99t2002R, 2007PhRvL..98e2301C}, które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych.  
+
+Dodatkowo każdy z 24 zbiorów danych zawierających pomiary całkowitego przekroju czynnego ma określoną niepewność systematyczną $\Delta \eta$ wynikającą z rozbieżności pomiędzy pomiarami całkowitych przekrojów czynnych i pomiarami podłużnej i poprzecznej składowej polaryzacji protonów dającymi w rezultacie stosunki funkcji postaci protonu. 
+
+Celem tej pracy jest zbudowanie modelu statystycznego, który wykorzystując opisane powyżej pomiary eksperymentalne da w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. Zainspirowany poprzednimi badaniami \cite{2009PhRvC..79f5204A}, \cite{PhysRevC.84.034314} wykorzystałem do tego celu popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy.
 
 
 \chapter{Sieci Neuronowe}
 \label{sieci}
-
 
 \section{Historia i rozwój sieci neuronowych}
 
@@ -680,7 +953,7 @@ Zgodnie z treścią twierdzenia udowodnionego w 1993 roku \cite{Leshno1993Multil
 \end{figure}
 
 \section{Kompromis między obciążeniem i wariancją}
-
+\label{biasvar}
 Jednym z głównych wyzwań podczas budowy predykcyjnych modelów statystycznych jest stworzenie modelu, który będzie miał możliwość uogólnienia. Uogólnienie to zdolność algorytmu do dobrego działania zarówno na danych, które posłużyły do nauki modelu i na nowych, wcześniej nieznanych pomiarach. Aby to osiągnąć zestaw dostępnych danych dzieli się na dwa zbiory: szkoleniowy oraz walidacyjny. Minimalizacja wartości funkcji straty obliczonej na podstawie zbioru szkoleniowego prowadzi do nauki modelu, natomiast obserwacja wartości błędu obliczonego na podstawie zbioru walidacyjnego pozwala sprawdzić jakość uogólnienia modelu.
 
 Błąd predykcyjnych modelów statystycznych może być rozłożony na dwa główne składniki -- błąd spowodowany obciążeniem i wariancją. Zrozumienie tych błędów umożliwia skonstruowanie modelu, który równocześnie minimalizuje zarówno obciążenie jak i wariancję, co pozwala uniknąć nadmiernego dopasowania lub niedopasowania modelu. W poniższej sekcji zdefiniuję te błędy i wyjaśnię dlaczego dobry model powinien zachowywać kompromis pomiędzy obciążeniem i wariancją.
@@ -791,275 +1064,6 @@ Wysokie obciążenie może powodować pominięcie istotnych zależności pomięd
 
 \chapter{Metodologia analizy}
 
-\section{Fizyka zjawiska}
-
-W roku Ernest Rutherford wraz ze swoimi studentami Hansem Geigerem i Ernestem Marsdenem badali rozpraszanie cząstek naładowanych na cienkich foliach różnych pierwiastków. Do eksperymentu wykorzystano cząstki $\alpha$ emitowane przez naturalne pierwiastki radioaktywne. 
-
-Cząstka $\alpha$ to jądro podstawowego izotopu helu składające się z dwóch protonów i dwóch neutronów. Cząstka wysyłana jest przy rozpadzie niestabilnych jąder z prędkością $10^7 \frac{\si{m}}{\si{s}}$ i może przelecieć kilka centymetrów w powietrzu lub około 0,1 mm w ciele stałym zanim zostanie zatrzymana z powodu zderzeń. Masa cząstek $\alpha$ jest około 7300 razy większa od masy elektronu. Atomy folii można sobie wyobrazić jako upakowane dość blisko siebie kule. Ponieważ są neutralne, poza atomami właściwie nie ma oddziaływania z cząstkami $\alpha$. Wewnątrz atomu cząstki mogą oddziaływać zarówno z dodatnim jak i z ujemnym ładunkiem. Ponieważ ujemny ładunek jest
-związany z elektronami, które są o cztery rzędy wielkości lżejsze od cząstek $\alpha$ możemy zaniedbać całkowicie oddziaływanie z elektronami. Oddziaływanie z ładunkiem dodatnim zależy w istotny sposób od rozkładu tego ładunku w atomie. 
-Wyniki były zaskakujące jeśli przyjąć za słuszny model Thompsona z jednorodnym rozkładem masy i ładunku.  Podczas eksperymentu zaobserwowano rozpraszanie pod dużymi kątami, dla niektórych cząstek pod kątem prawie $180^{\circ}$. Oczekiwania związane z eksperymentem były oparte o obliczenia w ramach klasycznej elektrodynamiki. Dawały się jednak wyjaśnić w ramach tej samej teorii klasycznej jeśli założyć, że cały ładunek dodatni i (prawie) cała masa atomy skupione są w bardzo małym obszarze rzędu $10^{-14}$m w środku atomu. Eksperyment potwierdzał więc hipotezę, że atom posiada jądro, bardzo gęstą, bardzo małą strukturę niosącą cały dodatni ładunek atomu i prawie całą (99,95\%) jego masę.
-%
-
-Wyniki eksperymentów rozproszeniowych charakteryzujemy przy pomocy różniczkowego przekroju czynnego. Żeby wprowadzić to pojęcie ustalmy układ współrzędnych w ten sposób, że centrum potencjału rozpraszającego znajduje się w początku układu, a oś OZ skierowana jest wzdłuż padającej wiązki cząstek. Różniczkowy przekrój czynny $\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right)$ definiujemy przy pomocy ilorazu:
-\begin{equation}
-\frac{d\sigma}{d\Omega}\left(\theta, \varphi\right) = \frac{\splitfrac{\text{ \;\;\;\;\;\; liczba cząstek rozproszonych w jednostce }}{\text {czasu w kąt bryłowy $d\Omega$ wokół kierunku $\left(\theta, \varphi\right)$}}}{\text{\;\;\; strumień cząstek wiązki padającej $\; \times \; \; d\Omega$}}.
-\end{equation}
-
-Strumień cząstek wiązki padającej to liczba cząstek przechodzących w jednostce czasu przez jednostkę powierzchni prostopadłą do osi OZ, w obszarze $z \ll 0$, a więc tam gdzie cząstki wiązki nie oddziałują jeszcze z centrum rozpraszającym. Wielkość ta ma wymiar $\left[\frac{1}{\si{m^2.s}}\right]$, zatem różniczkowy przekrój czynny ma wymiar pola powierzchni. Często stosowaną jednostką, w której wyraża się przekroje czynne jest 1 barn $= 10^{-28}$ \si{m^{2}}. Definicję różniczkowego przekroju czynnego można interpretować następująco: liczba cząstek rozproszonych w jednostce czasu w kąt bryłowy $d\Omega$ jest równa liczbie cząstek pochłoniętych przez tarczę o powierzchni $\frac{d\sigma}{d\Omega} \left( \theta, \varphi \right)d\Omega$ umieszczoną prostopadle do kierunku propagacji wiązki padającej. Całkując po kątach otrzymujemy całkowity przekrój czynny: 
-\begin{equation}
-\sigma = \int d\Omega \frac{d\sigma}{d\Omega} \left(\theta, \varphi\right) = \int_{0}^{\pi}\sin \theta d\theta \int_{0}^{2\pi} d\varphi \frac{d\sigma}{d\Omega}\left(\theta, \varphi\right).
-\end{equation}
-W definicji przekroju czynnego występuje tylko liczba cząstek rozproszonych. Dla kątów $\theta > 0$ możemy przyjąć, że detektor mierzący liczbę cząstek rozproszonych jest na tyle daleko od centrum rozpraszającego, że jest już poza wiązką padającą, która ma wymiar poprzeczny większy od rozmiarów obszaru z potencjałem istotnie różnym od zera, ale jednak skończony. Im mniejszy kąt $\theta$ tym trudniej oddzielić cząstki rozproszone od nierozproszonych. Dla małych kątów można mówić o różniczkowym przekroju czynnym tylko w sensie ekstrapolacji z obszaru $\theta > 0$. Pojęcie różniczkowego i całkowitego przekroju czynnego nie jest ograniczone do rozpraszania elastycznego, stosuje się je także do opisu rozpraszania nieelastycznego.
-%
-
-Zakładając rozpraszanie cząstki $\alpha$ w polu siły centralej $\sim \frac{1}{r^2}$, wykorzystując zasadę zachowania momentu pędu oraz energii mechanicznej otrzymujemy wzór na różniczkowy przekrój czynny, którym posługiwał się Rutherford \cite{10.1088/978-0-7503-1140-3}
-%
-\begin{equation}
-\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}},
-\end{equation}
-%
-gdzie $e$ to ładunek elementarny, $\epsilon_0$ to przenikalność elektryczna próżni, $E_{\alpha}$ to energia padającej cząstki $\alpha$ natomiast $\theta$ to kąt rozpraszania.
-
-Z racji skali cząstek, które biorą udział w tym doświadczeniu, zagadnienie należy jednak rozpatrywać z punktu widzenia mechaniki kwantowej. Szukając stanów stacjonarnych hamiltonianu
-%
-\begin{equation}
-\hat{H} = \frac{\hat{p}^2}{2\mu} - \frac{e^2}{4\pi\varepsilon_0} \frac{1}{r},
-\end{equation}
-%
-przy wykorzystujaniu przybliżenia Borna, czyli jednej z metod przybliżonego rozwiązywania równania na stacjonarne stany rozproszeniowe, otrzymujemy wzór Rutherforda  \cite{Jaskolski..MQ}  na różniczkowy przekrój czynny na rozpraszanie na potencjale kulombowskim 
-\begin{equation}
--\frac{\alpha}{r} = -\frac{e^2}{4\pi \epsilon_0}\frac{1}{r},
-\end{equation}
-%
-\begin{equation}
-\frac{d\sigma}{d\Omega}\left(\theta\right) = \left(\frac{\alpha}{2 E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}} = \left(\frac{e^2}{8 \pi \epsilon_0  E_{\alpha}} \right)^2 \frac{1}{4\sin^4 \frac{\theta}{2}}. \label{eq:ruth}
-\end{equation}
-%
-W granicy $\theta \rightarrow 0$ różniczkowy przekrój czynny staje się nieskończony. Całka po kątach jest rozbieżna i całkowity przekrój czynny jest nieskończony. Źródłem tych nieskończoności jest długozasięgowy charakter potencjału kulombowskiego, w sytuacjach fizycznych nie spotykamy czystego potencjału kulombowskiego, jest on zwykle mniej lub bardziej skutecznie ekranowany.
-%
-To, że wynik otrzymany w ramach mechaniki kwantowej jest taki sam jak w mechanice klasycznej miało zasadniczy wpływ na rozwój mechaniki kwantowej. To dzięki temu zbiegowi okoliczności wnioski Rutherforda dotyczące budowy atomu wyciągnięte na podstawie wzorów klasycznych okazały się słuszne, a pytanie o stabilność układu składającego się z dodatnio naładowanego jądra i krążących wokół niego elektronów stało się podstawowym problemem teoretycznym dla ówczesnych fizyków.
-%
-
-Okazuje się, że badanie rozpraszania cząstek mikroskopowych to jeden z najlepszych eksperymentalnych sposobów poznania ich struktury oraz oddziaływań pomiędzy nimi. W trakcie zderzeń może ulec zmianie struktura wewnętrzna cząstek, a nawet ich rodzaj i liczba. Dzieje się tak gdy energia zderzenia jest dostatecznie wysoka. Takie zdarzenia nazywamy nieelastycznymi, w elastycznych procesach rozpraszania liczba cząstek się nie zmienia i wewnętrzne stopnie swobody nie ulegają wzbudzeniu, można więc zaniedbać strukturę wewnętrzną cząstek. 
-
-Wraz z budową akceleratorów cząstek oraz rozwojem aparatury eksperymentalnej dokonał się ogromny postęp w poznaniu budowy podstawowych składników materii. Możliwość produkcji wiązki elektronów o wysokiej enegii i dużym natężeniu spowodowały, że od lat 60 XX wieku, rozpraszanie elektronów i protonów stało się skuteczną metodą badania struktury protonu.
-%O poprawce TPE
-%\subsubsection{I}
-%
-Rozpraszanie elektronu na protonie polega na wymianie wirtualnego fotonu między naładowanymi elektrycznie elektronem i protonem. Wynik rozpraszania $e^- p\rightarrow e^- p$ jest ściśle zależny od długości fali $\lambda = hc / E$ wymienionego podczas oddziaływania fotonu, więskza energia pozwala spojrzeć bardziej wgłąb struktury cząstki.
-\begin{itemize}
-	\item Dla bardzo małej energii elektronu, $\lambda \gg r_p$, gdzie $r_p$ jest promieniem protonu, rozpraszanie jest równoważne rozpraszaniu na punktowej cząstce.
-	\item Dla małej energii elektornu, $\lambda \sim r_p$, rozpraszanie jest równoważne rozpraszaniu na naładowanej cząstce niepunktowej.
-	\item Dla dużej energii elektronu, $\lambda < r_p$, długość fali jest wystarczająco mała aby dostrzec strukturę protonu, źródłem rozpraszania są kwarki.
-	\item Dla bardzo dużych energii elektornu, $\lambda \ll r_p$, źródłem rozpraszania jest morze kwarkowo-gluonowe
-\end{itemize}
-
-\subsubsection{Metoda Rosenblutha}
-
-\begin{figure}[htp!]
-	\centering
-\includegraphics[width=0.8\linewidth]{rozpraszanie}
-	\caption{Prosty schemat rozpraszania elastycznego elektronu o energii początkowej $E_0$  i energii kończowej $E'$ na jądrze atomu wodoru, $\theta$ to kąt rozpraszania.}
-	\label{fig:scactter}
-\end{figure}
-%
-Energia rozproszonego elektronu $E'$ jest mniejsza niż energia początkowa $E_0$ o wartość energii przekazanej protonowi o masie $M$ i wynosi:
-%
-\begin{equation}
-E' = \frac{E_0}{1 + \frac{2E_0}{M}\sin^2 \frac{\theta}{2}}
-\end{equation}
-%
-Zdefiniujmy $ Q^2 \equiv - q^2 $, $q$ to przekaz czteropędu.
-%
-\begin{equation}
-\begin{split}
-Q^2 \equiv - q^2 = -(p^{\mu} - p^{'\mu})^2 &= 2M\left(E_0 - E'\right) \\
-& = 4 E_0 E' \sin^2 \frac{\theta}{2}
-\end{split}
-\end{equation}
-%
-Otrzymana formuła Rutherforda z równania \ref{eq:ruth} dobrze sprawdza się przy opisie rozpraszania nierelatywistycznych elektronów. Przekrój czynny szybkich elektronów $p_e = E_e$ wymaga uwzględnienia dodatkowych czynników. Są nimi: efekty relatywistyczne, odrzut protonu oraz oddziaływanie spin-spin. Zmodyfikowany przekrój czynny opisywany jest przez formułę Motta \cite{10.1088/978-0-7503-1140-3}:
-
-%\begin{equation}
-%\left( \frac{d\sigma}{d\Omega} \right)_M  = \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} %\times 4\cos^2 \frac{\theta}{2} = 
-%\frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \cos^2 \frac{\theta}{2}.
-%\end{equation}
-
-
-\begin{equation}
-\begin{split}
-\left( \frac{d\sigma}{d\Omega} \right)_M  &= \left( \frac{d\sigma}{d\Omega} \right)_{Rutherford} \times 4\frac{E'}{E}\left( \cos^2 \frac{\theta}{2} + \frac{Q^2}{2M^2}\sin^2\frac{\theta}{2}\right) \\ 
-& =  \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E} \left( \cos^2 \frac{\theta}{2} + \frac{Q^2}{2M^2}\sin^2\frac{\theta}{2}\right). \label{eq:mott}
-\end{split}
-\end{equation}
-
-
-%\begin{equation}
-%\left( \frac{d\sigma}{d\Omega} \right)  = \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} %\frac{E'}{E} \left( \cos^2 \frac{\theta}{2} - \frac{q^2}{2M^2}\sin^2\frac{\theta}{2}\right).
-%\end{equation}
-
-
-Powyższe równanie bierze jednak pod uwagę oddziaływania elektronu z protonem traktując proton jako obiekt punktowy, przy dostacznie wysokiej energii eletronu proton ujawnia swoje fizyczne wymiary oraz strukturę wewnętrzną. Ich skutkiem jest rozkład ładunku elektrycznego i momentu magnetycznego protonu. 
-
-
-Struktura protonu opisywana jest więc przez dwie funkcje postaci, elektryczną $G_{E_p}$ i magnetyczną $G_{M_p}$ które są transformatami Fouriera, odpowiednio rozkładu ładunku elektrycznego i rozkładu momentu magnetycznego protonu.  Funkcje postaci protonu opisują przestrzenny rozkład ładunku elektrycznego we wnętrzu protonu, są zatem dobrym dostarczycielem informacji o jego wewnętrznej strukturze i jednym z kluczowych składników, które mogą pomóc ją poznać i zrozumieć. W granicy nierelatywistycznej definiowane są w następujący sposób \cite{Carlson:2015jba}:
-
-\begin{equation}
-G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} , \label{eq:formfactor}
-\end{equation}
-
-całkując po całej objętości protonu. Zmodyfikowane równanie \ref{eq:mott} nosi nazwę przekroju czynnego Rosenblutha \cite{1990..Taylor}:
-
-\begin{equation}
-\begin{split}
-\left( \frac{d\sigma}{d\Omega} \right)_R  &= \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E} \left(\frac{G_{E_p}^2 + \tau G_{M_p}^2}{1+\tau} \cos^2 \frac{\theta}{2} + 2\tau G_{M_p}^2\sin^2\frac{\theta}{2}\right) \\
-&=  \frac{\alpha^2 }{4E^2\sin^4 \frac{\theta}{2}} \frac{E'}{E}  \cos^2 \frac{\theta}{2} \times \left[ G_{Ep}^2 + \frac{\tau}{\epsilon} G_{M_p}^2 \right] \frac{1}{\left(1 + \tau\right)} \\
-&= \left( \frac{d\sigma}{d\Omega} \right)_0 \times \left[ G_{E_p}^2 + \frac{\tau}{\epsilon} G_{M_p}^2 \right] \frac{1}{\left(1 + \tau\right)},
-\end{split}
-\end{equation}
-
-gdzie $\epsilon$ jest czynnikiem kinematycznym i także polaryzacją wirtualnego fotonu
-$$\epsilon = \left[ 1 + 2(1 + \tau) \tan^2 \left(\frac{\theta}{2}\right) \right]^{-1},$$
-ponadto $$\tau = \frac{Q^2}{4M^2}.$$
-
-Funkcje $G_{E_p}$, $ G_{M_p}$ są zależne tylko od przekazu czteropędu $Q^2$ i spełniają poniższe warunki brzegowe:
-
-\begin{eqnarray*}
- &G_{E_p} = G_{E_p}(Q^2)  &G_{E_p}(0) = 1\\
- &G_{M_p} = G_{M_p}(Q^2)  &G_{M_p}(0) = \mu_p, 
-\end{eqnarray*}
-gdzie $\mu_p$ to moment magnetyczny protonu. Wartości tych istotnych funkcji są wyznaczane eksperymentalnie. 
-
-W praktyce podczas rozpraszania elektron z protonem wymieniają między sobą nieskończoną ilość fotonów, w pierwszym przybliżeniu można założyć, że pośrednikiem oddziaływania jest tylko jeden foton. Zmierzony w laboratorium całkowity przekrój czynny rozpraszania można w przybliżeniu jednofotonowym wyrazić formułą \cite{2009PhRvC..79f5204A}:
-% 
-\begin{equation}
-\begin{split}
-\sigma_R(\epsilon, Q^2) &\equiv \epsilon \left(1 + \tau \right) \frac{\sigma \left(\epsilon,Q^2\right)}{\sigma_0\left(\epsilon, Q^2\right) }\\
-&=\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2).
-\end{split} \label{eq:rosen}
-\end{equation}
-
-Metoda Rosenblutha to pierwsza poznana technika pozwalająca na otrzymanie wartości funkcji $G_E$ i $G_M$ dla protonu. Wymaga ona pomiarów przekroju czynnego rozpraszania elektron-proton podczas wielu eksperymentów, dla różnych parametrów $\theta$ i $Q^2$. Zmianę tych parametrów można otrzymać poprzez korygowanie energii wiązki oraz kąta rozpraszania elektronu w tak dużym zakresie, jak to jest wykonalne eksperymentalnie. Metoda separacji Rosenblutha pozwala zapisać zredukowany przekrój czynny jako kombinację liniową funkcji postaci $G_{E_p}$ oraz $G_{M_p}$ \cite{2007PrPNP..59..694P}.
-%
-
-\subsubsection{Pomiar polaryzacji protonu}
-
-Kolejna metody oparte są na pomiarach polaryzacji odbitego protonu podczas rozpraszania spolaryzowanych elektronów lub na pomiarach asymetrii rozpraszania, pozwalają one określić wzajemny stosunek elektrycznego oraz magnetycznego czynnika postaci
-%
-$$
-\mathcal{R}\left(Q^2\right) \equiv \mu_p \frac{G_{E_p}\left(Q^2\right)}{G_{M_p}\left(Q^2\right)},
-$$
-gdzie $\mu_p = 2,793$ to moment magnetyczny protonu. W przybliżeniu jednofotonowym, otrzymujemy tylko dwa niezerowe składniki wektora polaryzacji, poprzeczny $P_t$ oraz podłużny $P_l$, przedstawione na rysunku \ref{fig:recoil}. Stosunek czynników postaci możemy otrzymać bezpośrednio ze stosunku składowych polaryzacji, otrzymujemy \cite{2007PrPNP..59..694P}:
-%
-$$
-\mathcal{R}\left(Q^2\right) \equiv -\mu_p  \frac{P_t}{P_l} \frac{E + E'}{2M} \tan^2  \left(\frac{\theta}{2}\right) 
-$$
-%
-gdzie $P_l$ i $P_t$ to podłużny i poprzeczny składnik wektora polaryzacji odrzuconego protonu. $E$ oraz $E'$ to poczatkowa i końcowa energia elektronu, $\theta$ to kąt rozpraszanai elektronu i $M$ to masa protonu. Schemat procesu pokazany został na rysunku \ref{fig:recoil}
-%
-
-Współczynnik $\mathcal{R}\left(Q^2\right)$ może także zostać wyznaczony na podstawie pomiaru asymetrii podczas sprężystego rozpraszania elektron-proton \cite{2009PhRvC..79f5204A, 2007PrPNP..59..694P}
-%
-$$
-\frac{\sigma_+ - \sigma_-}{\sigma_+ + \sigma_-} = -2\mu_p \sqrt{\tau \left(1+\tau\right)} \tan \left(\frac{\theta}{2}\right) \frac{\mathcal{R} \sin \theta^* \cos \phi^* + \mu_p \sqrt{\tau \left[ 1 + \left(1+\tau\right) \tan^2 \left(\frac{\theta}{2}\right) \right]} \cos \theta^* }{\mathcal{R}^2 + \mu_p \tau / \epsilon},
-$$
-%
-gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skrętności, $\theta^*$ i $\phi^*$ to kąty polarny i azymutalny polaryzacji protonu względem wektora przekazu pędu $\vec{q}$ i płaszczyzny rozpraszania.
-%
-
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=.7\textwidth]{Epkin_recoil_colour}
-	\caption{Schemat rozpraszania spolaryzowanego podłużnie elektronu na protonie w przyybliżeniu jednofotonowym.} 
-	\label{fig:recoil}
-\end{figure}
-
-
-
-\subsubsection{Poprawka dwufotonowa}
-Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynnych wskazują, że do uzyskania całkowitej zgodność z danymi pomiarów transferu polaryzacji niezbędne jest uwzględnienie dodatkowych poprawek do równania \ref{eq:rosen}. Po za klasycznymi poprawkami radiacyjnymi należy rozważyć poprawkę dwufotonową, która może zostać zapisana jako dodatkowy składnik równania.
-
-\begin{equation}
-\sigma_R \rightarrow \sigma_R + \delta_{TPE}
-\end{equation}
-
-%
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=.6\textwidth]{tpe}
-	\caption{Diagram dwufotonowy dla elastycznego rozpraszania elektron-proton.} 
-	\label{fig:tpe}
-\end{figure}
-
-
-Diagram Feynmana dla tego zjawisku został przedstawiony na rysunku \ref{fig:tpe}. Obliczenie poprawki jest trudne i zależne od modelu, wiedząc jednak, że amplituda rozpraszania musi spełniać ogólne zasady symetrii możemy założyć, że 
-
-\begin{equation}
-\sigma_R \rightarrow \sigma_R + \delta_{TPE}\left(Q^2, \epsilon\right)
-\end{equation}
-
-Wpływ poprawki dwufotonowej zostanie uwzględniony w jednej z przedstawionej poniżej analiz. 
-
-\subsubsection{Promień protonu}
-
-Zgodnie z równianiem (\ref{eq:formfactor}), funkcje postaci w granicy nierelatywistycznej definiowane są w następujący sposób:
-
-\begin{equation*}
-G(Q^2) = \int d^3 \vec{r} \; \rho(\vec{r}) e^{i\vec{Q}\cdot \vec{r}} ,
-\end{equation*}
-
-Ponadto rozwinięcie w szereg dla niewielkich $Q^2$ daje:
-
-\begin{equation}
-G(Q^2) = 1 - \frac{1}{6}\langle r^2 \rangle Q^2 + \dots,
-\end{equation}
-
-gdzie $\langle r^2 \rangle$ to kwadrat średniej kwadratowej promienia protonu. 
-Dokładne oszacowanie przebiegów funkcji postaci $G_{E_p}$ i $G_{M_p}$ jest niezwykle ważne, poniważ ich znajomość może posłużyć do oszacowania promienia protonu, który wyraża się poniższym wzorem: 
-
-
-
-\begin{equation}
-r_{E,M}^2 \equiv \langle r_{E,M}^2  \rangle = -6 \frac{d G_{E,M}}{d Q^2} \biggr\rvert_{Q^2 = 0}
-\end{equation}
-
-Wielkość tę można zmierzyć poprzez opisane powyżej rozpraszanie elektron-proton lub spektroskopię atomową obserwując niewielkie przesunięcia w spektrum wodoru spowodowane fizycznym rozmiarem protonu. Rezultaty otrzymane w pomiarach spektroskopowych atomu wodoru składającego się z protonu i elektronu są spójne z pomiarami rozpraszania i dają wynik z niepewnością rzędu 0.6\% \cite{Carlson:2015jba}. Jedne z najdokładniejszych pomiarów rozpraszania zostały opublikowane w \cite{Bernauer:2010wm}, natomiast wartość promienia protonu została oszacowana na
-%
-\begin{equation}
-R_E = 0.879(8) \; \text{fm}.
-\end{equation}
-%
-Komitet Danych dla Nauki i Techniki (CODATA) uwzględniając dodatkowo pomiary spektroskopowe rekomenduje wartość \cite{2012RvMP...84.1527M}
-%
-\begin{equation}
-R_E = 0.8775(51) \; \text{fm}. \label{r_codata}
-\end{equation}
-
-Okazuje się, że do badania rozmiaru protonu można wykorzystać również miony. Dysponujemy wtedy jedną metodą, która daje rezultaty obarczone bardzo niewielką niepewnością. Pierwsze wyniki zostały opublikowane w 2010 roku \cite{2010Nature..Pohl} i zawierały promień protonu zmierzony przez obserwacje przesunięcia Lamba 2S-2P w spektrum wodoru mionowego. Mion, z powodu masy około 200-krotnie większej od elektronu orbituje znacznie bliżej protonu niż elektron i rozmiar protonu ma znacznie większy wpływ na jego poziomy energetyczne. Pozwala to na pomiar promienia protonu z niepewnością 10 razy mniejszą niż przy wynikach otrzymanych z eksperymentów z wykorzystaniem elektronów \cite{Carlson:2015jba}.  Obecne rezultaty wskazują na wartość \cite{Antognini417}
-%
-\begin{equation}
-R_E = 0.84087(39) \; \text{fm}.
-\end{equation}
-%
-To wartość o 4\% mniejsza od rekomendowanej przez CODATA (\ref{r_codata}), będąca rozbieżnością na poziomie $7\sigma$. Wartości stałych fizycznych bardzo często znacząco zmieniały swoją wartość wraz z zmianą techniki pomiaru i wzrostem czułości urządzeń pomiarowych. Rysunek \ref{fig:porownaniewielkosci} przedstawia ewolucje wartości średniego czasu życia neutronu oraz masy mezonu eta w czasie. Możemy zauważyć, że w obu tych przykładach najnowsza wartość nie znajduje się nawet w obszarze niepewności pomiarowej początkowych wskazań.
-
-
-\begin{figure}[h!]
-	\centering
-		\includegraphics[width=1\linewidth]{porownanie_wielkosci}
-	\caption{Przykłady zmian szacowanych wielkości fizycznych w czasie. Na wykresie po lewej stronie średni czas życia swobodnego neutronu, po prawej stronie masa mezonu eta \cite{PhysRevD.86.010001}}
-	\label{fig:porownaniewielkosci}
-\end{figure}
-
-
-
-\subsubsection{Pomiary doświadczalne}
-Podczas analizy wykorzystano dane otrzymane na skutek pomiarów dwóch opisanych powyżej wielkości fizycznych. Pierwszy zestaw danych to 24 niezależne zbiory danych, opublikowane w pracach \cite{1966PhRv..142..922J, 1966PhRvL..17..608B, 1967PhRvL..18.1014A, 1970PhLB...31...40L, 1970PhRvD...1.2449G, 1971PhLB...35...87B, 1971PhRvD...4...45P, 1974NuPhA.222..269B, 1973NuPhB..58..429B, 1973PhRvD...8...63K, 1993PhRvD..48...29S, 1994PhRvD..49.5671W, 1994PhRvD..50.5491A, 1975NuPhB..93..461B, 1975PhRvD..12.1884S, 1974PhRvC..10.2111M, 1980NuPhA.333..381S, 1981NuPhA.364..285S, 1992PhRvD..46...24R, 2003PhRvC..68f4603D, 2004PhRvC..70a5206C}, które zawierają pomiary przekrojów czynnych $\sigma_R$ wraz z niepewnością pomiarową $\Delta \sigma_R$ w zależności od czynnika kinematycznego $\epsilon$ oraz kwadratu przekazanego czteropędu $Q^2$. Ponadto w jednej z analiz zostanie wykorzystany powyższy zbiór danych z wartościami przekrojów czynnych $\sigma_R$ zmodyfikowanych o poprawkę wynikającą z wymiany dwóch fotonów podczas rozpraszania.  Rozmiar danych to razem 426 punktów pomiarowcyh. 
-
-Drugi zestaw tworzą zbiory opublikowane w pracach \cite{1999PhRvL..82.2221M, 2000PhRvL..84.1398J, 2001PhLB..500...47D, 2001EPJA...12..125P, 2002PhRvL..88i2301G, 2001PhRvC..64c8202G, 2005PhRvC..71e5202P, 2006PhRvC..73f4004H, 2006NuPhA.764..261M, 2006PhRvC..74c5201J, 2007PhRvL..99t2002R, 2007PhRvL..98e2301C}, które zawierają stosunek elektrycznej i magnetycznej funkcji postaci $\mathcal{R}$ wydobyty z tzw. pomiarów transferu polaryzacji w zależności od $Q^2$. Kolejna kolumna zawiera informacje nt. niepewności pomiarowej $\Delta \mathcal{R}$. Drugi zbiór to 68 punktów pomiarowych.  
-
-Dodatkowo każdy z 24 zbiorów danych zawierających pomiary całkowitego przekroju czynnego ma określoną niepewność systematyczną $\Delta \eta$ wynikającą z rozbieżności pomiędzy pomiarami całkowitych przekrojów czynnych i pomiarami podłużnej i poprzecznej składowej polaryzacji protonów dającymi w rezultacie stosunki funkcji postaci protonu. 
-
 
 \section{Keras}
 
@@ -1129,8 +1133,8 @@ Y_new = model.predict(X_new)
 
 Mając gotowy model i zapewniając nowe dane wejściowe możemy z łatwością wygenerować przewidywania sieci używając funkcji \textit{predict}.
 
-%Deep Learning with Python Francois Chollet Manning Shelter Island 2018
-\section{Generowanie sztucznych danych}
+
+\section{Szacowanie niepewności przewidywania modelu}
 
 %opis = https://arxiv.org/pdf/0812.3539.pdf
 %dane = https://arxiv.org/pdf/1106.1204.pdf
@@ -1205,11 +1209,9 @@ Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową ni
 Przedstawiona w dalszej części pracy analiza opiera się na aż trzech różnych zbiorach danych. Oprócz powyższego zbioru dysponujemy zależnością przekroju czynnego od $Q^2$ i $\epsilon$ zmodyfikowaną o poprawkę dwufotonową oraz stosunkiem funkcji postaci w zależności od $Q^2$. Do tych zbiorów danych zostały zastosowane analogiczne kroki służące wygenerowaniu sztucznych danych.
 
 
-\section{Walidacja krzyżowa}
+\section{Walidacja krzyżowa i wczesne zatrzymanie}
 
-Algorytm wykorzystywany podczas nauki modelu ma za zadnianie znalezienie takich parametrów, które sprawiają, że model odwzorowuje dane wykorzystane do nauki w sposób jak najlepszy z możliwych. Jeśli do walidacji modelu wykorzystamy inną, niezależną próbkę danych pochodzącą z tego samego zbioru co podzbiór uczący, zazwyczaj okaże się, że model nie działa aż tak dobrze jak przy użyciu zbioru uczącego. Rozmiar tej różnicy zwiększa się, szczególnie wtedy gdy wielkość zbioru treningowego jest niewielka, lub gdy liczba parametrów modelu jest bardzo duża.
-Walidacja krzyżowa to metoda statystyczna, która ma za zadanie zminimalizować tę różnicę przez co pomaga ocenić i zwiększyć trafność przewidywań modelu predykcyjnego. 
-
+Algorytm wykorzystywany podczas nauki modelu ma za zadnianie znalezienie takich parametrów, które sprawiają, że model odwzorowuje dane wykorzystane do nauki w sposób jak najlepszy z możliwych. Jeśli do walidacji modelu wykorzystamy inną, niezależną próbkę danych pochodzącą z tego samego zbioru co podzbiór uczący, zazwyczaj okaże się, że model nie działa aż tak dobrze jak przy użyciu zbioru uczącego. Rozmiar tej różnicy zwiększa się, szczególnie wtedy gdy wielkość zbioru treningowego jest niewielka, lub gdy liczba parametrów modelu jest bardzo duża. Walidacja krzyżowa to metoda statystyczna, która ma za zadanie zminimalizować tę różnicę przez co pomaga ocenić i zwiększyć trafność przewidywań modelu predykcyjnego. Jest to jeden ze sposobów na zachowanie kompromisu między obciążeniem i wariancją, problemu opisanego w rozdziale \ref{biasvar}.
 
 W najprostszym przykładzie walidacji krzyżowej zbiór danych dzieli się na dwa podzbiory: uczący i walidacyjny. Podczas gdy zbiór uczący służy do nauki modelu, zbiór walidacyjny wykorzystuje się aby mierzyć błąd modelu na nieznanym zbiorze danych. 
 
@@ -1218,14 +1220,12 @@ W algorytmie $k$-krotnej walidacji krzyżowej zbiór danych jest losowo dzielony
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1.\textwidth]{cross_val.png}
-	\caption{Przykład 10-krotnej walidacji krzyżowej, kolor niebieski oznacza podzbiór testowy, pozostała część zbioru to podzbiór treningowy. Wynik końcowy jest średnią z wyników wszystkich iteracji. Rysunek przetłumaczony na język polski z \cite{Raschka:2015:PML:2886323}.}
+	\caption{Przykład 10-krotnej walidacji krzyżowej, kolor niebieski oznacza podzbiór testowy, pozostała część zbioru to podzbiór treningowy. $E_i$ to wartości mówiące o wydajności modelu, np. wartości funkcji straty. Wynik końcowy jest średnią z wyników wszystkich iteracji. Rysunek przetłumaczony na język polski z \cite{Raschka:2015:PML:2886323}.}
 	\label{fig:cross-val}
 \end{figure}
 
 Cytując \cite{James:2014:ISL:2517747}: "(...) istnieje pewien kompromis między obciążeniem a wariancją, związany z wyborem parametru $k$ w $k$-krotnej walidacji krzyżowej. Zazwyczaj stosuje się wartości z przedziału od 5 do 10, ponieważ pokazano empirycznie, że w takim wypadku otrzymujemy przewidywania, które nie cierpią nadmiernie ani z powodu dużego obciążenia ani dużej wariancji." Podczas treningu modelu wybierano więc takie $k$ z zakresu $[5,10]$, dla którego liczba próbek w zbiorze danych jest całkowicie podzielna przez $k$ co zapewnia równy rozmiar wszystkich zbiorów treningowych i walidacyjnych.
 
-\section{Wczesne zatrzymanie}
- \label{wcz_zat}
  
 Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych treningowych o skończonym rozmiarze. Podczas procesu szkolenia model jest oceniany na podstawie tego, jak dobrze przewiduje obserwacje zawarte w tym zbiorze. Jednak celem uczenia maszynowego jest stworzenie modelu, który ma zdolność do przewidywania uprzednio niewidzianych obserwacji. Nadmierne dopasowanie to zjawisko pojawiające się wtedy gdy model za bardzo dopasowuje się do danych w zbiorze uczącym co powoduje zmniejszenie wartości błędu na tym zbiorze lecz równocześnie jest przyczyną wzrostu błędu na zbiorze testowym. Nadmierne dopasowanie modelu to problem, który może się pojawiać gdy model zawiera więcej parametrów niż wymagałaby tego natura modelowanego zjawiska. Sieć neuronowa to struktura skłonna do przeuczania. Podczas gdy obserwowany błąd obliczany w oparciu o dane treningowe spada, w pewnym momencie wartość błędu dla zbioru walidacyjnego zaczyna wzrastać. \figurename{} \ref{fig:loss_curves} przedstawia często zamieszczane w literaturze, wyidealizowane krzywe zmiany wartości funkcji straty w czasie, dla zbiorów treningowego i walidacyjnego. Najlepszy model predykcyjny miałby parametry, które odpowiadają momentowi globalnego minimum dla zbioru walidacyjnego.
 
@@ -1238,27 +1238,29 @@ Algorytmy uczenia maszynowego dopasowują parametry modelu na podstawie danych t
 \end{figure}
 
 W dziedzinie uczenia maszynowego, metoda wczesnego zatrzymania to forma regularyzacji, która pozwala uniknąć problemu przeuczenia, zatrzymując naukę modelu gdy wartość funkcji straty na zbiorze walidacyjnym zaczyna wzrastać. Rzeczywisty przebieg wartości funkcji straty ma wiele lokalnych minimów, dlatego na podstawie obserwacji krzywych uczenia dokonano wyboru kryteriów zatrzymania nauki modelu. 
-Niech $\Theta_{wa}(t)$ to wartość funkcji straty na zbiorze walidacyjnym po $t$ epokach, $\Theta_{min}(t)$ to dotychczasowe minimum funkcji straty na zbiorze walidacyjnym po $t$ epokach, definiowane jako:
-$$
-\Theta_{min}(t) \equiv \min_{t' < t} \Theta_{wa}(t')
-$$
+Niech $J_{wa}(t)$ to wartość funkcji straty na zbiorze walidacyjnym po $t$ epokach, $J_{min}(t)$ to dotychczasowe minimum funkcji straty na zbiorze walidacyjnym po $t$ epokach, definiowane jako:
 
-Niech $\Theta_{sr}(t)$ będzię średnią wartością funkcji straty dla zbioru walidacyjnego z ostatnich 10 epok.
+\begin{equation}
+J_{min}(t) \equiv \min_{t' < t} J_{wa}(t')
+\end{equation}
 
-$$
-\Theta_{sr}(t) \equiv \frac{1}{10} \sum_{i=0}^{10} \Theta_{wa}(t-i)
-$$
+
+Niech $J_{sr}(t)$ będzię średnią wartością funkcji straty dla zbioru walidacyjnego z ostatnich 10 epok.
+
+\begin{equation}
+J_{sr}(t) \equiv \frac{1}{10} \sum_{i=0}^{10} J_{wa}(t-i)
+\end{equation}
 
 Oraz zdefiniujmy pomocniczy parametr $GL(t)$
 
+\begin{equation}
+GL(t) \equiv \frac{J_{sr}(t)}{J_{min}} - 1
+\end{equation}
 
-$$
-GL(t) \equiv \frac{\Theta_{sr}(t)}{\Theta_{min}} - 1
-$$
 Podczas nauki przedstawionych modeli statystycznych oprócz wykorzystania metody wczesnego zatrzymania została ustalona minimalna wymagana liczba epok. Z powodu startu algorytmu uczącego z losowymi parametrami, szczególnie w pierwszych iteracjach nauki funkcja błędu może być poddana dużym fluktuacjom. Po przekroczeniu minimalnej liczby epok do wczesnego zatrzymania wystarczyło spełnienie jednego z dwóch obowiązujących warunków:
 
 \begin{itemize}
-	\item $\Theta_{min}(t) = \Theta_{min}(t+ 200)$ dla wszystkich $t \in [t,t+200]$, brak zmniejszenia minimalnej wartości funkcji straty dla zbioru walidacyjnego przez 200 epok 
+	\item $J_{min}(t) = J_{min}(t+ 200)$ dla wszystkich $t \in [t,t+200]$, brak zmniejszenia minimalnej wartości funkcji straty dla zbioru walidacyjnego przez 200 epok 
 	\item $ GL(t)  > 2$, względny wzrost średniej wartości funkcji straty przez ostatnie 10 epok względem osiągniętego minimum jest większy niż $200\%$
 \end{itemize}
 
@@ -1358,7 +1360,7 @@ W swoim algorytmie postanowiłem dokonywać zmiany parametru $\alpha$ wraz ze wz
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1.1\textwidth]{hyperparameter14_16a.png}
+	\includegraphics[width=1.\textwidth]{hyperparameter14_16a.png}
 	\caption{Porównanie przykładowych krzywych zmiany wartości funkcji straty w czasie dla zbiorów treningowego (kolor pomarańczowy) i walidacyjnego (kolor niebieski) ze względu na parametry $\alpha$ (\textit{learning rate}) oraz $\lambda$ (\textit{decay})}
 	\label{fig:hyperparameters}
 \end{figure}
