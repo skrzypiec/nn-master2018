@@ -97,11 +97,11 @@
 		\noindent
 		
 		\begin{center}		
-			\huge \textsc{\@ Tytuł polski}
+			\huge \textsc{\@ Badanie elektromagnetycznych funkcji postaci protonu przy wykorzystaniu sztucznych sieci neuronowych}
 			
 			\vspace{0.5cm}
 			
-			\normalsize \textsc {Tytuł angielski}
+			\normalsize \textsc {Electromagnetic Form Factors of The Proton Studied with Neural Networks}
 			
 		\end{center}
 		
@@ -389,7 +389,7 @@ gdzie $\sigma_+$ i $\sigma_-$ to przekroje czynne dla dodatniej i ujemnej skręt
 
 
 \section{Poprawka dwu-fotonowa}
-Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynnych wskazują, że do uzyskania całkowitej zgodność z danymi pomiarów transferu polaryzacji niezbędne jest uwzględnienie dodatkowych poprawek do równania \ref{eq:rosen}. Po za klasycznymi poprawkami radiacyjnymi należy rozważyć poprawkę dwufotonową, która może zostać zapisana jako dodatkowy składnik równania.
+Jak zaznaczono w \cite{2007PhRvC..76c5205A}, najnowsze pomiary przekrojów czynnych wskazują, że do uzyskania całkowitej zgodność z danymi pomiarów transferu polaryzacji niezbędne jest uwzględnienie dodatkowych poprawek do równania \ref{eq:rosen}. Po za klasycznymi poprawkami radiacyjnymi należy rozważyć poprawkę dwu-fotonową (TPE), która może zostać zapisana jako dodatkowy składnik równania.
 
 \begin{equation}
 \sigma_R \rightarrow \sigma_R + \delta_{TPE}
@@ -410,7 +410,7 @@ Diagram Feynmana dla tego zjawiska został przedstawiony na rysunku \ref{fig:tpe
 \sigma_R \rightarrow \sigma_R + \delta_{TPE}\left(Q^2, \epsilon\right)
 \end{equation}
 
-Wpływ poprawki dwu-fotonowej zostanie uwzględniony w jednej z przedstawionej poniżej analiz. 
+Wpływ poprawki TPE zostanie uwzględniony w jednej z przedstawionej poniżej analiz. 
 
 \section{Promień protonu}
 
@@ -1204,7 +1204,7 @@ Ponadto, każdy z 14 niezależnych zbiorów danych ma określoną procentową ni
 &=& \left(\sigma_i^{(exp)} + \mathcal{N}\left( 0, \Delta \sigma_i^{(exp)} \right)^{(k)}\right) \times \left( 1  + \mathcal{N}\left( 0, \Delta \eta \right)^{(k)} \right).
 \end{eqnarray}
 
-Przedstawiona w dalszej części pracy analiza opiera się na aż trzech różnych zbiorach danych. Oprócz powyższego zbioru dysponujemy zależnością przekroju czynnego od $Q^2$ i $\epsilon$ zmodyfikowaną o poprawkę dwu-fotonową oraz stosunkiem funkcji postaci w zależności od $Q^2$. Do tych zbiorów danych zostały zastosowane analogiczne kroki służące wygenerowaniu sztucznych danych.
+Przedstawiona w dalszej części pracy analiza opiera się na aż trzech różnych zbiorach danych. Oprócz powyższego zbioru dysponujemy zależnością przekroju czynnego od $Q^2$ i $\epsilon$ zmodyfikowaną o poprawkę TPE oraz stosunkiem funkcji postaci w zależności od $Q^2$. Do tych zbiorów danych zostały zastosowane analogiczne kroki służące wygenerowaniu sztucznych danych.
 
 
 \section{Walidacja krzyżowa i wczesne zatrzymanie}
@@ -1795,14 +1795,14 @@ Dodatkowym źródłem danych służącym do nauki sieci neuronowej w stosunku do
 	\label{fig:ratio2}
 \end{figure}
 
-
 \newpage
+
 \section{Analiza nr 3}
 
 Celem trzeciej analizy oprócz modelowania elektrycznego i magnetycznego czynnika postaci jest przewidywanie wartości poprawki dwu-fotonowej przy wykorzystaniu danych przekrojów czynnych rozpraszania elektron-proton oraz pomiarów eksperymentalnych stosunku funkcji postaci.
 
 %
-Wykorzystane podczas analizy dane składają sie z dwóch zestawów. Pierwszy to 450 punktów pomiarowych przekrojów czynnych, których wartości zostały zmodyfikowane o poprawkę dwu-fotonową. Struktura danych wejściowych jest analogiczna do tych wykorzystywanych w powyższych analizach - cztery kolumny zawierają zmienną objaśnianą $\sigma$ , niepewność pomiaru przekroju czynnego $\Delta \sigma$ i dwie zmienne objaśniające $Q^2$ oraz $\epsilon$. Drugi zestaw to 70 pomiarów doświadczalnych stosunków funkcji postaci $G_{E_p} / G_{M_p}$ wraz z niepewnością pomiarową w zależności od kwadratu czteropędu $Q^2$. Razem otrzymujemy 520 pomiarów co ponownie sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$. Zastosowana podczas nauki trzeciego modelu funkcja straty $\chi^2$ (\ref{eq_loss3}) składa się się z tych samych składników co funkcja wykorzystana podczas drugiej analizy (\ref{eq_loss2}), jednak do całkowitego przekroju czynnego należy dodać poprawkę zależną od kwadratu przekazu czteropędu $Q^2$ i czynnika kinematycznego $\epsilon$ jak przedstawiono w równaniu \ref{eq:sigma_c2}. Dane wejściowe służące do treningu sieci zostały ponownie ustandaryzowane, wraz z inicjalizacją wag zostały wykonane identycznie jak w poprzednich analizach.
+Wykorzystane podczas analizy dane składają sie z dwóch zestawów. Pierwszy to 450 punktów pomiarowych przekrojów czynnych, których wartości zostały zmodyfikowane o poprawkę TPE. Struktura danych wejściowych jest analogiczna do tych wykorzystywanych w powyższych analizach - cztery kolumny zawierają zmienną objaśnianą $\sigma$ , niepewność pomiaru przekroju czynnego $\Delta \sigma$ i dwie zmienne objaśniające $Q^2$ oraz $\epsilon$. Drugi zestaw to 70 pomiarów doświadczalnych stosunków funkcji postaci $G_{E_p} / G_{M_p}$ wraz z niepewnością pomiarową w zależności od kwadratu czteropędu $Q^2$. Razem otrzymujemy 520 pomiarów co ponownie sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$. Zastosowana podczas nauki trzeciego modelu funkcja straty $\chi^2$ (\ref{eq_loss3}) składa się się z tych samych składników co funkcja wykorzystana podczas drugiej analizy (\ref{eq_loss2}), jednak do całkowitego przekroju czynnego należy dodać poprawkę zależną od kwadratu przekazu czteropędu $Q^2$ i czynnika kinematycznego $\epsilon$ jak przedstawiono w równaniu \ref{eq:sigma_c2}. Dane wejściowe służące do treningu sieci zostały ponownie ustandaryzowane, wraz z inicjalizacją wag zostały wykonane identycznie jak w poprzednich analizach.
 %
 \begin{equation}
 \sigma_R(\epsilon, Q^2) =\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2) + \Delta C_{2 \gamma} \left(Q^2, \epsilon \right), \label{eq:sigma_c2}
@@ -1813,8 +1813,9 @@ Wykorzystane podczas analizy dane składają sie z dwóch zestawów. Pierwszy to
 \end{equation}
 
 
-Podczas analizy na szczególną uwagę zasługuję struktura sieci neuronowej przedstawiona na rysunku \ref{tab:scheme3}. Wynikiem działania sieci są funkcje postaci $G_{M_p}$ oraz $G_{E_p}$ w zależności od $Q^2$ oraz poprawka $\Delta C_{2\gamma}$ zależna od $Q^2$ i $\epsilon$, takie wymagania wymuszają przerwanie połączeń między niektórymi neuronami. Sieć składa się z warstwy wejściowej, dwóch warstw ukrytych oraz warstwy wyjściowej, wejściowa składa się z dwóch neuronów $(Q^2, \epsilon)$. Pierwsza warstwa ukryta zawiera trzy neurony połączone wyłącznie z $Q^2$ oraz jeden połączony wyłącznie z $\epsilon$ (3-1). Druga warstwa ukryta to pięć neuronów, ponownie trzy z nich połączone są z neuronami łączącymi się wyłącznie z kwadratem przekazu czteropędu, pozostałe dwa połączone są z neuronem z poprzedniej warstwy połączonym z czynnikiem kinematycznym (3-2). Ostatnia warstwa wyjściowa składa się z trzech neuronów, dwie funkcje postaci otrzymują sygnał pochądzący z trzech neuronów przekazujących sygnał zależny od wartości $Q^2$ natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. 
+Podczas analizy na szczególną uwagę zasługuję struktura sieci neuronowej przedstawiona na rysunku \ref{tab:scheme3}. Wynikiem działania sieci są funkcje postaci $G_{M_p}$ oraz $G_{E_p}$ w zależności od $Q^2$ oraz poprawka $\Delta C_{2\gamma}$ zależna od $Q^2$ i $\epsilon$, takie wymagania wymuszają przerwanie połączeń między niektórymi neuronami. Sieć składa się z warstwy wejściowej, dwóch warstw ukrytych oraz warstwy wyjściowej, wejściowa składa się z dwóch neuronów $(Q^2, \epsilon)$. Pierwsza warstwa ukryta zawiera trzy neurony połączone wyłącznie z $Q^2$ oraz jeden połączony wyłącznie z $\epsilon$ (3-1). Druga warstwa ukryta to pięć neuronów, ponownie trzy z nich połączone są z neuronami łączącymi się wyłącznie z kwadratem przekazu czteropędu, pozostałe dwa połączone są z neuronem z poprzedniej warstwy połączonym z czynnikiem kinematycznym (3-2). Ostatnia warstwa wyjściowa składa się z trzech neuronów, dwie funkcje postaci otrzymują sygnał pochądzący z trzech neuronów przekazujących sygnał zależny od wartości $Q^2$ natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. 
 
+Konstrukcja takiej struktury sieci neuronowej w Kerasie jest nietrywialna, aby uzyskać opisany powyżej efekt skorzystano z warstw Lambda, które umożliwiają wykonywanie operacji arytmetycznych przez neurony w warstwach ukrytych w obrębie zdefiniowanej funkcji lambda. W tej konstrukcji każdy z neuronów wybranej warstwy ukrytej jest zdefiniowany jako warstwa Lambda. Operacje wykonywane na tensorach w obrębie funkcji lambda pozwalają wybrać, które neurony z warstwy poprzedzającej są wejściem. Następnie wszystkie wybrane neurony łączone są w jedną warstwę - warstwę ukrytą, w której neurony mają zdefiniowane przez nas wejścia. Kolejne warstwy tworzone są w analogiczny sposób. Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. 
 
 \begin{SCfigure}[][h]
 	\centering
@@ -1932,7 +1933,7 @@ Podczas analizy na szczególną uwagę zasługuję struktura sieci neuronowej pr
 
 Rysunek \ref{fig:ff3} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Otrzymane wyniki zostały ponownie porównywane są z rezultatami publikacji \cite{2009PhRvC..79f5204A}, które całkowicie zawierają się w obszarze $\pm 2\sigma$ otrzymanych wyników. W przypadku magnetycznej funkcji postaci główna różnica to brak zmiany monotoniczności funkcji będącej wynikiem modelu, w okolicach $Q^2 \simeq 0.15 \text{ GeV}^2$ oraz późniejsze niedoszacowanie względem porównywanej funkcji, nie przekraczające różnicy 0.02. Elektryczna funkcja postaci również pozbawiona jest pierwszego niewielkiego przecięcia, następnie spadek wartości zaczyna się wcześniej, tzn. dla nieco mniejszej wartości $Q^2$, jednak jest on mniej gwałtowny. Odchylenie standardowe magnetycznej funkcji postaci jest w przybliżeniu stałe na całej długości przedstawionego przebiegu funkcji i wynosi około $0.01$, wariancja elektrycznej funkcji postaci w pobliżu $Q^2 \rightarrow 0$ jest bardzo niewielka i znacznie wzrasta wraz z $Q^2$.
 % 
-\begin{figure}[hp!]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1.\textwidth]{anl_3.eps}
 	\caption{Magnetyczna i elektryczna funkcja postaci. Linia ciągła oznacza średnią ze wszystkich modeli, zacienione pola wyznaczają obszary $1 \sigma$ (jasny) oraz $2\sigma$ (ciemny). Linia przerywana przedstawia wyniki z publikacji \cite{2009PhRvC..79f5204A}. } 
@@ -1940,30 +1941,30 @@ Rysunek \ref{fig:ff3} przedstawia wykresy otrzymanych funkcji postaci protonu. L
 \end{figure}
 
 Rysunek \ref{fig:ratio3} przedstawia pomiary eksperymentalne stosunku funkcji postaci wraz z zaznaczoną niepewnością pomiarow, przerywaną linią zaznaczono dopasowanie liniowe oraz wynik modelu wraz z odchyleniami standardowymi. Iloraz $\mu G_{E_p} / G_{M_p}$ szczególnie dobrze opisywany jest przez model dla niewielkich wartości $Q^2$ i cechuje się w tym obszarze bardzo niewieką niepewnością. Wraz ze wzrostem $Q^2$ maleje gęstość pomiarów, $G_{E_p}$ staje się przeszacowane, a odchylenie standardowe znacznie wzrasta. Większość pomiarów doświadczalnych znajduje się jednak w obszarze niepewności $\pm2\sigma$.
-
-\begin{figure}[hp!]
+%
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=1.\textwidth]{ratio_3.eps}
+	\includegraphics[width=1\textwidth]{ratio_3.eps}
 	\caption{Pomiary stosunku elektrycznej i magnetycznej funkcji postaci wraz z dopasowaniem liniowym oraz dopasowaniem modelu statystycznego. Linia ciągła oznacza średni wynik ze wszystkich wytrenowanych modeli, zacienione pola wyznaczają obszary $1 \sigma$ oraz $2\sigma$.} 
 	\label{fig:ratio3}
 \end{figure}
+%
 
-Jednym z wyników sieci nieuwzględnionym podczas wcześniejszych analiz jest poprawka dwu-fotonowa $\Delta C_{2\gamma}$, rysunek \ref{fig:c2} przedstawia jej zależność od kwadratu przekazu czteropędu dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$. Dla wartości $Q^2 < 1 \text{ GeV}^2$ poprawka ma niewielką wartość i niewielkie odchylenie standardowe, zatem ma niewielki wpływ na wartość całkowitego przekroju czynnego.  Dla $Q^2 > 1 \text{ GeV}^2$ jej średnia wartość zaczyna rosnąć wraz z $Q^2$ do około 0.3, odchylenie standardowe również gwałtownie wzrasta i osiąga wartość około 0.2.
-
-
-
-\begin{figure}[hp!]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=1\textwidth]{c2_q2.eps}
+	\includegraphics[width=0.95\textwidth]{c2_q2.eps}
 	\caption{Poprawka dwu-fotonowa w zależności od $Q^2$, ciągła linia to wynik modelu, kolory szarne oznaczją odchylenie standardowe $1\sigma$ oraz $2\sigma$.} 
 	\label{fig:c2}
 \end{figure}
+
+Jednym z wyników sieci nieuwzględnionym podczas wcześniejszych analiz jest poprawka TPE $\Delta C_{2\gamma}$, rysunek \ref{fig:c2} przedstawia jej zależność od kwadratu przekazu czteropędu dla $\epsilon$ będących 11 pierwszymi wyrazami ciągu arytmetycznego o przepisie: $\epsilon_n = (n-1) \times 0.1$. Dla wartości $Q^2 < 1 \text{ GeV}^2$ poprawka ma niewielką wartość i niewielkie odchylenie standardowe, zatem ma niewielki wpływ na wartość całkowitego przekroju czynnego.  Dla $Q^2 > 1 \text{ GeV}^2$ jej średnia wartość zaczyna rosnąć wraz z $Q^2$ do około 0.3, odchylenie standardowe również gwałtownie wzrasta i osiąga wartość około 0.2.
+
 
 \newpage
 
 \section{Analiza nr 4}
 
-Celem czwartej analizy jest uzyskanie przewidywań wyników o jak największym znaczeniu fizycznym. Oznacza to, że oprócz modelowania elektrycznego i magnetycznego czynnika modelowana jest także wartość poprawki dwu-fotonowej wraz z uwzględnieniem teoretycznych więzów wszystkich składników całkowitego przekroju czynnego elastycznego rozpraszania elektron-proton. Analiza jest pod wieloma względami przeprowadzona analogicznie do analizy nr 3, tym razem jednak odpowiedź sieci została zmodyfikowana w taki sposób aby wymusić na wynikach otrzymanie znanych więzów funkcji postaci w punkcie $Q^2 = 0$  i poprawki dwu-fotonowej w punkcie $\epsilon=1$, które przypominają poniższe równania
+Celem czwartej analizy jest uzyskanie przewidywań wyników o jak największym znaczeniu fizycznym. Oznacza to, że oprócz elektrycznego i magnetycznego czynnika postaci modelowana jest także wartość poprawki TPE wraz z uwzględnieniem teoretycznych więzów wszystkich składników całkowitego przekroju czynnego elastycznego rozpraszania elektron-proton. Analiza jest pod wieloma względami przeprowadzona analogicznie do analizy nr 3, tym razem jednak odpowiedź sieci została zmodyfikowana w taki sposób aby wymusić na wynikach otrzymanie znanych więzów funkcji postaci w punkcie $Q^2 = 0$  i poprawki TPE dla $\epsilon=1$, o więzach przypominają poniższe równania
 
 \begin{eqnarray}
 &G_{E_p}(Q^2 = 0) &= 1, \\
@@ -1972,18 +1973,18 @@ Celem czwartej analizy jest uzyskanie przewidywań wyników o jak największym z
 \end{eqnarray}
 %(\ref{eq:constraints})
 
-Aby to uzyskać wykorzystano metodę opisaną w pracy \cite{2014PhRvC..90e4334G}. Wynikiem działania sieci neuronowej są funkcje oznaczone jako $o_{E_p}$, $o_{M_p}$, $ o_{2 \gamma}$, które następnie przekształcane są do funkcji postaci $G_{E_p}$, $G_{M_p}$ oraz poprawki dwu-fotonowej $\Delta C_{2 \gamma}$ zgodnie z poniższymi równaniami
+Aby to uzyskać wykorzystano metodę opisaną w pracy \cite{2014PhRvC..90e4334G}. Wynikiem działania sieci neuronowej są funkcje oznaczone jako $o_{E_p}$, $o_{M_p}$, $ o_{2 \gamma}$, które następnie przekształcane są do funkcji postaci $G_{E_p}$, $G_{M_p}$ oraz poprawki TPE $\Delta C_{2 \gamma}$ zgodnie z poniższymi równaniami
 
 \begin{eqnarray}
 &G_{E_p} &= \left(1-Q^2o_{E_p}\right) G_D,\\
-&G_{M_p}/ \mu_p &= \left(1-Q^2  o_{M_p}\right) G_D \,\\
+&G_{M_p}/ \mu_p &= \left(1-Q^2  o_{M_p}\right) G_D,\\
 &\Delta C_{2 \gamma} &= \left(1-\epsilon \right) o_{2 \gamma} G_D.
 \end{eqnarray}
 
 
 \begin{SCfigure}[][h]
 	\centering
-	\resizebox{10cm}{!}{\begin{tikzpicture}
+	\resizebox{9cm}{!}{\begin{tikzpicture}
 		[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
 		]
 		\tikzset{normal arrow/.style={draw,-latex}}
@@ -2074,6 +2075,7 @@ Aby to uzyskać wykorzystano metodę opisaną w pracy \cite{2014PhRvC..90e4334G}
 %
 Schemat wykorzystanej sieci został przedstawiony na rysunku \ref{tab:scheme4}, warto zwrócić uwagę, że ponownie sieć została tak ustrukturyzowana, że funkcje postaci $G_{E_p}$, $G_{M_p}$ zależne są tylko od $Q^2$, natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. Ostatnia analiza wykorzystuje zestaw danych przygotowany do przeprowadzenia analizy nr 3, co ponownie sugeruje wybranie parametru \textit{k}-krotnej walidacji jako $k=5$. Zastosowana podczas nauki czwartego modelu funkcja straty $\chi^2$ (\ref{eq_loss3}) także się nie zmieniła, jedyną zmianą jest wspomniane wcześniej przekształcenie wyniku sieci neuronowej do postaci funkcji $G_{E_p}$, $G_{M_p}$, $\Delta C_{2 \gamma}$. Hiperparametry modelu zostały przedstawione w tabeli \ref{tab:hyper4}.
 %
+
 \begin{table}[h]
 	\centering
 	\caption{Hiperparametry modelu}\label{tab:hyper4} 
@@ -2092,11 +2094,8 @@ Schemat wykorzystanej sieci został przedstawiony na rysunku \ref{tab:scheme4}, 
 	\end{tabular}
 \end{table}
 
-
 \subsubsection{Wyniki}
 % 
-
-
 Rysunek \ref{fig:ff4} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Uzyskane wyniki dowodzą, że udało się otrzymać zadane powyżej więzy funkcji, jednak kształty funkcji postaci w istotny sposób różnią się od rezultatów publikacji \cite{2009PhRvC..79f5204A}. Otrzymana przez model magnetyczna funkcja postaci jest rosnąca oraz znacznie przeszacowana w obszarze niskich wartości $Q^2$ względem referencyjnego przebiegu, który charakteryzuje się zmianą monotoniczności. Dopiero dla wartości argumentu $Q^2 > 0.4 \text{GeV}^2$ referencyjny przebieg magnetycznej funkcji postaci znajduje się w obszarze $\pm 2\sigma$ otrzymanych wyników. Różnice między uzyskaną elektryczną funkcją postaci pronu i porównywaną funkcją ponownie najbardziej zauważalne są dla stosunkowo niewielkich wartości $Q^2$. Wynik ponownie pozbawiony jest pierwszego niewielkiego przecięcia, następnie przebiegi funkcji są zbieżne i zawierają się w obszarze $\pm 2\sigma$.
 
 
@@ -2118,30 +2117,75 @@ Rysunek \ref{fig:ratio4} przedstawia pomiary eksperymentalne stosunku funkcji po
 \end{figure}
 
 
-Dodatkowym składnikiem całkowitego przekroju czynnego uwzględnionego podczas analizy jest poprawka dwu-fotonowa $\Delta C_{2\gamma}$, rysunek \ref{fig:c2} przedstawia jej zależność od czynnika kinematycznego $\epsilon$ dla czterech ustalonych warości przekazu czteropędu. Poprawka charakteryzuje się największą bezwzględną wartością i zarazem największym wpływem na całkowity przekrój czynny dla $\epsilon = 0$, zgodnie z zadanymi więzami jej wartości wynosi zero dla $\epsilon = 1$. Wzrost wartości argumentu $Q^2$ powoduje wzrost wartości bezwzględnej poprawki, ponadto jest ona niedodatnia dla wszystkich przedstawionych wartości parametrów $\epsilon$ i $Q^2$.
+%POPRAWKA DWUFOTONOWA OPIS!%
 
+Dodatkowym składnikiem całkowitego przekroju czynnego uwzględnionego podczas analizy jest poprawka dwu-fotonowa $\Delta C_{2\gamma}$, rysunek \ref{fig:c2_eps} przedstawia jej zależność od czynnika kinematycznego $\epsilon$ dla czterech ustalonych warości przekazu czteropędu. Poprawka charakteryzuje się największą bezwzględną wartością i zarazem największym wpływem na całkowity przekrój czynny dla $\epsilon = 0$, zgodnie z zadanymi więzami jej wartości wynosi zero dla $\epsilon = 1$. Wzrost wartości argumentu $Q^2$ powoduje wzrost wartości bezwzględnej poprawki, ponadto jest ona niedodatnia dla wszystkich przedstawionych wartości parametrów $\epsilon$ i $Q^2$.
 
-
-
-\begin{figure}[h!p!]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=1\textwidth]{c2_eps_q2const.eps}
-	\caption{Poprawka dwu-fotonowa w zależności od $\epsilon$ dla wartości $Q^2$ ustalonych odpowiednio na 0.01, 0.1, 0.5 i 1.0 $\text{GeV}^2$ .} 
+	\includegraphics[width=.95\textwidth]{c2_eps_q2const_1.eps}
+	\caption{Poprawka dwu-fotonowa w zależności od $\epsilon$ dla wartości $Q^2$ ustalonych odpowiednio na 0.01, 0.1, 0.5 i 1.0 $\text{GeV}^2$.} 
 	\label{fig:c2_eps}
 \end{figure}
+%
+Przypomnijmy, że całkowity przekrój czynny przy uwzględnieniu poprawki TPE ma postać równania (\ref{eq:sigma_c2})
+%
+$$
+\sigma_R(\epsilon, Q^2) =\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2) + \Delta C_{2 \gamma} \left(Q^2, \epsilon \right).
+$$
 
+Wpływ poprawki TPE można opisać funkcją będącą stosunkiem wartości poprawki do całego przekroju czynnego
+\begin{equation}
+	D_{2 \gamma} = \frac{\Delta C_{2 \gamma}}{\sigma_R}.
+\end{equation}
+%
+W ten sposób zostały przedstawione wyniki w pracy \cite{2013PhRvC..88f5205G} opisującej przewidywania teoretyczne poprawki TPE oraz wyniki stworzonych modelów statystycznych. Rysunki \ref{fig:c2_gra1}, \ref{fig:c2_raf1} przedstawiają porównanie wspomnianych wyników wraz przewidywaniami stworzonego modelu statystycznego dla ustalonej wartości $Q^2$ ze zbioru $\{0.01, 0.1,0.5,1.0,1.5,2.0\}$, w zależności od czynnika kinematycznego $\epsilon$. Im mniejsza wartość $Q^2$ tym uzyskana poprawka TPE ma większy wpływ na całkowity przekrój czynny. Zauważmy, że uzyskane rezultaty są bliskie wskazaniom modelów BNN oraz ABGG wykorzystującym do nauki te same pomiary eksperymentalne, mają podobny rosnący przebieg, osiągając maksymalną wartość dla $\epsilon=1$. Z drugiej strony wyniki są zdecydowanie niespójne z przwidywaniami teoretycznymi fitI oraz fitII dla $Q^2 < 1$, gdzie obserwujemy dodatnie $D_{2 \gamma}$. 
+Wraz ze wzrostem $Q^2$ model cechuje się bardzo dużą niepewnością otrzymanych rezultatów. Rysunki \ref{fig:c2_gra2}, \ref{fig:c2_raf2} przedstawiają porównanie funkcji $D_{2\gamma}$ dla większych wartości $Q^2$ ze zbioru $\{2.5, 3.0, 3.5,4.0,5.0,6.0\}$ w zależności od czynnika kinematycznego $\epsilon$. W tym przypadku, dla wartości $\epsilon \leq 0.5$ pojawia się nieobserwowane w referencyjnych wynikach zjawisko spadku wartości poprawki TPE, po którym następuje przegięcie funkcji $D_{2\gamma}$ w okolicach $\epsilon \simeq 0.5$. Następnie dla $\epsilon > 0.5$ przebieg funkcji $D_{2\gamma}$ zgadza się z krzywymi referencyjnymi z rysunku \ref{fig:c2_gra2}. Ponownie należy zwrócić uwagę na bardzo wysoką niepewność otrzymanych wyników, która dla $Q^2 = 0$ $\text{GeV}^2$ oraz $\epsilon=0$ waha się o wartość $\pm 0.5$, aby umożliwić porównanie krzywych $D_{2 \gamma}$ zachowano podobną skalę między rysunkami, co w przypadkach dużych wartości niepewności wyników uniemożliwia ich odczyt.
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{1.\textwidth}
+		\includegraphics[width=1.\linewidth]{graczyk1.png}
+		\caption{Przewidywania teoretyczne funkcji $D_{2 \gamma}$ wynikające z modelu hadronowego z poprawką pętlową (fit I, fit II), wyniki modelu statystycznego (BNN) z pracy \cite{2013PhRvC..88f5205G} oraz wyniki z analizy statystycznej przeprowadzonej w pracy \cite{2009PhRvC..79f5204A} (ABGG),  jednostką $Q^2$ są  $\text{GeV}^2$. Źródłem rysunku jest praca \cite{2013PhRvC..88f5205G}.}
+		\label{fig:c2_gra1} 
+	\end{subfigure}
+
+	\begin{subfigure}[b]{1.\textwidth}
+		\includegraphics[width=1.\linewidth]{d2_1.eps}
+		\caption{Przewidywania teoretyczne funkcji $D_{2 \gamma}$ uzyskanego modelu statystycznego. Zacieniowane obszary oznaczją niepewność wynikiów $\pm 1 \sigma$.}
+		\label{fig:c2_raf1}
+	\end{subfigure}
+
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{1.\textwidth}
+		\includegraphics[width=1.\linewidth]{graczyk2.png}
+		\caption{Oznaczenia i źródło jak w rysunku \ref{fig:c2_gra1}.}
+		\label{fig:c2_gra2} 
+	\end{subfigure}
+	
+	\begin{subfigure}[b]{1.\textwidth}
+		\includegraphics[width=1.\linewidth]{d2_2.eps}
+		\caption{Oznaczenia i źródło jak w rysunku \ref{fig:c2_raf1}.}
+		\label{fig:c2_raf2}
+	\end{subfigure}
+
+\end{figure}
 
 \chapter{Zakończenie}
 \label{summary}
 
-W powyższej pracy zbudowano modele statystyczne, które wykorzystując pomiary eksperymentalne rozpraszania elektron-proton dają w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. W tym celu wykorzystano popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy. Do nauki modelów posłużyły dwa typy danych, pierwszy z nich zawiera pomiary całkowitych przekrojów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$, drugi zawiera pomiary stosunków funkcji postaci w zależności od $Q^2$. Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}.
-%, przebiegi funkcji postaci w zależności od $Q^2$ zawierają się w zakresach niepewności pomiarowych zaprezentowanych na wykresach.
+W powyższej pracy zbudowano modele statystyczne, które wykorzystując pomiary eksperymentalne rozpraszania elektron-proton dają w wyniku przewidywanie elektrycznej i magnetycznej funkcji postaci. W tym celu wykorzystano popularny typ sztucznych sieci neuronowych - perceptron wielowarstwowy. Do nauki modelów posłużyły dwa typy danych, pierwszy z nich zawiera pomiary całkowitych przekrojów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$, drugi zawiera pomiary stosunków funkcji postaci w zależności od $Q^2$. Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}, \cite{2013PhRvC..88f5205G}.
 
 
-Proces analizy wymagał zrozumienia zarówno fizyki badanego zjawiska jak i dziedziny nauki zajmującej się algorytmami uczenia maszynowego. Opisano metody budowy sieci neuronowych, w tym szczególnie perceptronu wielowarstwowego wraz z metodą nauki modelu. Zwrócono uwagę na istotną zdolność uniwersalnej aproksymacji oraz na charakterystyczne problemy predykcyjnych modelów statystycznych takie jak kompromis między obciążeniem i wariancją. Nauka model statystycznego została zaprogramowana w języku Python przy wykorzystaniu biblioteki Keras. Zaimplementowano działanie niestandardowej funkcji straty, która bierze pod uwagę wyniki operacji przeprowadzanych na dwóch różnych zbiorach danych (równanie \ref{eq_loss3}). Dodatkowo zaprogramowano algorytm walidacji krzyżowej oraz wczesnego zatrzymania nauki sieci, które pomogły uniknąć przeuczenia modelu statystycznego. Bazując na idei zaproponowanej w \cite{2002JHEP...05..062F}, wykorzystując niepewności pomiarowe oraz błędy systematyczne wygenerowano zestawy sztucznych zestawów danych, których celem było zapewnienie gładkiej interpolacji funkcji postaci przy równoczesnym zapewnieniu nieobciążonej estymacji wszystkich pomiarów. Ponadto opisano proces wyboru hiperparametrów modelu i szczegóły działania wybranego algorytmu uczącego.
+Proces analizy wymagał zrozumienia zarówno fizyki badanego zjawiska jak i dziedziny nauki zajmującej się algorytmami uczenia maszynowego. Opisano metody budowy sieci neuronowych, w tym szczególnie perceptronu wielowarstwowego wraz z metodą nauki modelu. Zwrócono uwagę na istotną zdolność uniwersalnej aproksymacji oraz na charakterystyczne problemy predykcyjnych modelów statystycznych, takie jak kompromis między obciążeniem i wariancją. Nauka sieci neuronowej została zaprogramowana w języku Python przy wykorzystaniu biblioteki Keras. Zaimplementowano działanie niestandardowej funkcji straty, która bierze pod uwagę wyniki operacji przeprowadzanych na dwóch różnych zbiorach danych (równanie \ref{eq_loss3}). Dodatkowo zaprogramowano algorytm walidacji krzyżowej oraz wczesnego zatrzymania nauki sieci, które pomogły uniknąć przeuczenia modelu statystycznego. Bazując na idei zaproponowanej w pracy \cite{2002JHEP...05..062F}, wykorzystując niepewności pomiarowe oraz błędy systematyczne wygenerowano zestawy sztucznych zestawów danych, których celem było zapewnienie gładkiej interpolacji funkcji postaci przy równoczesnym zapewnieniu nieobciążonej estymacji wszystkich pomiarów wraz z szacunkiem niepewności otrzymanych wyników. Ponadto opisano proces wyboru hiperparametrów modelu i szczegóły działania wybranego algorytmu uczącego.
 
 
-Przedstawione analizy prezentują wyniki działania czterech modelów, które w różny sposób starają się przewidywać elektryczną i magnetyczną funkcje postaci. Pierwszy z nich do nauki wykorzystuje tylko pomiary całkowitych przekrójów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$ i estymuje całkowity przekrój czynny. Następnie operacje różniczkowania pozwalaja na separacje funkcji postaci. Drugi z modelów wykorzystuje dodatkowo pomiary stosunków funkcji postaci, jego wynikiem są explicite elektrtyczna i magnetyczna funkcja postaci. Trzeci model oprócz szacowania funkcji postaci przewiduje wartość poprawki dwu-fotonowej natomiast czwarty model dodatkowo uwzględnia teoretyczne więzy estymowanych funkcji. Podczas nauki każdego z modelów skorzystano z metody 5-krotnej walidacji krzyżowej oraz 500 wygenerowanych zestawów sztucznych danych co spowodowało, że jeden model wymagał wytrenowania 2500 sieci neuronowych. Wyniki nauczonych modeli tworzą statystykę, której najważniejszymi parametrami są średnia przedstawiana jako wynik modelu, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników.
+Głównym celem pracy było stworzenie modelu statystycznego przy użyciu sztucznych sieci neuronowych, który na podstawie dostarczonych pomiarów eksperymentalnych rozpraszania elastycznego proton-elektron pozwalał na eksplorację zagadnienia elektromagnetycznych funkcji postaci protonu. Przedstawione analizy prezentują wyniki działania czterech modelów, które w różny sposób starają się przewidywać elektryczną i magnetyczną funkcje postaci. Pierwszy z nich do nauki wykorzystuje tylko pomiary całkowitych przekrójów czynnych w zależności od kwadratu przekazu czteropędu $Q^2$ oraz czynnika kinematycznego $\epsilon$ i estymuje całkowity przekrój czynny. Następnie operacje różniczkowania pozwalaja na separacje funkcji postaci. Drugi z modelów wykorzystuje dodatkowo pomiary stosunków funkcji postaci, jego wynikiem są explicite elektrtyczna i magnetyczna funkcja postaci. Trzeci model oprócz szacowania funkcji postaci przewiduje wartość poprawki TPE natomiast czwarty model dodatkowo uwzględnia teoretyczne więzy estymowanych funkcji. Wyniki czwartej analizy przedstawiają najbardziej fizyczny wynik. Podczas nauki każdego z modelów skorzystano z metody 5-krotnej walidacji krzyżowej oraz 500 wygenerowanych zestawów sztucznych danych co spowodowało, że jeden model wymagał wytrenowania 2500 sieci neuronowych. Wyniki nauczonych modeli tworzą statystykę, której najważniejszymi parametrami są średnia przedstawiana jako wynik modelu, oraz odchylenie standardowe, które wyznacza zakres bardzo prawdopodobnych wyników.
 
 \begin{figure}[hp!]
 	\centering
@@ -2152,17 +2196,14 @@ Przedstawione analizy prezentują wyniki działania czterech modelów, które w 
 
 Analiza nr 1 prezentowała najprostszy sposób rozwiązania problemu, korzystała tylko z jednego rodzaju danych i jej wynikiem był całkowity przekrój czynny. Ekstrakcja funkcji postaci z przekroju czynnego była obarczona dużym błędem co negatywnie odbiło się na wynikach modelu i skutkowało dużą wariancją otrzymanych rezultatów. Uwzględnienie pomiarów doświadczalnych stosunków funkcji postaci znacznie podniosło jakość wyników. Rysunek \ref{fig:cmp_all} przedstawia porównanie funkcji postaci otrzymanych w analizach nr 2, 3 oraz 4. Różnice między analizami nr 2 i 3 wynikające z uwzględnienia poprawki dwu-fotonowej widoczne są przede wszystkim dla magnetycznej funkcji postaci. Zadbanie o więzy funkcji postaci dla $Q^2=0$ w czwartej analizie spowodowało wzrost wartości funkcji. Największa różnica w magnetycznych funkcjach postaci w porównaniu do krzywej pochodzącej z publikacji \cite{2009PhRvC..79f5204A} pojawia się dla małych wartości $Q^2$, w wynikach analizy w tym obszarze nie występuje zmiana monotoniczności funkcji. Elektryczna funkcja postaci również pozbawiona jest pierwszego niewielkiego przecięcia, następnie spadek wartości zaczyna się dla nieco mniejszej wartości $Q^2$, jednak jest on mniej gwałtowny. 
 
-Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}. Całkowite różnice między funkcjami będącymi wynikami stworzonych modeli a funkcjami referencyjnymi są niewielkie, choć warto zwrócić uwagę na zasadniczą różnicę w charakterze przebiegów funkcji dla wartości $Q^2$ bliskich zeru. Dla analizy nr 2 i 3 funkcje postaci w zależności od $Q^2$ całkowicie zawierają się w zakresach niepewności pomiarowych co przedstawiono na rysunkach \ref{fig:ff2}, \ref{fig:ff3}. 
+Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}. Całkowite różnice między funkcjami będącymi wynikami stworzonych modeli a funkcjami referencyjnymi są niewielkie, choć warto zwrócić uwagę na zasadniczą różnicę w charakterze przebiegów funkcji dla wartości $Q^2$ bliskich zeru. Dla analizy nr 2 i 3 funkcje postaci w zależności od $Q^2$ całkowicie zawierają się w zakresach niepewności pomiarowych co przedstawiono na rysunkach \ref{fig:ff2}, \ref{fig:ff3}. Analiza nr 4 dodatkowo zawiera szczegółowy opis otrzymanych wyników poprawki TPE, której wartości mimo wysokiej niepewności przedstawiają zgodność z przeprowadzonymi wcześniej analizami w pracy \cite{2013PhRvC..88f5205G}, równocześnie wykazując niespójność z przewidywaniami teoretycznymi modelu hadronowego w podobnych zakresach $Q^2$.
 
-
-%cos z podsumowaniem wszystkie modele przedstawione razem??
 \bibliographystyle{abbrv}
 \bibliography{references}
 
 \end{document}
 
 
-%wartosci parametrow eta
 %
 \begin{table}
 	\centering
@@ -2210,67 +2251,3 @@ Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowa
 	\caption{Magnetyczna funkcja postaci. Linia ciągła przedstawia średnią ze  wszystkich modeli, zacieniowane regiony wyznaczają obszary $1\sigma$ powstałe z dwóch różnych przyczyn. Jasnoszary obszar opisany jako błąd modelu to odchylenie standardowe opisujące rozkład wyników wszystkich wytrenowanych modeli. Ciemnoszary obszar wyznacza odchylenie standardowe opisujące rozkład wyników powstałych na skutek obliczeń pochodnej dla różnych wartości $\epsilon$ z zakresu $[0,1]$. Przerywana linia to wyniki przedstawione w \cite{2009PhRvC..79f5204A}.} 
 	\label{fig:gm1}
 \end{figure}
-
-The proton radius conflict is a prime problem in proton structure physics. To state the problem is
-simple: we measure the proton radius using electrons, and we measure the proton radius using muons,
-and we get incompatibly different answers.
-Measurements made using electrons come either from electron-proton scattering or from atomic
-spectroscopy, where there are small but measurable shifts in the hydrogen spectrum due to the proton
-size. The proton charge radius obtained from different electron measurements substantially agree, and
-gave a result with an uncertainly of order 0.6%.
-On the muonic side, there is only one set of measurements, but it is one with a very small uncertainty
-limit. The announcement came in 2010 [1], with follow-up in 2013 [2], of the proton size measured from
-its effect on the muonic hydrogen spectrum, specifically the 2S-2P Lamb shift. The muon, because of
-its mass, orbits closer to the proton than an electron, and it energy levels are more strongly affected by
-the proton size. This allows a proton radius measurement with an error bar more than 10 times smaller
-than obtained from the collected electronic measurements, despite the limited lifetime of the muon.
-The proton radius from the muonic Lamb shift is a startling 4%, or 7 of the current electronic
-standard deviations, smaller than the previously accepted result.
-The reasons for this are not yet clear. We will make some comments here about what has been
-thought about, beginning with a brief description of the electron based experiments followed by some
-remarks about how the muonic Lamb measurements are carried out to give the charge radius. We will
-then comment on some (but far from all) of the theory calculations needed to interpret the experiments.
-Much work has been done checking the corrections involved in pulling out the charge radius from the
-muonic experiment, but nothing big enough to affect the result that has been found. Then we will
-comment at some length about suggestions that have been made to reconcile the two measurements,
-including speculation about anomalous QCD corrections, speculation about connections to physics
-beyond the standard model, and questions raised about the interpretation of the experiments using
-electrons. The importance of the problem has led to a number of experiments to check aspects of the
-conflict, and we will catalog some of them in anticipation of their success. We will offer some concluding
-remarks, but the main concluding remark, unfortunately or otherwise, is that the problem remains.
-Previous reviews are found in [3, 4].
-
-Proton puzzle - co to za problem? skąd wynika, co sprawia ze jest ciekawy...
-
-Atomic measurements
-add weight to recent work
-suggesting that the proton
-is significantly smaller than
-previously thought.
-In 2010, researchers studied
-muonic hydrogen (in which
-the electron is replaced with a
-muon, a bigger particle that is
-also negatively charged), which
-allowed them to measure the
-nuclear radius much more
-accurately than is possible with
-ordinary hydrogen. The proton
-size they found was smaller
-than expected from previous
-measurements. To confirm
-the results, the same team, led
-by Randolf Pohl of the MaxPlanck
-Institute for Quantum
-Optics in Garching, Germany,
-studied the nucleus of muonic
-deuterium, which contains a
-proton and a neutron. They
-calculated that the proton
-radius is about 5% smaller
-than previously measured — a
-similar result to that of 2010.
-Several laboratories are
-redoing the measurements in
-ordinary hydrogen atoms to
-try to resolve the contradiction.
