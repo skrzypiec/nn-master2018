@@ -1,6 +1,7 @@
 \documentclass[11pt]{book}
 \usepackage{mathtools}
 \usepackage[pdftex]{graphicx}	
+\usepackage[toc,page]{appendix}
 \usepackage{amsmath,amsfonts,amsthm}	
 \usepackage{tikz}
 \usepackage{mathtools}
@@ -97,7 +98,7 @@
 		\noindent
 		
 		\begin{center}		
-			\huge \textsc{\@ Analiza elastycznego rozpraszania elektron-proton metodą sieci neuronowych}
+			\huge \textsc{\@ Analiza elastycznego rozpraszania elektron-proton metodami sieci neuronowych}
 			
 			\vspace{0.5cm}
 			
@@ -1815,7 +1816,7 @@ Wykorzystane podczas analizy dane składają sie z dwóch zestawów. Pierwszy to
 
 Podczas analizy na szczególną uwagę zasługuję struktura sieci neuronowej przedstawiona na rysunku \ref{tab:scheme3}. Wynikiem działania sieci są funkcje postaci $G_{M_p}$ oraz $G_{E_p}$ w zależności od $Q^2$ oraz poprawka $\Delta C_{2\gamma}$ zależna od $Q^2$ i $\epsilon$, takie wymagania wymuszają przerwanie połączeń między niektórymi neuronami. Sieć składa się z warstwy wejściowej, dwóch warstw ukrytych oraz warstwy wyjściowej, wejściowa składa się z dwóch neuronów $(Q^2, \epsilon)$. Pierwsza warstwa ukryta zawiera trzy neurony połączone wyłącznie z $Q^2$ oraz jeden połączony wyłącznie z $\epsilon$ (3-1). Druga warstwa ukryta to pięć neuronów, ponownie trzy z nich połączone są z neuronami łączącymi się wyłącznie z kwadratem przekazu czteropędu, pozostałe dwa połączone są z neuronem z poprzedniej warstwy połączonym z czynnikiem kinematycznym (3-2). Ostatnia warstwa wyjściowa składa się z trzech neuronów, dwie funkcje postaci otrzymują sygnał pochądzący z trzech neuronów przekazujących sygnał zależny od wartości $Q^2$ natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. 
 
-Konstrukcja takiej struktury sieci neuronowej w Kerasie jest nietrywialna, aby uzyskać opisany powyżej efekt skorzystano z warstw Lambda, które umożliwiają wykonywanie operacji arytmetycznych przez neurony w warstwach ukrytych w obrębie zdefiniowanej funkcji lambda. W tej konstrukcji każdy z neuronów wybranej warstwy ukrytej jest zdefiniowany jako warstwa Lambda. Operacje wykonywane na tensorach w obrębie funkcji lambda pozwalają wybrać, które neurony z warstwy poprzedzającej są wejściem. Następnie wszystkie wybrane neurony łączone są w jedną warstwę - warstwę ukrytą, w której neurony mają zdefiniowane przez nas wejścia. Kolejne warstwy tworzone są w analogiczny sposób. Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. 
+Konstrukcja takiej struktury sieci neuronowej w Kerasie jest nietrywialna, aby uzyskać opisany powyżej efekt skorzystano z warstw Lambda, które umożliwiają wykonywanie operacji arytmetycznych przez warstwy sieci w obrębie zdefiniowanej funkcji lambda. W tej konstrukcji każdy z neuronów wybranej warstwy ukrytej jest zdefiniowany jako warstwa Lambda. Operacje wykonywane na tensorach zdefiniowane jako funkcja lambda pozwalają wybrać, które neurony z warstwy poprzedzającej są wejściem. Następnie wszystkie wybrane neurony zdefiniowane wcześniej jako osobne warstwy łączone są w jedną warstwę - warstwę ukrytą, w której neurony mają zdefiniowane przez nas wejścia. Kolejne warstwy tworzone są w analogiczny sposób. Appendix zawiera szczegóły implementacyjne stworzonego modelu. Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. 
 
 \begin{SCfigure}[][h]
 	\centering
@@ -2198,8 +2199,100 @@ Analiza nr 1 prezentowała najprostszy sposób rozwiązania problemu, korzystał
 
 Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowadzonymi badaniami \cite{2009PhRvC..79f5204A}. Całkowite różnice między funkcjami będącymi wynikami stworzonych modeli a funkcjami referencyjnymi są niewielkie, choć warto zwrócić uwagę na zasadniczą różnicę w charakterze przebiegów funkcji dla wartości $Q^2$ bliskich zeru. Dla analizy nr 2 i 3 funkcje postaci w zależności od $Q^2$ całkowicie zawierają się w zakresach niepewności pomiarowych co przedstawiono na rysunkach \ref{fig:ff2}, \ref{fig:ff3}. Analiza nr 4 dodatkowo zawiera szczegółowy opis otrzymanych wyników poprawki TPE, której wartości mimo wysokiej niepewności przedstawiają zgodność z przeprowadzonymi wcześniej analizami w pracy \cite{2013PhRvC..88f5205G}, równocześnie wykazując niespójność z przewidywaniami teoretycznymi modelu hadronowego w podobnych zakresach $Q^2$.
 
+
+
 \bibliographystyle{abbrv}
 \bibliography{references}
+
+\clearpage
+
+\appendix
+\setcounter{secnumdepth}{-1}
+\chapter{Appendix}
+%
+\begin{lstlisting}
+#Wymiar danych wejsciowych (Q2, epsilon)
+inputTensor = Input((2,))
+
+#Pierwsza warstwa ukryta. 
+#Kazdy neuron zdefiniowany jest jako osobna warstwa. Trzy pierwsze neurony jako wejscie przyjmują tylko (Q2), czwarty - (Q2,epsilon)
+f_hl1 = Lambda(lambda x: x[:,:1], output_shape=((1,)))(inputTensor)
+f_hl2 = Lambda(lambda x: x[:,:1], output_shape=((1,)))(inputTensor)
+f_hl3 = Lambda(lambda x: x[:,:1], output_shape=((1,)))(inputTensor)
+f_hl4 = Lambda(lambda x: x[:,:2], output_shape=((2,)))(inputTensor)
+
+#Iniclalizacja parametrów warstw
+f_hl1 = Dense(1, use_bias=True,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None),
+bias_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(f_hl1)
+f_hl2 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(f_hl2)
+f_hl3 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(f_hl3)   
+f_hl4 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(f_hl4)
+
+
+#Lączenie warstw (neuronów) w pierwszą warstwę ukrytą
+hiddenTensor1 = Concatenate(axis=1)([f_hl1,f_hl2,f_hl3,f_hl4])
+
+
+
+
+#Druga warstwa ukryta. 
+#Trzy pierwsze neurony jako wejscie przyjmują trzy pierwsze neurony z poprzedniej warstwy, czwarty i piąty neuron wszystkie.
+s_hl1 = Lambda(lambda x: x[:,:3], output_shape=((3,)))(hiddenTensor1)
+s_hl2 = Lambda(lambda x: x[:,:3], output_shape=((3,)))(hiddenTensor1)
+s_hl3 = Lambda(lambda x: x[:,:3], output_shape=((3,)))(hiddenTensor1)
+s_hl4 = Lambda(lambda x: x[:,:4], output_shape=((4,)))(hiddenTensor1)
+s_hl5 = Lambda(lambda x: x[:,:4], output_shape=((4,)))(hiddenTensor1)
+
+#Inicjalizacja parametrów warstw
+s_hl1 = Dense(1,use_bias=True,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None),
+bias_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(s_hl1)
+s_hl2 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(s_hl2)
+s_hl3 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(s_hl3)   
+s_hl4 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(s_hl4)
+s_hl5 = Dense(1,use_bias=False,
+activation='sigmoid', 
+kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(s_hl5)
+
+#Lączenie warstw (neuronów) w drugą warstwę ukrytą
+hiddenTensor2 = Concatenate(axis=1)([s_hl1,s_hl2,s_hl3,s_hl4, s_hl5])
+
+#Definicja wyjscia sieci, ge i gm zalezne tylko od Q2, c2 zalezne od Q2 i epsilon
+ge = Lambda(lambda x: x[:,:3], output_shape=((3,)))(hiddenTensor2)
+gm = Lambda(lambda x: x[:,:3], output_shape=((3,)))(hiddenTensor2)
+c2 = Lambda(lambda x: x[:,:5], output_shape=((5,)))(hiddenTensor2)
+
+ge = Dense(1,use_bias=False
+,kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(ge)
+gm = Dense(1,use_bias=False
+,kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(gm)
+c2 = Dense(1,use_bias=False
+,kernel_initializer=initializers.RandomUniform(minval=-0.6, maxval=0.6, seed=None))(c2)   
+
+#Lączenie warstw (neuronów) w warstwę wyjsciową
+outputTensor = Concatenate(axis=1)([ge,gm,c2])
+
+#Kompilacja modelu
+Model(inputTensor,outputTensor).compile(loss = my_loss,
+optimizer=optimizers.SGD(lr=0.005, clipvalue=0.25, decay = 1e-4, momentum=0.9, nesterov=True), # Optimization algorithm
+) 
+\end{lstlisting}
+
 
 \end{document}
 
