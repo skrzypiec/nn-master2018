@@ -168,8 +168,8 @@
 	{\large 	\textbf{Streszczenie}}
 
 \end{center}
-\normalsize 
-	Badania opisanie w niniejszej pracy przedstawiają analizę pomiarów eksperymentalnych elastycznego rozpraszania elektron-proton. Jest to zjawisko będące skuteczną metodą badania wewnętrznej struktury protonu opisywanej przy pomocy elektrycznej oraz magnetycznej funkcji postaci. Metody Rosenblutha oraz transferu polaryzacji pozwalają na teoretyczne związanie funkcji postaci protonu wraz z pomiarami całkowitego przekroju czynnego rozpraszania oraz transferu polaryzacji. Do stworzenia modelu statystycznego pozwalającego na predykcje funkcji postaci protonu wykorzystano popularny typ sztucznych sieci neuronowych -- perceptron wielowarstwowy, a do jego budowy wykorzystana została biblioteka Keras. Opisano sposób wyboru parametrów i hiperparametrów modelów. Jednym z kluczowych aspektów analizy jest szacunek niepewności otrzymanego wyniku, w tym celu posłużono się ideą budowy wielu modelów, których wyniki pozwalały zastosować metody wnioskowania statystycznego. Przeprowadzono i opisano cztery analizy, które wykorzystywały różne metody predykcji funkcji postaci, dwie z nich dodatkowo opisują wpływ poprawki dwu-fotonowej na pomiary eksperymentalne elastycznego rozpraszania elektron-proton.
+\normalsize
+	Przedmiotem pracy jest analiza pomiarów eksperymentalnych elastycznego rozpraszania elektron-proton. Elastyczne rozpraszanie elektron-proton to proces, z którego można otrzymać informacje o wewnętrznej strukturze protonu. Metoda Rosenblutha oraz transferu polaryzacji to metody pozwalające otrzymać z różniczkowych przekrojów czynnych czynniki postaci nukleonu. Do stworzenia modelu statystycznego pozwalającego na predykcje funkcji postaci protonu wykorzystano popularny typ sztucznych sieci neuronowych -- perceptron wielowarstwowy, a do jego budowy wykorzystana została biblioteka Keras. Opisano sposób wyboru parametrów i hiperparametrów modelów. Jednym z kluczowych aspektów analizy jest szacunek niepewności otrzymanego wyniku, w tym celu posłużono się ideą budowy wielu modelów, których wyniki pozwalały zastosować metody wnioskowania statystycznego. Przeprowadzono i opisano cztery analizy, które wykorzystywały różne metody predykcji funkcji postaci, dwie z nich dodatkowo opisują wpływ poprawki dwu-fotonowej na pomiary eksperymentalne elastycznego rozpraszania elektron-proton.
 
 \vspace{2cm}
 
@@ -177,7 +177,7 @@
 	{\large 	\textbf{Abstract}}
 \end{center}
 \normalsize
-In this thesis I present an analysis of elastic electron-proton scattering data. The electromagnetic structure of the proton is encoded in electric and magnetic form factors and it can be studied by scattering electrons. Rosenbluth separation method and polarization transfer method allow to describe experimental measurements of cross section and polarization transfer data in terms of proton's form factors. A popular type of artificial neural network -- multilayer perceptron was employed to create a statistical model allowing the prediction of proton's form factors. It was developed in Python with Keras, furthermore process of tuning model's parameters and hyperparametrs is described. Estimation of the uncertainty of obtained results is one of the key aspects of the analysis. For this purpose, the idea of building many models was used, their results allow applying methods of statistical inference. Four analyzes were performed and described, they used various methods of predictions, two of them additionally include two-photon exchange correction of elastic electron-proton scattering measurements.
+In this thesis I present an analysis of the elastic electron-proton scattering data. The electromagnetic structure of the proton is encoded in the electric and magnetic form factors and it can be studied by scattering electrons on the nucleons. The Rosenbluth separation and polarization transfer methods allow to obtain from the experimental measurements of cross section and polarization transfer data the electromagnetic proton's form factors. A popular type of artificial neural network -- multilayer perceptron was employed to construct a statistical model allowing the prediction of proton's form factors. It was developed in Python language with Keras library, furthermore process of tuning model's parameters and hyperparametrs is described. Estimation of the uncertainty of obtained results is one of the key aspects of the analysis. For this purpose, the idea of building many models was used, their results allow applying methods of statistical inference. Four analyzes were performed and described, they used various methods of predictions, two of them additionally include the two-photon exchange correction of the elastic electron-proton scattering measurements.
 \vspace{2cm}
 
 \newgeometry{tmargin=3.cm, bmargin=2.0cm, lmargin=3.5cm, rmargin=2.5cm}
@@ -1815,7 +1815,7 @@ Wykorzystane podczas analizy dane składają sie z dwóch zestawów. Pierwszy to
 
 Podczas analizy na szczególną uwagę zasługuję struktura sieci neuronowej przedstawiona na rysunku \ref{tab:scheme3}. Wynikiem działania sieci są funkcje postaci $G_{M_p}$ oraz $G_{E_p}$ w zależności od $Q^2$ oraz poprawka $\Delta C_{2\gamma}$ zależna od $Q^2$ i $\epsilon$, takie wymagania wymuszają przerwanie połączeń między niektórymi neuronami. Sieć składa się z warstwy wejściowej, dwóch warstw ukrytych oraz warstwy wyjściowej, wejściowa składa się z dwóch neuronów $(Q^2, \epsilon)$. Pierwsza warstwa ukryta zawiera trzy neurony połączone wyłącznie z $Q^2$ oraz jeden połączony wyłącznie z $\epsilon$ (3-1). Druga warstwa ukryta to pięć neuronów, ponownie trzy z nich połączone są z neuronami łączącymi się wyłącznie z kwadratem przekazu czteropędu, pozostałe dwa połączone są z neuronem z poprzedniej warstwy połączonym z czynnikiem kinematycznym (3-2). Ostatnia warstwa wyjściowa składa się z trzech neuronów, dwie funkcje postaci otrzymują sygnał pochądzący z trzech neuronów przekazujących sygnał zależny od wartości $Q^2$ natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. 
 
-Konstrukcja takiej struktury sieci neuronowej w Kerasie jest nietrywialna, aby uzyskać opisany powyżej efekt skorzystano z warstw Lambda, które umożliwiają wykonywanie operacji arytmetycznych przez warstwy sieci w obrębie zdefiniowanej funkcji lambda. W tej konstrukcji każdy z neuronów wybranej warstwy ukrytej jest zdefiniowany jako warstwa Lambda. Operacje wykonywane na tensorach zdefiniowane jako funkcja lambda pozwalają wybrać, które neurony z warstwy poprzedzającej są wejściem. Następnie wszystkie wybrane neurony zdefiniowane wcześniej jako osobne warstwy łączone są w jedną warstwę - warstwę ukrytą, w której neurony mają zdefiniowane przez nas wejścia. Kolejne warstwy tworzone są w analogiczny sposób. Appendix zawiera szczegóły implementacyjne stworzonego modelu. Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. 
+Konstrukcja takiej struktury sieci neuronowej w Kerasie jest nietrywialna, aby uzyskać opisany powyżej efekt skorzystano z warstw Lambda, które umożliwiają wykonywanie operacji arytmetycznych przez warstwy sieci w obrębie zdefiniowanej funkcji lambda. W tej konstrukcji każdy z neuronów wybranej warstwy ukrytej jest zdefiniowany jako warstwa Lambda. Operacje wykonywane na tensorach zdefiniowane jako funkcja lambda pozwalają wybrać, które neurony z warstwy poprzedzającej są wejściem. Następnie wszystkie wybrane neurony zdefiniowane wcześniej jako osobne warstwy łączone są w jedną warstwę - warstwę ukrytą, w której neurony mają zdefiniowane przez nas wejścia. Kolejne warstwy tworzone są w analogiczny sposób. Dodatek zawiera szczegóły implementacyjne stworzonego modelu. Tabela \ref{tab:hyper3} przedstawia wykorzystane hiperparametry sieci neuronowej. 
 
 \begin{SCfigure}[][h]
 	\centering
@@ -2209,8 +2209,13 @@ Wyniki przeprowadzonych analiz zgadzają się jakościowo z wcześniej przeprowa
 
 \appendix
 \setcounter{secnumdepth}{-1}
-\chapter{Appendix}
+\chapter{Dodatek}
 %
+Dodatek przedstawia sposób konstrukcji sieci neuronowej wykorzystanej podczas analizy nr 3 i 4. Na uwagę zasługuję fakt, iż nie wszysktie neurony w sieci są ze sobą połączone. Sieć składa się z warstwy wejściowej, dwóch warstw ukrytych oraz warstwy wyjściowej, wejściowa składa się z dwóch neuronów $(Q^2, \epsilon)$. Pierwsza warstwa ukryta zawiera trzy neurony połączone wyłącznie z $Q^2$ oraz jeden połączony wyłącznie z $\epsilon$ (3-1). Druga warstwa ukryta to pięć neuronów, ponownie trzy z nich połączone są z neuronami łączącymi się wyłącznie z kwadratem przekazu czteropędu, pozostałe dwa połączone są z neuronem z poprzedniej warstwy połączonym z czynnikiem kinematycznym (3-2). Ostatnia warstwa wyjściowa składa się z trzech neuronów, dwie funkcje postaci otrzymują sygnał pochądzący z trzech neuronów przekazujących sygnał zależny od wartości $Q^2$ natomiast poprawka $\Delta C_{2\gamma}$ połączona jest ze wszystkimi neuronami w poprzedniej warstwie, zatem jej wartości są zależne zarówno od $Q^2$ i $\epsilon$. 
+
+Taka struktura sieci neuronowej została stworzona dzięki wykorzystaniu warstw Lambda. Każdy z neuronów wybranej warstwy ukrytej jest zdefiniowany jako warstwa Lambda. Operacje wykonywane na tensorach zdefiniowane jako funkcja lambda pozwalają wybrać, które neurony z warstwy poprzedzającej są wejściem. Następnie wszystkie wybrane neurony zdefiniowane wcześniej jako osobne warstwy łączone są w jedną warstwę - warstwę ukrytą, w której neurony mają zdefiniowane przez nas wejścia. Kolejne warstwy tworzone są w analogiczny sposób. Poniższy kod zawiera szczegóły implementacyjne opisanej wyżej konstrukcji.
+
+
 \begin{lstlisting}
 #Wymiar danych wejsciowych (Q2, epsilon)
 inputTensor = Input((2,))
@@ -2289,9 +2294,9 @@ c2 = Dense(1,use_bias=False
 outputTensor = Concatenate(axis=1)([ge,gm,c2])
 
 #Kompilacja modelu
-Model(inputTensor,outputTensor).compile(loss = my_loss,
-optimizer=optimizers.SGD(lr=0.005, clipvalue=0.25, decay = 1e-4, momentum=0.9, nesterov=True), # Optimization algorithm
-) 
+model = Model(inputTensor,outputTensor)
+model.compile(loss = my_loss,
+optimizer=optimizers.SGD(lr=0.005, clipvalue=0.25, decay = 1e-4, momentum=0.9, nesterov=True)) 
 \end{lstlisting}
 
 
