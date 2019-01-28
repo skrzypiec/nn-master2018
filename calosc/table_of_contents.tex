@@ -169,7 +169,7 @@
 
 \end{center}
 \normalsize 
-	Tekst streszczenia
+	Badania opisanie w niniejszej pracy przedstawiają analizę pomiarów eksperymentalnych elastycznego rozpraszania elektron-proton. Jest to zjawisko będące skuteczną metodą badania wewnętrznej struktury protonu opisywanej przy pomocy elektrycznej oraz magnetycznej funkcji postaci. Metody Rosenblutha oraz transferu polaryzacji pozwalają na teoretyczne związanie funkcji postaci protonu wraz z pomiarami całkowitego przekroju czynnego rozpraszania oraz transferu polaryzacji. Do stworzenia modelu statystycznego pozwalającego na predykcje funkcji postaci protonu wykorzystano popularny typ sztucznych sieci neuronowych -- perceptron wielowarstwowy, a do jego budowy wykorzystana została biblioteka Keras. Opisano sposób wyboru parametrów i hiperparametrów modelów. Jednym z kluczowych aspektów analizy jest szacunek niepewności otrzymanego wyniku, w tym celu posłużono się ideą budowy wielu modelów, których wyniki pozwalały zastosować metody wnioskowania statystycznego. Przeprowadzono i opisano cztery analizy, które wykorzystywały różne metody predykcji funkcji postaci, dwie z nich dodatkowo opisują wpływ poprawki dwu-fotonowej na pomiary eksperymentalne elastycznego rozpraszania elektron-proton.
 
 \vspace{2cm}
 
@@ -177,8 +177,7 @@
 	{\large 	\textbf{Abstract}}
 \end{center}
 \normalsize
-	Tekst streszczenia
-
+In this thesis I present an analysis of elastic electron-proton scattering data. The electromagnetic structure of the proton is encoded in electric and magnetic form factors and it can be studied by scattering electrons. Rosenbluth separation method and polarization transfer method allow to describe experimental measurements of cross section and polarization transfer data in terms of proton's form factors. A popular type of artificial neural network -- multilayer perceptron was employed to create a statistical model allowing the prediction of proton's form factors. It was developed in Python with Keras, furthermore process of tuning model's parameters and hyperparametrs is described. Estimation of the uncertainty of obtained results is one of the key aspects of the analysis. For this purpose, the idea of building many models was used, their results allow applying methods of statistical inference. Four analyzes were performed and described, they used various methods of predictions, two of them additionally include two-photon exchange correction of elastic electron-proton scattering measurements.
 \vspace{2cm}
 
 \newgeometry{tmargin=3.cm, bmargin=2.0cm, lmargin=3.5cm, rmargin=2.5cm}
@@ -1985,7 +1984,7 @@ Aby to uzyskać wykorzystano metodę opisaną w pracy \cite{2014PhRvC..90e4334G}
 
 \begin{SCfigure}[][h]
 	\centering
-	\resizebox{9cm}{!}{\begin{tikzpicture}
+	\resizebox{8cm}{!}{\begin{tikzpicture}
 		[   cnode/.style={draw=black,draw=black,fill=#1,minimum width=8mm,circle},
 		]
 		\tikzset{normal arrow/.style={draw,-latex}}
@@ -2096,8 +2095,8 @@ Schemat wykorzystanej sieci został przedstawiony na rysunku \ref{tab:scheme4}, 
 \end{table}
 
 \subsubsection{Wyniki}
-% 
-Rysunek \ref{fig:ff4} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Uzyskane wyniki dowodzą, że udało się otrzymać zadane powyżej więzy funkcji, jednak kształty funkcji postaci w istotny sposób różnią się od rezultatów publikacji \cite{2009PhRvC..79f5204A}. Otrzymana przez model magnetyczna funkcja postaci jest rosnąca oraz znacznie przeszacowana w obszarze niskich wartości $Q^2$ względem referencyjnego przebiegu, który charakteryzuje się zmianą monotoniczności. Dopiero dla wartości argumentu $Q^2 > 0.4 \text{GeV}^2$ referencyjny przebieg magnetycznej funkcji postaci znajduje się w obszarze $\pm 2\sigma$ otrzymanych wyników. Różnice między uzyskaną elektryczną funkcją postaci pronu i porównywaną funkcją ponownie najbardziej zauważalne są dla stosunkowo niewielkich wartości $Q^2$. Wynik ponownie pozbawiony jest pierwszego niewielkiego przecięcia, następnie przebiegi funkcji są zbieżne i zawierają się w obszarze $\pm 2\sigma$.
+
+Rysunek \ref{fig:ff4} przedstawia wykresy otrzymanych funkcji postaci protonu. Lewa część obrazka przedstawia magnetyczną funkcję postaci protonu w zależności od kwadratu przekazu czteropędu $G_{M_p}\left(Q^2\right)$, prawa część rysunku przedstawia przebieg elektrycznej funkcji postaci $G_{E_p}\left(Q^2\right)$. Uzyskane wyniki dowodzą, że udało się otrzymać zadane powyżej więzy funkcji, jednak kształty funkcji postaci w istotny sposób różnią się od rezultatów publikacji \cite{2009PhRvC..79f5204A}. Otrzymana przez model magnetyczna funkcja postaci jest rosnąca oraz znacznie przeszacowana w obszarze niskich wartości $Q^2$ względem referencyjnego przebiegu, który charakteryzuje się zmianą monotoniczności funkcji. Dopiero dla wartości argumentu $Q^2 > 0.4 \text{GeV}^2$ referencyjny przebieg magnetycznej funkcji postaci znajduje się w obszarze $\pm 2\sigma$ otrzymanych wyników. Różnice między uzyskaną elektryczną funkcją postaci pronu i porównywaną funkcją ponownie najbardziej zauważalne są dla stosunkowo niewielkich wartości $Q^2$. Wynik ponownie pozbawiony jest pierwszego niewielkiego przecięcia, następnie przebiegi funkcji są zbieżne i zawierają się w obszarze $\pm 2\sigma$.
 
 
 \begin{figure}[h!p!]
@@ -2120,7 +2119,7 @@ Rysunek \ref{fig:ratio4} przedstawia pomiary eksperymentalne stosunku funkcji po
 
 %POPRAWKA DWUFOTONOWA OPIS!%
 
-Dodatkowym składnikiem całkowitego przekroju czynnego uwzględnionego podczas analizy jest poprawka dwu-fotonowa $\Delta C_{2\gamma}$, rysunek \ref{fig:c2_eps} przedstawia jej zależność od czynnika kinematycznego $\epsilon$ dla czterech ustalonych warości przekazu czteropędu. Poprawka charakteryzuje się największą bezwzględną wartością i zarazem największym wpływem na całkowity przekrój czynny dla $\epsilon = 0$, zgodnie z zadanymi więzami jej wartości wynosi zero dla $\epsilon = 1$. Wzrost wartości argumentu $Q^2$ powoduje wzrost wartości bezwzględnej poprawki, ponadto jest ona niedodatnia dla wszystkich przedstawionych wartości parametrów $\epsilon$ i $Q^2$.
+Dodatkowym składnikiem całkowitego przekroju czynnego uwzględnionego podczas analizy jest poprawka dwu-fotonowa $\Delta C_{2\gamma}$, rysunek \ref{fig:c2_eps} przedstawia jej zależność od czynnika kinematycznego $\epsilon$ dla czterech ustalonych wartości przekazu czteropędu. Poprawka charakteryzuje się największą bezwzględną wartością i zarazem największym wpływem na całkowity przekrój czynny dla $\epsilon = 0$, zgodnie z zadanymi więzami jej wartości wynosi zero dla $\epsilon = 1$. Wzrost wartości $Q^2$ powoduje wzrost wartości bezwzględnej poprawki, ponadto jest ona niedodatnia dla wszystkich przedstawionych wartości parametrów $\epsilon$ i $Q^2$.
 
 \begin{figure}[h!]
 	\centering
@@ -2134,14 +2133,13 @@ Przypomnijmy, że całkowity przekrój czynny przy uwzględnieniu poprawki TPE m
 $$
 \sigma_R(\epsilon, Q^2) =\tau G_{M_p}^2(Q^2) + \epsilon G_{E_p}^2(Q^2) + \Delta C_{2 \gamma} \left(Q^2, \epsilon \right).
 $$
-
+%
 Wpływ poprawki TPE można opisać funkcją będącą stosunkiem wartości poprawki do całego przekroju czynnego
 \begin{equation}
 	D_{2 \gamma} = \frac{\Delta C_{2 \gamma}}{\sigma_R}.
 \end{equation}
 %
-W ten sposób zostały przedstawione wyniki w pracy \cite{2013PhRvC..88f5205G} opisującej przewidywania teoretyczne poprawki TPE oraz wyniki stworzonych modelów statystycznych. Rysunki \ref{fig:c2_gra1}, \ref{fig:c2_raf1} przedstawiają porównanie wspomnianych wyników wraz przewidywaniami stworzonego modelu statystycznego dla ustalonej wartości $Q^2$ ze zbioru $\{0.01, 0.1,0.5,1.0,1.5,2.0\}$, w zależności od czynnika kinematycznego $\epsilon$. Im mniejsza wartość $Q^2$ tym uzyskana poprawka TPE ma większy wpływ na całkowity przekrój czynny. Zauważmy, że uzyskane rezultaty są bliskie wskazaniom modelów BNN oraz ABGG wykorzystującym do nauki te same pomiary eksperymentalne, mają podobny rosnący przebieg, osiągając maksymalną wartość dla $\epsilon=1$. Z drugiej strony wyniki są zdecydowanie niespójne z przwidywaniami teoretycznymi fitI oraz fitII dla $Q^2 < 1$, gdzie obserwujemy dodatnie $D_{2 \gamma}$. 
-Wraz ze wzrostem $Q^2$ model cechuje się bardzo dużą niepewnością otrzymanych rezultatów. Rysunki \ref{fig:c2_gra2}, \ref{fig:c2_raf2} przedstawiają porównanie funkcji $D_{2\gamma}$ dla większych wartości $Q^2$ ze zbioru $\{2.5, 3.0, 3.5,4.0,5.0,6.0\}$ w zależności od czynnika kinematycznego $\epsilon$. W tym przypadku, dla wartości $\epsilon \leq 0.5$ pojawia się nieobserwowane w referencyjnych wynikach zjawisko spadku wartości poprawki TPE, po którym następuje przegięcie funkcji $D_{2\gamma}$ w okolicach $\epsilon \simeq 0.5$. Następnie dla $\epsilon > 0.5$ przebieg funkcji $D_{2\gamma}$ zgadza się z krzywymi referencyjnymi z rysunku \ref{fig:c2_gra2}. Ponownie należy zwrócić uwagę na bardzo wysoką niepewność otrzymanych wyników, która dla $Q^2 = 0$ $\text{GeV}^2$ oraz $\epsilon=0$ waha się o wartość $\pm 0.5$, aby umożliwić porównanie krzywych $D_{2 \gamma}$ zachowano podobną skalę między rysunkami, co w przypadkach dużych wartości niepewności wyników uniemożliwia ich odczyt.
+W ten sposób zostały przedstawione wyniki w pracy \cite{2013PhRvC..88f5205G} opisującej przewidywania teoretyczne poprawki TPE oraz wyniki stworzonych modelów statystycznych. Rysunki \ref{fig:c2_gra1}, \ref{fig:c2_raf1} przedstawiają porównanie wspomnianych wyników wraz przewidywaniami stworzonego modelu statystycznego dla ustalonej wartości $Q^2$ ze zbioru $\{0.01, 0.1,0.5,1.0,1.5,2.0\}$, w zależności od czynnika kinematycznego $\epsilon$. Im mniejsza wartość $Q^2$ tym uzyskana poprawka TPE ma większy wpływ na całkowity przekrój czynny. Uzyskane rezultaty dla $Q^2 < 1$ $\text{GeV}^2$ znacznie różnią się od wskazań modeli BNN oraz ABGG wykorzystującym do nauki te same pomiary eksperymentalne, co wyjaśnia różnicę wartości funkcji postaci zaobserwowaną na rysunku \ref{fig:ff4}. Podobnie wyniki są zdecydowanie niespójne z przwidywaniami teoretycznymi fitI oraz fitII dla $Q^2 < 1$ $\text{GeV}^2$, gdzie obserwujemy dodatnie $D_{2 \gamma}$. Dla $Q^2 > 1$ $\text{GeV}^2$ funkcje $D_{2 \gamma}$ mają podobny rosnący przebieg, osiągając maksymalną wartość dla $\epsilon=1$. 
 
 
 \begin{figure}
@@ -2176,6 +2174,9 @@ Wraz ze wzrostem $Q^2$ model cechuje się bardzo dużą niepewnością otrzymany
 	\end{subfigure}
 
 \end{figure}
+
+
+Wraz ze wzrostem $Q^2$ model cechuje się bardzo dużą niepewnością otrzymanych rezultatów. Rysunki \ref{fig:c2_gra2}, \ref{fig:c2_raf2} przedstawiają porównanie funkcji $D_{2\gamma}$ dla większych wartości $Q^2$ ze zbioru $\{2.5, 3.0, 3.5,4.0,5.0,6.0\}$ w zależności od czynnika kinematycznego $\epsilon$. W tym przypadku, dla wartości $\epsilon \leq 0.5$ pojawia się nieobserwowane w referencyjnych wynikach zjawisko spadku wartości poprawki TPE, po którym następuje przegięcie funkcji $D_{2\gamma}$ w okolicach $\epsilon \simeq 0.5$. Następnie dla $\epsilon > 0.5$ przebieg funkcji $D_{2\gamma}$ zgadza się z krzywymi referencyjnymi z rysunku \ref{fig:c2_gra2}. Ponownie należy zwrócić uwagę na bardzo wysoką niepewność otrzymanych wyników, która dla $Q^2 = 0$ $\text{GeV}^2$ oraz $\epsilon=0$ waha się o wartość $\pm 0.05$. Powodem tak wysokiej niepewności może być zbyt mała liczba modeli statystycznych tworzących opisywaną statystykę, niestety zasoby obliczeniowe nie pozwoliły na zwiększenie tej liczby.
 
 \chapter{Zakończenie}
 \label{summary}
